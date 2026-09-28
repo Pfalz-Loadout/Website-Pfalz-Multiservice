@@ -1,0 +1,54 @@
+import type { Metadata } from "next";
+import { SectionHeading } from "@/components/SectionHeading";
+import { CONTACT } from "@/lib/data";
+
+export const metadata: Metadata = { title: "Datenschutzerklärung" };
+
+const PRIVACY: { h?: string; p: string[]; l?: string[]; p2?: string[] }[] = [
+  { p: ["Pfalz Multiservice ist ein Angebot von Pfalz Loadout (Inhaberin: Jasmin Beer, Wormser Landstraße 117, 67551 Worms). Wir betreiben diese Website, einschließlich aller zugehörigen Informationen, Inhalte, Funktionen und Kontaktmöglichkeiten, um Ihnen unsere Dienstleistungen vorzustellen und Anfragen entgegenzunehmen (die „Services“). In dieser Datenschutzerklärung wird beschrieben, wie wir personenbezogene Daten erfassen, verwenden oder weitergeben, wenn Sie die Website besuchen, uns eine Anfrage senden, einen Auftrag erteilen oder anderweitig mit uns kommunizieren.", "Lesen Sie sich diese Datenschutzerklärung bitte sorgfältig durch. Indem Sie die Services nutzen, bestätigen Sie, dass Sie diese Datenschutzerklärung zur Kenntnis genommen haben."] },
+  { h: "Welche personenbezogenen Daten erfassen oder verarbeiten wir?", p: ["Wenn wir den Begriff „personenbezogene Daten“ verwenden, beziehen wir uns auf Informationen, die Sie identifizieren oder unmittelbar mit Ihnen in Verbindung gebracht werden können. Personenbezogene Daten umfassen keine Informationen, die anonym erfasst oder so anonymisiert wurden, dass eine Identifizierung nicht möglich ist. Je nachdem, wie Sie mit uns interagieren, können wir die folgenden Kategorien personenbezogener Daten verarbeiten:"], l: ["Kontaktdaten einschließlich Name, Firmenname, Postanschrift, Telefonnummer und E-Mail-Adresse.", "Anfrage- und Auftragsdaten einschließlich des gewünschten Leistungsbereichs, Angaben zu Objekten, Flächen oder Warenbeständen, Terminwünschen sowie Angeboten, Rechnungen und Zahlungsinformationen im Rahmen eines Auftrags.", "Kommunikation mit uns einschließlich der Informationen, die Sie uns über das Kontaktformular, per E-Mail, Telefon oder WhatsApp mitteilen.", "Geräteinformationen einschließlich Informationen über Gerät, Browser oder Netzwerkverbindung, IP-Adresse sowie Datum und Uhrzeit des Zugriffs.", "Nutzungsinformationen einschließlich Informationen darüber, welche Seiten der Website Sie aufrufen."] },
+  { h: "Quellen von personenbezogenen Daten", p: ["Wir können personenbezogene Daten über die folgenden Quellen erfassen:"], l: ["Direkt von Ihnen, wenn Sie uns eine Anfrage senden, einen Auftrag erteilen oder anderweitig mit uns kommunizieren.", "Automatisch beim Besuch der Website, insbesondere über die Server-Protokolle unseres Hosting-Anbieters.", "Von unseren Dienstanbietern, wenn sie Daten in unserem Auftrag erfassen oder verarbeiten."] },
+  { h: "Wie verwenden wir Ihre personenbezogenen Daten?", p: ["Je nachdem, wie Sie mit uns interagieren, verwenden wir personenbezogene Daten für die folgenden Zwecke:"], l: ["Bearbeitung von Anfragen und Durchführung von Aufträgen. Wir verwenden Ihre Daten, um Ihre Anfrage zu beantworten, Besichtigungen zu vereinbaren, Angebote zu erstellen, Aufträge auszuführen und abzurechnen (Art. 6 Abs. 1 lit. b DSGVO).", "Bereitstellung und Sicherheit der Website. Wir verarbeiten technische Zugriffsdaten, um die Website auszuliefern, ihre Stabilität sicherzustellen und Missbrauch zu erkennen (Art. 6 Abs. 1 lit. f DSGVO).", "Kommunikation mit Ihnen. Wir verwenden Ihre Daten, um zeitnah auf Ihre Anfragen zu reagieren und unsere Geschäftsbeziehung mit Ihnen aufrechtzuerhalten.", "Rechtliche Gründe. Wir verwenden Ihre Daten, um gesetzliche Pflichten, etwa handels- und steuerrechtliche Aufbewahrungspflichten, zu erfüllen und um Rechtsansprüche geltend zu machen oder abzuwehren (Art. 6 Abs. 1 lit. c und f DSGVO)."] },
+  { h: "Wie geben wir personenbezogene Daten weiter?", p: ["Wir verkaufen keine personenbezogenen Daten. Unter bestimmten Umständen geben wir Ihre Daten für die oben genannten Zwecke an Dritte weiter:"], l: ["An Dienstleister, die in unserem Auftrag tätig sind, z. B. für Hosting, IT-Betreuung, E-Mail, Buchhaltung oder Steuerberatung.", "An Partnerbetriebe, sofern dies für die Durchführung Ihres Auftrags erforderlich ist, z. B. Entsorgungs- oder Transportunternehmen.", "Wenn Sie uns dazu auffordern oder Ihre Einwilligung geben.", "Zur Einhaltung gesetzlicher Verpflichtungen, auf Anfrage von Behörden oder zum Schutz unserer Rechte."] },
+  { h: "Kontakt per WhatsApp", p: ["Wenn Sie uns über WhatsApp kontaktieren, werden Ihre Nachricht und Ihre Telefonnummer von WhatsApp (Meta Platforms Ireland Ltd.) verarbeitet. Dabei können Daten auch in Länder außerhalb des Europäischen Wirtschaftsraums übertragen werden. Informationen dazu finden Sie in der Datenschutzrichtlinie von WhatsApp. Wenn Sie dies nicht wünschen, nutzen Sie bitte das Kontaktformular, E-Mail oder Telefon."] },
+  { h: "Websites und Links von Drittanbietern", p: ["Die Website kann Links zu Websites oder Plattformen von Drittanbietern enthalten. Wenn Sie diesen Links folgen, sollten Sie deren Datenschutzrichtlinien überprüfen. Wir sind nicht verantwortlich für den Datenschutz oder die Inhalte solcher Websites."] },
+  { h: "Daten von Kindern", p: ["Unsere Services richten sich nicht an Kinder, und wir erfassen wissentlich keine personenbezogenen Daten von Personen unter 16 Jahren. Wenn Sie Eltern oder Vormund eines Kindes sind, das uns Daten übermittelt hat, können Sie über die unten angegebenen Kontaktdaten die Löschung verlangen."] },
+  { h: "Sicherheit und Aufbewahrung Ihrer Daten", p: ["Wir treffen angemessene technische und organisatorische Maßnahmen, um Ihre Daten zu schützen. Keine Sicherheitsmaßnahme ist jedoch vollkommen; insbesondere bei der Übertragung per E-Mail können Risiken bestehen.", "Wir speichern Ihre Daten nur so lange, wie es für die Bearbeitung Ihrer Anfrage oder die Durchführung des Auftrags erforderlich ist. Darüber hinaus bewahren wir Daten auf, soweit gesetzliche Aufbewahrungsfristen dies verlangen (in der Regel bis zu zehn Jahre für steuerlich relevante Unterlagen)."] },
+  { h: "Ihre Rechte", p: ["Nach der Datenschutz-Grundverordnung (DSGVO) stehen Ihnen im gesetzlichen Rahmen folgende Rechte zu:"], l: ["Recht auf Auskunft über die zu Ihrer Person gespeicherten Daten (Art. 15 DSGVO).", "Recht auf Berichtigung unrichtiger Daten (Art. 16 DSGVO).", "Recht auf Löschung (Art. 17 DSGVO).", "Recht auf Einschränkung der Verarbeitung (Art. 18 DSGVO).", "Recht auf Datenübertragbarkeit (Art. 20 DSGVO).", "Recht auf Widerspruch gegen Verarbeitungen, die auf unserem berechtigten Interesse beruhen (Art. 21 DSGVO).", "Recht auf Widerruf einer erteilten Einwilligung mit Wirkung für die Zukunft (Art. 7 Abs. 3 DSGVO)."], p2: ["Zur Ausübung Ihrer Rechte genügt eine Nachricht an die unten angegebenen Kontaktdaten. Durch die Ausübung dieser Rechte entstehen Ihnen keine Nachteile. Gegebenenfalls müssen wir Ihre Identität überprüfen, bevor wir Ihre Anfrage bearbeiten."] },
+  { h: "Beschwerden", p: ["Wenn Sie Beschwerden darüber haben, wie wir Ihre personenbezogenen Daten verarbeiten, wenden Sie sich bitte an uns. Sie haben außerdem das Recht, sich bei einer Datenschutzaufsichtsbehörde zu beschweren. Für uns zuständig ist der Landesbeauftragte für den Datenschutz und die Informationsfreiheit Rheinland-Pfalz."] },
+  { h: "Internationale Übertragungen", p: ["Soweit wir Daten außerhalb des Europäischen Wirtschaftsraums übermitteln, etwa bei der Nutzung von WhatsApp, stützen wir uns auf anerkannte Übermittlungsmechanismen wie die Standardvertragsklauseln der Europäischen Kommission oder einen Angemessenheitsbeschluss."] },
+  { h: "Änderungen an dieser Datenschutzerklärung", p: ["Wir können diese Datenschutzerklärung von Zeit zu Zeit aktualisieren, um Änderungen unserer Verfahrensweisen oder rechtliche Anforderungen zu berücksichtigen. Die aktuelle Fassung wird auf dieser Website veröffentlicht und das Datum der „Letzten Fassung“ entsprechend angepasst."] },
+];
+
+export default function DatenschutzPage() {
+  return (
+    <section className="section section--legal">
+      <div className="container">
+        <div className="legal">
+          <div className="stack" style={{ gap: 12 }}>
+            <SectionHeading level={1} size="h1" eyebrow="Rechtliches" title="" highlight={"Datenschutz\u00ADerklärung"} />
+            <span className="legal__date">Letzte Fassung: 28. September 2026</span>
+          </div>
+          {PRIVACY.map((s, i) => (
+            <div key={i} className="legal__block pm-reveal" data-reveal="up">
+              {s.h && <h2>{s.h}</h2>}
+              {s.p.map((t, j) => <p key={j}>{t}</p>)}
+              {s.l && <ul>{s.l.map((t, j) => <li key={j}>{t}</li>)}</ul>}
+              {s.p2?.map((t, j) => <p key={j}>{t}</p>)}
+            </div>
+          ))}
+          <div className="legal__block pm-reveal" data-reveal="up">
+            <h2>Kontakt</h2>
+            <p>
+              Sollten Sie Fragen zu unseren Datenschutzverfahren oder dieser Datenschutzerklärung haben oder eines Ihrer Rechte ausüben möchten,
+              wenden Sie sich bitte telefonisch unter <a href={CONTACT.phoneHref}>{CONTACT.phone}</a>, per E-Mail unter{" "}
+              <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a> oder per Post an uns:
+            </p>
+            <p>Pfalz Loadout<br />Inhaberin: Jasmin Beer<br />Wormser Landstraße 117<br />67551 Worms, Deutschland</p>
+            <p>Im Sinne der geltenden Datenschutzgesetze sind wir der Verantwortliche für Ihre personenbezogenen Daten.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
