@@ -89,7 +89,7 @@ export function About() {
           </div>
         </div>
         <div className="media-frame pm-reveal" data-reveal="clip" style={{ aspectRatio: "4/3.4" }}>
-          <div className="media-frame__img pm-img" data-clip-img data-parallax="8" style={bg(IMG + "lager-ware.webp")} />
+          <div className="media-frame__img pm-img" data-clip-img data-parallax="8" style={bg(IMG + "lager-ware.png")} />
           <span className="media-frame__corner media-frame__corner--tl" />
           <span className="media-frame__corner media-frame__corner--br" />
         </div>
@@ -103,7 +103,7 @@ export function Region() {
     <section className="section section--alt" id="region">
       <div className="container split split--region" style={{ gridTemplateColumns: "1.1fr 1fr" }}>
         <div className="media-frame pm-reveal" data-reveal="clip" style={{ aspectRatio: "16/11" }}>
-          <div className="media-frame__img pm-img" data-clip-img data-parallax="8" style={bg(IMG + "pfalz-landschaft.webp")} />
+          <div className="media-frame__img pm-img" data-clip-img data-parallax="8" style={bg(IMG + "pfalz-landschaft.png")} />
         </div>
         <div className="stack" style={{ gap: 28 }}>
           <SectionHeading

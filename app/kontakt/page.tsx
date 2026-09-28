@@ -34,7 +34,7 @@ export default async function KontaktPage({ searchParams }: { searchParams: Prom
 
   return (
     <>
-      <PageHero eyebrow="Kontakt" title={CTA.title} highlight={CTA.highlight} intro={CTA.intro} image={IMG + "lagergang.webp"} crumbs={[{ label: "Kontakt" }]} />
+      <PageHero eyebrow="Kontakt" title={CTA.title} highlight={CTA.highlight} intro={CTA.intro} image={IMG + "lagergang.png"} crumbs={[{ label: "Kontakt" }]} />
       <section className="section">
         <div className="container split split--contact" style={{ gridTemplateColumns: "1fr 1.5fr", alignItems: "start" }}>
           <div className="stack" style={{ gap: 28 }}>

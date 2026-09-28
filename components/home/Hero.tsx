@@ -64,7 +64,7 @@ export function Hero() {
   return (
     <section ref={ref} className="hero" id="start">
       <div className="hero__bg">
-        <div className="hero__bg-img pm-img" style={bg(IMG + "transporter-halle.webp")} />
+        <div className="hero__bg-img pm-img" style={bg(IMG + "transporter-halle.png")} />
       </div>
       <div className="hero__scrim" />
       <div className="hero__glow" />
