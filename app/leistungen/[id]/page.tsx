@@ -17,7 +17,15 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   const { id } = await params;
   const s = SERVICES.find((x) => x.id === id);
   if (!s) return {};
-  return { title: s.title, description: `${s.short}. ${s.text.slice(0, 140)}…`, openGraph: { images: [s.image] } };
+  const description = `${s.short}. ${s.text.slice(0, 130).trim()}… Jetzt unverbindlich anfragen.`;
+  const url = `/leistungen/${s.id}`;
+  return {
+    title: s.title,
+    description,
+    alternates: { canonical: url },
+    openGraph: { type: "website", url, title: `${s.title} · Pfalz Multiservice`, description, images: [{ url: s.image, alt: s.title }] },
+    twitter: { card: "summary_large_image", title: `${s.title} · Pfalz Multiservice`, description, images: [s.image] },
+  };
 }
 
 export default async function ServicePage({ params }: { params: Promise<{ id: string }> }) {

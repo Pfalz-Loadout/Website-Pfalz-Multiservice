@@ -12,7 +12,7 @@ export default function HomePage() {
       <About />
       <Process />
       <Region />
-      <CtaBand image={IMG + "lagerraum-hoch.png"} />
+      <CtaBand image={IMG + "lagerraum-hoch.webp"} />
     </>
   );
 }

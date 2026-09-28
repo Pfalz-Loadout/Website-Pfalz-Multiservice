@@ -7,7 +7,11 @@ import { Button } from "@/components/Button";
 import { Icon } from "@/components/Icon";
 import type { IconName } from "@/lib/data";
 
-export const metadata: Metadata = { title: "Kontakt", description: CTA.intro };
+export const metadata: Metadata = {
+  title: "Kontakt",
+  description: "Anfrage an Pfalz Multiservice in Worms: per Formular, Telefon oder WhatsApp. Wir melden uns zeitnah mit einem passenden Lösungsvorschlag.",
+  alternates: { canonical: "/kontakt" },
+};
 
 function Row({ icon, label, value, href }: { icon: IconName; label: string; value: string; href?: string }) {
   const inner = (
@@ -30,7 +34,7 @@ export default async function KontaktPage({ searchParams }: { searchParams: Prom
 
   return (
     <>
-      <PageHero eyebrow="Kontakt" title={CTA.title} highlight={CTA.highlight} intro={CTA.intro} image={IMG + "lagergang.png"} crumbs={[{ label: "Kontakt" }]} />
+      <PageHero eyebrow="Kontakt" title={CTA.title} highlight={CTA.highlight} intro={CTA.intro} image={IMG + "lagergang.webp"} crumbs={[{ label: "Kontakt" }]} />
       <section className="section">
         <div className="container split split--contact" style={{ gridTemplateColumns: "1fr 1.5fr", alignItems: "start" }}>
           <div className="stack" style={{ gap: 28 }}>

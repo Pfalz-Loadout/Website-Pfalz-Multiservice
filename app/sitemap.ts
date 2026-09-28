@@ -1,11 +1,16 @@
 import type { MetadataRoute } from "next";
 import { SERVICES } from "@/lib/data";
+import { SITE } from "@/lib/site";
 
-const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://pfalz-multiservice.vercel.app";
+const BUILD = new Date();
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [
-    "", "/kontakt", "/impressum", "/datenschutz",
-    ...SERVICES.map((s) => `/leistungen/${s.id}`),
-  ].map((p) => ({ url: SITE + p, changeFrequency: "monthly", priority: p === "" ? 1 : 0.7 }));
+  const pages: { path: string; priority: number }[] = [
+    { path: "", priority: 1 },
+    ...SERVICES.map((s) => ({ path: `/leistungen/${s.id}`, priority: 0.8 })),
+    { path: "/kontakt", priority: 0.7 },
+    { path: "/impressum", priority: 0.2 },
+    { path: "/datenschutz", priority: 0.2 },
+  ];
+  return pages.map(({ path, priority }) => ({ url: SITE + path, lastModified: BUILD, changeFrequency: "monthly", priority }));
 }

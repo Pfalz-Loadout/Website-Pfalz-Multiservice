@@ -11,20 +11,54 @@ import { Footer } from "@/components/Footer";
 import { SmoothScroll } from "@/components/motion/SmoothScroll";
 import { ScrollProgress } from "@/components/motion/ScrollProgress";
 import { Cursor } from "@/components/motion/Cursor";
-
-const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://pfalz-multiservice.vercel.app";
+import { SITE, SITE_NAME, TITLE, DESC, OG_IMAGE } from "@/lib/site";
+import { AREA, CONTACT, SERVICES } from "@/lib/data";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
-  title: { default: "Pfalz Multiservice · Viele Leistungen. Ein Ansprechpartner.", template: "%s · Pfalz Multiservice" },
-  description:
-    "E-Commerce, Reselling, Lagerung, Räumung, Web Maintenance und Support: Pfalz Multiservice bündelt Dienstleistungen für Unternehmen und Privatkunden in der Region Worms.",
-  openGraph: {
-    type: "website", locale: "de_DE", siteName: "Pfalz Multiservice",
-    title: "Pfalz Multiservice · Viele Leistungen. Ein Ansprechpartner.",
-    description: "Dienstleistungen für Unternehmen und Privatkunden in der Region Worms.",
-    images: ["/images/transporter-halle.png"],
-  },
+  title: { default: TITLE, template: `%s · ${SITE_NAME}` },
+  description: DESC,
+  applicationName: SITE_NAME,
+  alternates: { canonical: "/" },
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } },
+  openGraph: { type: "website", locale: "de_DE", url: "/", siteName: SITE_NAME, title: TITLE, description: DESC, images: [OG_IMAGE] },
+  twitter: { card: "summary_large_image", title: TITLE, description: DESC, images: [OG_IMAGE.url] },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${SITE}/#website`,
+      url: SITE,
+      name: SITE_NAME,
+      inLanguage: "de-DE",
+      publisher: { "@id": `${SITE}/#business` },
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": `${SITE}/#business`,
+      name: SITE_NAME,
+      url: SITE,
+      logo: `${SITE}/logo-white.png`,
+      image: `${SITE}${OG_IMAGE.url}`,
+      description: DESC,
+      telephone: CONTACT.phone,
+      email: CONTACT.email,
+      address: { "@type": "PostalAddress", postalCode: "67551", addressLocality: "Worms", addressRegion: "Rheinland-Pfalz", addressCountry: "DE" },
+      areaServed: AREA.map((name) => ({ "@type": "City", name })),
+      knowsAbout: SERVICES.map((s) => s.title),
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Leistungen",
+        itemListElement: SERVICES.map((s) => ({
+          "@type": "Offer",
+          itemOffered: { "@type": "Service", name: s.title, description: s.short, url: `${SITE}/leistungen/${s.id}` },
+        })),
+      },
+    },
+  ],
 };
 
 export const viewport: Viewport = { themeColor: "#000000", colorScheme: "dark" };
@@ -37,6 +71,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="de" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: motionScript }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </head>
       <body>
         <SmoothScroll />
