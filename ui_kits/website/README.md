@@ -1,4 +1,0 @@
-# Website UI kit — Pfalz Multiservice
-Click-through recreation of the marketing site. Section order and layout rhythm follow the reference structure given by the client (utility bar → header → dark hero with chips → trust strip → service cards → split "why" → numbered process → region → reviews → FAQ → CTA band → footer).
-Screens: `Home.jsx` (Startseite), `ServiceDetail.jsx` (Leistungsseite, one per service), `Contact.jsx` (Kontakt form with validation + success state). `Layout.jsx` holds Shell/Section/Container, `data.jsx` the German copy.
-All UI comes from the DS bundle (Button, SectionHeading, ServiceCard, …). Nav + CTAs are wired; current page persists in localStorage.
