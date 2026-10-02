@@ -98,9 +98,9 @@ export function homeServiceOrder(): Service[] {
   return m;
 }
 
-export const USPS = [
-  { title: "Alles aus einer Hand", text: "Ein Kontakt für alle Aufgaben statt vieler einzelner Dienstleister." },
-  { title: "Verbindliche Angebote", text: "Sie kennen Umfang und Kosten, bevor wir beginnen." },
+export const USPS: { title: string; text: string; lines?: [string, string] }[] = [
+  { title: "Alles aus einer Hand", text: "Ein Kontakt für alle Aufgaben statt vieler einzelner Dienstleister.", lines: ["Ein Kontakt für alle Aufgaben statt", "vieler einzelner Dienstleister."] },
+  { title: "Verbindliche Angebote", text: "Sie kennen Umfang und Kosten, bevor wir beginnen.", lines: ["Sie kennen Umfang und Kosten,", "bevor wir beginnen."] },
   { title: "Schnell vor Ort", text: "Regional in Worms verankert und kurzfristig einsatzbereit." },
 ];
 

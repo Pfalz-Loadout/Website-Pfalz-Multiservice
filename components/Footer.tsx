@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useRef } from "react";
 import { gsap, useGSAP, MOTION_OK } from "@/lib/gsap";
 import { getLenis } from "@/lib/lenis";
-import { CONTACT, FOOTER_TEXT } from "@/lib/data";
+import { CONTACT } from "@/lib/data";
 import { Icon } from "./Icon";
 import { Logo } from "./Logo";
 
@@ -37,7 +37,7 @@ export function Footer() {
       <div className="footer__grid">
         <div className="footer__col footer__brand pm-reveal">
           <Logo height={120} />
-          <p className="footer__text">{FOOTER_TEXT}</p>
+          <p className="footer__text"><br /><br />Pfalz Multiservice bündelt Dienstleistungen für Unternehmen und Privatkunden in der Region Worms.</p>
         </div>
         <div className="footer__col pm-reveal">
           <h4 className="footer__h">Kontakt</h4>

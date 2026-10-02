@@ -12,7 +12,10 @@ export default function HomePage() {
       <About />
       <Process />
       <Region />
-      <CtaBand image={IMG + "lagerraum-hoch.png"} />
+      <CtaBand
+        image={IMG + "lagerraum-hoch.png"}
+        intro={<>Schildern Sie uns kurz Ihr Anliegen.<br />Wir melden uns zeitnah mit einem passenden Lösungsvorschlag.</>}
+      />
     </>
   );
 }

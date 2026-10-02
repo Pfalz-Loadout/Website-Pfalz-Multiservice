@@ -27,7 +27,6 @@ export function Hero() {
       const whole = split.targets[0] === title;
       tl.from(split.targets, whole ? { y: 50, opacity: 0, duration: 1.4 } : { yPercent: 118, rotate: 2, transformOrigin: "0% 100%", duration: 1.4, stagger: 0.12, ease: "expo.out" }, 0.25)
         .to(title.querySelectorAll(".sh__hl"), { backgroundSize: "100% .07em", duration: 0.9, stagger: 0.25, ease: "power3.inOut" }, 1.05)
-        .from(root.querySelector(".sh__intro"), { y: 26, opacity: 0, duration: 1.2 }, 0.75)
         .from(root.querySelectorAll(".hero__ctas > *"), { y: 30, opacity: 0, duration: 1.1, stagger: 0.1 }, 0.95)
         .from(root.querySelector(".hero__scroll"), { opacity: 0, y: -10, duration: 1 }, 1.4);
 
@@ -71,11 +70,10 @@ export function Hero() {
       <div className="container hero__content">
         <div className="hero__inner">
           <SectionHeading
-            dark level={1} size="hero" motion="intro" maxWidth={820}
+            dark level={1} size="hero" motion="intro" maxWidth={1050}
             eyebrow="Pfalz Multiservice · Worms"
             title="Viele Leistungen."
-            highlight={"Ein Ansprech\u00ADpartner."}
-            intro="Von E-Commerce und Warenankauf über Lagerung und Räumung bis zur Betreuung von Websites und Objekten: Pfalz Multiservice bündelt Dienstleistungen für Unternehmen und Privatkunden in der Region Worms."
+            highlight={<><br />{"Ein Ansprech\u00ADpartner."}</>}
           />
           <div className="hero__ctas pm-intro">
             <Button variant="accent" size="lg" href="/kontakt">Unverbindlich anfragen</Button>

@@ -18,7 +18,7 @@ export function TrustStrip() {
             <Icon name={ic[i]} size={28} className="trust__icon" />
             <div>
               <span className="trust__title">{u.title}</span>
-              <span className="trust__text">{u.text}</span>
+              <span className="trust__text">{u.lines ? <>{u.lines[0]}<br />{u.lines[1]}</> : u.text}</span>
             </div>
           </div>
         ))}
@@ -121,7 +121,7 @@ export function Region() {
   );
 }
 
-export function CtaBand({ image }: { image?: string }) {
+export function CtaBand({ image, intro }: { image?: string; intro?: React.ReactNode }) {
   return (
     <section className="cta">
       {image && (
@@ -131,7 +131,7 @@ export function CtaBand({ image }: { image?: string }) {
       )}
       <div className="cta__scrim" style={image ? undefined : { background: "transparent" }} />
       <div className="cta__inner">
-        <SectionHeading dark align="center" eyebrow="Jetzt starten" title={CTA.title} highlight={CTA.highlight} intro={CTA.intro} />
+        <SectionHeading dark align="center" eyebrow="Jetzt starten" title={CTA.title} highlight={CTA.highlight} intro={intro ?? CTA.intro} />
         <div className="cta__btns pm-reveal" data-reveal="stagger">
           <Button variant="accent" size="lg" icon="arrow-right" href="/kontakt">Unverbindlich anfragen</Button>
           <Button variant="outline-light" size="lg" iconLeft="phone" href={CONTACT.phoneHref}>{CONTACT.phone}</Button>
