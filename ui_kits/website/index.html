@@ -1,0 +1,28 @@
+<!-- @dsCard group="Website" viewport="1440x900" name="Website · Click-through" subtitle="Startseite, Leistung, Kontakt" -->
+<!DOCTYPE html><html lang="de"><head><meta charset="utf-8"><title>Pfalz Multiservice – Website</title><link rel="icon" href="../../assets/icon.png"><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;min-width:1200px;background:#000;color:var(--text-body);font-family:var(--font-body)}*{box-sizing:border-box}</style></head><body><div id="root"></div>
+<script type="text/babel" src="data.jsx"></script>
+<script type="text/babel" src="Layout.jsx"></script>
+<script type="text/babel" src="Home.jsx"></script>
+<script type="text/babel" src="ServiceDetail.jsx"></script>
+<script type="text/babel" src="Contact.jsx"></script>
+<script type="text/babel" src="Legal.jsx"></script>
+<script type="text/babel">
+function App(){
+  const [page,setPage]=React.useState(()=>{const p=localStorage.getItem('pm-page');return p&&(p==='kontakt'||p==='impressum'||p==='datenschutz'||SERVICES.some(s=>s.id===p))?p:'home'});
+  const [pre,setPre]=React.useState();
+  const go=(p,arg)=>{const anchors=['leistungen','ueber','referenzen','region'];
+    if(anchors.includes(p)){setPage('home');localStorage.setItem('pm-page','home');setTimeout(()=>{const el=document.getElementById(p);window.scrollTo(0,el?el.getBoundingClientRect().top+window.scrollY-20:0)},60);return}
+    if(p==='Impressum')p='impressum';if(p==='Datenschutz')p='datenschutz';const t=p==='kontakt'||p==='impressum'||p==='datenschutz'||SERVICES.some(s=>s.id===p)?p:'home';setPre(arg);setPage(t);localStorage.setItem('pm-page',t);window.scrollTo(0,0)};
+  if(page==='impressum') return <Impressum go={go}/>;
+  if(page==='datenschutz') return <Datenschutz go={go}/>;
+  if(page==='kontakt') return <Contact go={go} initial={pre}/>;
+  if(SERVICES.some(s=>s.id===page)) return <ServiceDetail key={page} id={page} go={go}/>;
+  return <Home go={go}/>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script></body></html>

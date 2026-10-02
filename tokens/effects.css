@@ -1,0 +1,8 @@
+:root{
+--radius-0:0;--radius-xs:2px;--radius-sm:4px;--radius-md:6px;--radius-lg:10px;--radius-pill:999px;
+--radius-button:var(--radius-0);--radius-card:var(--radius-sm);--radius-input:var(--radius-0);
+--shadow-xs:0 1px 2px rgba(0,0,0,.06);--shadow-sm:0 2px 8px rgba(0,0,0,.08);--shadow-md:0 10px 30px -8px rgba(0,0,0,.18);--shadow-lg:0 24px 60px -16px rgba(0,0,0,.32);--shadow-glow:0 0 0 1px rgba(221,187,77,.35),0 8px 32px -6px rgba(221,187,77,.45);
+--border-w:1px;/* @kind spacing */--rule-accent:3px;/* @kind spacing */
+--ease-out:cubic-bezier(.22,.61,.36,1);/* @kind other */--ease-in-out:cubic-bezier(.65,0,.35,1);/* @kind other */--dur-fast:150ms;/* @kind other */--dur-base:250ms;/* @kind other */--dur-slow:500ms;/* @kind other */
+--blur-header:saturate(140%) blur(14px);/* @kind other */
+}
