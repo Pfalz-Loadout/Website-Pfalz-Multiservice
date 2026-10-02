@@ -92,6 +92,7 @@ html.pm-motion .pm-intro, html.pm-motion .pm-reveal { visibility: hidden; animat
 .sh__title--h1 { font-size: var(--fs-h1); }
 .sh__title--hero { font-weight: 700; font-size: var(--fs-hero); letter-spacing: var(--ls-hero); }
 .sh__hl { font-weight: inherit; color: var(--text-highlight); }
+.sh__line { display: block; }
 .sh__title--hero .sh__hl { text-decoration: underline; text-decoration-thickness: .07em; text-underline-offset: .12em; }
 /* mit Motion: Unterstreichung wird als Linie gezeichnet */
 html.pm-motion .sh__title--hero .sh__hl { text-decoration: none;
