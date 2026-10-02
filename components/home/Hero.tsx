@@ -70,7 +70,7 @@ export function Hero() {
       <div className="container hero__content">
         <div className="hero__inner">
           <SectionHeading
-            dark level={1} size="hero" motion="intro" maxWidth={1050}
+            dark level={1} size="hero" motion="intro" maxWidth={1300}
             eyebrow="Pfalz Multiservice · Worms"
             title="Viele Leistungen."
             highlight={<><br />{"Ein Ansprech\u00ADpartner."}</>}
