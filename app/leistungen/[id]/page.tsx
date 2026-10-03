@@ -7,6 +7,7 @@ import { CheckList } from "@/components/CheckList";
 import { ServiceCard } from "@/components/ServiceCard";
 import { Button } from "@/components/Button";
 import { CtaBand } from "@/components/home/HomeSections";
+import { SITE } from "@/lib/site";
 
 export function generateStaticParams() {
   return SERVICES.map((s) => ({ id: s.id }));
@@ -19,12 +20,13 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   if (!s) return {};
   const description = `${s.short}. ${s.text.slice(0, 130).trim()}… Jetzt unverbindlich anfragen.`;
   const url = `/leistungen/${s.id}`;
+  const title = `${s.title} in Worms & der Pfalz`;
   return {
-    title: s.title,
+    title,
     description,
     alternates: { canonical: url },
-    openGraph: { type: "website", url, title: `${s.title} · Pfalz Multiservice`, description, images: [{ url: s.image, alt: s.title }] },
-    twitter: { card: "summary_large_image", title: `${s.title} · Pfalz Multiservice`, description, images: [s.image] },
+    openGraph: { type: "website", url, title: `${title} · Pfalz Multiservice`, description, images: [{ url: s.image, alt: s.title }] },
+    twitter: { card: "summary_large_image", title: `${title} · Pfalz Multiservice`, description, images: [s.image] },
   };
 }
 
@@ -34,9 +36,32 @@ export default async function ServicePage({ params }: { params: Promise<{ id: st
   if (!s) notFound();
   const words = s.title.split(" ");
   const others = SERVICES.filter((x) => x.id !== s.id);
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Service",
+        name: s.title,
+        description: s.text,
+        url: `${SITE}/leistungen/${s.id}`,
+        image: `${SITE}${s.image}`,
+        provider: { "@id": `${SITE}/#business` },
+        areaServed: { "@type": "AdministrativeArea", name: "Worms und Pfalz" },
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Start", item: SITE },
+          { "@type": "ListItem", position: 2, name: "Leistungen", item: `${SITE}/#leistungen` },
+          { "@type": "ListItem", position: 3, name: s.title, item: `${SITE}/leistungen/${s.id}` },
+        ],
+      },
+    ],
+  };
 
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <PageHero
         eyebrow="Unsere Leistungen"
         title={words.length > 1 ? words.slice(0, -1).join(" ") : ""}

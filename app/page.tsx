@@ -1,7 +1,10 @@
 import { Hero } from "@/components/home/Hero";
 import { Process } from "@/components/home/Process";
 import { About, CtaBand, Region, Services, TrustStrip } from "@/components/home/HomeSections";
+import type { Metadata } from "next";
 import { IMG } from "@/lib/data";
+
+export const metadata: Metadata = { alternates: { canonical: "/" } };
 
 export default function HomePage() {
   return (
@@ -13,7 +16,7 @@ export default function HomePage() {
       <Process />
       <Region />
       <CtaBand
-        image={IMG + "lagerraum-hoch.png"}
+        image={IMG + "lagerraum-hoch.webp"}
         intro={<>Schildern Sie uns kurz Ihr Anliegen.<br />Wir melden uns zeitnah mit einem passenden Lösungsvorschlag.</>}
       />
     </>

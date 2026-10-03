@@ -19,7 +19,6 @@ export const metadata: Metadata = {
   title: { default: TITLE, template: `%s · ${SITE_NAME}` },
   description: DESC,
   applicationName: SITE_NAME,
-  alternates: { canonical: "/" },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } },
   openGraph: { type: "website", locale: "de_DE", url: "/", siteName: SITE_NAME, title: TITLE, description: DESC, images: [OG_IMAGE] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESC, images: [OG_IMAGE.url] },
@@ -46,7 +45,7 @@ const jsonLd = {
       description: DESC,
       telephone: CONTACT.phone,
       email: CONTACT.email,
-      address: { "@type": "PostalAddress", postalCode: "67551", addressLocality: "Worms", addressRegion: "Rheinland-Pfalz", addressCountry: "DE" },
+      address: { "@type": "PostalAddress", streetAddress: "Wormser Landstraße 117", postalCode: "67551", addressLocality: "Worms", addressRegion: "Rheinland-Pfalz", addressCountry: "DE" },
       areaServed: AREA.map((name) => ({ "@type": "City", name })),
       knowsAbout: SERVICES.map((s) => s.title),
       hasOfferCatalog: {

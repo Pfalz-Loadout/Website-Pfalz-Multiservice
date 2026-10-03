@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import { SectionHeading } from "@/components/SectionHeading";
 
-export const metadata: Metadata = { title: "Impressum", robots: { index: true, follow: true } };
+export const metadata: Metadata = {
+  title: "Impressum",
+  description: "Impressum von Pfalz Multiservice (Pfalz Loadout), Wormser Landstraße 117, 67551 Worms: Anbieterkennzeichnung, Kontakt und Umsatzsteuer-ID.",
+  alternates: { canonical: "/impressum" },
+};
 
 export default function ImpressumPage() {
   return (

@@ -32,7 +32,7 @@ export const SERVICES: Service[] = [
     title: "E-Commerce",
     short: "Digitaler Handel mit Fokus auf Effizienz",
     text: "Wir betreiben eigene E-Commerce-Plattformen und vertreiben unsere Sortimente über Online-Shops sowie etablierte Marktplätze. Unser Multichannel-Ansatz ermöglicht eine breite Marktabdeckung bei schlanken Prozessen, von der Beschaffung über das Listing bis zum Fulfillment.",
-    image: IMG + "ecommerce-shop.png",
+    image: IMG + "ecommerce-shop.webp",
   },
   {
     id: "reselling",
@@ -40,7 +40,7 @@ export const SERVICES: Service[] = [
     title: "Reselling & Asset Recovery",
     short: "Werterhalt statt Abschreibung",
     text: "Überbestände, Restposten und Retourenware binden Kapital und Lagerfläche. Wir kaufen Warenbestände an, bereiten sie auf und führen sie über unsere Vertriebskanäle in den Markt zurück. Für unsere Partner bedeutet das schnelle Liquidität, reduzierte Lagerkosten und einen nachhaltigen Umgang mit Ressourcen.",
-    image: IMG + "reselling-ware.png",
+    image: IMG + "reselling-ware.webp",
   },
   {
     id: "storage",
@@ -48,7 +48,7 @@ export const SERVICES: Service[] = [
     title: "Storage Solutions",
     short: "Lagerkapazität nach Bedarf",
     text: "Wir stellen Lagerflächen für temporäre und langfristige Anforderungen bereit, skalierbar und ohne starre Vertragsbindung. Für Gewerbekunden mit saisonalen Spitzen ebenso wie für Privatkunden in Übergangsphasen.",
-    image: IMG + "storage-unit.png",
+    image: IMG + "storage-unit.webp",
   },
   {
     id: "clearance",
@@ -56,7 +56,7 @@ export const SERVICES: Service[] = [
     title: "Clearance Services",
     short: "Strukturierte Räumung, fachgerechte Verwertung",
     text: "Vollständige Räumung von Garagen, Lagern, Hallen und Gewerbeflächen: Bestandsaufnahme, verbindliches Angebot, Durchführung und besenreine Übergabe. Verwertbare Bestände werden in den Wirtschaftskreislauf zurückgeführt, alles Weitere fachgerecht entsorgt.",
-    image: IMG + "transporter-verladung.png",
+    image: IMG + "transporter-verladung.webp",
   },
   {
     id: "web",
@@ -64,7 +64,7 @@ export const SERVICES: Service[] = [
     title: "Web Maintenance & Management",
     short: "Stabile Systeme, aktuelle Inhalte",
     text: "Laufende technische Betreuung von Websites und Online-Shops: Updates, Sicherheitsmonitoring, Content-Pflege und Systemverwaltung. Aus dem Betrieb eigener E-Commerce-Plattformen bringen wir praxisnahes Know-how mit.",
-    image: IMG + "webseite-laptop.png",
+    image: IMG + "webseite-laptop.webp",
   },
   {
     id: "facility",
@@ -72,7 +72,7 @@ export const SERVICES: Service[] = [
     title: "Solutions & Support",
     short: "Für jede Aufgabe eine schnelle Lösung",
     text: "Nicht jede Anforderung passt in eine feste Kategorie. Ob kurzfristiger Engpass, organisatorische Herausforderung oder ein Anliegen, für das es keinen passenden Ansprechpartner gibt: Wir analysieren die Situation, entwickeln eine pragmatische Lösung und setzen sie zuverlässig um. Flexibel, lösungsorientiert und mit einem Netzwerk, das wir bei Bedarf einbinden.",
-    image: IMG + "wartung-technik.png",
+    image: IMG + "wartung-technik.webp",
   },
   {
     id: "smarthome",
@@ -81,7 +81,7 @@ export const SERVICES: Service[] = [
     title: "Smart Home & KNX",
     short: "Programmierung von Gebäudeautomation",
     text: "Als ergänzende Leistung übernehmen wir die Programmierung von Smart-Home-Systemen auf KNX-Basis: Parametrierung mit der ETS, Einrichtung von Licht-, Jalousie- und Heizungssteuerung, Szenen und Visualisierung sowie Anpassungen an bestehenden Anlagen.",
-    image: IMG + "smarthome-knx.png",
+    image: IMG + "smarthome-knx.webp",
   },
 ];
 

@@ -22,10 +22,10 @@ npx vercel --prod
 
 ## Fotos & Logo
 Alle Fotos liegen in `public/images/` (Zuordnung in `lib/data.ts`):
-Hero `transporter-halle.png` · E-Commerce `ecommerce-shop.png` · Reselling `reselling-ware.png` · Storage `storage-unit.png` ·
-Clearance `transporter-verladung.png` · Web `webseite-laptop.png` · Solutions & Support `wartung-technik.png` · Smart Home `smarthome-knx.png` ·
-Über uns `lager-ware.png` · Einzugsgebiet `pfalz-landschaft.png` · Abschluss-Band `lagerraum-hoch.png` · Kontakt `lagergang.png`.
-Zum Austauschen einfach eine Datei mit gleichem Namen ersetzen.
+Hero `transporter-halle.webp` · E-Commerce `ecommerce-shop.webp` · Reselling `reselling-ware.webp` · Storage `storage-unit.webp` ·
+Clearance `transporter-verladung.webp` · Web `webseite-laptop.webp` · Solutions & Support `wartung-technik.webp` · Smart Home `smarthome-knx.webp` ·
+Über uns `lager-ware.webp` · Einzugsgebiet `pfalz-landschaft.webp` · Abschluss-Band `lagerraum-hoch.webp` · Kontakt `lagergang.webp`.
+Zum Austauschen eine WebP-Datei (max. ca. 1920 px breit, < 300 KB) mit gleichem Namen ablegen – große PNGs bremsen Ladezeit und Google-Ranking.
 
 Logo: `public/logo-white.png` (weiß, transparent – aus dem Original-Logo erzeugt), Monogramm `public/logo-mark-white.png`
 (Intro-Animation), Favicon `app/icon.png`.

@@ -1,5 +1,6 @@
 "use client";
 import { useRef } from "react";
+import { preload } from "react-dom";
 import { gsap, useGSAP, MOTION_OK, introDelay, splitHeading } from "@/lib/gsap";
 import { CONTACT, IMG } from "@/lib/data";
 import { bg } from "@/lib/bg";
@@ -8,6 +9,7 @@ import { Button } from "../Button";
 
 export function Hero() {
   const ref = useRef<HTMLElement>(null);
+  preload(IMG + "transporter-halle.webp", { as: "image", fetchPriority: "high" });
 
   useGSAP(() => {
     const root = ref.current!;
@@ -63,7 +65,7 @@ export function Hero() {
   return (
     <section ref={ref} className="hero" id="start">
       <div className="hero__bg">
-        <div className="hero__bg-img pm-img" style={bg(IMG + "transporter-halle.png")} />
+        <div className="hero__bg-img pm-img" style={bg(IMG + "transporter-halle.webp")} />
       </div>
       <div className="hero__scrim" />
       <div className="hero__glow" />
