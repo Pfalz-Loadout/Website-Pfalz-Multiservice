@@ -7,6 +7,7 @@ import { CheckList } from "../CheckList";
 import { Button } from "../Button";
 import { Eyebrow } from "../Eyebrow";
 import { Icon } from "../Icon";
+import { ShowcaseList } from "../Showcase";
 
 export function TrustStrip() {
   const ic = ["layers", "file-check", "map-pin"] as const;
@@ -100,7 +101,7 @@ export function About() {
 
 export function Region() {
   return (
-    <section className="section section--alt" id="region">
+    <section className="section" id="region">
       <div className="container split split--region" style={{ gridTemplateColumns: "1.1fr 1fr" }}>
         <div className="media-frame pm-reveal" data-reveal="clip" style={{ aspectRatio: "16/11" }}>
           <div className="media-frame__img pm-img" data-clip-img data-parallax="8" style={bg(IMG + "pfalz-landschaft.png")} />
@@ -135,6 +136,31 @@ export function CtaBand({ image, intro }: { image?: string; intro?: React.ReactN
         <div className="cta__btns pm-reveal" data-reveal="stagger">
           <Button variant="accent" size="lg" icon="arrow-right" href="/kontakt">Unverbindlich anfragen</Button>
           <Button variant="outline-light" size="lg" iconLeft="phone" href={CONTACT.phoneHref}>{CONTACT.phone}</Button>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function Examples({ heading = true, alt = false }: { heading?: boolean; alt?: boolean }) {
+  return (
+    <section className={`section ${alt ? "section--alt" : ""}`} id="beispiele">
+      <div className="container">
+        {heading && (
+          <SectionHeading
+            eyebrow="Webdesign · Musterdesigns" title="Websites, die" highlight="wirken"
+            intro="Vier One-Pager für fiktive Betriebe aus der Region: individuell gestaltet, mit Animationen und für jedes Gerät optimiert. Öffnen Sie die Beispiele live und scrollen Sie selbst."
+          />
+        )}
+        <ShowcaseList />
+        <div className="showcase-foot">
+          <SectionHeading align="center" title="Ihre Website," highlight="als Nächstes?" size="h2" maxWidth={720}
+            intro="Websites ab 99 €, Betreuung und Wartung auf Anfrage. Schildern Sie kurz Ihr Vorhaben, wir melden uns mit einem Vorschlag." />
+          <div className="cta__btns pm-reveal" data-reveal="stagger">
+            <Button variant="accent" size="lg" icon="arrow-right" href="/kontakt?leistung=web">Website anfragen</Button>
+            <Button variant="outline" size="lg" iconLeft="message-circle" href={CONTACT.whatsapp}>WhatsApp</Button>
+          </div>
+          <p className="showcase-note">Alle gezeigten Betriebe, Personen und Angebote sind frei erfunden. Die Seiten sind Musterdesigns von Pfalz Multiservice.</p>
         </div>
       </div>
     </section>

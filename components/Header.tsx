@@ -19,7 +19,7 @@ export function Header() {
   const mobTl = useRef<gsap.core.Timeline | null>(null);
 
   const active =
-    pathname.startsWith("/leistungen") ? "leistungen" : pathname.startsWith("/kontakt") ? "kontakt" : null;
+    pathname.startsWith("/leistungen") ? "leistungen" : pathname.startsWith("/beispiele") ? "beispiele" : pathname.startsWith("/kontakt") ? "kontakt" : null;
 
   // Einblenden, Hide-on-scroll, Hintergrund
   useGSAP(() => {
@@ -132,6 +132,9 @@ export function Header() {
               <Link href="/#ueber" className="nav__link" onClick={goUeber} data-cursor>Über uns</Link>
             </div>
             <div className="nav__item">
+              <Link href="/beispiele" className={`nav__link ${active === "beispiele" ? "nav__link--active" : ""}`} data-cursor>Beispiele</Link>
+            </div>
+            <div className="nav__item">
               <Link href="/kontakt" className={`nav__link ${active === "kontakt" ? "nav__link--active" : ""}`} data-cursor>Kontakt</Link>
             </div>
           </nav>
@@ -151,6 +154,7 @@ export function Header() {
           </Link>
         ))}
         <Link href="/#ueber" className="mobile-nav__link" onClick={goUeber}>Über uns</Link>
+        <Link href="/beispiele" className="mobile-nav__link">Beispiele</Link>
         <Link href="/kontakt" className="mobile-nav__link">Kontakt</Link>
       </div>
     </>

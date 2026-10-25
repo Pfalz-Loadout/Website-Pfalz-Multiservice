@@ -6,7 +6,7 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { CheckList } from "@/components/CheckList";
 import { ServiceCard } from "@/components/ServiceCard";
 import { Button } from "@/components/Button";
-import { CtaBand } from "@/components/home/HomeSections";
+import { CtaBand, Examples } from "@/components/home/HomeSections";
 
 export function generateStaticParams() {
   return SERVICES.map((s) => ({ id: s.id }));
@@ -57,6 +57,7 @@ export default async function ServicePage({ params }: { params: Promise<{ id: st
           </div>
         </div>
       </section>
+      {s.id === "web" && <Examples />}
       <section className="section section--alt">
         <div className="container">
           <SectionHeading eyebrow="Kombinierbar" title="Weitere" highlight="Leistungen" style={{ marginBottom: 48 }} />

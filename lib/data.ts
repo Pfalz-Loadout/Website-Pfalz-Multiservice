@@ -13,7 +13,7 @@ export type IconName =
   | "shopping-cart" | "recycle" | "warehouse" | "truck" | "monitor-cog" | "wrench"
   | "lightbulb" | "layers" | "file-check" | "map-pin" | "message-circle" | "phone"
   | "mail" | "check" | "arrow-right" | "chevron-down" | "chevron-right"
-  | "circle-arrow-right" | "star" | "menu" | "x" | "arrow-up";
+  | "circle-arrow-right" | "star" | "menu" | "x" | "arrow-up" | "external-link" | "layout-template";
 
 export type Service = {
   id: string;
@@ -121,3 +121,43 @@ export const CTA = {
   highlight: "Vorhaben sprechen",
   intro: "Schildern Sie uns kurz Ihr Anliegen. Wir melden uns zeitnah mit einem passenden Lösungsvorschlag.",
 };
+
+/** Webdesign-Musterdesigns (statische Seiten unter public/beispiele/<slug>) */
+export type Example = {
+  slug: string;
+  name: string;
+  branch: string;
+  text: string;
+  tags: string[];
+};
+
+export const EXAMPLES: Example[] = [
+  {
+    slug: "weingut",
+    name: "Weingut Hollerbach",
+    branch: "Weingut · Südliche Weinstraße",
+    text: "Editorial-Design mit großer Serifen-Typografie: Weinkarte mit Filter, Porträts der Lagen und Buchung von Weinproben.",
+    tags: ["Editorial Design", "Weinkarte", "Weinprobe buchen"],
+  },
+  {
+    slug: "autovermietung",
+    name: "Rheinfront Drive",
+    branch: "Premium-Autovermietung · Worms",
+    text: "Showroom bei Nacht: 3D-Lichtinszenierung, Flotte mit Filter, Anlässe, Ablauf und transparente Mietpreise.",
+    tags: ["3D / WebGL", "Fahrzeugfilter", "Dark Design"],
+  },
+  {
+    slug: "restaurant",
+    name: "Gasthaus Zum Rebstock",
+    branch: "Gehobene Pfälzer Küche · Deidesheim",
+    text: "Warme Gasthaus-Atmosphäre mit Live-Öffnungsstatus, Speisekarte, Karte der Partnerhöfe und Raumplan für Feiern.",
+    tags: ["Live-Öffnungszeiten", "Speisekarte", "Tischreservierung"],
+  },
+  {
+    slug: "elektriker",
+    name: "Elektro Kaiser",
+    branch: "Elektro · Photovoltaik · Smart Home",
+    text: "Interaktives 3D-Haus mit Energiefluss, PV-Rechner, Tagesverlauf der Anlage und Smart-Home-Szenen.",
+    tags: ["3D-Energiefluss", "PV-Rechner", "Smart Home"],
+  },
+];
