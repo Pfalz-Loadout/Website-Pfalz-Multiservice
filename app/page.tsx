@@ -1,6 +1,6 @@
 import { Hero } from "@/components/home/Hero";
 import { Process } from "@/components/home/Process";
-import { About, CtaBand, Region, Services, TrustStrip } from "@/components/home/HomeSections";
+import { About, CtaBand, Examples, Region, Services, TrustStrip } from "@/components/home/HomeSections";
 import { IMG } from "@/lib/data";
 
 export default function HomePage() {
@@ -11,6 +11,7 @@ export default function HomePage() {
       <Services />
       <About />
       <Process />
+      <Examples alt />
       <Region />
       <CtaBand
         image={IMG + "lagerraum-hoch.png"}

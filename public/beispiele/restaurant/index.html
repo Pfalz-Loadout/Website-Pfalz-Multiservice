@@ -1,0 +1,2220 @@
+<!doctype html><html><head><meta name="robots" content="noindex, follow"><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Gasthaus Zum Rebstock</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Gasthaus Zum Rebstock in Deidesheim: Pfälzer Küche auf gehobenem Niveau, Produkte von Höfen aus der Umgebung, Weine von Pfälzer Winzern. Musterdesign, fiktiver Betrieb.">
+<link rel="preload" as="image" href="/beispiele/restaurant/img/hero-teller-1100.webp" imagesrcset="/beispiele/restaurant/img/hero-teller-640.webp 640w, /beispiele/restaurant/img/hero-teller-1100.webp 1100w" imagesizes="(max-width: 900px) 92vw, 36vw" fetchpriority="high">
+<link rel="stylesheet" href="/beispiele/_assets/fonts/caveat.css"><link rel="stylesheet" href="/beispiele/_assets/fonts/fraunces.css"><link rel="stylesheet" href="/beispiele/_assets/fonts/source-sans-3.css">
+<script>
+  (function () {
+    var h = document.documentElement;
+    h.classList.add('js'); h.lang = 'de';
+    try {
+      var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!reduced) {
+        h.classList.add('motion');
+        var seen = null;
+        try { seen = sessionStorage.getItem('rebstock-intro'); } catch (e) {}
+        if (!seen) h.classList.add('intro-on');
+      }
+    } catch (e) {}
+    /* Sicherheitsnetz: falls Skripte nicht laden, ist alles nach kurzer Zeit sichtbar */
+    setTimeout(function () { if (!h.classList.contains('hero-ready')) { h.classList.remove('intro-on'); h.classList.add('failsafe'); } }, 9000);
+  })();
+</script>
+<style>
+/* Layout: „Ein Tag im Rebstock“ – jede Sektion ist eine Uhrzeit von 11:30 bis 22:00, die Seite wird beim Scrollen
+   vom Mittagslicht zum Abend. Bildform ist der Pfälzer Sandstein-Rundbogen (Hoftor), 12-Spalten-Raster, Typografie trägt. */
+:root{
+  --linen:#F4EDE1; --paper:#FAF6EF; --sand:#E8D8BF; --oak:#3A281D; --oak-deep:#211710;
+  --wine:#7B2232; --wine-hi:#953042; --sage:#8D9C7D; --sage-deep:#55654A; --amber:#E2A95B; --chalk:#F1EBDD; --ink:#2B1E16;
+
+  /* Tageslicht-Tokens – werden beim Scrollen zwischen Mittag und Nacht getweent */
+  --bg: rgb(244,237,225); --fg: rgb(43,30,22); --fg2: rgb(104,86,70); --line: rgba(43,30,22,0.16); --accent: rgb(123,34,50);
+
+  --f-display: "Fraunces", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --f-body: "Source Sans 3", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --f-hand: "Caveat", "Segoe Print", "Bradley Hand", "Comic Sans MS", cursive;
+
+  --t-xs:.78rem; --t-s:.94rem; --t-m:1.0625rem;
+  --t-l:clamp(1.2rem, 1.02rem + .7vw, 1.6rem);
+  --t-xl:clamp(2.2rem, 1.3rem + 3.5vw, 4.4rem);
+  --t-xxl:clamp(3rem, 1rem + 6.4vw, 8.4rem);
+
+  --gutter-l:max(clamp(16px, 4.4vw, 72px), env(safe-area-inset-left, 0px));
+  --gutter-r:max(clamp(16px, 4.4vw, 72px), env(safe-area-inset-right, 0px));
+  --col-gap:clamp(16px, 2.2vw, 36px);
+  --header-h:72px;
+  --ease:cubic-bezier(.22,.8,.2,1);
+
+  --linen-tex:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9 .045' numOctaves='2' seed='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .3 0 0 0 0 .2 0 0 0 0 .12 0 0 0 .1 0'/%3E%3C/filter%3E%3Cfilter id='b'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.045 .9' numOctaves='2' seed='8' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .3 0 0 0 0 .2 0 0 0 0 .12 0 0 0 .08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23a)'/%3E%3Crect width='100%25' height='100%25' filter='url(%23b)'/%3E%3C/svg%3E");
+  --squiggle:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 10' preserveAspectRatio='none'%3E%3Cpath d='M2 6C18 2 30 9 46 5s30-4 44 0 22 2 28-1' fill='none' stroke='%23000' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E");
+  color-scheme: light;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none !important}
+html{background:var(--bg);-webkit-text-size-adjust:100%;scroll-padding-top:calc(var(--header-h) + 12px)}
+html.lenis, html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto !important}
+.lenis.lenis-stopped{overflow:hidden}
+body{
+  margin:0; background-color:var(--bg); background-image:var(--linen-tex);
+  color:var(--fg); font-family:var(--f-body); font-size:var(--t-m); line-height:1.6;
+  overflow-x:clip; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:70;background:var(--bg)}
+img{max-width:100%;display:block}
+body{cursor:default;-webkit-user-select:none;user-select:none}
+a, button, [role="tab"], [role="button"], .room-hit, .farm, select, label[for]{cursor:pointer}
+input, textarea, select{-webkit-user-select:text;user-select:text}
+input:not([type="date"]), textarea{cursor:text}
+img{-webkit-user-drag:none}
+a{color:inherit}
+p{margin:0 0 1em;max-width:62ch}
+h1,h2,h3,h4{margin:0;font-weight:400}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+section:focus, main:focus, [tabindex="-1"]:focus{outline:none}
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.skip{position:absolute;left:12px;top:-60px;z-index:300;background:var(--wine);color:var(--paper);padding:.6rem 1rem;border-radius:6px;text-decoration:none}
+.skip:focus{top:calc(12px + env(safe-area-inset-top,0px))}
+
+.wrap{max-width:1480px;margin-inline:auto;padding-left:var(--gutter-l);padding-right:var(--gutter-r)}
+.grid12{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--col-gap)}
+.grid12 > *{min-width:0}
+
+/* ---------- Typo-Bausteine ---------- */
+.eyebrow{display:flex;align-items:center;gap:.8rem;font-size:var(--t-xs);font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--fg2)}
+.eyebrow time{color:var(--accent);font-variant-numeric:tabular-nums;letter-spacing:.08em}
+.eyebrow .rule{width:38px;height:1px;background:currentColor;opacity:.6}
+.h2{font-family:var(--f-display);font-size:var(--t-xl);line-height:1.02;letter-spacing:-.028em;font-weight:370;text-wrap:balance;margin:1rem 0 1.4rem;font-variation-settings:"SOFT" 40}
+.h2 em, .h1 em{font-style:italic;color:var(--accent);font-variation-settings:"SOFT" 100,"WONK" 1}
+.lede{font-size:var(--t-l);line-height:1.45;color:var(--fg2);max-width:46ch;text-wrap:pretty}
+.display-p{font-family:var(--f-display);font-size:clamp(1.35rem,1.05rem + 1.1vw,2.05rem);line-height:1.32;font-weight:340;letter-spacing:-.012em;max-width:30ch;text-wrap:pretty;font-variation-settings:"SOFT" 60}
+.hand{font-family:var(--f-hand);font-weight:600;color:var(--accent);font-size:1.9rem;line-height:1}
+.small{font-size:var(--t-s);color:var(--fg2)}
+.ln-mask{padding-block:.04em .14em;margin-block:-.04em -.14em}
+
+/* ---------- Buttons ---------- */
+.btn{position:relative;display:inline-flex;align-items:center;gap:.65rem;padding:1rem 1.55rem;border-radius:999px;border:1.5px solid transparent;
+  font-family:var(--f-body);font-weight:600;font-size:var(--t-s);letter-spacing:.02em;text-decoration:none;cursor:pointer;line-height:1;
+  transition:background-color .35s var(--ease),color .35s var(--ease),border-color .35s var(--ease);white-space:nowrap}
+.btn__label{display:inline-flex;align-items:center;gap:.6rem;pointer-events:none}
+.btn svg{width:18px;height:18px;flex:none}
+.btn--wine{background:var(--wine);color:var(--paper)}
+.btn--wine:hover{background:var(--wine-hi)}
+.btn--line{border-color:currentColor;color:var(--fg);background:transparent}
+.btn--line:hover{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.btn--small{padding:.75rem 1.15rem}
+
+/* ---------- Musterstreifen & Header ---------- */
+.musterstrip{background:var(--oak-deep);color:var(--chalk);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;text-align:center;
+  padding-block:7px;padding-left:max(16px, env(safe-area-inset-left,0px));padding-right:max(16px, env(safe-area-inset-right,0px));position:relative;z-index:61}
+.musterstrip span{opacity:.82}
+.site{position:sticky;top:env(safe-area-inset-top,0px);z-index:60;transition:transform .5s var(--ease)}
+.site.is-hidden{transform:translateY(-110%)}
+.site__bar{background:color-mix(in srgb, var(--bg) 82%, transparent);-webkit-backdrop-filter:blur(12px) saturate(1.1);backdrop-filter:blur(12px) saturate(1.1);border-bottom:1px solid transparent;transition:border-color .4s}
+.site.is-scrolled .site__bar{border-bottom-color:var(--line)}
+.site__inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;height:var(--header-h);max-width:1480px;margin-inline:auto;padding-left:var(--gutter-l);padding-right:var(--gutter-r)}
+.brand{display:inline-flex;align-items:center;gap:.55rem;text-decoration:none;color:var(--fg);font-family:var(--f-display);font-style:italic;font-weight:560;font-size:1.5rem;letter-spacing:-.015em;font-variation-settings:"SOFT" 100,"WONK" 1;white-space:nowrap}
+.brand svg{width:28px;height:28px;color:var(--accent);flex:none}
+.nav ul{display:flex;gap:clamp(1rem,2.2vw,2.4rem);list-style:none;margin:0;padding:0}
+.nav a{position:relative;display:inline-block;padding-block:.5rem;font-size:var(--t-s);font-weight:500;letter-spacing:.02em;text-decoration:none;color:var(--fg)}
+.nav a::after{content:"";position:absolute;left:-2px;right:-2px;bottom:-1px;height:7px;background:var(--accent);-webkit-mask:var(--squiggle) center/100% 100% no-repeat;mask:var(--squiggle) center/100% 100% no-repeat;transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+.nav a:hover::after, .nav a:focus-visible::after{transform:scaleX(1)}
+.site__actions{display:flex;align-items:center;gap:.6rem}
+.burger{display:none;width:46px;height:46px;border-radius:50%;border:1.5px solid var(--line);background:transparent;cursor:pointer;place-items:center;color:var(--fg)}
+.burger span{display:block;width:18px;height:1.5px;background:currentColor;position:relative}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0;width:18px;height:1.5px;background:currentColor;transition:transform .35s var(--ease)}
+.burger span::before{top:-6px}.burger span::after{top:6px}
+.progress{position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--accent);transform-origin:left;transform:scaleX(0);display:none}
+
+.menu-overlay{position:fixed;inset:0;z-index:80;background:var(--oak-deep);color:var(--chalk);display:flex;flex-direction:column;justify-content:space-between;
+  padding:calc(env(safe-area-inset-top,0px) + 20px) max(20px, env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 28px) max(20px, env(safe-area-inset-left,0px))}
+.menu-overlay__top{display:flex;justify-content:space-between;align-items:center}
+.menu-overlay .brand{color:var(--chalk)}
+.menu-overlay .brand svg{color:var(--amber)}
+.menu-close{width:46px;height:46px;border-radius:50%;border:1.5px solid rgba(241,235,221,.3);background:transparent;color:var(--chalk);cursor:pointer;font-size:1.4rem;line-height:1}
+.menu-overlay ul{list-style:none;margin:0;padding:0;display:grid;gap:.3rem}
+.menu-overlay ul a{font-family:var(--f-display);font-size:clamp(2.2rem,9vw,3.4rem);font-style:italic;font-weight:360;letter-spacing:-.02em;text-decoration:none;font-variation-settings:"SOFT" 100,"WONK" 1;line-height:1.15}
+.menu-overlay ul a span{font-family:var(--f-body);font-style:normal;font-size:.8rem;letter-spacing:.14em;color:var(--amber);margin-right:.8rem;vertical-align:middle;font-variant-numeric:tabular-nums}
+.menu-overlay__foot{font-size:var(--t-s);color:rgba(241,235,221,.75);display:grid;gap:1rem}
+.menu-overlay__foot .btn{justify-self:start}
+
+/* ---------- Intro (Kreidetafel) ---------- */
+.intro{display:none;position:fixed;inset:0;z-index:200;place-items:center;color:var(--chalk);
+  background:radial-gradient(120% 90% at 50% 40%, #2C231C 0%, #1C1511 70%, #140F0B 100%);clip-path:inset(0 0 0 0)}
+.intro-on .intro{display:grid}
+.intro-on body{overflow:hidden}
+.intro::before{content:"";position:absolute;inset:0;opacity:.35;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='c'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.012 .04' numOctaves='3' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .96 0 0 0 0 .9 0 0 0 .16 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23c)'/%3E%3C/svg%3E")}
+.intro__inner{position:relative;width:min(88vw,980px);text-align:center}
+.intro svg{width:100%;height:auto;overflow:visible}
+.intro__sub{margin-top:.6rem;font-size:.78rem;letter-spacing:.32em;text-transform:uppercase;color:rgba(241,235,221,.7)}
+.intro__skip{position:absolute;right:max(20px, env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));background:none;border:1px solid rgba(241,235,221,.3);color:var(--chalk);border-radius:999px;padding:.55rem 1rem;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;cursor:pointer}
+
+/* Vor dem Hero-Einlauf kurz verborgen (nur mit Bewegung; Sicherheitsnetz per .failsafe) */
+.motion:not(.failsafe):not(.hero-ready) .hero [data-hero]{opacity:0}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;padding-block:clamp(1.4rem,3.4vw,3.2rem) clamp(3rem,6vw,5.5rem);overflow:clip}
+.hero__grid{position:relative;align-items:center;row-gap:2.6rem}
+.hero__text{grid-column:1 / span 7;position:relative;z-index:4}
+.hero__media{grid-column:8 / span 5;position:relative;z-index:2}
+.h1{font-family:var(--f-display);font-size:var(--t-xxl);line-height:.9;letter-spacing:-.04em;font-weight:360;margin:1.1rem 0 1.5rem;font-variation-settings:"SOFT" 30}
+.h1 .l1{display:block}
+.h1 em{display:block;font-weight:320;padding-left:.55em}
+.hero__lede{font-size:var(--t-l);line-height:1.45;color:var(--fg2);max-width:40ch;margin-bottom:1.8rem}
+.hero__status{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem .9rem;font-size:var(--t-s);color:var(--fg)}
+.hero__status strong{font-weight:600}
+.hero__status .today{color:var(--fg2)}
+.live-dot{width:9px;height:9px;border-radius:50%;background:var(--sage-deep);box-shadow:0 0 0 0 rgba(85,101,74,.55);animation:pulse 2.6s infinite;flex:none}
+.is-closed .live-dot{background:var(--wine);box-shadow:0 0 0 0 rgba(123,34,50,.5)}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(85,101,74,.5)}70%{box-shadow:0 0 0 12px rgba(85,101,74,0)}100%{box-shadow:0 0 0 0 rgba(85,101,74,0)}}
+.hero__actions{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:2rem}
+.hero__caption{display:flex;justify-content:space-between;gap:1rem;margin-top:1rem;font-size:var(--t-xs);letter-spacing:.06em;color:var(--fg2)}
+.hero__caption em{font-family:var(--f-display);font-size:.98rem;letter-spacing:0;color:var(--fg)}
+
+/* ---------- Rundbogen-Bildrahmen ---------- */
+.arch-wrap{position:relative;padding:14px;max-width:100%}
+.arch-wrap::after{content:"";position:absolute;left:50%;top:-6px;width:12px;height:12px;margin-left:-6px;border:1px solid var(--line);background:var(--bg);transform:rotate(45deg);z-index:2}
+.arch{position:relative;aspect-ratio:4/5;max-width:100%;border-radius:50% 50% 0 0 / var(--arch-v,40%) var(--arch-v,40%) 0 0;overflow:hidden;isolation:isolate;background:#D9C3A1;outline:1px solid var(--line);outline-offset:13px}
+.arch--wide{aspect-ratio:3/2;--arch-v:34%}
+.arch-wrap--wide{--arch-v:34%}
+.media-inner{position:absolute;inset:0;overflow:hidden;transition:transform 1.4s var(--ease);background:#C9AE88}
+.media-inner::before{content:"";position:absolute;inset:-6%;background:var(--lqip, none) center/cover no-repeat;filter:blur(14px) saturate(1.08);transform:scale(1.06)}
+.js .media-inner img{opacity:0;transition:opacity .9s var(--ease)}
+.js .media-inner img.is-loaded{opacity:1}
+.media-inner img{position:absolute;left:0;top:-4%;width:100%;height:108%;object-fit:cover;object-position:var(--pos,50% 50%);z-index:1}
+.media-inner .ph-fallback{display:none}
+.media-inner.is-broken .ph-fallback{display:grid}
+.zoomable:hover .media-inner{transform:scale(1.045)}
+.ph-fallback{position:absolute;inset:0;display:grid;place-items:center;align-content:center;gap:.6rem;text-align:center;padding:1rem;
+  background:radial-gradient(90% 70% at 50% 72%, #F1DFC0 0%, #DFC39C 48%, #C9A47A 100%);color:#6E4F36}
+.ph-fallback svg{width:min(42%,150px);height:auto}
+.ph-fallback b{font-family:var(--f-display);font-style:italic;font-weight:420;font-size:clamp(1rem,.9rem + .4vw,1.25rem);color:#4A3324}
+.ph-fallback span{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;opacity:.8}
+.steam{position:absolute;left:0;top:0;width:100%;height:74%;z-index:2;pointer-events:none;mix-blend-mode:screen;display:block}
+.no-gl .steam{display:none}
+
+/* ---------- Laufband ---------- */
+.marquee{position:relative;overflow:hidden;border-block:1px solid var(--line);padding-block:clamp(1rem,2.2vw,1.7rem);white-space:nowrap;user-select:none}
+.marquee__track{display:inline-flex;will-change:transform}
+.marquee__group{display:inline-flex;align-items:center;gap:clamp(1.2rem,3vw,3rem);padding-right:clamp(1.2rem,3vw,3rem)}
+.marquee__item{font-family:var(--f-display);font-size:clamp(2.4rem,1.2rem + 5.2vw,6.4rem);font-style:italic;font-weight:330;letter-spacing:-.025em;line-height:1.05;font-variation-settings:"SOFT" 100,"WONK" 1}
+.marquee__item.is-outline{color:transparent;-webkit-text-stroke:1.2px var(--fg)}
+.marquee__sep{width:clamp(26px,3vw,46px);height:clamp(26px,3vw,46px);color:var(--accent);flex:none}
+
+/* ---------- Sektionen ---------- */
+.section{position:relative;padding-block:clamp(4.5rem,8.5vw,8.5rem)}
+.section__head.section__head--split{grid-column:1 / -1;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);column-gap:var(--col-gap);align-items:end}
+.section__head--split > .eyebrow, .section__head--split > .h2{grid-column:1}
+.section__head--split > .h2{margin-bottom:0}
+.section__head--split > :not(.eyebrow):not(.h2){grid-column:2;grid-row:2;margin:0 0 .5rem}
+.section__head{grid-column:1 / span 7}
+
+/* Unsere Küche */
+.kueche__text{grid-column:1 / span 6;align-self:start}
+.kueche__media{grid-column:8 / span 5;margin-top:clamp(0rem,6vw,6rem)}
+.kueche__body{margin-top:2rem;color:var(--fg2)}
+.sig{display:flex;align-items:center;gap:1rem;margin-top:1.6rem}
+.sig small{font-size:var(--t-xs);letter-spacing:.12em;text-transform:uppercase;color:var(--fg2)}
+.values{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:clamp(4rem,8vw,7rem);border-top:1px solid var(--line)}
+.value{padding:2.4rem clamp(1rem,2.6vw,2.6rem) 0;border-left:1px solid var(--line);min-width:0}
+.value:first-child{border-left:0;padding-left:0}
+.value__icon{width:clamp(70px,7vw,96px);height:auto;color:var(--accent);overflow:visible}
+.value__icon path{fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.value h3{font-family:var(--f-display);font-size:clamp(1.6rem,1.15rem + 1.5vw,2.5rem);font-weight:400;letter-spacing:-.02em;line-height:1.05;margin:1rem 0 .7rem}
+.value p{color:var(--fg2);font-size:var(--t-m)}
+.value__fact{display:flex;align-items:baseline;gap:.6rem;margin-top:1.2rem;padding-top:1rem;border-top:1px dashed var(--line);color:var(--fg)}
+.value__fact strong{font-family:var(--f-display);font-weight:330;font-size:2.6rem;line-height:1;color:var(--accent);font-variant-numeric:lining-nums}
+.value__fact span{font-size:var(--t-s);line-height:1.3}
+
+/* Von den Höfen */
+.hoefe__media{grid-column:8 / span 5;grid-row:1 / span 2;align-self:start;max-width:460px;justify-self:end;width:100%}
+.hoefe__caption{margin-top:.8rem;font-family:var(--f-display);font-style:italic;font-size:.98rem;color:var(--fg2)}
+.hoefe__map{grid-column:1 / span 6;position:relative;margin-top:2.5rem}
+.hoefe__list{grid-column:8 / span 5;margin-top:2.5rem;align-self:center}
+.map{width:100%;height:auto;display:block;overflow:visible}
+.map .contour{fill:none;stroke:var(--sage-deep);stroke-width:1;opacity:.38}
+.map .route{fill:none;stroke:var(--fg);stroke-width:1.4;stroke-dasharray:2 6;stroke-linecap:round;opacity:.55}
+.map .radius{fill:none;stroke:var(--accent);stroke-width:1;stroke-dasharray:3 5;opacity:.45}
+.map .conn{fill:none;stroke:var(--accent);stroke-width:1.3;opacity:.6}
+.map .village circle{fill:var(--fg)}
+.map text{font-family:var(--f-body);fill:var(--fg2);font-size:12px;letter-spacing:.08em}
+.map .lbl-forest{font-family:var(--f-display);font-style:italic;font-size:26px;letter-spacing:.02em;fill:var(--sage-deep);opacity:.75}
+.map .lbl-plain{font-family:var(--f-display);font-style:italic;font-size:20px;fill:var(--fg2);opacity:.7}
+.map .lbl-route{font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;fill:var(--fg)}
+.map .lbl-home{font-family:var(--f-display);font-style:italic;font-size:19px;fill:var(--accent);letter-spacing:0;font-weight:500}
+.map .supplier .dot{fill:var(--sage-deep);transition:transform .4s var(--ease)}
+.map .supplier.is-wine .dot{fill:var(--wine)}
+.map .supplier .ring{fill:none;stroke:var(--sage-deep);stroke-width:1.2;transform-box:fill-box;transform-origin:center;animation:ring 3.2s var(--ease) infinite}
+.map .supplier.is-wine .ring{stroke:var(--wine)}
+.map .supplier .dot{transform-box:fill-box;transform-origin:center}
+.map .supplier.is-active .dot{transform:scale(1.7)}
+.map .supplier.is-active + .conn, .map .conn.is-active{stroke-width:2.4;opacity:1}
+@keyframes ring{0%{transform:scale(.6);opacity:.9}100%{transform:scale(2.6);opacity:0}}
+.map .home .pin{fill:var(--wine)}
+.map .home .pin-in{fill:var(--paper)}
+.map .home .halo{fill:var(--wine);opacity:.14;transform-box:fill-box;transform-origin:center;animation:halo 2.8s ease-in-out infinite}
+@keyframes halo{50%{transform:scale(1.35);opacity:.06}}
+.map .north text{font-family:var(--f-display);font-size:15px;fill:var(--fg);letter-spacing:0}
+.map .north path, .map .scale path{stroke:var(--fg);stroke-width:1.2;fill:none}
+.farms{list-style:none;margin:0;padding:0;border-bottom:1px solid var(--line)}
+.farm{display:grid;grid-template-columns:14px minmax(0,1fr) auto;column-gap:1rem;padding:1rem .2rem;border-top:1px solid var(--line);transition:background-color .3s}
+.farm.is-active{background:color-mix(in srgb, var(--accent) 7%, transparent)}
+.farm__dot{width:10px;height:10px;border-radius:50%;background:var(--sage-deep);margin-top:.55rem}
+.farm.is-wine .farm__dot{background:var(--wine)}
+.farm__name{font-family:var(--f-display);font-size:1.22rem;font-weight:450;letter-spacing:-.01em;line-height:1.3}
+.farm__meta{grid-column:2;font-size:var(--t-s);color:var(--fg2);line-height:1.4}
+.farm__km{grid-row:1 / span 2;grid-column:3;font-family:var(--f-display);font-style:italic;font-size:1.25rem;color:var(--accent);font-variant-numeric:tabular-nums;white-space:nowrap}
+.hoefe__note{margin-top:1rem;font-size:var(--t-xs);letter-spacing:.06em;color:var(--fg2)}
+
+/* Speisekarte */
+.menu{display:grid;grid-template-columns:minmax(0,8fr) minmax(0,4fr);gap:clamp(24px,4vw,64px);align-items:start;margin-top:3rem}
+.menu-card{position:relative;background:var(--paper);background-image:var(--linen-tex);color:var(--ink);padding:clamp(1.6rem,4.2vw,4.2rem) clamp(1.2rem,4.2vw,4.4rem) clamp(1.6rem,3.6vw,3.2rem);border-radius:3px;
+  box-shadow:0 1px 0 rgba(43,30,22,.05),0 2px 6px rgba(43,30,22,.06),0 40px 70px -40px rgba(43,30,22,.45);color-scheme:light}
+.menu-card::before,.menu-card::after{content:"";position:absolute;pointer-events:none;border:1px solid rgba(123,34,50,.38)}
+.menu-card::before{inset:12px}
+.menu-card::after{inset:17px;border-width:.5px;border-color:rgba(123,34,50,.22)}
+.menu-card__head{text-align:center;position:relative}
+.menu-card__head p{margin-inline:auto}
+.menu-card__head svg{width:34px;height:34px;color:var(--wine);margin:0 auto .6rem}
+.menu-card__house{font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:#6B5847}
+.menu-card__title{font-family:var(--f-display);font-style:italic;font-weight:360;font-size:clamp(2.4rem,1.6rem + 2.6vw,3.8rem);letter-spacing:-.03em;line-height:1;margin:.4rem 0 .3rem;font-variation-settings:"SOFT" 100,"WONK" 1;color:var(--ink)}
+.menu-card__season{font-size:var(--t-s);color:#6B5847}
+.tabs{position:relative;display:flex;flex-wrap:wrap;justify-content:center;gap:.2rem clamp(.8rem,2.4vw,2.2rem);margin:2rem 0 1.4rem;padding-bottom:.2rem;border-bottom:1px solid rgba(43,30,22,.14)}
+.tab{background:none;border:0;cursor:pointer;padding:.7rem .15rem .85rem;font-family:var(--f-display);font-size:clamp(1.05rem,.92rem + .55vw,1.4rem);font-weight:420;color:rgba(43,30,22,.5);transition:color .3s;letter-spacing:-.005em}
+.tab:hover{color:rgba(43,30,22,.8)}
+.tab[aria-selected="true"]{color:var(--ink)}
+.tab:focus-visible{outline-color:var(--wine)}
+.tabs__ink{position:absolute;left:0;top:0;height:8px;width:0;background:var(--wine);-webkit-mask:var(--squiggle) center/100% 100% no-repeat;mask:var(--squiggle) center/100% 100% no-repeat;pointer-events:none}
+.panel__intro{text-align:center;font-family:var(--f-display);font-style:italic;color:var(--wine);margin:0 auto .6rem}
+.dishes{list-style:none;margin:0;padding:0}
+.dish{padding:1.05rem 0 1.1rem;border-bottom:1px dashed rgba(43,30,22,.16)}
+.dish:last-child{border-bottom:0}
+.dish__head{display:flex;align-items:baseline;gap:.6rem}
+.dish__name{font-family:var(--f-display);font-size:clamp(1.15rem,1rem + .55vw,1.5rem);font-weight:440;letter-spacing:-.012em;line-height:1.25;color:var(--ink);font-variation-settings:"SOFT" 50}
+.dish__lead{flex:1;min-width:1.5rem;border-bottom:1.5px dotted rgba(43,30,22,.32);transform:translateY(-.32em)}
+.dish__price{font-family:var(--f-display);font-size:1.18rem;font-variant-numeric:tabular-nums lining-nums;color:var(--ink);white-space:nowrap}
+.dish__desc{margin:.25rem 0 0;font-size:var(--t-s);font-style:italic;color:#6B5847;max-width:56ch;line-height:1.5}
+.dish__tag{display:inline-block;margin-left:.4rem;font-style:normal;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--sage-deep);vertical-align:.1em}
+.dish__wine{display:flex;align-items:center;gap:.45rem;margin-top:.4rem;font-size:.8rem;letter-spacing:.04em;color:var(--wine)}
+.dish__wine svg{width:14px;height:14px;flex:none}
+.menu-card__foot{margin:1.6rem auto 0;max-width:46ch;text-align:center;font-size:.8rem;color:#7B6754;line-height:1.5}
+.wine-card{position:sticky;top:calc(var(--header-h) + 28px);perspective:1000px}
+.wine-card__inner{position:relative;background:linear-gradient(170deg,#4A3326 0%,#2E2018 60%,#241912 100%);color:var(--chalk);border-radius:20px;padding:1.5rem 1.5rem 1.6rem;overflow:hidden;transform-style:preserve-3d;
+  box-shadow:0 30px 60px -30px rgba(33,23,16,.7);--gx:50%;--gy:30%;color-scheme:dark}
+.wine-card__inner::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(60% 45% at var(--gx) var(--gy), rgba(255,226,180,.16), transparent 70%);mix-blend-mode:screen}
+.wine-card__eyebrow{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--amber)}
+.wine-stage{position:relative;margin:.8rem 0 .6rem;display:flex;flex-direction:column;align-items:center;gap:.6rem;cursor:pointer;--wc:#E3C766;--wc-hi:#ECD894;--wc-lo:#94813F}
+.glass{height:clamp(240px,24vw,300px);width:auto;max-width:100%;overflow:visible;display:block}
+.g-line{fill:none;stroke:rgba(241,235,221,.6);stroke-width:1.2;vector-effect:non-scaling-stroke}
+.g-rim{stroke:rgba(241,235,221,.82)}
+.g-body{fill:url(#glassBody)}
+.g-hi{fill:none;stroke:rgba(255,255,255,.55);stroke-width:2.6;stroke-linecap:round}
+.g-hi--soft{stroke:rgba(255,255,255,.16);stroke-width:2}
+.g-hi--foot{stroke:rgba(255,255,255,.22);stroke-width:1.4}
+.g-stem{fill:rgba(241,235,221,.24);stroke:rgba(241,235,221,.5);stroke-width:.8}
+.glass .bubble{fill:#fff}
+#liq, #liq-top{transition:opacity .3s}
+.wine-stage__hint{position:static;text-align:center;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,235,221,.6);pointer-events:none;transition:opacity .4s}
+.wine-stage.is-pouring .wine-stage__hint{opacity:0}
+.wine-card__name{font-family:var(--f-display);font-size:1.65rem;font-weight:400;line-height:1.1;letter-spacing:-.015em}
+.wine-card__maker{font-size:var(--t-s);color:rgba(241,235,221,.72);margin:.3rem 0 .7rem}
+.wine-card__notes{font-family:var(--f-display);font-style:italic;font-size:1.05rem;color:rgba(241,235,221,.9);margin-bottom:1rem}
+.wine-card__price{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid rgba(241,235,221,.18);padding-top:.8rem;font-size:var(--t-s);font-variant-numeric:tabular-nums}
+.wine-card__price strong{font-family:var(--f-display);font-weight:400;font-size:1.25rem;color:var(--amber)}
+.wine-card__swap{transition:opacity .35s}
+.wine-card__swap.is-swapping{opacity:0}
+
+/* Gericht der Woche */
+.week{align-items:start}
+.week__media{grid-column:5 / span 8;grid-row:1;position:relative}
+.week__text{grid-column:1 / span 5;grid-row:1;position:relative;z-index:3;background:var(--bg);padding:clamp(1.4rem,3vw,2.8rem);border-radius:2px;margin-top:clamp(3rem,9vw,9rem)}
+.week__text .h2{font-size:clamp(2rem,1.3rem + 2.6vw,3.6rem)}
+.stamp{position:absolute;z-index:4;top:12%;right:7%;width:clamp(96px,10vw,132px);aspect-ratio:1;border-radius:50%;border:1.5px solid rgba(250,246,239,.85);color:var(--paper);display:grid;place-items:center;align-content:center;text-align:center;transform:rotate(-9deg);
+  background:rgba(33,23,16,.22);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
+.stamp small{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase}
+.stamp strong{font-family:var(--f-display);font-style:italic;font-weight:420;font-size:clamp(1.6rem,1.2rem + 1vw,2.3rem);line-height:1;font-variation-settings:"SOFT" 100,"WONK" 1}
+.week__icon{width:44px;height:44px;color:var(--accent)}
+.week__icon path{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+.week__meta{display:grid;grid-template-columns:auto 1fr;gap:.4rem 1.2rem;margin:1.6rem 0;padding-top:1.2rem;border-top:1px solid var(--line);font-size:var(--t-s)}
+.week__meta dt{color:var(--fg2);letter-spacing:.06em}
+.week__meta dd{margin:0}
+.week__price{font-family:var(--f-display);font-size:2.2rem;font-weight:340;line-height:1;margin-bottom:.4rem}
+
+/* Weinlaube / Wein */
+.laube{overflow:hidden}
+.bokeh{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;display:block}
+.no-gl .bokeh{opacity:.55}
+.lights{position:absolute;left:0;top:0;width:100%;height:150px;z-index:1;pointer-events:none;overflow:visible}
+.lights .wire{fill:none;stroke:rgba(255,226,190,.3);stroke-width:1.1}
+.lights .bulb{fill:#FFD9A0}
+.lights .glow{fill:#FFB866;opacity:.45;filter:url(#bulbBlur)}
+.laube .wrap{position:relative;z-index:2}
+.laube__head{grid-column:1 / span 5;align-self:end}
+.laube__media{grid-column:6 / span 7}
+.laube__media .frame{position:relative;aspect-ratio:16/9;max-width:100%;overflow:hidden;border-radius:50% 50% 4px 4px / 26% 26% 4px 4px}
+.wines{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--col-gap);margin-top:clamp(3.5rem,7vw,6rem)}
+.wines__title{grid-column:1 / -1;display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:.6rem;border-bottom:1px solid var(--line);padding-bottom:1rem}
+.wines__title h3{font-family:var(--f-display);font-size:var(--t-l);font-weight:400}
+.wine{display:grid;grid-template-columns:auto minmax(0,1fr);gap:1.2rem;align-items:end;padding-top:1.4rem;min-width:0}
+.wine__glass{width:64px;height:132px;overflow:visible}
+.wine__glass .outline{fill:none;stroke:var(--fg);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.wine__type{font-size:var(--t-xs);letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.wine__name{font-family:var(--f-display);font-size:1.4rem;font-weight:400;line-height:1.15;letter-spacing:-.01em;margin:.25rem 0 .2rem}
+.wine__maker{font-size:var(--t-s);color:var(--fg2);line-height:1.35}
+.wine__notes{font-family:var(--f-display);font-style:italic;font-size:1rem;margin:.6rem 0 .5rem;color:var(--fg)}
+.wine__price{font-size:var(--t-s);font-variant-numeric:tabular-nums;color:var(--fg2);display:flex;gap:.9rem;flex-wrap:wrap}
+.wine__price b{color:var(--fg);font-weight:600}
+.dubbe{display:flex;align-items:center;gap:1.2rem;margin-top:clamp(2.5rem,5vw,4rem);padding:1.2rem 0;border-top:1px solid var(--line);font-size:var(--t-s);color:var(--fg2)}
+.dubbe__pattern{flex:none;width:86px;height:44px;border-radius:6px;opacity:.85;
+  background-image:radial-gradient(circle at 50% 50%, var(--fg) 0 3.4px, transparent 4px),radial-gradient(circle at 50% 50%, var(--fg) 0 3.4px, transparent 4px);
+  background-size:14px 12px;background-position:0 0,7px 6px;-webkit-mask:linear-gradient(90deg,transparent,#000 20%,#000 80%,transparent);mask:linear-gradient(90deg,transparent,#000 20%,#000 80%,transparent);opacity:.4}
+.dubbe strong{font-family:var(--f-display);font-style:italic;font-weight:420;font-size:1.15rem;color:var(--fg)}
+
+/* Feiern */
+.occasions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--col-gap);margin-top:3rem}
+.occasion{border-top:1px solid var(--line);padding-top:1.3rem;min-width:0}
+.occasion h3{font-family:var(--f-display);font-size:clamp(1.4rem,1.1rem + 1vw,2rem);font-weight:400;letter-spacing:-.015em;margin-bottom:.5rem}
+.occasion p{color:var(--fg2);font-size:var(--t-s)}
+.occasion .note{display:inline-block;margin-top:.2rem;font-family:var(--f-hand);font-size:1.35rem;color:var(--accent);line-height:1.15}
+.plan-layout{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(24px,4vw,64px);margin-top:clamp(3rem,6vw,5rem);align-items:center}
+.plan-wrap{position:relative}
+.plan{width:100%;height:auto;display:block;color:var(--fg);overflow:visible}
+.plan .wall{fill:none;stroke:currentColor;stroke-width:5;stroke-linejoin:miter;opacity:.85}
+.plan .iwall{fill:none;stroke:currentColor;stroke-width:2.5;opacity:.7}
+.plan .open{fill:none;stroke:currentColor;stroke-width:1.4;stroke-dasharray:5 6;opacity:.6}
+.plan .door{fill:var(--bg);stroke:none}
+.plan .tbl{fill:none;stroke:currentColor;stroke-width:1.1;opacity:.55}
+.plan .chair{fill:currentColor;opacity:.35}
+.plan .vault{fill:none;stroke:currentColor;stroke-width:.9;stroke-dasharray:2 4;opacity:.4}
+.plan .post{fill:var(--sage);opacity:.8}
+.plan .hearth{fill:var(--accent);opacity:.65}
+.plan .room-hit{fill:var(--accent);fill-opacity:0;cursor:pointer;transition:fill-opacity .4s}
+.plan .room:hover .room-hit{fill-opacity:.07}
+.plan .room.is-active .room-hit{fill-opacity:.15}
+.plan .room-label{font-family:var(--f-display);font-style:italic;font-size:17px;fill:currentColor;pointer-events:none}
+.plan .room-seats{font-family:var(--f-body);font-size:10.5px;letter-spacing:.16em;fill:currentColor;opacity:.7;text-transform:uppercase;pointer-events:none}
+.plan .room.is-active .room-label{fill:var(--accent)}
+.plan__legend{display:flex;justify-content:space-between;margin-top:.8rem;font-size:var(--t-xs);letter-spacing:.08em;color:var(--fg2)}
+.rooms{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.6rem}
+.room-btn{border:1.5px solid var(--line);background:transparent;border-radius:999px;padding:.55rem 1rem;cursor:pointer;font-size:var(--t-s);color:var(--fg);transition:border-color .3s,background-color .3s,color .3s}
+.room-btn:hover{border-color:var(--fg)}
+.room-btn[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.room-detail{display:grid;grid-template-columns:minmax(0,1fr);gap:1.4rem}
+.room-detail .arch{aspect-ratio:3/2;--arch-v:30%}
+.room-detail__name{font-family:var(--f-display);font-size:clamp(1.8rem,1.3rem + 1.4vw,2.6rem);font-weight:380;letter-spacing:-.02em;line-height:1}
+.room-detail__seats{margin:.5rem 0 .7rem;font-size:var(--t-s);letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:600}
+.room-detail__text{color:var(--fg2);font-size:var(--t-s);margin:0}
+.room-detail__swap{transition:opacity .35s}
+.room-detail__swap.is-swapping{opacity:0}
+.feiern__cta{display:flex;flex-wrap:wrap;align-items:center;gap:1rem 1.6rem;margin-top:2rem}
+
+/* Über uns */
+.ueber__left{grid-column:1 / span 5}
+.ueber__sticky{position:sticky;top:calc(var(--header-h) + 32px)}
+.ueber__left .arch-wrap{max-width:440px}
+.ueber__right{grid-column:7 / span 6}
+.ueber__caption{margin-top:.9rem;font-size:var(--t-xs);letter-spacing:.06em;color:var(--fg2)}
+.timeline{position:relative;padding-left:clamp(64px,7vw,96px);margin-top:1rem}
+.vine{position:absolute;left:0;top:0;width:clamp(56px,6vw,80px);height:100%;overflow:visible;pointer-events:none}
+.vine .stem{fill:none;stroke:var(--sage-deep);stroke-width:2.2;stroke-linecap:round}
+.vine .tendril{fill:none;stroke:var(--sage-deep);stroke-width:1.2;stroke-linecap:round;opacity:.8}
+.vine .leaf{fill:var(--sage);stroke:var(--sage-deep);stroke-width:1;transform-box:fill-box}
+.vine .leaf.is-autumn{fill:#C38B3A}
+.vine .grape{fill:var(--wine)}
+.tl{list-style:none;margin:0;padding:0}
+.tl-item{position:relative;padding-bottom:clamp(2.6rem,5vw,4rem)}
+.tl-item:last-child{padding-bottom:0}
+.tl-year{display:block;font-family:var(--f-display);font-style:italic;font-weight:320;font-size:clamp(2.6rem,1.6rem + 3vw,4.6rem);line-height:.95;color:var(--accent);letter-spacing:-.03em;font-variation-settings:"SOFT" 100,"WONK" 1;font-variant-numeric:lining-nums}
+.tl-title{font-family:var(--f-display);font-size:1.35rem;font-weight:420;margin:.5rem 0 .35rem;letter-spacing:-.01em}
+.tl-text{color:var(--fg2);margin:0;max-width:48ch}
+
+/* Gästebuch */
+.guestbook{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3.4vw,48px);margin-top:3.4rem;align-items:start}
+.note-card{position:relative;background:#F5ECDA;color:var(--ink);padding:2.4rem 1.8rem 1.6rem;transform:rotate(var(--r,0deg));transition:transform .6s var(--ease);
+  background-image:repeating-linear-gradient(180deg, transparent 0 calc(2.1rem - 1px), rgba(43,30,22,.1) calc(2.1rem - 1px) 2.1rem);background-position:0 1.65rem;
+  box-shadow:0 1px 2px rgba(0,0,0,.18),0 28px 40px -26px rgba(0,0,0,.55);color-scheme:light;min-width:0}
+.note-card:nth-child(2){margin-top:3rem}
+.note-card:hover{transform:rotate(0deg) translateY(-6px)}
+.note-card::before{content:"";position:absolute;top:-12px;left:50%;width:94px;height:26px;margin-left:-47px;background:rgba(226,169,91,.55);transform:rotate(var(--tape,-3deg));box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.note-card blockquote{margin:0;font-family:var(--f-hand);font-weight:500;font-size:clamp(1.45rem,1.2rem + .6vw,1.75rem);line-height:2.1rem;color:#2E2420}
+.note-card figcaption{margin-top:1.2rem;font-size:var(--t-xs);letter-spacing:.14em;text-transform:uppercase;color:#6B5847}
+.guestbook__label{font-size:var(--t-xs);letter-spacing:.1em;color:var(--fg2)}
+
+/* Reservierung */
+.res{align-items:start;margin-top:3rem}
+.res__form{grid-column:1 / span 7}
+.res__info{grid-column:9 / span 4;display:grid;gap:2.6rem}
+.res-card{position:relative;background:var(--paper);background-image:var(--linen-tex);color:var(--ink);padding:clamp(1.5rem,4vw,3.4rem);border-radius:4px;box-shadow:0 40px 70px -40px rgba(0,0,0,.65);color-scheme:light}
+.res-card::before{content:"";position:absolute;left:clamp(.8rem,2.2vw,1.8rem);top:0;bottom:0;border-left:1px solid rgba(123,34,50,.28)}
+.res-card__label{font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:#7B6754;margin-bottom:1.2rem}
+.sentence{font-family:var(--f-display);font-size:clamp(1.45rem,1.05rem + 1.7vw,2.45rem);line-height:1.75;font-weight:340;letter-spacing:-.012em;color:var(--ink);margin:0 0 2rem;max-width:none;font-variation-settings:"SOFT" 60}
+.inline-field{display:inline-flex;align-items:baseline;border-bottom:2px solid var(--wine);margin-inline:.12em;vertical-align:baseline;position:relative}
+.inline-field input,.inline-field select{font:inherit;color:var(--wine);background:transparent;border:0;padding:0 .1em;margin:0;line-height:1.2;font-style:italic;outline:none;appearance:none;-webkit-appearance:none;min-width:0}
+.inline-field input[type="date"]{width:7.4em}
+.inline-field input[type="date"]::-webkit-calendar-picker-indicator{width:.5em;height:.5em;opacity:.55;cursor:pointer;margin-left:.15em}
+.inline-field select{padding-right:.9em;cursor:pointer;background-image:linear-gradient(45deg,transparent 50%,var(--wine) 50%),linear-gradient(135deg,var(--wine) 50%,transparent 50%);background-size:.28em .28em;background-position:calc(100% - .3em) 60%,calc(100% - .02em) 60%;background-repeat:no-repeat}
+.inline-field:focus-within{border-bottom-color:var(--ink);background:rgba(123,34,50,.06)}
+.stepper{display:inline-flex;align-items:center;gap:.15em;border-bottom:2px solid var(--wine);margin-inline:.12em}
+.stepper button{width:1.15em;height:1.15em;border-radius:50%;border:1.5px solid rgba(123,34,50,.5);background:transparent;color:var(--wine);cursor:pointer;font-family:var(--f-body);font-size:.55em;line-height:1;display:inline-grid;place-items:center;transform:translateY(-.2em)}
+.stepper button:hover{background:var(--wine);color:var(--paper)}
+.stepper output{min-width:1.3em;text-align:center;color:var(--wine);font-style:italic;font-variant-numeric:tabular-nums}
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.4rem 1.8rem}
+.field{display:grid;gap:.35rem;min-width:0}
+.field--full{grid-column:1 / -1}
+.field label{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:#6B5847;font-weight:600}
+.field input,.field textarea{font:inherit;font-size:1.06rem;color:var(--ink);background:transparent;border:0;border-bottom:1px solid rgba(43,30,22,.32);padding:.55rem 0;border-radius:0;outline:none;width:100%;transition:border-color .3s}
+.field textarea{resize:vertical;min-height:4.6rem;line-height:1.5}
+.field input:focus,.field textarea:focus{border-bottom:2px solid var(--wine);padding-bottom:calc(.55rem - 1px)}
+.field input::placeholder,.field textarea::placeholder{color:#A08D79}
+.field__error{font-size:.82rem;color:var(--wine);min-height:0}
+.field.is-invalid input{border-bottom-color:var(--wine)}
+.form-hint{margin:1rem 0 0;font-size:.88rem;color:var(--wine);min-height:1.3em}
+.res-card__foot{display:flex;flex-wrap:wrap;align-items:center;gap:1rem 1.6rem;margin-top:2rem}
+.res-card__foot p{margin:0;font-size:.86rem;color:#6B5847;max-width:34ch}
+.res-success{text-align:left}
+.res-success h3{font-family:var(--f-display);font-style:italic;font-size:clamp(2rem,1.5rem + 2vw,3rem);font-weight:360;line-height:1.05;margin:.4rem 0 1rem;color:var(--ink);font-variation-settings:"SOFT" 100,"WONK" 1}
+.res-success p{color:#4E3B2D}
+.res-success .demo{font-size:.86rem;color:#7B6754;border-top:1px dashed rgba(43,30,22,.25);padding-top:1rem;margin-top:1.4rem}
+.info-block h3{font-size:var(--t-xs);letter-spacing:.18em;text-transform:uppercase;color:var(--fg2);font-weight:600;margin-bottom:.9rem}
+.phone{font-family:var(--f-display);font-size:clamp(2rem,1.5rem + 1.6vw,2.8rem);font-weight:340;letter-spacing:-.01em;line-height:1;font-variant-numeric:tabular-nums}
+.copy-btn{margin-top:.9rem}
+.hours{width:100%;border-collapse:collapse;font-size:var(--t-s);font-variant-numeric:tabular-nums}
+.hours td{padding:.55rem 0;border-bottom:1px solid var(--line);vertical-align:top}
+.hours td:last-child{text-align:right;color:var(--fg2)}
+.hours tr.is-today td{color:var(--accent);font-weight:600}
+.hours tr.is-today td:last-child{color:var(--accent)}
+.hours .tag{display:inline-block;margin-left:.5rem;font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;border:1px solid currentColor;border-radius:999px;padding:.05rem .45rem;vertical-align:.12em}
+.mapbox{position:relative;border-radius:10px;overflow:hidden;border:1px solid var(--line);aspect-ratio:4/3;max-width:100%;background:color-mix(in srgb, var(--fg) 6%, var(--bg))}
+.mapbox svg{position:absolute;inset:0;width:100%;height:100%}
+.mapbox svg .road{fill:none;stroke:var(--fg);stroke-opacity:.18;stroke-width:6;stroke-linecap:round}
+.mapbox svg .road2{fill:none;stroke:var(--fg);stroke-opacity:.12;stroke-width:2.5}
+.mapbox svg .pinm{fill:var(--wine)}
+.mapbox__overlay{position:absolute;inset:auto 0 0 0;padding:1rem;display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;justify-content:space-between;background:linear-gradient(transparent, color-mix(in srgb, var(--bg) 92%, transparent) 40%)}
+.mapbox__overlay p{margin:0;font-size:.8rem;color:var(--fg2);max-width:28ch}
+.address{font-style:normal;margin-top:1rem;line-height:1.55}
+.address small{display:block;color:var(--fg2);font-size:var(--t-s);margin-top:.4rem}
+
+/* Footer */
+.footer{position:relative;padding-block:clamp(4rem,8vw,7rem) 2rem}
+.footer__mark{font-family:var(--f-display);font-style:italic;font-weight:330;font-size:clamp(3.2rem,13.4vw,15.5rem);line-height:.86;letter-spacing:-.045em;white-space:nowrap;font-variation-settings:"SOFT" 100,"WONK" 1;color:var(--fg);margin-bottom:clamp(2.5rem,5vw,4.5rem)}
+.footer__mark span{color:var(--accent)}
+.footer__cols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2rem var(--col-gap);padding-top:2rem;border-top:1px solid var(--line);font-size:var(--t-s)}
+.footer__cols h3{font-size:var(--t-xs);letter-spacing:.18em;text-transform:uppercase;color:var(--fg2);font-weight:600;margin-bottom:.8rem}
+.footer__cols p{margin:0 0 .3rem}
+.footer__cols a{text-decoration:none}
+.footer__cols a:hover{text-decoration:underline;text-underline-offset:3px}
+.socials{display:flex;gap:.6rem}
+.socials a{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:border-color .3s,background-color .3s}
+.socials a:hover{border-color:var(--fg);background:color-mix(in srgb, var(--fg) 8%, transparent)}
+.socials svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.6}
+.legal{display:flex;flex-direction:column;gap:.3rem}
+.footer__bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-top:3rem;font-size:var(--t-xs);letter-spacing:.06em;color:var(--fg2)}
+.to-top{background:none;border:0;color:inherit;cursor:pointer;font:inherit;letter-spacing:inherit;padding:0}
+
+/* Pfalz Multiservice – bewusst abgesetzt */
+.ms{padding-block:0 clamp(2rem,4vw,3rem)}
+.ms__card{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1.4rem 2rem;background:#F4EDE1;color:#211710;border-radius:16px;padding:clamp(1.4rem,3vw,2.4rem);color-scheme:light}
+.ms__label{display:inline-block;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:#7B2232;margin-bottom:.5rem}
+.ms__text{margin:0;font-size:clamp(1.02rem,.95rem + .35vw,1.25rem);line-height:1.45;max-width:52ch;font-weight:500}
+.ms__text span{display:block;color:#5C4636;font-weight:400}
+.ms .btn--wine{background:#7B2232;color:#FAF6EF}
+.ms .btn--wine:hover{background:#953042}
+
+/* Uhr im Header – zeigt die Tageszeit der aktuellen Sektion */
+.clock{display:flex;align-items:center;gap:.6rem;padding:.42rem .9rem .42rem .5rem;border-radius:999px;border:1px solid var(--line);color:var(--fg);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap}
+.clock svg{width:34px;height:20px;overflow:visible;flex:none}
+.clock .arc{fill:none;stroke:var(--line);stroke-width:1.5}
+.clock .arc-done{fill:none;stroke:var(--accent);stroke-width:1.5;stroke-linecap:round}
+.clock .sun{fill:var(--amber)}
+.clock time{font-variant-numeric:tabular-nums;font-weight:600;letter-spacing:.06em;font-size:.8rem}
+.clock .clock__label{color:var(--fg2)}
+
+/* Eigener Cursor */
+.cursor{position:fixed;left:0;top:0;z-index:150;pointer-events:none;width:0;height:0;display:none}
+.has-cursor .cursor{display:block}
+.cursor__dot{position:absolute;left:-5px;top:-5px;width:10px;height:10px;border-radius:50%;background:var(--accent);opacity:0;transition:width .4s var(--ease),height .4s var(--ease),left .4s var(--ease),top .4s var(--ease),background-color .4s,opacity .3s,border-color .4s;display:grid;place-items:center;border:1.5px solid transparent}
+.cursor.is-visible .cursor__dot{opacity:1}
+.cursor.is-link .cursor__dot{width:42px;height:42px;left:-21px;top:-21px;background:transparent;border-color:var(--accent)}
+.cursor.is-taste .cursor__dot{width:96px;height:96px;left:-48px;top:-48px;background:var(--wine);border-color:transparent}
+.cursor__label{font-family:var(--f-display);font-style:italic;font-size:1rem;color:var(--paper);opacity:0;transform:scale(.6);transition:opacity .3s,transform .4s var(--ease);font-variation-settings:"SOFT" 100,"WONK" 1;white-space:nowrap}
+.cursor.is-taste .cursor__label{opacity:1;transform:scale(1)}
+.has-cursor, .has-cursor a, .has-cursor button, .has-cursor [data-cursor], .has-cursor .room-hit{cursor:none}
+.has-cursor input, .has-cursor textarea, .has-cursor select{cursor:auto}
+
+/* Körnung */
+.grain{position:fixed;inset:-120px;z-index:120;pointer-events:none;opacity:.055;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+@keyframes grain{0%{transform:translate(0,0)}17%{transform:translate(-40px,22px)}34%{transform:translate(26px,-44px)}51%{transform:translate(-58px,-12px)}68%{transform:translate(44px,36px)}85%{transform:translate(-14px,52px)}100%{transform:translate(0,0)}}
+
+/* Mobiler Reservieren-Button */
+.m-cta{position:fixed;left:0;right:0;bottom:0;z-index:55;display:none;padding:10px max(16px, env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px, env(safe-area-inset-left,0px));
+  background:linear-gradient(transparent, color-mix(in srgb, var(--bg) 88%, transparent) 35%);transform:translateY(120%);transition:transform .5s var(--ease)}
+.m-cta.is-shown{transform:translateY(0)}
+.m-cta .btn{width:100%;justify-content:center;padding-block:1.05rem;box-shadow:0 12px 30px -12px rgba(33,23,16,.5)}
+
+/* ---------- Responsiv ---------- */
+@media (max-width: 1180px) and (min-width: 961px){
+  .clock{display:none}
+}
+@media (max-width: 1100px){
+  .hero__text{grid-column:1 / span 7}
+  .hero__media{grid-column:8 / span 5}
+  .res__form{grid-column:1 / span 7}
+  .res__info{grid-column:8 / span 5}
+}
+@media (max-width: 960px){
+  .nav, .site__actions .btn{display:none}
+  .burger{display:grid}
+  .clock{display:flex}
+  .progress{display:block}
+}
+@media (max-width: 900px){
+  :root{--header-h:64px}
+  .hero__text, .hero__media, .section__head, .section__head--split > *, .kueche__text, .kueche__media, .hoefe__map, .hoefe__list,
+  .laube__head, .laube__media, .ueber__left, .ueber__right, .res__form, .res__info{grid-column:1 / -1}
+  .hero__media{max-width:420px;width:100%;margin-inline:auto;margin-top:.5rem}
+  .section__head.section__head--split{display:block}
+  .section__head--split > .h2{margin-bottom:1.4rem}
+  .kueche__media{max-width:420px;margin-top:3rem}
+  .hoefe__media{grid-column:1 / -1;grid-row:auto;justify-self:start;max-width:420px;margin-top:2rem}
+  .values{grid-template-columns:1fr}
+  .value{border-left:0;padding-left:0;padding-right:0;border-top:1px solid var(--line)}
+  .value:first-child{border-top:0}
+  .menu{grid-template-columns:1fr}
+  .wine-card{position:relative;top:auto;max-width:440px;margin-inline:auto;width:100%}
+  .week__media, .week__text{grid-column:1 / -1}
+  .week__text{grid-row:2;margin-top:1.2rem;padding-inline:0}
+  .laube__media{margin-top:2rem}
+  .wines{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:2rem}
+  .occasions{grid-template-columns:1fr}
+  .plan-layout{grid-template-columns:1fr}
+  .ueber__sticky{position:relative;top:auto;display:block}
+  .ueber__left .arch-wrap{max-width:400px}
+  .ueber__right{margin-top:3.5rem}
+  .guestbook{grid-template-columns:1fr;max-width:520px}
+  .note-card:nth-child(2){margin-top:0}
+  .res__info{margin-top:3rem;grid-template-columns:repeat(2,minmax(0,1fr))}
+  .res__info .info-block--map{grid-column:1 / -1}
+  .footer__cols{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width: 760px){
+  .m-cta{display:block}
+  body{padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+}
+@media (max-width: 600px){
+  .hero__caption{flex-direction:column;gap:.2rem}
+  .wines{grid-template-columns:1fr}
+  .fields{grid-template-columns:1fr}
+  .res__info{grid-template-columns:1fr}
+  .footer__cols{grid-template-columns:1fr}
+  .brand{font-size:1.25rem}
+  .brand svg{width:24px;height:24px}
+  .clock .clock__label{display:none}
+  .clock{padding:.38rem .7rem .38rem .45rem}
+  .h1 em{padding-left:.3em}
+  .stamp{top:6%;right:5%}
+}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+  html{scroll-behavior:auto}
+  .grain{animation:none}
+}
+</style>
+
+<!-- ================= Symbole (handgezeichnet) ================= -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-leaf" viewBox="0 0 120 120">
+      <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M52 84C44 90 32 92 24 88C28 80 32 72 38 64C28 60 16 52 12 40C24 40 36 38 44 34C44 24 50 14 60 8C70 14 76 24 76 34C84 38 96 40 108 40C104 52 92 60 82 64C88 72 92 80 96 88C88 92 76 90 68 84C64 86 56 86 52 84Z"/>
+        <path d="M60 86V22M60 62L24 46M60 62L96 46M60 74L32 84M60 74L88 84"/>
+        <path d="M60 86C60 96 58 104 55 112"/>
+      </g>
+    </symbol>
+    <symbol id="i-grapes" viewBox="0 0 120 120">
+      <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M60 30C60 20 64 12 72 8M64 18C72 16 80 20 84 26"/>
+        <circle cx="48" cy="40" r="9"/><circle cx="66" cy="40" r="9"/><circle cx="84" cy="42" r="8"/>
+        <circle cx="40" cy="56" r="9"/><circle cx="58" cy="56" r="9"/><circle cx="76" cy="58" r="9"/>
+        <circle cx="48" cy="72" r="9"/><circle cx="66" cy="74" r="9"/>
+        <circle cx="56" cy="90" r="9"/><circle cx="60" cy="106" r="7"/>
+      </g>
+    </symbol>
+    <symbol id="i-sprig" viewBox="0 0 120 120">
+      <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M20 108C44 84 70 52 104 14"/>
+        <path d="M34 92c-8-4-12-12-10-20M34 92c8 2 16-2 20-8M48 76c-8-4-12-12-10-20M48 76c8 2 16-2 20-8M62 60c-8-4-12-12-10-20M62 60c8 2 16-2 20-8M76 44c-6-4-9-11-7-18M76 44c7 2 14-1 18-7M90 28c-4-3-6-8-4-13M90 28c5 1 10-1 13-5"/>
+      </g>
+    </symbol>
+    <symbol id="i-plate" viewBox="0 0 120 120">
+      <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+        <ellipse cx="60" cy="86" rx="46" ry="16"/><ellipse cx="60" cy="84" rx="30" ry="9"/>
+        <path d="M46 62C40 52 52 46 46 36C40 26 50 20 46 12M60 64C54 54 66 48 60 38C54 28 64 22 60 14M74 62C68 52 80 46 74 36C68 26 78 20 74 12"/>
+      </g>
+    </symbol>
+    <symbol id="i-glass" viewBox="0 0 24 24">
+      <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M7 3h10c0 5-1.6 8-5 8.5C8.6 11 7 8 7 3Z"/><path d="M12 11.5V20M8.5 21h7"/>
+      </g>
+    </symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24">
+      <g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15M13 6l6 6-6 6"/></g>
+    </symbol>
+    <symbol id="i-brand" viewBox="0 0 32 32">
+      <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 22c-2.2 1.6-5.4 2.2-7.6 1 1.2-2 2-4 1.8-6-2.6-.6-4.6-2.4-5.4-5 3.2.2 6-.4 8.2-2 0-2.6 1.2-5 3.4-6.8 2 1.8 3 4 3 6.2 2.2-1.4 5-2 8-1.4-.8 2.6-2.6 4.6-5 5.6 2.4 1 4.4 2.8 5.6 5.2-3 .8-5.6.4-8-.8"/>
+        <path d="M16 23V9M16 17l-6-3M16 17l6-3M16 23c0 2.6-.6 4.6-1.6 6.4"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<a class="skip" href="#inhalt">Zum Inhalt springen</a>
+
+<!-- ================= Intro: Wortmarke wie mit Kreide geschrieben ================= -->
+<div class="intro" id="intro" aria-hidden="true">
+  <div class="intro__inner">
+    <svg viewBox="0 0 1000 240" role="presentation">
+      <defs>
+        <filter id="chalk" x="-5%" y="-20%" width="110%" height="140%">
+          <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="7" result="n"/>
+          <feDisplacementMap in="SourceGraphic" in2="n" scale="3.2" xChannelSelector="R" yChannelSelector="G" result="d"/>
+          <feTurbulence type="fractalNoise" baseFrequency="1.6" numOctaves="1" seed="2" result="n2"/>
+          <feColorMatrix in="n2" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 -2 1.8" result="holes"/>
+          <feComposite in="d" in2="holes" operator="in"/>
+        </filter>
+        <clipPath id="introClip"><rect x="0" y="0" width="1000" height="240"/></clipPath>
+      </defs>
+      <g filter="url(#chalk)" clip-path="url(#introClip)">
+        <text class="intro__stroke" x="500" y="168" text-anchor="middle" fill="none" stroke="#F1EBDD" stroke-width="1.6" stroke-dasharray="1100" stroke-dashoffset="1100"
+          style="font-family:var(--f-display);font-style:italic;font-weight:420;font-size:156px;letter-spacing:-3px;font-variation-settings:'SOFT' 100,'WONK' 1">Zum Rebstock</text>
+        <text class="intro__fill" x="500" y="168" text-anchor="middle" fill="#F1EBDD" opacity="0"
+          style="font-family:var(--f-display);font-style:italic;font-weight:420;font-size:156px;letter-spacing:-3px;font-variation-settings:'SOFT' 100,'WONK' 1">Zum Rebstock</text>
+        <path class="intro__flourish" d="M290 206C380 196 470 214 560 202S700 192 720 200" fill="none" stroke="#E2A95B" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="460" stroke-dashoffset="460"/>
+      </g>
+    </svg>
+    <p class="intro__sub">Gasthaus · Deidesheim · Pfalz</p>
+  </div>
+  <button class="intro__skip" type="button" tabindex="-1">Überspringen</button>
+</div>
+
+<div class="musterstrip" role="note"><span>Musterdesign · fiktiver Betrieb</span></div>
+
+<!-- ================= Header ================= -->
+<header class="site" id="site">
+  <div class="site__bar">
+    <div class="site__inner">
+      <a class="brand" href="#top" aria-label="Zum Rebstock, zum Seitenanfang"><svg aria-hidden="true"><use href="#i-brand"/></svg>Zum Rebstock</a>
+      <nav class="nav" aria-label="Hauptnavigation">
+        <ul>
+          <li><a href="#kueche">Küche</a></li>
+          <li><a href="#speisekarte">Speisekarte</a></li>
+          <li><a href="#feiern">Feiern</a></li>
+          <li><a href="#ueber">Über uns</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+      </nav>
+      <div class="site__actions">
+        <div class="clock" aria-hidden="true" title="Tageszeit dieser Sektion">
+          <svg viewBox="0 0 38 22"><path class="arc" d="M3 20A16 16 0 0 1 35 20"/><path class="arc-done" id="arc-done" d="M3 20A16 16 0 0 1 35 20" pathLength="100" stroke-dasharray="0 100"/><circle class="sun" id="sun" cx="3" cy="20" r="3.4"/></svg>
+          <time id="clock-time">11:30</time><span class="clock__label" id="clock-label">Mittag</span>
+        </div>
+        <a class="btn btn--wine btn--small magnetic" href="#reservieren"><span class="btn__label">Tisch reservieren</span></a>
+        <button class="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menü öffnen"><span></span></button>
+      </div>
+    </div>
+    <div class="progress" aria-hidden="true"></div>
+  </div>
+</header>
+
+<div class="menu-overlay" id="menu" hidden>
+  <div class="menu-overlay__top">
+    <span class="brand"><svg aria-hidden="true"><use href="#i-brand"/></svg>Zum Rebstock</span>
+    <button class="menu-close" type="button" aria-label="Menü schließen">×</button>
+  </div>
+  <nav aria-label="Mobile Navigation">
+    <ul>
+      <li><a href="#kueche"><span>12:00</span>Küche</a></li>
+      <li><a href="#speisekarte"><span>15:30</span>Speisekarte</a></li>
+      <li><a href="#feiern"><span>20:00</span>Feiern</a></li>
+      <li><a href="#ueber"><span>21:00</span>Über uns</a></li>
+      <li><a href="#kontakt"><span>22:00</span>Kontakt</a></li>
+    </ul>
+  </nav>
+  <div class="menu-overlay__foot">
+    <a class="btn btn--wine" href="#reservieren"><span class="btn__label">Tisch reservieren</span></a>
+    <p>Telefon 0000 000000 · Mittwoch bis Sonntag geöffnet</p>
+  </div>
+</div>
+
+<main id="inhalt">
+
+<!-- ================= 1 · Hero (11:30) ================= -->
+<section class="hero" id="top" data-theme="mittag" aria-labelledby="hero-title">
+  <div class="wrap grid12 hero__grid">
+    <div class="hero__text">
+      <p class="eyebrow" data-hero><time>11:30 Uhr</time><span class="rule"></span>Die Küche öffnet</p>
+      <h1 class="h1" id="hero-title" data-hero-title><span class="l1">Pfälzer Küche.</span> <em>Mit Liebe gemacht.</em></h1>
+      <p class="hero__lede" data-hero>Wir kochen Saumagen, Leberknödel und Dampfnudeln mit Zutaten von den Höfen rund um Deidesheim und richten sie so an, wie man sie heute gerne isst.</p>
+      <div class="hero__status" data-hero id="hero-status">
+        <span class="live-dot" aria-hidden="true"></span>
+        <strong>Mittwoch bis Sonntag geöffnet</strong>
+        <span class="today" id="hero-today"></span>
+      </div>
+      <div class="hero__actions" data-hero>
+        <a class="btn btn--wine magnetic" href="#reservieren"><span class="btn__label">Tisch reservieren <svg aria-hidden="true"><use href="#i-arrow"/></svg></span></a>
+        <a class="btn btn--line magnetic" href="#speisekarte"><span class="btn__label">Zur Speisekarte</span></a>
+      </div>
+    </div>
+    <div class="hero__media" data-hero>
+      <figure class="arch-wrap zoomable" data-cursor="Probieren" style="margin:0">
+        <div class="arch">
+          <div class="media-inner" style="--lqip:url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAeABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDat54bzWNRkhk8yNrZP3ighSQpzgmucnmXcBkdOea7Saz0izZVuYI8n7oldpc/QE5/SoZJ7QsyiLbEo52wYA+uRXJy23Z1KXY4qyvGmRo7mMBwA8eDwfb/AAorqbiytWVporaLzQCY28sDnHFFS4PoUpjr6GaFbl4SJJ5Sfn3fNt7Afyrl3vGhuhHFJNHMq7X3qSrgevbv34runt7fUYCk0eVP4EH2NY134VVstFeTbP7rSNVSpJu4o1LKxUtPECQ2bGVFT92UWAdZG7EDsB60Ulv4cjQkhlHPJ6k0U4x5VZCdm7n/2Q==')">
+            <div class="ph-fallback" aria-hidden="true"><svg><use href="#i-plate"/></svg><b>Saumagen mit Weinkraut</b><span>Foto folgt · hero-teller.jpg</span></div>
+            <img style="--pos:50% 78%" src="/beispiele/restaurant/img/hero-teller-1100.webp" srcset="/beispiele/restaurant/img/hero-teller-640.webp 640w, /beispiele/restaurant/img/hero-teller-1100.webp 1100w" sizes="(max-width: 900px) 92vw, 36vw" alt="Zwei knusprig gebratene Scheiben Saumagen mit Rieslingkraut und Kartoffelpüree auf einem hellen Steingutteller" width="1122" height="1402" fetchpriority="high" onerror="this.parentNode.classList.add('is-broken')" onload="this.classList.add('is-loaded')">
+          </div>
+          <canvas class="steam" data-cx="0.5" aria-hidden="true"></canvas>
+        </div>
+      </figure>
+      <figcaption class="hero__caption"><em>Saumagen, Weinkraut, Nussbutter-Püree</em><span>Hauptgericht · 19,80 €</span></figcaption>
+    </div>
+  </div>
+</section>
+
+<!-- Laufband -->
+<div class="marquee" data-theme="mittag" aria-label="Saumagen, Leberknödel, Weinkraut, Dampfnudeln, Riesling">
+  <div class="marquee__track" aria-hidden="true">
+    <div class="marquee__group">
+      <span class="marquee__item">Saumagen</span><svg class="marquee__sep"><use href="#i-leaf"/></svg>
+      <span class="marquee__item is-outline">Leberknödel</span><svg class="marquee__sep"><use href="#i-grapes"/></svg>
+      <span class="marquee__item">Weinkraut</span><svg class="marquee__sep"><use href="#i-sprig"/></svg>
+      <span class="marquee__item is-outline">Dampfnudeln</span><svg class="marquee__sep"><use href="#i-leaf"/></svg>
+      <span class="marquee__item">Riesling</span><svg class="marquee__sep"><use href="#i-grapes"/></svg>
+    </div>
+    <div class="marquee__group">
+      <span class="marquee__item">Saumagen</span><svg class="marquee__sep"><use href="#i-leaf"/></svg>
+      <span class="marquee__item is-outline">Leberknödel</span><svg class="marquee__sep"><use href="#i-grapes"/></svg>
+      <span class="marquee__item">Weinkraut</span><svg class="marquee__sep"><use href="#i-sprig"/></svg>
+      <span class="marquee__item is-outline">Dampfnudeln</span><svg class="marquee__sep"><use href="#i-leaf"/></svg>
+      <span class="marquee__item">Riesling</span><svg class="marquee__sep"><use href="#i-grapes"/></svg>
+    </div>
+  </div>
+</div>
+
+<!-- ================= 3 · Unsere Küche (12:00) ================= -->
+<section class="section" id="kueche" data-theme="mittag" aria-labelledby="kueche-title">
+  <div class="wrap grid12">
+    <div class="kueche__text">
+      <p class="eyebrow" data-fade><time>12:00 Uhr</time><span class="rule"></span>Unsere Küche</p>
+      <h2 class="h2" id="kueche-title" data-split>Regional, saisonal, <em>ehrlich.</em></h2>
+      <p class="display-p" data-fade>Was die Höfe rund um Deidesheim gerade ernten, steht bei uns auf der Karte. Wir kochen die Rezepte, mit denen wir aufgewachsen sind, und richten sie leichter und klarer an.</p>
+      <div class="kueche__body" data-fade>
+        <p>Im Herbst gibt es Keschde und Neuen Wein, im Frühjahr Bärlauch aus dem Pfälzerwald, im Sommer Tomaten aus Meckenheim. Brot, Wurst und Nudeln machen wir selbst. Ist ein Gericht ausverkauft, kochen wir es am nächsten Tag frisch.</p>
+      </div>
+      <div class="sig" data-fade><span class="hand">Clara &amp; Jonas</span><small>Ihre Gastgeber</small></div>
+    </div>
+    <figure class="kueche__media arch-wrap zoomable" data-reveal style="margin:0">
+      <div class="arch">
+        <div class="media-inner" style="--lqip:url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAeABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwB9polvc6at15UaFkdtodgflAP9ayL/AE6yjvZrZGl8xCRgMScD2rSttVurXTCY5IpRuYfM2T8wwf5ViS37tcSXRuTFIxJO1ju57CuRtWVlqdcU7u+xHZQAkopJbHOTRVmzSYP9pOwMyLvcuMH6ZNFNW6hK/Q25To32BJEAebzMEsTgd+mfWsvUrfw/NM2yQxM5/wCWWTWTHPp628ebeZ5VILlnGGGeR7cYojdJirRwrGquMc5Jyx6/TpSY0OvLPyU4SZY8gKXUrnHT8cUV0y6le+S9t5oeFjjZIocD6Z6UVRJ//9k=')">
+          <div class="ph-fallback" aria-hidden="true"><svg><use href="#i-plate"/></svg><b>Unsere Gaststube</b><span>Foto folgt · gaststube.jpg</span></div>
+          <img src="/beispiele/restaurant/img/gaststube-1100.webp" srcset="/beispiele/restaurant/img/gaststube-640.webp 640w, /beispiele/restaurant/img/gaststube-1100.webp 1100w" sizes="(max-width: 900px) 92vw, 36vw" alt="Gaststube mit Eichenvertäfelung, Sandsteinwand und gedeckten Holztischen im Mittagslicht" width="1122" height="1402" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('is-broken')" data-parallax onload="this.classList.add('is-loaded')">
+        </div>
+      </div>
+    </figure>
+  </div>
+  <div class="wrap">
+    <div class="values">
+      <article class="value" data-fade>
+        <svg class="value__icon" viewBox="0 0 120 120" aria-hidden="true" data-draw>
+          <path d="M14 104H106M22 104V58L60 28L98 58V104M46 104V74H74V104M46 74L74 104M74 74L46 104M54 50H66V60H54Z"/>
+          <path d="M88 18a8 8 0 1 0 16 0a8 8 0 1 0-16 0"/>
+          <path d="M4 112C30 108 50 110 80 108S110 110 118 108"/>
+        </svg>
+        <h3>Regionale Höfe</h3>
+        <p>Fleisch, Gemüse, Käse und Mehl kaufen wir bei Menschen, die wir kennen. Die meisten liefern selbst, der Kartoffelbauer manchmal mit dem Traktor.</p>
+        <p class="value__fact"><strong>8</strong><span>Lieferanten, alle im Umkreis von 15&nbsp;km</span></p>
+      </article>
+      <article class="value" data-fade>
+        <svg class="value__icon" viewBox="0 0 120 120" aria-hidden="true" data-draw>
+          <path d="M60 114C60 96 61 60 62 18"/>
+          <path d="M61.5 34c-8-1-12-7-11-14c7 1 11 7 11 14M62 34c8-1 12-7 11-14c-7 1-11 7-11 14M61.5 46c-8-1-12-7-11-14c7 1 11 7 11 14M62 46c8-1 12-7 11-14c-7 1-11 7-11 14M61.5 58c-8-1-12-7-11-14c7 1 11 7 11 14M62 58c8-1 12-7 11-14c-7 1-11 7-11 14M61.5 70c-8-1-12-7-11-14c7 1 11 7 11 14M62 70c8-1 12-7 11-14c-7 1-11 7-11 14"/>
+          <path d="M62 22c-4-5-3-11 0-14c3 3 4 9 0 14M54 26L46 8M70 26L78 8M60 96C48 90 42 80 40 70C50 76 56 86 60 96"/>
+        </svg>
+        <h3>Hausgemacht</h3>
+        <p>Saumagen, Leberknödel, Bratwurst und Brot entstehen in unserer Küche, nach den Rezepten aus Elfriede Hartmanns Kochbuch von 1962.</p>
+        <p class="value__fact"><strong>Di</strong><span>Ruhetag ist Wursttag: dienstags wird gewurstet</span></p>
+      </article>
+      <article class="value" data-fade>
+        <svg class="value__icon" viewBox="0 0 120 120" aria-hidden="true" data-draw>
+          <path d="M52 84C44 90 32 92 24 88C28 80 32 72 38 64C28 60 16 52 12 40C24 40 36 38 44 34C44 24 50 14 60 8C70 14 76 24 76 34C84 38 96 40 108 40C104 52 92 60 82 64C88 72 92 80 96 88C88 92 76 90 68 84C64 86 56 86 52 84Z"/>
+          <path d="M60 86V22M60 62L24 46M60 62L96 46M60 74L32 84M60 74L88 84M60 86C60 96 58 104 55 112"/>
+        </svg>
+        <h3>Pfälzer Weine</h3>
+        <p>Unsere Weinkarte endet an der Landesgrenze. Rund sechzig Weine von Winzern zwischen Bad Dürkheim und Neustadt, viele davon auch im Glas.</p>
+        <p class="value__fact"><strong>62</strong><span>Weine auf der Karte, 14 davon glasweise</span></p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 4 · Von den Höfen (14:00) ================= -->
+<section class="section" id="hoefe" data-theme="nachmittag" aria-labelledby="hoefe-title">
+  <div class="wrap grid12">
+    <div class="section__head">
+      <p class="eyebrow" data-fade><time>14:00 Uhr</time><span class="rule"></span>Von den Höfen</p>
+      <h2 class="h2" id="hoefe-title" data-split>Kurze Wege, <em>gute Nachbarn.</em></h2>
+      <p class="lede" data-fade>Die Karte zeigt, woher unsere Zutaten kommen. Kein Lieferant ist weiter als 15 Kilometer entfernt, der nächste nur zwei.</p>
+    </div>
+    <figure class="hoefe__media arch-wrap zoomable" data-reveal style="margin:0">
+      <div class="arch">
+        <div class="media-inner" style="--lqip:url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAeABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwC7bIsNxfzTuJQJmKpJnaQD/LkVoQeI5VUtPDCyhd2RkDH1rj5ZYkjggQyMm0Dqeccn684q6t0tqEecy25hUvjblcHjkD8K4Y1JQ+E1kuZnXR+JFdQyWuFPJO4kCiuNtdQa5KC3uZY2kBwGOQDtx1/Wiq+s1E7cpKp32KCXUcd3NLbMVVXOFA5U55zn8Ooq2b+IxiGOFUTJJVWzuz279qm1DRbO5mP9m77eZGIcPyrjP58U2DQJiX8+8I2j/lmMZx9aJQjc6It2M+3McVwBFaovlnevUgjHoePSiraPYxzLDb2hebJy87llOB/doqJcqerFZI//2Q==')">
+          <div class="ph-fallback" aria-hidden="true"><svg><use href="#i-grapes"/></svg><b>Ernte vom Hof</b><span>Foto folgt · hof-ernte.jpg</span></div>
+          <img style="--pos:50% 62%" src="/beispiele/restaurant/img/hof-ernte-1100.webp" srcset="/beispiele/restaurant/img/hof-ernte-640.webp 640w, /beispiele/restaurant/img/hof-ernte-1100.webp 1100w" sizes="(max-width: 900px) 92vw, 32vw" alt="Holzkiste mit frisch geernteten Kartoffeln, Rosmarin, Thymian und dunklen Trauben vor Weinbergen" width="1122" height="1402" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('is-broken')" data-parallax onload="this.classList.add('is-loaded')">
+        </div>
+      </div>
+      <figcaption class="hoefe__caption">Heute früh vom Kessler-Hof und aus dem Weinberg</figcaption>
+    </figure>
+    <div class="hoefe__map">
+      <svg class="map" id="map" viewBox="0 0 640 640" role="img" aria-label="Schematische Karte der Region um Deidesheim mit den Standorten unserer Lieferanten entlang der Deutschen Weinstraße"></svg>
+    </div>
+    <div class="hoefe__list">
+      <ul class="farms" id="farms">
+        <li class="farm" data-id="gaul"><span class="farm__dot"></span><span class="farm__name">Hofmetzgerei Gaul</span><span class="farm__km">2 km</span><span class="farm__meta">Forst · Schweine aus Strohhaltung</span></li>
+        <li class="farm is-wine" data-id="sonnenberg"><span class="farm__dot"></span><span class="farm__name">Weingut Sonnenberg</span><span class="farm__km">3 km</span><span class="farm__meta">Forst · Riesling aus Lagen am Haardtrand</span></li>
+        <li class="farm" data-id="lindner"><span class="farm__dot"></span><span class="farm__name">Kräutergarten Lindner</span><span class="farm__km">3 km</span><span class="farm__meta">Ruppertsberg · Kräuter, Salate, essbare Blüten</span></li>
+        <li class="farm" data-id="ziegenhof"><span class="farm__dot"></span><span class="farm__name">Ziegenhof am Haardtrand</span><span class="farm__km">5 km</span><span class="farm__meta">Deidesheim · Ziegenfrischkäse und Joghurt</span></li>
+        <li class="farm" data-id="kessler"><span class="farm__dot"></span><span class="farm__name">Grumbeerhof Kessler</span><span class="farm__km">5 km</span><span class="farm__meta">Meckenheim · Kartoffeln, Kraut, Wurzelgemüse</span></li>
+        <li class="farm is-wine" data-id="ohler"><span class="farm__dot"></span><span class="farm__name">Weingut Ohler</span><span class="farm__km">5 km</span><span class="farm__meta">Wachenheim · Rosé und Neuer Wein</span></li>
+        <li class="farm" data-id="bechtel"><span class="farm__dot"></span><span class="farm__name">Mühle Bechtel</span><span class="farm__km">8 km</span><span class="farm__meta">Bad Dürkheim · Dinkel- und Roggenmehl</span></li>
+        <li class="farm" data-id="forsthaus"><span class="farm__dot"></span><span class="farm__name">Forsthaus Elmstein</span><span class="farm__km">14 km</span><span class="farm__meta">Pfälzerwald · Reh und Wildschwein</span></li>
+      </ul>
+      <p class="hoefe__note">Alle Betriebe sind für dieses Musterdesign erfunden.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 5 · Speisekarte (15:30) ================= -->
+<section class="section" id="speisekarte" data-theme="nachmittag" aria-labelledby="karte-title">
+  <div class="wrap">
+    <div class="grid12">
+      <div class="section__head section__head--split">
+        <p class="eyebrow" data-fade><time>15:30 Uhr</time><span class="rule"></span>Speisekarte</p>
+        <h2 class="h2" id="karte-title" data-split>Was heute auf den <em>Tisch</em> kommt.</h2>
+        <p class="lede" data-fade>Die Karte wechselt mit der Saison. Zu jedem Gang empfehlen wir Ihnen einen Wein aus der Nachbarschaft.</p>
+      </div>
+    </div>
+
+    <div class="menu">
+      <article class="menu-card" data-fade>
+        <header class="menu-card__head">
+          <svg aria-hidden="true" viewBox="0 0 32 32"><use href="#i-brand"/></svg>
+          <p class="menu-card__house">Gasthaus Zum Rebstock</p>
+          <h3 class="menu-card__title">Herbstkarte</h3>
+          <p class="menu-card__season">Oktober &amp; November 2026</p>
+        </header>
+
+        <div class="tabs" role="tablist" aria-label="Speisekarte">
+          <button class="tab" role="tab" id="tab-vor" aria-controls="panel-vor" aria-selected="true">Vorspeisen</button>
+          <button class="tab" role="tab" id="tab-haupt" aria-controls="panel-haupt" aria-selected="false" tabindex="-1">Hauptgerichte</button>
+          <button class="tab" role="tab" id="tab-dessert" aria-controls="panel-dessert" aria-selected="false" tabindex="-1">Desserts</button>
+          <button class="tab" role="tab" id="tab-saison" aria-controls="panel-saison" aria-selected="false" tabindex="-1">Saisonkarte</button>
+          <span class="tabs__ink" aria-hidden="true"></span>
+        </div>
+
+        <div class="panel" role="tabpanel" id="panel-vor" aria-labelledby="tab-vor" tabindex="0"
+          data-wine-label="zu den Vorspeisen" data-wine-name="Riesling trocken 2024" data-wine-maker="Weingut Sonnenberg · Forst" data-wine-notes="Weinbergpfirsich, Limette, kühle Mineralität" data-wine-size="0,1 l" data-wine-price="4,80 €" data-wine-color="#E3C766">
+          <ul class="dishes">
+            <li class="dish" data-cursor="Probieren"><div class="dish__head"><span class="dish__name">Grumbeersupp</span><span class="dish__lead"></span><span class="dish__price">8,50</span></div><p class="dish__desc">Cremige Kartoffelsuppe vom Kessler-Hof, geräucherte Forelle aus dem Elmsteiner Tal, Liebstöckelöl</p></li>
+            <li class="dish" data-cursor="Probieren"><div class="dish__head"><span class="dish__name">Hausmacher Teller</span><span class="dish__lead"></span><span class="dish__price">11,90</span></div><p class="dish__desc">Leberwurst, Blutwurst und Schwartenmagen aus eigener Herstellung, Senfgurken, Bauernbrot</p></li>
+            <li class="dish" data-cursor="Probieren"><div class="dish__head"><span class="dish__name">Gerösteter Kürbis<span class="dish__tag">vegetarisch</span></span><span class="dish__lead"></span><span class="dish__price">12,50</span></div><p class="dish__desc">Hokkaido vom Grill, Ziegenfrischkäse vom Haardtrand, Kürbiskerne, Traubenessig</p></li>
+            <li class="dish" data-cursor="Probieren"><div class="dish__head"><span class="dish__name">Pfälzer Wurstsalat</span><span class="dish__lead"></span><span class="dish__price">9,80</span></div><p class="dish__desc">Fein geschnittene Fleischwurst, Zwiebeln, Gurken und Schnittlauch, mit Rieslingessig angemacht</p></li>
+          </ul>
+        </div>
+
+        <div class="panel" role="tabpanel" id="panel-haupt" aria-labelledby="tab-haupt" tabindex="0" hidden
+          data-wine-label="zu den Hauptgerichten" data-wine-name="Spätburgunder trocken 2022" data-wine-maker="Weingut Brunnhof · Deidesheim" data-wine-notes="Sauerkirsche, Waldboden, samtig" data-wine-size="0,1 l" data-wine-price="6,20 €" data-wine-color="#560E1D">
+          <ul class="dishes">
+            <li class="dish" data-cursor="Probieren"><div class="dish__head"><span class="dish__name">Saumagen mit Weinkraut</span><span class="dish__lead"></span><span class="dish__price">19,80</span></div><p class="dish__desc">Nach Hausrezept, in der Pfanne knusprig gebraten, Rieslingkraut und Kartoffelpüree mit Nussbutter</p><p class="dish__wine"><svg aria-hidden="true"><use href="#i-glass"/></svg>Dazu: Riesling trocken, Weingut Sonnenberg</p></li>
+            <li class="dish" data-cursor="Probieren"><div class="dish__head"><span class="dish__name">Leberknödel mit Rieslingsauce</span><span class="dish__lead"></span><span class="dish__price">17,50</span></div><p class="dish__desc">Zwei Knödel, helle Sauce vom Haus-Riesling, Rahmsauerkraut, Schnittlauch</p></li>
+            <li class="dish" data-cursor="Probieren"><div class="dish__head"><span class="dish__name">Pfälzer Bratwurst</span><span class="dish__lead"></span><span class="dish__price">16,90</span></div><p class="dish__desc">Grob, vom Strohschwein der Hofmetzgerei Gaul, Zwiebel-Senf-Jus, Bratkartoffeln</p></li>
+            <li class="dish" data-cursor="Probieren"><div class="dish__head"><span class="dish__name">Geschmorter Rinderbraten</span><span class="dish__lead"></span><span class="dish__price">26,50</span></div><p class="dish__desc">Schulter vom Weiderind, acht Stunden in Spätburgunder geschmort, Wurzelgemüse, handgeschabte Spätzle</p><p class="dish__wine"><svg aria-hidden="true"><use href="#i-glass"/></svg>Dazu: Spätburgunder, Weingut Brunnhof</p></li>
+            <li class="dish" data-cursor="Probieren"><div class="dish__head"><span class="dish__name">Grumbeerknödel mit Waldpilzen<span class="dish__tag">vegetarisch</span></span><span class="dish__lead"></span><span class="dish__price">18,50</span></div><p class="dish__desc">Kartoffelknödel, Pilze aus dem Pfälzerwald in Rahm, Petersilie, gehobelter Bergkäse</p></li>
+          </ul>
+        </div>
+
+        <div class="panel" role="tabpanel" id="panel-dessert" aria-labelledby="tab-dessert" tabindex="0" hidden
+          data-wine-label="zu den Desserts" data-wine-name="Riesling Auslese 2021" data-wine-maker="Weingut Sonnenberg · Forst" data-wine-notes="Honig, Aprikose, feine Säure" data-wine-size="0,05 l" data-wine-price="5,90 €" data-wine-color="#D08F22">
+          <ul class="dishes">
+            <li class="dish" data-cursor="Probieren"><div class="dish__head"><span class="dish__name">Dampfnudeln mit Weinsoße</span><span class="dish__lead"></span><span class="dish__price">9,50</span></div><p class="dish__desc">Mit Salzkruste aus der gusseisernen Pfanne, Vanille-Weinschaumsoße</p></li>
+            <li class="dish" data-cursor="Probieren"><div class="dish__head"><span class="dish__name">Kerscheplotzer</span><span class="dish__lead"></span><span class="dish__price">9,80</span></div><p class="dish__desc">Warmer Kirschauflauf mit Brioche und Mandeln, Sauerrahmeis</p></li>
+            <li class="dish" data-cursor="Probieren"><div class="dish__head"><span class="dish__name">Keschde und Schokolade</span><span class="dish__lead"></span><span class="dish__price">10,50</span></div><p class="dish__desc">Esskastanien-Mousse, Zwetschgenröster, Kakaonibs</p></li>
+            <li class="dish" data-cursor="Probieren"><div class="dish__head"><span class="dish__name">Rieslingsorbet</span><span class="dish__lead"></span><span class="dish__price">7,50</span></div><p class="dish__desc">Mit Weinbergpfirsich und Zitronenmelisse</p></li>
+          </ul>
+        </div>
+
+        <div class="panel" role="tabpanel" id="panel-saison" aria-labelledby="tab-saison" tabindex="0" hidden
+          data-wine-label="zur Saisonkarte" data-wine-name="Neuer Wein 2026" data-wine-maker="Weingut Ohler · Wachenheim" data-wine-notes="Trüb, süß, prickelnd. Nur wenige Wochen im Jahr." data-wine-size="0,25 l" data-wine-price="4,20 €" data-wine-color="#D8C68A">
+          <p class="panel__intro">Nur im Oktober und November</p>
+          <ul class="dishes">
+            <li class="dish" data-cursor="Probieren"><div class="dish__head"><span class="dish__name">Zwiebelkuchen mit Neuem Wein</span><span class="dish__lead"></span><span class="dish__price">11,90</span></div><p class="dish__desc">Warm aus dem Ofen, mit Speck und Kümmel, dazu ein Schoppen Federweißer</p></li>
+            <li class="dish" data-cursor="Probieren"><div class="dish__head"><span class="dish__name">Keschdesupp</span><span class="dish__lead"></span><span class="dish__price">8,90</span></div><p class="dish__desc">Maronensuppe mit Kürbiskernöl und gerösteten Maronen</p></li>
+            <li class="dish" data-cursor="Probieren"><div class="dish__head"><span class="dish__name">Rehragout aus dem Pfälzerwald</span><span class="dish__lead"></span><span class="dish__price">27,50</span></div><p class="dish__desc">Vom Forsthaus Elmstein, Preiselbeeren, Rotkraut, Spätzle</p><p class="dish__wine"><svg aria-hidden="true"><use href="#i-glass"/></svg>Dazu: Spätburgunder, Weingut Brunnhof</p></li>
+            <li class="dish" data-cursor="Probieren"><div class="dish__head"><span class="dish__name">Zwetschgenkuchen</span><span class="dish__lead"></span><span class="dish__price">6,50</span></div><p class="dish__desc">Mit Hefeteig, Streuseln und geschlagener Sahne</p></li>
+          </ul>
+        </div>
+
+        <p class="menu-card__foot">Alle Preise in Euro inklusive Mehrwertsteuer. Über Allergene und Zusatzstoffe informieren wir Sie gerne persönlich.</p>
+      </article>
+
+      <aside class="wine-card" aria-labelledby="wine-name" data-fade>
+        <div class="wine-card__inner" id="wine-tilt">
+          <p class="wine-card__eyebrow">Unser Wein <span id="wine-label">zu den Vorspeisen</span></p>
+          <div class="wine-stage" id="wine-stage" role="button" tabindex="0" aria-label="Wein einschenken" aria-pressed="false" data-color="#E3C766">
+            <svg class="glass" viewBox="0 0 200 260" aria-hidden="true">
+              <defs>
+                <linearGradient id="liqGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" style="stop-color:var(--wc-lo)"/><stop offset=".38" style="stop-color:var(--wc)"/><stop offset=".72" style="stop-color:var(--wc-hi)"/><stop offset="1" style="stop-color:var(--wc-lo)"/></linearGradient>
+                <linearGradient id="streamGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" style="stop-color:var(--wc-lo)"/><stop offset=".5" style="stop-color:var(--wc-hi)"/><stop offset="1" style="stop-color:var(--wc)"/></linearGradient>
+                <linearGradient id="glassBody" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity=".16"/><stop offset=".22" stop-color="#fff" stop-opacity=".02"/><stop offset=".8" stop-color="#fff" stop-opacity=".02"/><stop offset="1" stop-color="#fff" stop-opacity=".13"/></linearGradient>
+                <radialGradient id="footShadow"><stop offset="0" stop-color="#000" stop-opacity=".5"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+                <clipPath id="bowlClip"><path d="M52 30C47 70 30 108 44 138C56 162 78 172 100 172C122 172 144 162 156 138C170 108 153 70 148 30Z"/></clipPath>
+              </defs>
+              <ellipse cx="100" cy="243" rx="74" ry="10" fill="url(#footShadow)"/>
+              <path id="bowl-left" d="M100 172C78 172 56 162 44 138C30 108 47 70 52 30" fill="none" stroke="none"/>
+              <g clip-path="url(#bowlClip)">
+                <path id="liq" fill="url(#liqGrad)"/>
+                <ellipse id="liq-top" style="fill:var(--wc-hi)"/>
+                <g id="bubbles"></g>
+              </g>
+              <path id="stream" fill="url(#streamGrad)" style="opacity:0"/>
+              <path class="g-body" d="M52 30C47 70 30 108 44 138C56 162 78 172 100 172C122 172 144 162 156 138C170 108 153 70 148 30Z"/>
+              <path class="g-line" d="M52 30C47 70 30 108 44 138C56 162 78 172 100 172C122 172 144 162 156 138C170 108 153 70 148 30Z"/>
+              <ellipse class="g-line g-rim" cx="100" cy="30" rx="48" ry="5"/>
+              <path class="g-hi" d="M58 46C53 78 50 108 58 134"/>
+              <path class="g-hi g-hi--soft" d="M143 52C147 74 148 98 144 120"/>
+              <path class="g-stem" d="M97.6 171C98.6 192 98.2 218 96.4 236H103.6C101.8 218 101.4 192 102.4 171Z"/>
+              <ellipse class="g-line g-foot" cx="100" cy="238" rx="45" ry="6"/>
+              <path class="g-hi g-hi--foot" d="M68 240C80 243.5 92 244.4 104 244.2"/>
+            </svg>
+            <span class="wine-stage__hint" id="wine-hint">Zum Einschenken aufs Glas zeigen</span>
+          </div>
+          <div class="wine-card__swap" id="wine-swap">
+            <h3 class="wine-card__name" id="wine-name">Riesling trocken 2024</h3>
+            <p class="wine-card__maker" id="wine-maker">Weingut Sonnenberg · Forst</p>
+            <p class="wine-card__notes" id="wine-notes">Weinbergpfirsich, Limette, kühle Mineralität</p>
+            <p class="wine-card__price"><span id="wine-size">0,1 l</span><strong id="wine-price">4,80 €</strong></p>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 6 · Gericht der Woche (17:00) ================= -->
+<section class="section" id="gericht" data-theme="gold" aria-labelledby="week-title">
+  <div class="wrap grid12 week">
+    <figure class="week__media arch-wrap arch-wrap--wide zoomable" data-reveal data-cursor="Probieren" style="margin:0">
+      <div class="arch arch--wide">
+        <div class="media-inner" style="--lqip:url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAQABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDzoK46Kfxq3bW1zNhYoXcscDA61fjuYh+7nVTH246VfGrWlpa+WLd5N4AZo2wcA9Px71zym+x0KC3uQnT9XI802MpCkO5VdzDAwDgdgBRS2viO5fVPNtmMUjNkNI+FX246j2oqUn9pA7dD/9k=')">
+          <div class="ph-fallback" aria-hidden="true"><svg><use href="#i-plate"/></svg><b>Leberknödel mit Rieslingsauce</b><span>Foto folgt · gericht-der-woche.jpg</span></div>
+          <img style="--pos:50% 72%" src="/beispiele/restaurant/img/gericht-der-woche-1100.webp" srcset="/beispiele/restaurant/img/gericht-der-woche-640.webp 640w, /beispiele/restaurant/img/gericht-der-woche-1100.webp 1100w, /beispiele/restaurant/img/gericht-der-woche-1536.webp 1536w" sizes="(max-width: 900px) 100vw, 62vw" alt="Zwei Leberknödel in heller Rieslingsauce mit Rahmsauerkraut und Schnittlauch in einer tiefen Keramikschale" width="1536" height="1024" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('is-broken')" data-parallax onload="this.classList.add('is-loaded')">
+        </div>
+        <canvas class="steam" data-cx="0.66" aria-hidden="true"></canvas>
+      </div>
+      <div class="stamp" aria-hidden="true"><small>Gericht der</small><strong id="kw">KW 44</strong></div>
+    </figure>
+    <div class="week__text">
+      <p class="eyebrow" data-fade><time>17:00 Uhr</time><span class="rule"></span>Gericht der Woche</p>
+      <h2 class="h2" id="week-title" data-split>Leberknödel mit <em>Rieslingsauce</em></h2>
+      <p data-fade>Das Rezept steht in Elfriede Hartmanns Kochbuch auf Seite 34, mit Fettfleck und einer Bleistiftnotiz am Rand: „mehr Muskat“. Daran halten wir uns bis heute.</p>
+      <p data-fade>Die Knödel formen wir morgens von Hand. Die Sauce bekommt einen ordentlichen Schluck Riesling vom Weingut Sonnenberg, das Sauerkraut zieht über Nacht in Rahm.</p>
+      <dl class="week__meta" data-fade>
+        <dt>Preis</dt><dd><span class="week__price">17,50 €</span></dd>
+        <dt>Dazu</dt><dd>Riesling trocken, 0,1 l · 4,80 €</dd>
+        <dt>Bis</dt><dd>Sonntag, solange der Topf reicht</dd>
+      </dl>
+      <a class="btn btn--wine magnetic" href="#reservieren" data-fade><span class="btn__label">Tisch reservieren <svg aria-hidden="true"><use href="#i-arrow"/></svg></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 7 · Weinlaube & Weine (19:00) ================= -->
+<section class="section laube" id="wein" data-theme="daemmerung" aria-labelledby="wein-title">
+  <canvas class="bokeh" aria-hidden="true"></canvas>
+  <svg class="lights" id="lights" aria-hidden="true" preserveAspectRatio="none">
+    <defs><filter id="bulbBlur" x="-200%" y="-200%" width="500%" height="500%"><feGaussianBlur stdDeviation="5"/></filter></defs>
+  </svg>
+  <div class="wrap">
+    <div class="grid12">
+      <div class="laube__head">
+        <p class="eyebrow" data-fade><time>19:00 Uhr</time><span class="rule"></span>In der Weinlaube</p>
+        <h2 class="h2" id="wein-title" data-split>Ein Schoppen <em>unter Reben.</em></h2>
+        <p class="lede" data-fade>Von Mai bis Oktober sitzen Sie im Innenhof unter unserer alten Weinlaube. Wenn es dunkel wird, gehen die Lichterketten an.</p>
+      </div>
+      <figure class="laube__media zoomable" data-reveal style="margin:0">
+        <div class="frame">
+          <div class="media-inner" style="--lqip:url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAOABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDkUVCc7MknOCSAewH51YighkLhphARwP3Zb/OKprf2nkpC8E24A5KyfeOeCeO1ND+cSqgrGBgAHn8T3rlhH3tTpltoyzHFA85jmmBI6dck57+lFUDO8IZIyBnAJKgkiim4Poyoyilqj//Z')">
+            <div class="ph-fallback" aria-hidden="true"><svg><use href="#i-grapes"/></svg><b>Die Weinlaube am Abend</b><span>Foto folgt · weinlaube-abend.jpg</span></div>
+            <img style="--pos:50% 55%" src="/beispiele/restaurant/img/weinlaube-abend-1100.webp" srcset="/beispiele/restaurant/img/weinlaube-abend-640.webp 640w, /beispiele/restaurant/img/weinlaube-abend-1100.webp 1100w, /beispiele/restaurant/img/weinlaube-abend-1600.webp 1600w" sizes="(max-width: 900px) 100vw, 56vw" alt="Weinlaube im Innenhof zur blauen Stunde mit Lichterketten, Holztischen und Windlichtern" width="1672" height="941" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('is-broken')" data-parallax onload="this.classList.add('is-loaded')">
+          </div>
+        </div>
+      </figure>
+    </div>
+
+    <div class="wines" id="wines">
+      <div class="wines__title" data-fade><h3>Vier Pfälzer Weine im Glas</h3><span class="small">Die ganze Weinkarte bringen wir Ihnen gerne an den Tisch.</span></div>
+      <article class="wine" data-fade>
+        <svg class="wine__glass" viewBox="0 0 100 200" aria-hidden="true"><defs><clipPath id="bowl1"><path d="M22 14C20 50 24 84 50 96C76 84 80 50 78 14Z"/></clipPath></defs><rect class="liquid" x="0" y="54" width="100" height="100" fill="#E3C766" clip-path="url(#bowl1)"/><path class="outline" data-draw-path d="M22 14C20 50 24 84 50 96C76 84 80 50 78 14ZM50 96V172M26 178C40 172 60 172 74 178"/></svg>
+        <div><p class="wine__type">Weiß · trocken</p><h4 class="wine__name">Riesling 2024</h4><p class="wine__maker">Weingut Sonnenberg, Forst</p><p class="wine__notes">Weinbergpfirsich, Limette, mineralisch</p><p class="wine__price"><span>0,1 l <b>4,80 €</b></span><span>0,2 l <b>8,90 €</b></span></p></div>
+      </article>
+      <article class="wine" data-fade>
+        <svg class="wine__glass" viewBox="0 0 100 200" aria-hidden="true"><defs><clipPath id="bowl2"><path d="M22 14C20 50 24 84 50 96C76 84 80 50 78 14Z"/></clipPath></defs><rect class="liquid" x="0" y="54" width="100" height="100" fill="#D9B46A" clip-path="url(#bowl2)"/><path class="outline" data-draw-path d="M22 14C20 50 24 84 50 96C76 84 80 50 78 14ZM50 96V172M26 178C40 172 60 172 74 178"/></svg>
+        <div><p class="wine__type">Weiß · trocken</p><h4 class="wine__name">Grauburgunder 2024</h4><p class="wine__maker">Weingut Heller, Ruppertsberg</p><p class="wine__notes">Birne, Haselnuss, cremig</p><p class="wine__price"><span>0,1 l <b>4,90 €</b></span><span>0,2 l <b>9,20 €</b></span></p></div>
+      </article>
+      <article class="wine" data-fade>
+        <svg class="wine__glass" viewBox="0 0 100 200" aria-hidden="true"><defs><clipPath id="bowl3"><path d="M22 14C20 50 24 84 50 96C76 84 80 50 78 14Z"/></clipPath></defs><rect class="liquid" x="0" y="54" width="100" height="100" fill="#E58D86" clip-path="url(#bowl3)"/><path class="outline" data-draw-path d="M22 14C20 50 24 84 50 96C76 84 80 50 78 14ZM50 96V172M26 178C40 172 60 172 74 178"/></svg>
+        <div><p class="wine__type">Rosé · trocken</p><h4 class="wine__name">Spätburgunder Rosé 2025</h4><p class="wine__maker">Weingut Ohler, Wachenheim</p><p class="wine__notes">Walderdbeere, frisch, leicht</p><p class="wine__price"><span>0,1 l <b>4,50 €</b></span><span>0,2 l <b>8,50 €</b></span></p></div>
+      </article>
+      <article class="wine" data-fade>
+        <svg class="wine__glass" viewBox="0 0 100 200" aria-hidden="true"><defs><clipPath id="bowl4"><path d="M22 14C20 50 24 84 50 96C76 84 80 50 78 14Z"/></clipPath></defs><rect class="liquid" x="0" y="54" width="100" height="100" fill="#8E2235" clip-path="url(#bowl4)"/><path class="outline" data-draw-path d="M22 14C20 50 24 84 50 96C76 84 80 50 78 14ZM50 96V172M26 178C40 172 60 172 74 178"/></svg>
+        <div><p class="wine__type">Rot · trocken</p><h4 class="wine__name">Spätburgunder 2022</h4><p class="wine__maker">Weingut Brunnhof, Deidesheim</p><p class="wine__notes">Sauerkirsche, Waldboden, samtig</p><p class="wine__price"><span>0,1 l <b>6,20 €</b></span><span>0,2 l <b>11,80 €</b></span></p></div>
+      </article>
+    </div>
+    <p class="dubbe" data-fade><span class="dubbe__pattern" aria-hidden="true"></span><span>Und natürlich jederzeit: <strong>Weinschorle im Dubbeglas</strong>, 0,5 l · 5,50 €</span></p>
+  </div>
+</section>
+
+<!-- ================= 8 · Feiern (20:00) ================= -->
+<section class="section" id="feiern" data-theme="abend" aria-labelledby="feiern-title">
+  <div class="wrap">
+    <div class="grid12">
+      <div class="section__head section__head--split">
+        <p class="eyebrow" data-fade><time>20:00 Uhr</time><span class="rule"></span>Feiern im Rebstock</p>
+        <h2 class="h2" id="feiern-title" data-split>Große Tafel, <em>kleine Runde.</em></h2>
+        <p class="lede" data-fade>Für Taufen, Firmenessen und Weihnachtsfeiern haben wir vier Räume für 12 bis 60 Gäste. Das Menü stellen wir gemeinsam mit Ihnen zusammen.</p>
+      </div>
+    </div>
+    <div class="occasions">
+      <article class="occasion" data-fade><h3>Familienfeiern</h3><p>Taufe, Konfirmation, runder Geburtstag. Mit Kinderstühlen, Spielecke im Hof und einem Menü, das allen Generationen schmeckt.</p></article>
+      <article class="occasion" data-fade><h3>Firmenessen</h3><p>Vom Mittagessen mit Kunden bis zum Teamabend. Auf Wunsch mit Weinprobe beim Winzer nebenan.</p></article>
+      <article class="occasion" data-fade><h3>Weihnachtsfeiern</h3><p>Ab Ende November bis kurz vor Weihnachten. Gänsebraten, Glühwein aus Pfälzer Rotwein und der Gewölbekeller im Kerzenlicht.</p><span class="note">Für Dezember bitte bald anfragen!</span></article>
+    </div>
+
+    <div class="plan-layout">
+      <div class="plan-wrap" data-fade>
+        <svg class="plan" id="plan" viewBox="0 0 640 440" role="img" aria-label="Grundriss des Gasthauses mit Gaststube, Kaminzimmer, Gewölbekeller und Weinlaube"></svg>
+        <div class="plan__legend"><span>Grundriss, schematisch</span><span>EG · Keller · Innenhof</span></div>
+      </div>
+      <div class="room-panel" data-fade>
+        <div class="rooms" role="group" aria-label="Raum wählen">
+          <button class="room-btn" type="button" data-room="gaststube" aria-pressed="true">Gaststube</button>
+          <button class="room-btn" type="button" data-room="kamin" aria-pressed="false">Kaminzimmer</button>
+          <button class="room-btn" type="button" data-room="keller" aria-pressed="false">Gewölbekeller</button>
+          <button class="room-btn" type="button" data-room="laube" aria-pressed="false">Weinlaube</button>
+        </div>
+        <div class="room-detail room-detail__swap" id="room-detail" aria-live="polite">
+          <figure class="arch-wrap" style="margin:0">
+            <div class="arch">
+              <div class="media-inner" style="--lqip:url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAeABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwB9polvc6at15UaFkdtodgflAP9ayL/AE6yjvZrZGl8xCRgMScD2rSttVurXTCY5IpRuYfM2T8wwf5ViS37tcSXRuTFIxJO1ju57CuRtWVlqdcU7u+xHZQAkopJbHOTRVmzSYP9pOwMyLvcuMH6ZNFNW6hK/Q25To32BJEAebzMEsTgd+mfWsvUrfw/NM2yQxM5/wCWWTWTHPp628ebeZ5VILlnGGGeR7cYojdJirRwrGquMc5Jyx6/TpSY0OvLPyU4SZY8gKXUrnHT8cUV0y6le+S9t5oeFjjZIocD6Z6UVRJ//9k=')">
+                <div class="ph-fallback" aria-hidden="true"><svg><use href="#i-plate"/></svg><span id="room-ph">gaststube.jpg</span></div>
+                <img id="room-img" src="/beispiele/restaurant/img/gaststube-1100.webp" srcset="/beispiele/restaurant/img/gaststube-640.webp 640w, /beispiele/restaurant/img/gaststube-1100.webp 1100w" sizes="(max-width: 900px) 92vw, 38vw" alt="Die Gaststube" width="1122" height="1402" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('is-broken')" onload="this.classList.add('is-loaded')">
+              </div>
+            </div>
+          </figure>
+          <div>
+            <h3 class="room-detail__name" id="room-name">Gaststube</h3>
+            <p class="room-detail__seats" id="room-seats">bis 60 Gäste</p>
+            <p class="room-detail__text" id="room-text">Holzvertäfelung, Sandsteinwand und der alte Kachelofen. Für Geburtstage, Taufen und Konfirmationen, sonntagabends auch exklusiv.</p>
+          </div>
+        </div>
+        <div class="feiern__cta">
+          <a class="btn btn--wine magnetic" href="#reservieren" id="feier-btn"><span class="btn__label">Feier anfragen <svg aria-hidden="true"><use href="#i-arrow"/></svg></span></a>
+          <span class="small">Antwort mit Menüvorschlag innerhalb von zwei Werktagen</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 9 · Über uns (21:00) ================= -->
+<section class="section" id="ueber" data-theme="abend" aria-labelledby="ueber-title">
+  <div class="wrap grid12">
+    <div class="ueber__left">
+      <div class="ueber__sticky">
+        <figure class="arch-wrap" data-reveal style="margin:0">
+          <div class="arch">
+            <div class="media-inner" style="--lqip:url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAeABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDLhg0sJZmWKRDO4wPNzxnrx0rUh07SRHqW6d1aDGV8w5AKZ/KoJvD6RvHcWkwKRkln3Z3EZH86wBdEx3satlriXOc9cNjFc0fM6Wt7HqumxRx2MaRcRCEhRnJPFFVbW4I0aF4l5eAnb3opyZmjmBJLBp1zsnZ4BF5gUggKS3IHqR3rkrFGM9qQPleYD68A/wBa7HU7GewgW0+0lhcxPGCP4eKxrPR5I7qOUyIUjfzNoyMjAGPbpUU5aG8o6M63TpXfw9MtrtMgkkjUNwAM+v0PSiotHimstMeN3UrNK0o29gexoqmkzKN0j//Z')">
+              <div class="ph-fallback" aria-hidden="true"><svg><use href="#i-sprig"/></svg><b>Zwei Schürzen</b><span>Foto folgt · schuerzen.jpg</span></div>
+              <img style="--pos:50% 35%" src="/beispiele/restaurant/img/schuerzen-1100.webp" srcset="/beispiele/restaurant/img/schuerzen-640.webp 640w, /beispiele/restaurant/img/schuerzen-1100.webp 1100w" sizes="(max-width: 900px) 92vw, 32vw" alt="Zwei Leinenschürzen in Weinrot und Salbeigrün an Haken an der Küchenwand" width="1122" height="1402" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('is-broken')" data-parallax onload="this.classList.add('is-loaded')">
+            </div>
+          </div>
+        </figure>
+        <div>
+          <p class="ueber__caption">Gastgeberpaar (Platzhalter)</p>
+          <p class="hand" style="margin-top:.4rem">Clara &amp; Jonas Hartmann</p>
+        </div>
+      </div>
+    </div>
+    <div class="ueber__right">
+      <p class="eyebrow" data-fade><time>21:00 Uhr</time><span class="rule"></span>Über uns</p>
+      <h2 class="h2" id="ueber-title" data-split>Ein Haus, <em>fünf Generationen.</em></h2>
+      <p class="lede" data-fade>Clara und Jonas Hartmann führen den Rebstock seit 2019. Sie kocht, er kümmert sich um Wein und Gäste. Gelernt haben beide anderswo, in Freiburg, Wien und auf einem Weingut in Südtirol. Zurückgekommen sind sie wegen des Saumagens von Claras Großmutter.</p>
+
+      <div class="timeline" id="timeline">
+        <svg class="vine" id="vine" aria-hidden="true"></svg>
+        <ol class="tl">
+          <li class="tl-item" data-fade><span class="tl-year">1891</span><h3 class="tl-title">Ein Winzerhof mit Ausschank</h3><p class="tl-text">Familie Hartmann baut den Hof aus rotem Haardtsandstein. Ausgeschenkt wird, was im eigenen Keller liegt.</p></li>
+          <li class="tl-item" data-fade><span class="tl-year">1924</span><h3 class="tl-title">„Zum Rebstock“</h3><p class="tl-text">Mit der Konzession bekommt das Haus seinen Namen und das schmiedeeiserne Schild über dem Hoftor.</p></li>
+          <li class="tl-item" data-fade><span class="tl-year">1962</span><h3 class="tl-title">Elfriede übernimmt die Küche</h3><p class="tl-text">Ihr handgeschriebenes Kochbuch liegt bis heute neben dem Herd. Viele Gerichte auf unserer Karte stammen daraus.</p></li>
+          <li class="tl-item" data-fade><span class="tl-year">1998</span><h3 class="tl-title">Die Weinlaube wird gepflanzt</h3><p class="tl-text">Sechs Rebstöcke im Innenhof. Heute ranken sie über vierzig Plätze.</p></li>
+          <li class="tl-item" data-fade><span class="tl-year">2019</span><h3 class="tl-title">Die fünfte Generation</h3><p class="tl-text">Clara und Jonas übernehmen. Die Rezepte bleiben, die Teller werden moderner.</p></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 10 · Stimmen (21:30) ================= -->
+<section class="section" id="stimmen" data-theme="abend" aria-labelledby="stimmen-title">
+  <div class="wrap">
+    <div class="grid12">
+      <div class="section__head section__head--split">
+        <p class="eyebrow" data-fade><time>21:30 Uhr</time><span class="rule"></span>Aus dem Gästebuch</p>
+        <h2 class="h2" id="stimmen-title" data-split>Was unsere Gäste <em>schreiben.</em></h2>
+        <p class="guestbook__label" data-fade>Fiktive Beispielstimmen für dieses Musterdesign</p>
+      </div>
+    </div>
+    <div class="guestbook">
+      <figure class="note-card" style="--r:-2.2deg;--tape:-4deg" data-fade>
+        <blockquote>Den Saumagen kenne ich seit meiner Kindheit, so fein hatte ich ihn noch nie. Zur Konfirmation kommen wir wieder.</blockquote>
+        <figcaption>Familie R. · Neustadt</figcaption>
+      </figure>
+      <figure class="note-card" style="--r:1.6deg;--tape:3deg" data-fade>
+        <blockquote>Weihnachtsfeier im Gewölbekeller, 28 Leute, alles lief entspannt. Über die Dampfnudeln reden wir heute noch.</blockquote>
+        <figcaption>Anna M. · Ludwigshafen</figcaption>
+      </figure>
+      <figure class="note-card" style="--r:-1deg;--tape:-2deg" data-fade>
+        <blockquote>Sonntagmittag in der Laube, ein Riesling, die Kinder spielen im Hof. Mehr braucht es nicht.</blockquote>
+        <figcaption>Ines &amp; Thomas · Mannheim</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 11 · Reservierung (22:00) ================= -->
+<section class="section" id="reservieren" data-theme="nacht" aria-labelledby="res-title">
+  <div class="wrap">
+    <div class="grid12" id="kontakt">
+      <div class="section__head section__head--split">
+        <p class="eyebrow" data-fade><time>22:00 Uhr</time><span class="rule"></span>Reservierung</p>
+        <h2 class="h2" id="res-title" data-split>Wir halten Ihnen einen <em>Tisch</em> frei.</h2>
+        <p class="lede" data-fade>Reservieren Sie hier oder rufen Sie uns an. Für heute und morgen erreichen Sie uns am schnellsten telefonisch.</p>
+      </div>
+    </div>
+    <div class="grid12 res">
+      <div class="res__form" data-fade>
+        <div class="res-card">
+          <form id="res-form" novalidate>
+            <p class="res-card__label">Reservierungsbuch</p>
+            <p class="sentence">
+              Wir kommen am
+              <span class="inline-field"><label class="sr-only" for="f-date">Datum</label><input id="f-date" name="datum" type="date" required></span>
+              um
+              <span class="inline-field"><label class="sr-only" for="f-time">Uhrzeit</label><select id="f-time" name="uhrzeit" required></select></span>
+              Uhr mit
+              <span class="stepper"><button type="button" id="p-minus" aria-label="Eine Person weniger">−</button><output id="f-persons-out" for="f-persons" aria-live="polite">2</output><button type="button" id="p-plus" aria-label="Eine Person mehr">+</button></span>
+              <input type="hidden" id="f-persons" name="personen" value="2">
+              <span id="persons-word">Personen</span>.
+            </p>
+            <div class="fields">
+              <div class="field"><label for="f-name">Ihr Name</label><input id="f-name" name="name" type="text" autocomplete="name" required placeholder="Vor- und Nachname"><span class="field__error" id="e-name"></span></div>
+              <div class="field"><label for="f-phone">Telefon</label><input id="f-phone" name="telefon" type="tel" autocomplete="tel" required placeholder="Für Rückfragen"><span class="field__error" id="e-phone"></span></div>
+              <div class="field field--full"><label for="f-mail">E-Mail</label><input id="f-mail" name="email" type="email" autocomplete="email" required placeholder="Für die Bestätigung"><span class="field__error" id="e-mail"></span></div>
+              <div class="field field--full"><label for="f-note">Anmerkung</label><textarea id="f-note" name="anmerkung" rows="3" placeholder="Kinderstuhl, Allergien, ein Platz in der Laube …"></textarea></div>
+            </div>
+            <p class="form-hint" id="form-hint" aria-live="polite"></p>
+            <div class="res-card__foot">
+              <button class="btn btn--wine magnetic" type="submit"><span class="btn__label">Tisch anfragen <svg aria-hidden="true"><use href="#i-arrow"/></svg></span></button>
+              <p>Sie erhalten innerhalb von 24 Stunden eine Bestätigung per E-Mail.</p>
+            </div>
+          </form>
+          <div class="res-success" id="res-success" hidden tabindex="-1">
+            <p class="res-card__label">Reservierungsbuch</p>
+            <h3 id="success-title">Vielen Dank!</h3>
+            <p id="success-text"></p>
+            <p class="demo">Dies ist ein Musterdesign. Es wurde nichts versendet und kein Tisch reserviert.</p>
+            <button class="btn btn--line btn--small" type="button" id="res-again" style="color:var(--ink)"><span class="btn__label">Neue Anfrage</span></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="res__info">
+        <div class="info-block" data-fade>
+          <h3>Telefon</h3>
+          <p class="phone" id="phone">0000 000000</p>
+          <button class="btn btn--line btn--small copy-btn" type="button" id="copy-phone"><span class="btn__label">Nummer kopieren</span></button>
+        </div>
+        <div class="info-block" data-fade>
+          <h3>Öffnungszeiten</h3>
+          <table class="hours" id="hours">
+            <caption class="sr-only">Öffnungszeiten</caption>
+            <tbody>
+              <tr data-day="1"><td>Montag</td><td>Ruhetag</td></tr>
+              <tr data-day="2"><td>Dienstag</td><td>Ruhetag</td></tr>
+              <tr data-day="3"><td>Mittwoch</td><td>11:30–14:00 · 17:30–22:00</td></tr>
+              <tr data-day="4"><td>Donnerstag</td><td>11:30–14:00 · 17:30–22:00</td></tr>
+              <tr data-day="5"><td>Freitag</td><td>11:30–14:00 · 17:30–22:00</td></tr>
+              <tr data-day="6"><td>Samstag</td><td>11:30–14:30 · 17:30–23:00</td></tr>
+              <tr data-day="0"><td>Sonntag</td><td>11:30–20:00</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="info-block info-block--map" data-fade>
+          <h3>Anfahrt</h3>
+          <div class="mapbox">
+            <svg viewBox="0 0 400 300" aria-hidden="true" preserveAspectRatio="xMidYMid slice">
+              <path class="road" d="M-10 210C80 190 150 200 220 160S330 90 420 80"/>
+              <path class="road2" d="M190 -10C200 60 210 120 214 170S230 260 236 320M-10 120C60 128 130 140 214 168M214 168C270 200 330 230 420 250"/>
+              <path class="road2" d="M60 -10C80 60 70 140 40 320M320 -10C300 60 310 150 340 320"/>
+              <circle cx="214" cy="168" r="22" fill="var(--wine)" opacity=".15"/>
+              <path class="pinm" d="M214 138c-10 0-18 8-18 18 0 13 18 30 18 30s18-17 18-30c0-10-8-18-18-18Z"/><circle cx="214" cy="156" r="6" fill="var(--paper)"/>
+            </svg>
+            <div class="mapbox__overlay">
+              <p id="map-note">Auf der echten Seite lädt hier nach Ihrer Zustimmung eine Karte von OpenStreetMap.</p>
+              <button class="btn btn--line btn--small" type="button" id="map-btn"><span class="btn__label">Karte laden</span></button>
+            </div>
+          </div>
+          <address class="address">Gasthaus Zum Rebstock<br>Musterstraße 1 · 67146 Musterdorf<small>6 Parkplätze im Hof · vom Bahnhof 6 Minuten zu Fuß</small></address>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ================= 12 · Footer ================= -->
+<footer class="footer" data-theme="nacht">
+  <div class="wrap">
+    <p class="footer__mark" aria-hidden="true">Zum Reb<span>stock</span></p>
+    <div class="footer__cols">
+      <div><h3>Adresse</h3><p>Gasthaus Zum Rebstock</p><p>Musterstraße 1</p><p>67146 Musterdorf</p><p>Telefon 0000 000000</p></div>
+      <div><h3>Öffnungszeiten</h3><p>Mittwoch bis Freitag<br>11:30–14:00 · 17:30–22:00</p><p>Samstag 11:30–14:30 · 17:30–23:00</p><p>Sonntag 11:30–20:00</p><p>Montag und Dienstag Ruhetag</p></div>
+      <div><h3>Folgen Sie uns</h3>
+        <div class="socials">
+          <a href="#" aria-label="Instagram (Platzhalter)"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6" fill="currentColor"/></svg></a>
+          <a href="#" aria-label="Facebook (Platzhalter)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 8.5H16V5.2h-2.2c-2.6 0-3.8 1.6-3.8 4v1.9H8v3.1h2V21h3.3v-6.8h2.3l.4-3.1h-2.7V9.6c0-.7.4-1.1 1.2-1.1Z"/></svg></a>
+        </div>
+      </div>
+      <div><h3>Rechtliches</h3><div class="legal"><a href="#">Impressum</a><a href="#">Datenschutz</a><a href="#">Barrierefreiheit</a></div></div>
+    </div>
+    <div class="footer__bottom"><span>© <span id="year">2026</span> Gasthaus Zum Rebstock · fiktiver Betrieb</span><button class="to-top" type="button" id="to-top">Nach oben ↑</button></div>
+  </div>
+</footer>
+
+<!-- Abgesetzter Portfolio-Hinweis -->
+<aside class="ms" aria-label="Hinweis zum Musterdesign" data-theme="nacht">
+  <div class="wrap">
+    <div class="ms__card">
+      <div>
+        <span class="ms__label">Musterdesign</span>
+        <p class="ms__text">Diese Seite ist ein Musterdesign von Pfalz Multiservice.<span>So ein Auftritt für Ihren Betrieb?</span></p>
+      </div>
+      <a class="btn btn--wine" href="https://pfalz-multiservice.de" target="_blank" rel="noopener"><span class="btn__label">→ pfalz-multiservice.de</span></a>
+    </div>
+  </div>
+</aside>
+
+<div class="m-cta" id="m-cta"><a class="btn btn--wine" href="#reservieren"><span class="btn__label">Tisch reservieren</span></a></div>
+
+<div class="grain" aria-hidden="true"></div>
+
+<script src="/beispiele/_assets/js/gsap-3.13.0/gsap.min.js"></script>
+<script src="/beispiele/_assets/js/gsap-3.13.0/ScrollTrigger.min.js"></script>
+<script src="/beispiele/_assets/js/gsap-3.13.0/SplitText.min.js"></script>
+<script src="/beispiele/_assets/js/lenis-1.1.20/lenis.min.js"></script>
+
+<script>
+(function () {
+  'use strict';
+  var html = document.documentElement;
+  var mq = function (q) { return window.matchMedia(q).matches; };
+  var reduced = mq('(prefers-reduced-motion: reduce)');
+  var fine = mq('(hover: hover) and (pointer: fine)');
+  var isMobile = mq('(max-width: 900px)');
+  var G = window.gsap, ST = window.ScrollTrigger, SPLIT = window.SplitText;
+  var hasGSAP = !!(G && ST);
+  var $ = function (s, c) { return (c || document).querySelector(s); };
+  var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
+  var NS = 'http://www.w3.org/2000/svg';
+
+  function webgl() {
+    try { var c = document.createElement('canvas'); return !!(window.WebGLRenderingContext && (c.getContext('webgl2') || c.getContext('webgl'))); }
+    catch (e) { return false; }
+  }
+  var glOK = !reduced && webgl();
+  if (!glOK) html.classList.add('no-gl');
+  var R = window.REBSTOCK = { reduced: reduced, fine: fine, isMobile: isMobile, glOK: glOK, heroStarted: false };
+
+  if (hasGSAP) { G.registerPlugin(ST); if (SPLIT) G.registerPlugin(SPLIT); }
+  else { html.classList.add('failsafe'); html.classList.remove('intro-on'); }
+
+  /* ---------- Öffnungszeiten, Status, Kalenderwoche ---------- */
+  var DAYS = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
+  var OPEN = { 0: [[11.5, 20]], 1: null, 2: null, 3: [[11.5, 14], [17.5, 22]], 4: [[11.5, 14], [17.5, 22]], 5: [[11.5, 14], [17.5, 22]], 6: [[11.5, 14.5], [17.5, 23]] };
+  function fmt(h) { var H = Math.floor(h), M = Math.round((h - H) * 60); return H + ':' + String(M).padStart(2, '0'); }
+  function nextOpen(d) {
+    for (var i = 1; i <= 7; i++) { var nd = (d + i) % 7; if (OPEN[nd]) return (i === 1 ? 'morgen' : DAYS[nd]) + ' ab ' + fmt(OPEN[nd][0][0]) + ' Uhr'; }
+    return '';
+  }
+  function heroStatus() {
+    var now = new Date(), d = now.getDay(), t = now.getHours() + now.getMinutes() / 60, slots = OPEN[d], txt = '', closed = false;
+    if (slots) {
+      var cur = slots.filter(function (s) { return t >= s[0] && t < s[1]; })[0];
+      var nxt = slots.filter(function (s) { return t < s[0]; })[0];
+      if (cur) txt = 'Jetzt geöffnet bis ' + fmt(cur[1]) + ' Uhr';
+      else if (nxt) txt = 'Heute ab ' + fmt(nxt[0]) + ' Uhr';
+      else { closed = true; txt = 'Heute ist Feierabend, ' + nextOpen(d) + ' wieder da'; }
+    } else { closed = true; txt = 'Heute Ruhetag, ' + nextOpen(d) + ' wieder da'; }
+    var el = $('#hero-today'); if (el) el.textContent = '· ' + txt;
+    var box = $('#hero-status'); if (box) box.classList.toggle('is-closed', closed);
+    var row = $('#hours tr[data-day="' + d + '"]');
+    if (row) { row.classList.add('is-today'); var tag = document.createElement('span'); tag.className = 'tag'; tag.textContent = 'Heute'; row.firstElementChild.appendChild(tag); }
+  }
+  function isoWeek(d) {
+    var t = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate())), day = t.getUTCDay() || 7;
+    t.setUTCDate(t.getUTCDate() + 4 - day);
+    var y0 = new Date(Date.UTC(t.getUTCFullYear(), 0, 1));
+    return Math.ceil(((t - y0) / 86400000 + 1) / 7);
+  }
+  heroStatus();
+  var kw = $('#kw'); if (kw) kw.textContent = 'KW ' + isoWeek(new Date());
+  var yr = $('#year'); if (yr) yr.textContent = new Date().getFullYear();
+
+  /* ---------- Smooth Scroll ---------- */
+  var lenis = null;
+  if (!reduced && window.Lenis) {
+    lenis = new window.Lenis({ lerp: 0.085, smoothWheel: true });
+    if (hasGSAP) { lenis.on('scroll', ST.update); G.ticker.add(function (t) { lenis.raf(t * 1000); }); G.ticker.lagSmoothing(400, 33); }
+    else { var loop = function (t) { lenis.raf(t); requestAnimationFrame(loop); }; requestAnimationFrame(loop); }
+    if (html.classList.contains('intro-on')) lenis.stop();
+  }
+  R.lenis = lenis;
+  var site = $('#site');
+  function headerOffset() { return (site ? site.offsetHeight : 64) + 10; }
+  function scrollToEl(el) {
+    if (lenis) lenis.scrollTo(el, { offset: -headerOffset(), duration: 1.5 });
+    else { var y = el.getBoundingClientRect().top + window.scrollY - headerOffset(); window.scrollTo({ top: y, behavior: reduced ? 'auto' : 'smooth' }); }
+  }
+  function scrollTop() { if (lenis) lenis.scrollTo(0, { duration: 1.6 }); else window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' }); }
+
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href^="#"]'); if (!a) return;
+    var id = a.getAttribute('href');
+    if (id === '#') { e.preventDefault(); return; }
+    var el = document.getElementById(id.slice(1)); if (!el) return;
+    e.preventDefault(); closeMenu(false);
+    if (id === '#top') { scrollTop(); return; }
+    scrollToEl(el);
+    if (!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '-1');
+    el.focus({ preventScroll: true });
+  });
+  var toTop = $('#to-top'); if (toTop) toTop.addEventListener('click', scrollTop);
+
+  /* ---------- Mobiles Menü ---------- */
+  var menu = $('#menu'), burger = $('.burger'), menuOpen = false;
+  function openMenu() {
+    if (!menu) return; menu.hidden = false; menuOpen = true; burger.setAttribute('aria-expanded', 'true'); if (lenis) lenis.stop();
+    if (hasGSAP && !reduced) {
+      G.fromTo(menu, { clipPath: 'inset(0% 0% 100% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: .75, ease: 'expo.out' });
+      G.from($$('li', menu), { yPercent: 50, opacity: 0, stagger: .05, duration: .7, ease: 'power3.out', delay: .12 });
+    }
+    $('.menu-close', menu).focus(); updateCTA();
+  }
+  function closeMenu(refocus) {
+    if (!menuOpen) return; menuOpen = false; menu.hidden = true; burger.setAttribute('aria-expanded', 'false'); if (lenis) lenis.start();
+    if (refocus) burger.focus({ preventScroll: true }); updateCTA();
+  }
+  if (burger) burger.addEventListener('click', openMenu);
+  if (menu) {
+    $('.menu-close', menu).addEventListener('click', function () { closeMenu(true); });
+    menu.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeMenu(true);
+      if (e.key === 'Tab') {
+        var f = $$('a,button', menu); var first = f[0], last = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    });
+  }
+
+  /* ---------- Header, Uhr, Fortschritt, mobiler Button ---------- */
+  var lastY = window.scrollY;
+  var clockTime = $('#clock-time'), clockLabel = $('#clock-label'), arc = $('#arc-done'), sun = $('#sun'), prog = $('.progress');
+  var cta = $('#m-cta'), resVisible = false, footVisible = false;
+  function updateCTA() { if (cta) cta.classList.toggle('is-shown', window.scrollY > window.innerHeight * 0.6 && !resVisible && !footVisible && !menuOpen); }
+  var TIMES = { top: 690, kueche: 720, hoefe: 840, speisekarte: 930, gericht: 1020, wein: 1140, feiern: 1200, ueber: 1260, stimmen: 1290, reservieren: 1320 };
+  var marks = [];
+  function computeMarks() {
+    marks = Object.keys(TIMES).map(function (id) { var n = document.getElementById(id); return n ? { y: n.getBoundingClientRect().top + window.scrollY, m: TIMES[id] } : null; })
+      .filter(Boolean).sort(function (a, b) { return a.y - b.y; });
+  }
+  function minutesAt(y) {
+    var ref = y + window.innerHeight * .5, max = document.documentElement.scrollHeight;
+    if (!marks.length) return 690;
+    if (ref <= marks[0].y) return marks[0].m;
+    for (var i = 0; i < marks.length; i++) {
+      var a = marks[i], b = marks[i + 1] || { y: max, m: 1350 };
+      if (ref < b.y) return a.m + (b.m - a.m) * ((ref - a.y) / Math.max(1, b.y - a.y));
+    }
+    return 1350;
+  }
+  function onScrollFrame() {
+    var y = window.scrollY;
+    if (site) site.classList.toggle('is-scrolled', y > 10);
+    lastY = y;
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    var p = max > 0 ? Math.min(1, Math.max(0, y / max)) : 0;
+    var m = Math.round(minutesAt(y) / 5) * 5, H = Math.floor(m / 60), M = m % 60, dp = Math.min(1, Math.max(0, (m - 690) / 660));
+    if (clockTime) {
+      clockTime.textContent = H + ':' + String(M).padStart(2, '0');
+      clockLabel.textContent = H < 14 ? 'Mittag' : H < 17 ? 'Nachmittag' : H < 19 ? 'Spätnachmittag' : H < 21 ? 'Abend' : 'Später Abend';
+      arc.setAttribute('stroke-dasharray', (dp * 100).toFixed(1) + ' 100');
+      var a = Math.PI * (1 - dp);
+      sun.setAttribute('cx', (19 + 16 * Math.cos(a)).toFixed(2)); sun.setAttribute('cy', (20 - 16 * Math.sin(a)).toFixed(2));
+      sun.style.fill = H >= 20 ? '#F1EBDD' : '';
+    }
+    if (prog) prog.style.transform = 'scaleX(' + p.toFixed(4) + ')';
+    updateCTA();
+  }
+  var ticking = false;
+  window.addEventListener('scroll', function () { if (ticking) return; ticking = true; requestAnimationFrame(function () { ticking = false; onScrollFrame(); }); }, { passive: true });
+  if ('IntersectionObserver' in window) {
+    var ctaIO = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.target.id === 'reservieren') resVisible = e.isIntersecting; else footVisible = e.isIntersecting; }); updateCTA(); });
+    [$('#reservieren'), $('.footer')].forEach(function (n) { if (n) ctaIO.observe(n); });
+  }
+  computeMarks(); onScrollFrame();
+  window.addEventListener('resize', function () { computeMarks(); onScrollFrame(); });
+  if (hasGSAP) ST.addEventListener('refresh', function () { computeMarks(); onScrollFrame(); });
+
+  /* ---------- Tag-zu-Abend-Farbstimmung ---------- */
+  var THEMES = {
+    mittag:     { '--bg': 'rgb(244,237,225)', '--fg': 'rgb(43,30,22)',   '--fg2': 'rgb(104,86,70)',  '--line': 'rgba(43,30,22,0.16)',   '--accent': 'rgb(123,34,50)' },
+    nachmittag: { '--bg': 'rgb(235,222,200)', '--fg': 'rgb(43,30,22)',   '--fg2': 'rgb(98,80,62)',   '--line': 'rgba(43,30,22,0.18)',   '--accent': 'rgb(123,34,50)' },
+    gold:       { '--bg': 'rgb(217,178,128)', '--fg': 'rgb(38,24,16)',   '--fg2': 'rgb(78,52,34)',   '--line': 'rgba(38,24,16,0.22)',   '--accent': 'rgb(104,24,38)' },
+    daemmerung: { '--bg': 'rgb(84,38,36)',    '--fg': 'rgb(247,236,219)', '--fg2': 'rgb(226,200,176)', '--line': 'rgba(247,236,219,0.2)', '--accent': 'rgb(236,182,104)', dark: 1 },
+    abend:      { '--bg': 'rgb(52,35,26)',    '--fg': 'rgb(244,232,214)', '--fg2': 'rgb(208,186,162)', '--line': 'rgba(244,232,214,0.17)', '--accent': 'rgb(230,172,96)', dark: 1 },
+    nacht:      { '--bg': 'rgb(31,22,16)',    '--fg': 'rgb(242,230,212)', '--fg2': 'rgb(198,176,152)', '--line': 'rgba(242,230,212,0.15)', '--accent': 'rgb(228,168,94)', dark: 1 }
+  };
+  var curTheme = 'mittag';
+  function applyTheme(name) {
+    if (name === curTheme || !THEMES[name]) return;
+    curTheme = name; var th = THEMES[name], vars = {};
+    Object.keys(th).forEach(function (k) { if (k.indexOf('--') === 0) vars[k] = th[k]; });
+    if (hasGSAP && !reduced) { vars.duration = 1.15; vars.ease = 'power2.out'; vars.overwrite = 'auto'; G.to(html, vars); }
+    else Object.keys(vars).forEach(function (k) { html.style.setProperty(k, vars[k]); });
+    html.style.colorScheme = th.dark ? 'dark' : 'light';
+    html.classList.toggle('is-dark', !!th.dark);
+  }
+  var themed = $$('[data-theme]');
+  if (hasGSAP) {
+    themed.forEach(function (sec) {
+      ST.create({ trigger: sec, start: 'top 55%', end: 'bottom 55%', onToggle: function (self) { if (self.isActive) applyTheme(sec.dataset.theme); } });
+    });
+  } else if ('IntersectionObserver' in window) {
+    var thIO = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) applyTheme(e.target.dataset.theme); }); }, { rootMargin: '-55% 0px -45% 0px' });
+    themed.forEach(function (s) { thIO.observe(s); });
+  }
+
+  /* ---------- Intro & Hero-Einlauf ---------- */
+  function heroStart() {
+    if (R.heroStarted) return; R.heroStarted = true;
+    html.classList.add('hero-ready');
+    window.dispatchEvent(new Event('rebstock:herostart'));
+    if (!hasGSAP || reduced) return;
+    var title = $('[data-hero-title]'), items = $$('.hero [data-hero]');
+    var tl = G.timeline({ defaults: { ease: 'expo.out' } });
+    if (SPLIT) { var sp = SPLIT.create(title, { type: 'lines', mask: 'lines', linesClass: 'ln' }); tl.from(sp.lines, { yPercent: 118, duration: 1.35, stagger: .12 }, 0); }
+    else tl.from(title, { y: 40, opacity: 0, duration: 1.2 }, 0);
+    tl.from(items, { y: 26, opacity: 0, duration: 1.1, stagger: .08, clearProps: 'transform' }, .25);
+    var inner = $('.hero__media .media-inner');
+    if (inner) {
+      tl.fromTo(inner, { clipPath: 'inset(100% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.7, ease: 'expo.inOut' }, .05);
+      tl.from(inner.children, { scale: 1.3, duration: 2.4, ease: 'expo.out' }, .2);
+    }
+  }
+  function runIntro() {
+    var intro = $('#intro');
+    if (!intro || !html.classList.contains('intro-on') || !hasGSAP || reduced) { html.classList.remove('intro-on'); if (lenis) lenis.start(); heroStart(); return; }
+    try { sessionStorage.setItem('rebstock-intro', '1'); } catch (e) {}
+    var rect = $('#introClip rect'), stroke = $('.intro__stroke', intro), fill = $('.intro__fill', intro), flo = $('.intro__flourish', intro), sub = $('.intro__sub', intro);
+    G.set(rect, { attr: { width: 0 } });
+    var done = false;
+    function finish() { if (done) return; done = true; heroStart(); if (lenis) lenis.start(); }
+    var tl = G.timeline({ onComplete: function () { html.classList.remove('intro-on'); intro.style.display = 'none'; } });
+    tl.to(rect, { attr: { width: 1000 }, duration: 1.7, ease: 'power1.inOut' }, .15)
+      .to(stroke, { strokeDashoffset: 0, duration: 1.9, ease: 'power2.inOut' }, .15)
+      .to(fill, { opacity: 1, duration: .8, ease: 'power2.out' }, 1.25)
+      .to(stroke, { opacity: 0, duration: .6 }, 1.7)
+      .to(flo, { strokeDashoffset: 0, duration: .7, ease: 'power2.out' }, 1.45)
+      .from(sub, { opacity: 0, y: 10, duration: .7, ease: 'power2.out' }, 1.6)
+      .add(finish, 2.45)
+      .to(intro, { clipPath: 'inset(0% 0% 100% 0%)', duration: 1.15, ease: 'expo.inOut' }, 2.35);
+    var skip = function () { tl.progress(1); finish(); };
+    $('.intro__skip', intro).addEventListener('click', skip);
+    intro.addEventListener('click', skip);
+    window.addEventListener('keydown', function k(e) { if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') { skip(); window.removeEventListener('keydown', k); } });
+  }
+
+  /* ---------- Scroll-Reveals ---------- */
+  function setupReveals() {
+    if (!hasGSAP || reduced) return;
+    $$('[data-split]').forEach(function (el) {
+      if (SPLIT) {
+        SPLIT.create(el, { type: 'lines', mask: 'lines', linesClass: 'ln', autoSplit: true, onSplit: function (self) {
+          return G.from(self.lines, { yPercent: 118, duration: 1.2, ease: 'expo.out', stagger: .09, scrollTrigger: { trigger: el, start: 'top 88%', once: true } });
+        } });
+      } else G.from(el, { y: 30, opacity: 0, duration: 1, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 88%', once: true } });
+    });
+    $$('[data-fade]').forEach(function (el) {
+      G.from(el, { y: 32, autoAlpha: 0, duration: 1.1, ease: 'power3.out', clearProps: 'transform,opacity,visibility', scrollTrigger: { trigger: el, start: 'top 90%', once: true } });
+    });
+    $$('[data-reveal]').forEach(function (fig) {
+      var inner = $('.media-inner', fig); if (!inner) return;
+      var st = { trigger: fig, start: 'top 86%', once: true };
+      G.fromTo(inner, { clipPath: 'inset(100% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.5, ease: 'expo.inOut', scrollTrigger: st });
+      G.from(inner.children, { scale: 1.28, duration: 2.1, ease: 'expo.out', scrollTrigger: { trigger: fig, start: 'top 86%', once: true } });
+    });
+    $$('[data-parallax]').forEach(function (img) {
+      var fig = img.closest('figure') || img.parentElement;
+      G.fromTo(img, { yPercent: -3.2 }, { yPercent: 3.2, ease: 'none', scrollTrigger: { trigger: fig, start: 'top bottom', end: 'bottom top', scrub: true } });
+    });
+    $$('[data-draw]').forEach(function (svg) {
+      var paths = $$('path', svg);
+      paths.forEach(function (p) { var L = p.getTotalLength(); p.style.strokeDasharray = L; p.style.strokeDashoffset = L; });
+      G.to(paths, { strokeDashoffset: 0, duration: 1.9, ease: 'power2.inOut', stagger: .16, scrollTrigger: { trigger: svg, start: 'top 90%', once: true } });
+    });
+    $$('.wine').forEach(function (w, i) {
+      var liq = $('.liquid', w), out = $('.outline', w), L = out.getTotalLength();
+      out.style.strokeDasharray = L; out.style.strokeDashoffset = L;
+      var tl = G.timeline({ delay: i * .14, scrollTrigger: { trigger: w, start: 'top 90%', once: true } });
+      tl.to(out, { strokeDashoffset: 0, duration: 1.4, ease: 'power2.inOut' })
+        .fromTo(liq, { attr: { y: 100 } }, { attr: { y: 54 }, duration: 1.5, ease: 'power2.out' }, .6);
+    });
+  }
+
+  /* ---------- Laufband ---------- */
+  function marquee() {
+    var track = $('.marquee__track'); if (!track || reduced) return;
+    var group = $('.marquee__group', track), w = group.offsetWidth, x = 0, dir = -1, vis = true, last = performance.now();
+    if ('ResizeObserver' in window) new ResizeObserver(function () { w = group.offsetWidth; }).observe(group);
+    new IntersectionObserver(function (e) { vis = e[0].isIntersecting; }).observe(track.parentElement);
+    function tick(now) {
+      var dt = Math.min(64, now - last); last = now;
+      if (vis && w) {
+        var v = lenis ? lenis.velocity : 0;
+        if (Math.abs(v) > .6) dir = v > 0 ? -1 : 1;
+        x += dir * (0.045 + Math.min(Math.abs(v) * 0.012, 0.5)) * dt;
+        if (x <= -w) x += w; if (x > 0) x -= w;
+        track.style.transform = 'translate3d(' + x.toFixed(2) + 'px,0,0)';
+      }
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  /* ---------- Magnetische Buttons & Cursor ---------- */
+  function magnetic() {
+    if (!fine || reduced || !hasGSAP) return;
+    $$('.magnetic').forEach(function (el) {
+      var lbl = $('.btn__label', el);
+      var xTo = G.quickTo(el, 'x', { duration: .6, ease: 'power3' }), yTo = G.quickTo(el, 'y', { duration: .6, ease: 'power3' });
+      var lx = lbl && G.quickTo(lbl, 'x', { duration: .6, ease: 'power3' }), ly = lbl && G.quickTo(lbl, 'y', { duration: .6, ease: 'power3' });
+      el.addEventListener('pointermove', function (e) {
+        var r = el.getBoundingClientRect(), dx = e.clientX - (r.left + r.width / 2), dy = e.clientY - (r.top + r.height / 2);
+        xTo(dx * .3); yTo(dy * .4); if (lx) { lx(dx * .12); ly(dy * .16); }
+      });
+      el.addEventListener('pointerleave', function () { G.to(lbl ? [el, lbl] : el, { x: 0, y: 0, duration: 1, ease: 'elastic.out(1,.4)' }); });
+    });
+  }
+  function cursor() {
+    if (!fine || reduced || !hasGSAP) return;
+    var c = $('.cursor'); if (!c) return;
+    html.classList.add('has-cursor');
+    var lab = $('.cursor__label', c);
+    var cx = G.quickTo(c, 'x', { duration: .16, ease: 'power3' }), cy = G.quickTo(c, 'y', { duration: .16, ease: 'power3' });
+    window.addEventListener('pointermove', function (e) { if (e.pointerType !== 'mouse') return; cx(e.clientX); cy(e.clientY); c.classList.add('is-visible'); }, { passive: true });
+    document.addEventListener('pointerover', function (e) {
+      var t = e.target.closest('[data-cursor]');
+      var l = e.target.closest('a,button,[role="tab"],[role="button"],label,select,.room');
+      c.classList.toggle('is-taste', !!t && !l);
+      if (t && !l) lab.textContent = t.getAttribute('data-cursor');
+      c.classList.toggle('is-link', !!l);
+    });
+    document.documentElement.addEventListener('pointerleave', function () { c.classList.remove('is-visible'); });
+    document.addEventListener('pointerdown', function () { G.to($('.cursor__dot', c), { scale: .8, duration: .15, yoyo: true, repeat: 1 }); });
+  }
+
+  /* ---------- SVG-Helfer ---------- */
+  function el(tag, attrs, parent) { var n = document.createElementNS(NS, tag); for (var k in attrs) n.setAttribute(k, attrs[k]); if (parent) parent.appendChild(n); return n; }
+  function smoothPath(pts) {
+    var d = 'M' + pts[0][0].toFixed(1) + ' ' + pts[0][1].toFixed(1);
+    for (var i = 0; i < pts.length - 1; i++) {
+      var p0 = pts[i - 1] || pts[i], p1 = pts[i], p2 = pts[i + 1], p3 = pts[i + 2] || p2;
+      d += ' C' + (p1[0] + (p2[0] - p0[0]) / 6).toFixed(1) + ' ' + (p1[1] + (p2[1] - p0[1]) / 6).toFixed(1) + ' ' +
+        (p2[0] - (p3[0] - p1[0]) / 6).toFixed(1) + ' ' + (p2[1] - (p3[1] - p1[1]) / 6).toFixed(1) + ' ' + p2[0].toFixed(1) + ' ' + p2[1].toFixed(1);
+    }
+    return d;
+  }
+  function leafD(R) {
+    var pts = [];
+    for (var i = 0; i <= 90; i++) {
+      var ph = -Math.PI + i / 90 * 2 * Math.PI, aph = Math.abs(ph);
+      var r = 0.6 + 0.4 * Math.pow(0.5 + 0.5 * Math.cos(5 * ph), 1.6);
+      var s = Math.min(1, Math.max(0, (aph - 1.7) / 1.0)); r *= 1 - 0.3 * s * s * (3 - 2 * s);
+      r *= 1 - 0.55 * Math.exp(-Math.pow(aph - Math.PI, 2) / 0.05);
+      r += 0.025 * Math.sin(ph * 36);
+      pts.push((R * r * Math.sin(ph)).toFixed(1) + ' ' + (-R * r * Math.cos(ph)).toFixed(1));
+    }
+    return 'M' + pts.join('L') + 'Z';
+  }
+
+  /* ---------- Karte: Von den Höfen ---------- */
+  var HOME = [320, 330];
+  var SUPPLIERS = [
+    { id: 'gaul', x: 328, y: 298 }, { id: 'sonnenberg', x: 306, y: 280, wine: 1 }, { id: 'lindner', x: 330, y: 372 },
+    { id: 'ziegenhof', x: 236, y: 320 }, { id: 'kessler', x: 416, y: 344 }, { id: 'ohler', x: 300, y: 226, wine: 1 },
+    { id: 'bechtel', x: 278, y: 168 }, { id: 'forsthaus', x: 78, y: 418 }
+  ];
+  var mapParts = { conns: [], sups: [] };
+  function buildMap() {
+    var svg = $('#map'); if (!svg) return;
+    var forest = el('g', { class: 'forest' }, svg);
+    for (var i = 0; i < 12; i++) {
+      var pts = [];
+      for (var y = -10; y <= 650; y += 20) pts.push([8 + i * 20 + 10 * Math.sin(y * .018 + i * .8) + 6 * Math.sin(y * .051 + i * 1.7), y]);
+      el('path', { class: 'contour', d: smoothPath(pts) }, forest);
+    }
+    var lf = el('text', { class: 'lbl-forest', x: 46, y: 250, transform: 'rotate(-90 46 250)', 'text-anchor': 'middle' }, svg); lf.textContent = 'Pfälzerwald';
+    var lp = el('text', { class: 'lbl-plain', x: 520, y: 560, 'text-anchor': 'middle' }, svg); lp.textContent = 'Rheinebene';
+    var route = [[286, -10], [281, 80], [278, 168], [289, 200], [300, 226], [306, 262], [314, 292], [320, 330], [328, 370], [310, 424], [282, 485], [268, 560], [260, 650]];
+    el('path', { class: 'route', id: 'weinstrasse', d: smoothPath(route) }, svg);
+    var lr = el('text', { class: 'lbl-route', dy: -9 }, svg); var tp = el('textPath', { href: '#weinstrasse', startOffset: '1.5%' }, lr); tp.textContent = 'Deutsche Weinstraße';
+    el('circle', { class: 'radius', cx: HOME[0], cy: HOME[1], r: 285 }, svg);
+    var rl = el('text', { x: HOME[0] + 70, y: HOME[1] - 284, style: 'fill:var(--accent);font-size:11px' }, svg); rl.textContent = '15 km';
+    [['Bad Dürkheim', 278, 168, 'r'], ['Wachenheim', 300, 226, 'r'], ['Forst', 306, 280, 'l'], ['Ruppertsberg', 330, 372, 'r'], ['Neustadt', 282, 485, 'r'], ['Meckenheim', 416, 344, 'r'], ['Haßloch', 456, 470, 'r'], ['Elmstein', 78, 418, 'r']].forEach(function (v) {
+      var g = el('g', { class: 'village' }, svg);
+      if (v[0] === 'Neustadt' || v[0] === 'Haßloch') el('circle', { cx: v[1], cy: v[2], r: 2.8 }, g);
+      var t = el('text', { x: v[1] + (v[3] === 'r' ? 13 : -13), y: v[2] + 4, 'text-anchor': v[3] === 'r' ? 'start' : 'end' }, g); t.textContent = v[0];
+    });
+    var connG = el('g', {}, svg), supG = el('g', {}, svg);
+    SUPPLIERS.forEach(function (s) {
+      var dx = HOME[0] - s.x, dy = HOME[1] - s.y, mx = (s.x + HOME[0]) / 2, my = (s.y + HOME[1]) / 2, k = .28;
+      var c = el('path', { class: 'conn', d: 'M' + s.x + ' ' + s.y + ' Q' + (mx - dy * k).toFixed(1) + ' ' + (my + dx * k).toFixed(1) + ' ' + HOME[0] + ' ' + HOME[1], 'data-id': s.id }, connG);
+      var g = el('g', { class: 'supplier' + (s.wine ? ' is-wine' : ''), 'data-id': s.id }, supG);
+      el('circle', { class: 'ring', cx: s.x, cy: s.y, r: 7, style: 'animation-delay:' + (Math.random() * 3).toFixed(2) + 's' }, g);
+      el('circle', { class: 'dot', cx: s.x, cy: s.y, r: 5.2 }, g);
+      mapParts.conns.push(c); mapParts.sups.push(g);
+    });
+    var home = el('g', { class: 'home' }, svg);
+    el('circle', { class: 'halo', cx: HOME[0], cy: HOME[1], r: 24 }, home);
+    el('circle', { class: 'pin', cx: HOME[0], cy: HOME[1], r: 10.5 }, home);
+    el('circle', { class: 'pin-in', cx: HOME[0], cy: HOME[1], r: 3.8 }, home);
+    var hl = el('text', { class: 'lbl-home', x: HOME[0] - 18, y: HOME[1] + 24, 'text-anchor': 'end' }, home); hl.textContent = 'Zum Rebstock';
+    var north = el('g', { class: 'north' }, svg);
+    el('path', { d: 'M600 76V40M592 50L600 40L608 50' }, north);
+    var nt = el('text', { x: 600, y: 30, 'text-anchor': 'middle' }, north); nt.textContent = 'N';
+    var sc = el('g', { class: 'scale' }, svg);
+    el('path', { d: 'M500 612v6h95v-6' }, sc);
+    var st = el('text', { x: 547, y: 604, 'text-anchor': 'middle' }, sc); st.textContent = '5 km';
+
+    function activate(id, on) {
+      $$('[data-id="' + id + '"]').forEach(function (n) { n.classList.toggle('is-active', on); });
+    }
+    $$('.farm').forEach(function (li) {
+      li.addEventListener('pointerenter', function () { activate(li.dataset.id, true); });
+      li.addEventListener('pointerleave', function () { activate(li.dataset.id, false); });
+    });
+    mapParts.sups.forEach(function (g) {
+      g.addEventListener('pointerenter', function () { activate(g.dataset.id, true); });
+      g.addEventListener('pointerleave', function () { activate(g.dataset.id, false); });
+    });
+  }
+  function mapAnim() {
+    if (!hasGSAP || reduced || !mapParts.conns.length) return;
+    mapParts.conns.forEach(function (c) { var L = c.getTotalLength(); c.style.strokeDasharray = L; c.style.strokeDashoffset = L; });
+    var dots = mapParts.sups.map(function (g) { return $('.dot', g); });
+    var tl = G.timeline({ scrollTrigger: { trigger: '#map', start: 'top 75%', once: true } });
+    tl.from('#map .contour', { opacity: 0, duration: 1.2, stagger: .04, ease: 'power2.out' })
+      .from('#map .route', { opacity: 0, duration: .8 }, .2)
+      .from('#map .village', { opacity: 0, y: 6, duration: .6, stagger: .05 }, .3)
+      .from('#map .home', { scale: 0, transformOrigin: '50% 50%', duration: .9, ease: 'back.out(2.2)' }, .5)
+      .from(dots, { scale: 0, transformOrigin: '50% 50%', duration: .6, stagger: .08, ease: 'back.out(2.5)' }, .7)
+      .to(mapParts.conns, { strokeDashoffset: 0, duration: 1.4, stagger: .1, ease: 'power2.inOut', onComplete: function () { mapParts.conns.forEach(function (c) { c.style.strokeDasharray = 'none'; }); } }, .8);
+  }
+
+  /* ---------- Grundriss: Feiern ---------- */
+  var ROOMS = {
+    gaststube: { name: 'Gaststube', seats: 'bis 60 Gäste', img: 'gaststube', alt: 'Die Gaststube mit Holzvertäfelung und Sandsteinwand', text: 'Holzvertäfelung, Sandsteinwand und der alte Kachelofen. Für Geburtstage, Taufen und Konfirmationen, sonntagabends auch exklusiv.' },
+    kamin: { name: 'Kaminzimmer', seats: 'bis 24 Gäste', img: 'kaminzimmer', alt: 'Das Kaminzimmer mit offenem Kamin und gedeckter Tafel', text: 'Der ruhigste Raum im Haus, mit offenem Kamin und eigener Tür zum Hof. Ideal für Firmenessen und runde Geburtstage.' },
+    keller: { name: 'Gewölbekeller', seats: 'bis 36 Gäste', img: 'feier-tafel', alt: 'Festlich gedeckte lange Tafel im Gewölbekeller aus Sandstein', text: 'Unter dem Haus liegt der alte Weinkeller von 1891. Lange Tafeln, Kerzenlicht und eine eigene kleine Bar. Unser Liebling für Weihnachtsfeiern.' },
+    laube: { name: 'Weinlaube', seats: 'bis 40 Gäste · Mai bis Oktober', img: 'weinlaube-abend', alt: 'Die Weinlaube im Innenhof am Abend', text: 'Unter den Reben im Innenhof, mit Lichterketten und Blick in den Garten. Für Sommerfeste und Hochzeitsempfänge.' }
+  };
+  var IMGMETA = {"schuerzen": {"src": "/beispiele/restaurant/img/schuerzen-1100.webp", "srcset": "/beispiele/restaurant/img/schuerzen-640.webp 640w, /beispiele/restaurant/img/schuerzen-1100.webp 1100w", "lqip": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAeABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDLhg0sJZmWKRDO4wPNzxnrx0rUh07SRHqW6d1aDGV8w5AKZ/KoJvD6RvHcWkwKRkln3Z3EZH86wBdEx3satlriXOc9cNjFc0fM6Wt7HqumxRx2MaRcRCEhRnJPFFVbW4I0aF4l5eAnb3opyZmjmBJLBp1zsnZ4BF5gUggKS3IHqR3rkrFGM9qQPleYD68A/wBa7HU7GewgW0+0lhcxPGCP4eKxrPR5I7qOUyIUjfzNoyMjAGPbpUU5aG8o6M63TpXfw9MtrtMgkkjUNwAM+v0PSiotHimstMeN3UrNK0o29gexoqmkzKN0j//Z"}, "kaminzimmer": {"src": "/beispiele/restaurant/img/kaminzimmer-1100.webp", "srcset": "/beispiele/restaurant/img/kaminzimmer-640.webp 640w, /beispiele/restaurant/img/kaminzimmer-1100.webp 1100w, /beispiele/restaurant/img/kaminzimmer-1536.webp 1536w", "lqip": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAQABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDizPG1x5exnXJyNo6U62MB1A2+1FR3K73Gdg9cetQm6n+zQK5VVj3bV+vXpUy6m8aKjWUJOQRtOM4559a5OV20O266iG3R5QoDndnGfQd6KhuNSebIMMUR7bc560VfLKxHNG5//9k="}, "feier-tafel": {"src": "/beispiele/restaurant/img/feier-tafel-1100.webp", "srcset": "/beispiele/restaurant/img/feier-tafel-640.webp 640w, /beispiele/restaurant/img/feier-tafel-1100.webp 1100w, /beispiele/restaurant/img/feier-tafel-1536.webp 1536w", "lqip": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAQABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDDt5cXEl3syYnUhQRgDnjmob1gymSICSZiuc9ATzx7DgfnWxbabNHMFSwd49hVpJMAZ6ZAHWoykWnQC3lk81kyVTyto59fWvNS10PTb0MG7JgtpC0c4ZkGxmUABs89uaKTVtRa5fy92VJ5APFFdMI2WqOecm3oz//Z"}, "weinlaube-abend": {"src": "/beispiele/restaurant/img/weinlaube-abend-1100.webp", "srcset": "/beispiele/restaurant/img/weinlaube-abend-640.webp 640w, /beispiele/restaurant/img/weinlaube-abend-1100.webp 1100w, /beispiele/restaurant/img/weinlaube-abend-1600.webp 1600w", "lqip": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAOABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDkUVCc7MknOCSAewH51YighkLhphARwP3Zb/OKprf2nkpC8E24A5KyfeOeCeO1ND+cSqgrGBgAHn8T3rlhH3tTpltoyzHFA85jmmBI6dck57+lFUDO8IZIyBnAJKgkiim4Poyoyilqj//Z"}, "gericht-der-woche": {"src": "/beispiele/restaurant/img/gericht-der-woche-1100.webp", "srcset": "/beispiele/restaurant/img/gericht-der-woche-640.webp 640w, /beispiele/restaurant/img/gericht-der-woche-1100.webp 1100w, /beispiele/restaurant/img/gericht-der-woche-1536.webp 1536w", "lqip": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAQABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDzoK46Kfxq3bW1zNhYoXcscDA61fjuYh+7nVTH246VfGrWlpa+WLd5N4AZo2wcA9Px71zym+x0KC3uQnT9XI802MpCkO5VdzDAwDgdgBRS2viO5fVPNtmMUjNkNI+FX246j2oqUn9pA7dD/9k="}, "hof-ernte": {"src": "/beispiele/restaurant/img/hof-ernte-1100.webp", "srcset": "/beispiele/restaurant/img/hof-ernte-640.webp 640w, /beispiele/restaurant/img/hof-ernte-1100.webp 1100w", "lqip": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAeABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwC7bIsNxfzTuJQJmKpJnaQD/LkVoQeI5VUtPDCyhd2RkDH1rj5ZYkjggQyMm0Dqeccn684q6t0tqEecy25hUvjblcHjkD8K4Y1JQ+E1kuZnXR+JFdQyWuFPJO4kCiuNtdQa5KC3uZY2kBwGOQDtx1/Wiq+s1E7cpKp32KCXUcd3NLbMVVXOFA5U55zn8Ooq2b+IxiGOFUTJJVWzuz279qm1DRbO5mP9m77eZGIcPyrjP58U2DQJiX8+8I2j/lmMZx9aJQjc6It2M+3McVwBFaovlnevUgjHoePSiraPYxzLDb2hebJy87llOB/doqJcqerFZI//2Q=="}, "hero-teller": {"src": "/beispiele/restaurant/img/hero-teller-1100.webp", "srcset": "/beispiele/restaurant/img/hero-teller-640.webp 640w, /beispiele/restaurant/img/hero-teller-1100.webp 1100w", "lqip": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAeABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDat54bzWNRkhk8yNrZP3ighSQpzgmucnmXcBkdOea7Saz0izZVuYI8n7oldpc/QE5/SoZJ7QsyiLbEo52wYA+uRXJy23Z1KXY4qyvGmRo7mMBwA8eDwfb/AAorqbiytWVporaLzQCY28sDnHFFS4PoUpjr6GaFbl4SJJ5Sfn3fNt7Afyrl3vGhuhHFJNHMq7X3qSrgevbv34runt7fUYCk0eVP4EH2NY134VVstFeTbP7rSNVSpJu4o1LKxUtPECQ2bGVFT92UWAdZG7EDsB60Ulv4cjQkhlHPJ6k0U4x5VZCdm7n/2Q=="}, "gaststube": {"src": "/beispiele/restaurant/img/gaststube-1100.webp", "srcset": "/beispiele/restaurant/img/gaststube-640.webp 640w, /beispiele/restaurant/img/gaststube-1100.webp 1100w", "lqip": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAeABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwB9polvc6at15UaFkdtodgflAP9ayL/AE6yjvZrZGl8xCRgMScD2rSttVurXTCY5IpRuYfM2T8wwf5ViS37tcSXRuTFIxJO1ju57CuRtWVlqdcU7u+xHZQAkopJbHOTRVmzSYP9pOwMyLvcuMH6ZNFNW6hK/Q25To32BJEAebzMEsTgd+mfWsvUrfw/NM2yQxM5/wCWWTWTHPp628ebeZ5VILlnGGGeR7cYojdJirRwrGquMc5Jyx6/TpSY0OvLPyU4SZY8gKXUrnHT8cUV0y6le+S9t5oeFjjZIocD6Z6UVRJ//9k="}};
+  var curRoom = 'gaststube';
+  function buildPlan() {
+    var svg = $('#plan'); if (!svg) return;
+    function sqTable(g, x, y, s) {
+      el('rect', { class: 'tbl', x: x, y: y, width: s, height: s, rx: 2 }, g);
+      [[x + s / 2, y - 6.5], [x + s / 2, y + s + 6.5], [x - 6.5, y + s / 2], [x + s + 6.5, y + s / 2]].forEach(function (c) { el('circle', { class: 'chair', cx: c[0], cy: c[1], r: 3.4 }, g); });
+    }
+    function roundTable(g, x, y, r, n, cr) {
+      el('circle', { class: 'tbl', cx: x, cy: y, r: r }, g);
+      for (var i = 0; i < n; i++) { var a = i / n * Math.PI * 2; el('circle', { class: 'chair', cx: x + Math.cos(a) * cr, cy: y + Math.sin(a) * cr, r: 3.4 }, g); }
+    }
+    function longTable(g, x, y, w, h, per, vertical) {
+      el('rect', { class: 'tbl', x: x, y: y, width: w, height: h, rx: 2 }, g);
+      for (var i = 0; i < per; i++) {
+        if (vertical) { var cy = y + (i + .5) * h / per; el('circle', { class: 'chair', cx: x - 6.5, cy: cy, r: 3.4 }, g); el('circle', { class: 'chair', cx: x + w + 6.5, cy: cy, r: 3.4 }, g); }
+        else { var cx = x + (i + .5) * w / per; el('circle', { class: 'chair', cx: cx, cy: y - 6.5, r: 3.4 }, g); el('circle', { class: 'chair', cx: cx, cy: y + h + 6.5, r: 3.4 }, g); }
+      }
+    }
+    function label(g, x, y, name, seats) {
+      var t = el('text', { class: 'room-label', x: x, y: y }, g); t.textContent = name;
+      var s = el('text', { class: 'room-seats', x: x, y: y + 16 }, g); s.textContent = seats;
+    }
+    function room(id, hit) {
+      var g = el('g', { class: 'room' + (id === curRoom ? ' is-active' : ''), 'data-room': id }, svg);
+      el('rect', { class: 'room-hit', x: hit[0], y: hit[1], width: hit[2], height: hit[3] }, g);
+      g.addEventListener('click', function () { selectRoom(id); });
+      return g;
+    }
+    // Weinlaube (Innenhof)
+    var gl = room('laube', [24, 272, 348, 144]);
+    el('rect', { class: 'open', x: 24, y: 272, width: 348, height: 144, rx: 3 }, gl);
+    for (var px = 24; px <= 372; px += 29) { el('circle', { class: 'post', cx: px, cy: 272, r: 2.6 }, gl); el('circle', { class: 'post', cx: px, cy: 416, r: 2.6 }, gl); }
+    [72, 140, 208, 276, 344].forEach(function (x) { roundTable(gl, x, 344, 10, 4, 17); roundTable(gl, x, 392, 10, 4, 17); });
+    label(gl, 40, 294, 'Weinlaube', '40 Plätze · Innenhof');
+    // Gaststube
+    var gg = room('gaststube', [24, 24, 372, 224]);
+    [56, 124, 192, 260].forEach(function (x) { [80, 138, 196].forEach(function (y) { sqTable(gg, x, y, 26); }); });
+    roundTable(gg, 342, 156, 18, 12, 28);
+    label(gg, 40, 46, 'Gaststube', '60 Plätze');
+    // Kaminzimmer
+    var gk = room('kamin', [396, 24, 220, 166]);
+    longTable(gk, 418, 82, 72, 20, 3, false); el('circle', { class: 'chair', cx: 411.5, cy: 92, r: 3.4 }, gk); el('circle', { class: 'chair', cx: 496.5, cy: 92, r: 3.4 }, gk);
+    longTable(gk, 512, 82, 72, 20, 3, false); el('circle', { class: 'chair', cx: 505.5, cy: 92, r: 3.4 }, gk); el('circle', { class: 'chair', cx: 590.5, cy: 92, r: 3.4 }, gk);
+    longTable(gk, 464, 142, 72, 20, 3, false); el('circle', { class: 'chair', cx: 457.5, cy: 152, r: 3.4 }, gk); el('circle', { class: 'chair', cx: 542.5, cy: 152, r: 3.4 }, gk);
+    el('rect', { class: 'hearth', x: 604, y: 120, width: 8, height: 46, rx: 1 }, gk);
+    label(gk, 412, 48, 'Kaminzimmer', '24 Plätze');
+    // Gewölbekeller (UG)
+    var gc = room('keller', [396, 214, 220, 202]);
+    el('rect', { class: 'wall', x: 396, y: 214, width: 220, height: 202 }, gc);
+    [262, 302, 342, 382].forEach(function (y) { el('path', { class: 'vault', d: 'M400 ' + y + 'Q506 ' + (y - 24) + ' 612 ' + y }, gc); });
+    [444, 502, 560].forEach(function (x) { longTable(gc, x, 274, 18, 126, 6, true); });
+    for (var s = 0; s < 6; s++) el('path', { class: 'iwall', d: 'M' + (596 - s * 0) + ' ' + (222 + s * 7) + 'h14', style: 'stroke-width:1' }, gc);
+    label(gc, 412, 240, 'Gewölbekeller', '36 Plätze · UG');
+    // Mauern Erdgeschoss
+    var walls = el('g', {}, svg);
+    el('path', { class: 'wall', d: 'M24 24H616V190H396V248H24Z' }, walls);
+    el('path', { class: 'iwall', d: 'M396 24V190' }, walls);
+    el('rect', { class: 'door', x: 392, y: 104, width: 8, height: 30 }, walls);
+    el('rect', { class: 'door', x: 176, y: 244, width: 40, height: 8 }, walls);
+    el('rect', { class: 'door', x: 470, y: 186, width: 34, height: 8 }, walls);
+    el('path', { class: 'iwall', d: 'M176 248A40 40 0 0 1 216 288', style: 'stroke-width:1;stroke-dasharray:2 3' }, walls);
+    svg.appendChild(walls);
+  }
+  function selectRoom(id) {
+    if (!ROOMS[id]) return;
+    curRoom = id;
+    $$('.room-btn').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.room === id)); });
+    $$('#plan .room').forEach(function (g) { g.classList.toggle('is-active', g.dataset.room === id); });
+    var d = ROOMS[id], box = $('#room-detail');
+    var set = function () {
+      $('#room-name').textContent = d.name; $('#room-seats').textContent = d.seats; $('#room-text').textContent = d.text;
+      var img = $('#room-img'), meta = IMGMETA[d.img], par = img.parentNode;
+      par.classList.remove('is-broken'); img.classList.remove('is-loaded'); par.style.setProperty('--lqip', "url('" + meta.lqip + "')");
+      img.alt = d.alt; img.srcset = meta.srcset; img.src = meta.src; $('#room-ph').textContent = d.img + '.webp';
+      if (img.complete && img.naturalWidth) img.classList.add('is-loaded');
+    };
+    if (reduced) set(); else { box.classList.add('is-swapping'); setTimeout(function () { set(); box.classList.remove('is-swapping'); }, 280); }
+  }
+  $$('.room-btn').forEach(function (b) { b.addEventListener('click', function () { selectRoom(b.dataset.room); }); });
+  var feierBtn = $('#feier-btn');
+  if (feierBtn) feierBtn.addEventListener('click', function () {
+    var note = $('#f-note'); if (note && !note.value) note.value = 'Anfrage für eine Feier im Raum „' + ROOMS[curRoom].name + '“. Anlass und ungefähre Gästezahl: ';
+  });
+
+  /* ---------- Speisekarte: Tabs & Weinkarte ---------- */
+  var tabs = $$('.tab'), panels = tabs.map(function (t) { return document.getElementById(t.getAttribute('aria-controls')); }), ink = $('.tabs__ink'), curTab = 0;
+  function placeInk(instant) {
+    if (!ink || !tabs.length) return;
+    var t = tabs[curTab], x = t.offsetLeft, y = t.offsetTop + t.offsetHeight - 9, w = t.offsetWidth;
+    if (hasGSAP) { if (instant || reduced) G.set(ink, { x: x, y: y, width: w }); else G.to(ink, { x: x, y: y, width: w, duration: .65, ease: 'expo.out' }); }
+    else { ink.style.transform = 'translate(' + x + 'px,' + y + 'px)'; ink.style.width = w + 'px'; }
+  }
+  function updateWine(p) {
+    var d = p.dataset, swap = $('#wine-swap');
+    var set = function () {
+      $('#wine-label').textContent = d.wineLabel; $('#wine-name').textContent = d.wineName; $('#wine-maker').textContent = d.wineMaker;
+      $('#wine-notes').textContent = d.wineNotes; $('#wine-size').textContent = d.wineSize; $('#wine-price').textContent = d.winePrice;
+    };
+    if (reduced) set(); else { swap.classList.add('is-swapping'); setTimeout(function () { set(); swap.classList.remove('is-swapping'); }, 320); }
+    if (GlassAPI) GlassAPI.color(d.wineColor);
+  }
+  var refreshT;
+  function selectTab(i, focus) {
+    if (i === curTab) { if (focus) tabs[i].focus(); return; }
+    var oldP = panels[curTab];
+    tabs[curTab].setAttribute('aria-selected', 'false'); tabs[curTab].tabIndex = -1;
+    tabs[i].setAttribute('aria-selected', 'true'); tabs[i].tabIndex = 0; if (focus) tabs[i].focus();
+    curTab = i; placeInk(false); updateWine(panels[i]);
+    var show = function () {
+      panels.forEach(function (p, j) { p.hidden = j !== curTab; if (hasGSAP) G.set(p, { clearProps: 'opacity,transform' }); });
+      var np = panels[curTab];
+      if (hasGSAP && !reduced) G.from($$('.dish, .panel__intro', np), { y: 18, opacity: 0, duration: .6, stagger: .065, ease: 'power3.out', clearProps: 'transform,opacity' });
+      clearTimeout(refreshT); refreshT = setTimeout(function () { if (hasGSAP) ST.refresh(); }, 120);
+    };
+    if (hasGSAP && !reduced) { G.killTweensOf(oldP); G.to(oldP, { opacity: 0, y: -8, duration: .24, ease: 'power2.in', onComplete: show }); }
+    else show();
+  }
+  tabs.forEach(function (t, i) {
+    t.addEventListener('click', function () { selectTab(i, false); });
+    t.addEventListener('keydown', function (e) {
+      var n = tabs.length, k = e.key, j = null;
+      if (k === 'ArrowRight') j = (i + 1) % n; else if (k === 'ArrowLeft') j = (i - 1 + n) % n; else if (k === 'Home') j = 0; else if (k === 'End') j = n - 1;
+      if (j !== null) { e.preventDefault(); selectTab(j, true); }
+    });
+  });
+  window.addEventListener('resize', function () { placeInk(true); });
+
+  function tiltInit() {
+    var card = $('#wine-tilt'), stage = $('#wine-stage'); if (!card || !stage) return;
+    if (fine && hasGSAP && !reduced) {
+      var host = card.parentElement;
+      host.addEventListener('pointermove', function (e) {
+        var r = card.getBoundingClientRect(), px = (e.clientX - r.left) / r.width - .5, py = (e.clientY - r.top) / r.height - .5;
+        G.to(card, { rotateY: px * 12, rotateX: -py * 10, duration: .6, ease: 'power3.out', transformPerspective: 1000 });
+        card.style.setProperty('--gx', ((px + .5) * 100).toFixed(1) + '%'); card.style.setProperty('--gy', ((py + .5) * 100).toFixed(1) + '%');
+      });
+      host.addEventListener('pointerleave', function () { G.to(card, { rotateY: 0, rotateX: 0, duration: 1.1, ease: 'elastic.out(1,.5)' }); });
+    }
+    var hint = $('#wine-hint'); if (!fine && hint) hint.textContent = 'Zum Einschenken antippen';
+    var pouring = false;
+    function pour(on) { pouring = on; stage.classList.toggle('is-pouring', on); stage.setAttribute('aria-pressed', String(on)); if (GlassAPI) GlassAPI.pour(on); }
+    stage.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') pour(true); });
+    stage.addEventListener('pointerleave', function (e) { if (e.pointerType === 'mouse') pour(false); });
+    stage.addEventListener('click', function (e) { if (e.pointerType === 'mouse' && fine) return; pour(!pouring); });
+    stage.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pour(!pouring); } });
+  }
+
+  /* ---------- Weinglas als Vektorzeichnung, das einschenkt ---------- */
+  var GlassAPI = null;
+  function shade(hex, amt) {
+    var n = parseInt(hex.slice(1), 16), r = n >> 16, g = (n >> 8) & 255, b = n & 255;
+    var f = function (c) { return Math.round(amt >= 0 ? c + (255 - c) * amt : c * (1 + amt)); };
+    return 'rgb(' + f(r) + ',' + f(g) + ',' + f(b) + ')';
+  }
+  function glassInit() {
+    var stage = $('#wine-stage'); if (!stage) return;
+    var liq = $('#liq'), top = $('#liq-top'), stream = $('#stream'), left = $('#bowl-left'), bubG = $('#bubbles');
+    var Ltot = left.getTotalLength(), prof = [];
+    for (var i = 0; i <= 160; i++) { var pt = left.getPointAtLength(Ltot * i / 160); prof.push([pt.y, 100 - pt.x]); }
+    prof.sort(function (a, b) { return a[0] - b[0]; });
+    function hw(y) {
+      for (var j = 1; j < prof.length; j++) if (prof[j][0] >= y) { var a = prof[j - 1], b = prof[j]; return a[1] + (b[1] - a[1]) * ((y - a[0]) / ((b[0] - a[0]) || 1)); }
+      return 0;
+    }
+    var EMPTY = 171, REST = 148, FULL = 100;
+    var level = REST, goal = REST, pouring = false, swapping = false, pending = null, streamA = 0, fizz = 0, t = 0, last = performance.now(), raf = 0, vis = false;
+    var bubbles = [];
+    for (var k = 0; k < 10; k++) bubbles.push({ el: el('circle', { r: (0.7 + Math.random() * 1.1).toFixed(2), class: 'bubble' }, bubG), x: 100, y: 170, v: 12 + Math.random() * 16, on: false });
+    function setColor(hex) {
+      var n = parseInt(hex.slice(1), 16), lum = (.2126 * (n >> 16) + .7152 * ((n >> 8) & 255) + .0722 * (n & 255)) / 255;
+      stage.style.setProperty('--wc', hex); stage.style.setProperty('--wc-hi', shade(hex, lum < .3 ? .07 : .3)); stage.style.setProperty('--wc-lo', shade(hex, lum < .3 ? -.45 : -.38));
+    }
+    setColor(stage.dataset.color || '#E3C766');
+    function draw() {
+      var amp = reduced ? 0 : (0.7 + streamA * 2.2), d = 'M20 ' + level.toFixed(2);
+      for (var x = 20; x <= 180; x += 5) d += ' L' + x + ' ' + (level + amp * Math.sin(x * .09 + t * 3.1) + amp * .5 * Math.sin(x * .21 - t * 2.3)).toFixed(2);
+      liq.setAttribute('d', d + ' L180 262 L20 262 Z');
+      var w = hw(level);
+      top.setAttribute('cx', 100); top.setAttribute('cy', level.toFixed(2));
+      top.setAttribute('rx', Math.max(0, w - .6).toFixed(2)); top.setAttribute('ry', Math.max(0, w * .1).toFixed(2));
+      var show = level < EMPTY - .5 ? 1 : 0; liq.style.opacity = show; top.style.opacity = show;
+      if (streamA > .01) {
+        var s = Math.sin(t * 7) * .8, ly = (level - 1.5).toFixed(1), my = (level / 2).toFixed(1);
+        stream.setAttribute('d', 'M97.8 -14 L102.2 -14 Q' + (102.4 + s).toFixed(2) + ' ' + my + ' ' + (101.4 + s * .5).toFixed(2) + ' ' + ly + ' L' + (98.6 + s * .5).toFixed(2) + ' ' + ly + ' Q' + (97.6 + s).toFixed(2) + ' ' + my + ' 97.8 -14 Z');
+      }
+      stream.style.opacity = streamA.toFixed(3);
+      bubbles.forEach(function (b) {
+        if (b.on) { b.el.setAttribute('cx', (b.x + Math.sin(t * 4 + b.v) * 1.2).toFixed(2)); b.el.setAttribute('cy', b.y.toFixed(2)); }
+        b.el.style.opacity = b.on ? .5 : 0;
+      });
+    }
+    function frame(now) {
+      var dt = Math.min(.05, (now - last) / 1000); last = now; t += dt;
+      goal = swapping ? EMPTY : (pouring ? FULL : REST);
+      if (level > goal) level = Math.max(goal, level - dt * 34);
+      else if (level < goal) level = Math.min(goal, level + dt * (swapping ? 150 : 60));
+      if (swapping && level >= EMPTY - .1) { swapping = false; if (pending) { setColor(pending); pending = null; } }
+      var streaming = pouring && !swapping && level > goal + .2;
+      streamA += ((streaming ? 1 : 0) - streamA) * Math.min(1, dt * 10);
+      fizz = streaming ? 1.6 : Math.max(0, fizz - dt);
+      bubbles.forEach(function (b) {
+        if (!b.on && fizz > 0 && Math.random() < dt * 3) { b.on = true; b.y = 168; b.x = 86 + Math.random() * 28; }
+        if (b.on) { b.y -= b.v * dt; if (b.y < level + 2) b.on = false; }
+      });
+      draw();
+      raf = vis ? requestAnimationFrame(frame) : 0;
+    }
+    function kick() { if (!raf && vis && !reduced) { last = performance.now(); raf = requestAnimationFrame(frame); } }
+    if ('IntersectionObserver' in window) new IntersectionObserver(function (e) { vis = e[0].isIntersecting; kick(); }).observe(stage);
+    else { vis = true; kick(); }
+    draw();
+    GlassAPI = {
+      pour: function (on) { pouring = on; if (reduced) { level = on ? FULL : REST; draw(); } else kick(); },
+      color: function (hex) { if (reduced) { setColor(hex); draw(); return; } pending = hex; swapping = true; kick(); }
+    };
+  }
+
+  /* ---------- Dampf-Shader (WebGL) ---------- */
+  function steamInit(canvas) {
+    if (!glOK) return;
+    var gl = canvas.getContext('webgl', { premultipliedAlpha: true, alpha: true, antialias: false });
+    if (!gl) return;
+    var vs = 'attribute vec2 p;varying vec2 uv;void main(){uv=p*.5+.5;gl_Position=vec4(p,0.,1.);}';
+    var fs = [
+      'precision mediump float;varying vec2 uv;uniform float t;uniform vec2 res;uniform float cx;',
+      'float h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}',
+      'float n(vec2 p){vec2 i=floor(p),f=fract(p);vec2 u=f*f*(3.-2.*f);return mix(mix(h(i),h(i+vec2(1,0)),u.x),mix(h(i+vec2(0,1)),h(i+vec2(1,1)),u.x),u.y);}',
+      'float fbm(vec2 p){float v=0.,a=.5;for(int i=0;i<5;i++){v+=a*n(p);p=p*2.03+vec2(1.7,9.2);a*=.5;}return v;}',
+      'void main(){float asp=res.x/res.y;float y=uv.y;vec2 p=vec2((uv.x-cx)*asp,y);',
+      'float sway=sin(y*4.-t*.7)*.12*y+sin(y*9.+t*.5)*.03;',
+      'vec2 q=vec2((p.x+sway)*2.4,y*1.7-t*.24);',
+      'float a=fbm(q*1.5+vec2(0.,-t*.08));float b=fbm(q*3.2+vec2(t*.04,-t*.32));',
+      'float w=.16+.34*y;float plume=exp(-pow((p.x+sway)/w,2.));',
+      'float fade=smoothstep(.0,.2,y)*(1.-smoothstep(.5,1.,y));',
+      'float d=smoothstep(.45,.9,a*.62+b*.48)*plume*fade;',
+      'gl_FragColor=vec4(vec3(1.,.97,.92)*d*.6,d*.6);}'
+    ].join('');
+    function sh(type, src) { var s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); return s; }
+    var prog = gl.createProgram(); gl.attachShader(prog, sh(gl.VERTEX_SHADER, vs)); gl.attachShader(prog, sh(gl.FRAGMENT_SHADER, fs)); gl.linkProgram(prog);
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) { canvas.style.display = 'none'; return; }
+    gl.useProgram(prog);
+    var buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf); gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+    var loc = gl.getAttribLocation(prog, 'p'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+    var uT = gl.getUniformLocation(prog, 't'), uR = gl.getUniformLocation(prog, 'res'), uC = gl.getUniformLocation(prog, 'cx');
+    gl.uniform1f(uC, parseFloat(canvas.dataset.cx || '.5'));
+    var scale = isMobile ? .35 : .5;
+    function resize() { var w = Math.max(2, Math.round(canvas.clientWidth * scale)), h = Math.max(2, Math.round(canvas.clientHeight * scale)); canvas.width = w; canvas.height = h; gl.viewport(0, 0, w, h); gl.uniform2f(uR, w, h); }
+    resize(); if ('ResizeObserver' in window) new ResizeObserver(resize).observe(canvas);
+    var vis = false, raf = 0, t0 = performance.now();
+    function frame(now) { if (!vis) { raf = 0; return; } gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT); gl.uniform1f(uT, (now - t0) / 1000); gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4); raf = requestAnimationFrame(frame); }
+    new IntersectionObserver(function (e) { vis = e[0].isIntersecting; if (vis && !raf) raf = requestAnimationFrame(frame); }).observe(canvas);
+  }
+
+  /* ---------- Lichterketten & Bokeh ---------- */
+  function lightsInit() {
+    var svg = $('#lights'), sec = $('#wein'); if (!svg || !sec) return;
+    var tweens = [];
+    function build() {
+      tweens.forEach(function (t) { t.kill(); }); tweens = [];
+      $$('.strand', svg).forEach(function (n) { n.remove(); });
+      var w = sec.clientWidth; svg.setAttribute('viewBox', '0 0 ' + w + ' 150');
+      [[-20, 10, w * .58, 26, 64], [w * .36, 4, w + 20, 20, 58], [w * .08, -6, w * .92, -2, 108]].forEach(function (s, si) {
+        var x0 = s[0], y0 = s[1], x1 = s[2], y1 = s[3], target = Math.max(y0, y1) + s[4], cy = 2 * target - (y0 + y1) / 2, cxp = (x0 + x1) / 2;
+        var g = el('g', { class: 'strand' }, svg);
+        el('path', { class: 'wire', d: 'M' + x0 + ' ' + y0 + ' Q' + cxp + ' ' + cy + ' ' + x1 + ' ' + y1 }, g);
+        var count = Math.max(6, Math.floor((x1 - x0) / 62));
+        for (var i = 1; i < count; i++) {
+          var t = i / count, bx = (1 - t) * (1 - t) * x0 + 2 * (1 - t) * t * cxp + t * t * x1, by = (1 - t) * (1 - t) * y0 + 2 * (1 - t) * t * cy + t * t * y1;
+          var glow = el('circle', { class: 'glow', cx: bx.toFixed(1), cy: (by + 5).toFixed(1), r: 10 }, g);
+          el('circle', { class: 'bulb', cx: bx.toFixed(1), cy: (by + 5).toFixed(1), r: 2.6 }, g);
+          if (hasGSAP && !reduced) tweens.push(G.to(glow, { opacity: .15 + Math.random() * .2, duration: 1 + Math.random() * 1.8, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: Math.random() * 2 }));
+        }
+        if (hasGSAP && !reduced) tweens.push(G.to(g, { rotation: si % 2 ? .7 : -.7, svgOrigin: x0 + ' ' + y0, duration: 4 + si * 1.3, repeat: -1, yoyo: true, ease: 'sine.inOut' }));
+      });
+    }
+    build();
+    var lw = sec.clientWidth;
+    window.addEventListener('resize', function () { if (Math.abs(sec.clientWidth - lw) > 40) { lw = sec.clientWidth; build(); } });
+  }
+  function bokehInit() {
+    var c = $('.bokeh'); if (!c) return;
+    var ctx = c.getContext('2d'); if (!ctx) return;
+    var dpr = Math.min(window.devicePixelRatio || 1, 1.5), W = 0, H = 0, vis = false, raf = 0, last = 0;
+    var N = isMobile ? 20 : 44;
+    var cols = [[255, 196, 120], [255, 168, 92], [255, 224, 176], [236, 140, 110], [255, 206, 150]];
+    var sprites = cols.map(function (cc) {
+      var s = document.createElement('canvas'); s.width = s.height = 128; var x = s.getContext('2d');
+      var rgb = cc.join(','), gr = x.createRadialGradient(64, 64, 0, 64, 64, 64);
+      gr.addColorStop(0, 'rgba(' + rgb + ',.5)'); gr.addColorStop(.62, 'rgba(' + rgb + ',.4)'); gr.addColorStop(.86, 'rgba(' + rgb + ',.58)');
+      gr.addColorStop(.95, 'rgba(' + rgb + ',.16)'); gr.addColorStop(1, 'rgba(' + rgb + ',0)');
+      x.fillStyle = gr; x.beginPath(); x.arc(64, 64, 64, 0, Math.PI * 2); x.fill(); return s;
+    });
+    var P = [];
+    function seed() {
+      P.length = 0;
+      for (var i = 0; i < N; i++) {
+        var d = Math.random();
+        P.push({ x: Math.random() * W, y: Math.pow(Math.random(), 1.4) * H, r: (5 + Math.pow(d, 1.7) * 44) * dpr, d: d, vx: (Math.random() - .5) * .012 * dpr, vy: -(0.003 + Math.random() * .008) * dpr, ph: Math.random() * 6.28, sp: .4 + Math.random() * 1.2, s: sprites[i % sprites.length] });
+      }
+    }
+    function draw(t, dt) {
+      ctx.clearRect(0, 0, W, H); ctx.globalCompositeOperation = 'lighter';
+      for (var i = 0; i < P.length; i++) {
+        var p = P[i];
+        p.x += p.vx * dt; p.y += p.vy * dt;
+        if (p.y < -p.r) { p.y = H + p.r; p.x = Math.random() * W; }
+        if (p.x < -p.r) p.x = W + p.r; if (p.x > W + p.r) p.x = -p.r;
+        ctx.globalAlpha = (0.16 + 0.5 * (1 - p.d)) * (0.65 + 0.35 * Math.sin(t * .001 * p.sp + p.ph));
+        ctx.drawImage(p.s, p.x - p.r, p.y - p.r, p.r * 2, p.r * 2);
+      }
+      ctx.globalAlpha = 1;
+    }
+    function resize() { W = c.width = Math.max(2, Math.round(c.clientWidth * dpr)); H = c.height = Math.max(2, Math.round(c.clientHeight * dpr)); seed(); if (reduced) draw(0, 0); }
+    resize(); if ('ResizeObserver' in window) new ResizeObserver(resize).observe(c);
+    if (reduced) return;
+    function frame(t) { if (!vis) { raf = 0; return; } var dt = Math.min(50, (t - last) || 16); last = t; draw(t, dt); raf = requestAnimationFrame(frame); }
+    new IntersectionObserver(function (e) { vis = e[0].isIntersecting; if (vis && !raf) { last = performance.now(); raf = requestAnimationFrame(frame); } }).observe(c);
+  }
+
+  /* ---------- Weinranke an der Zeitleiste ---------- */
+  var vineTriggers = [];
+  function buildVine() {
+    var tlEl = $('#timeline'), svg = $('#vine'); if (!tlEl || !svg) return;
+    vineTriggers.forEach(function (t) { t.kill(); }); vineTriggers = [];
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    var items = $$('.tl-item', tlEl), h = tlEl.offsetHeight, w = svg.getBoundingClientRect().width || 60, cx = w * .45;
+    svg.setAttribute('viewBox', '0 0 ' + w.toFixed(1) + ' ' + h);
+    var ys = items.map(function (it) { var yr = $('.tl-year', it); return it.offsetTop + yr.offsetHeight * .55; });
+    var pts = [[cx, 0]];
+    ys.forEach(function (y, i) { var prev = i === 0 ? 0 : ys[i - 1]; pts.push([cx + (i % 2 ? -1 : 1) * w * .22, (prev + y) / 2]); pts.push([cx, y]); });
+    pts.push([cx - w * .1, h - 10]);
+    var stem = el('path', { class: 'stem', d: smoothPath(pts) }, svg);
+    var leaves = [];
+    ys.forEach(function (y, i) {
+      var side = i % 2 ? -1 : 1, R = Math.min(15, w * .22);
+      var g = el('g', { transform: 'translate(' + cx.toFixed(1) + ' ' + y.toFixed(1) + ') rotate(' + (side * 62) + ')' }, svg);
+      var leaf = el('path', { class: 'leaf' + (i === 2 || i === 4 ? ' is-autumn' : ''), d: leafD(R), transform: 'translate(0 ' + (-R * .95).toFixed(1) + ')' }, g);
+      leaves.push(leaf);
+      var ty = i === 0 ? y * .5 : (ys[i - 1] + y) / 2, tx = cx + (i % 2 ? -1 : 1) * w * .22;
+      var tend = '', a0 = side > 0 ? 0 : Math.PI;
+      for (var k = 0; k <= 30; k++) { var a = a0 + side * k * .32, rr = 9 * (1 - k / 34); tend += (k ? 'L' : 'M') + (tx + side * 4 + Math.cos(a) * rr).toFixed(1) + ' ' + (ty + Math.sin(a) * rr).toFixed(1); }
+      el('path', { class: 'tendril', d: tend }, svg);
+    });
+    var gy = ys[ys.length - 1] + 26, grape = el('g', {}, svg);
+    [[0, 0], [7, 0], [-7, 0], [3.5, 6], [-3.5, 6], [0, 12], [10, -5], [-3, -6]].forEach(function (p) { el('circle', { class: 'grape', cx: (cx + 10 + p[0]).toFixed(1), cy: (gy + p[1]).toFixed(1), r: 3.6 }, grape); });
+    leaves.push(grape);
+    if (!hasGSAP || reduced) return;
+    var L = stem.getTotalLength(); stem.style.strokeDasharray = L; stem.style.strokeDashoffset = L;
+    vineTriggers.push(G.to(stem, { strokeDashoffset: 0, ease: 'none', scrollTrigger: { trigger: tlEl, start: 'top 72%', end: 'bottom 62%', scrub: .6 } }).scrollTrigger);
+    leaves.forEach(function (lf, i) {
+      var trg = items[Math.min(i, items.length - 1)];
+      var tw = G.from(lf, { scale: 0, transformOrigin: '50% 100%', duration: .9, ease: 'back.out(2)', scrollTrigger: { trigger: trg, start: 'top 66%', toggleActions: 'play none none reverse' } });
+      vineTriggers.push(tw.scrollTrigger);
+    });
+  }
+
+  /* ---------- Reservierung ---------- */
+  function formInit() {
+    var f = $('#res-form'); if (!f) return;
+    var date = $('#f-date'), time = $('#f-time'), pOut = $('#f-persons-out'), pIn = $('#f-persons'), hint = $('#form-hint'), succ = $('#res-success');
+    var toISO = function (d) { return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); };
+    var parse = function (v) { var a = v.split('-').map(Number); return new Date(a[0], a[1] - 1, a[2]); };
+    function range(a, b) { var r = []; for (var h = a; h <= b + 1e-9; h += .5) r.push(h); return r; }
+    function slotsFor(day) { if (day === 0) return range(11.5, 19); if (day === 6) return range(11.5, 13.5).concat(range(17.5, 21.5)); if (day >= 3) return range(11.5, 13).concat(range(17.5, 20.5)); return []; }
+    var today = new Date(); date.min = toISO(today); var maxD = new Date(today); maxD.setMonth(maxD.getMonth() + 6); date.max = toISO(maxD);
+    var nowH = today.getHours() + today.getMinutes() / 60, next = new Date(today);
+    for (var i = 0; i < 8; i++) { var s = slotsFor(next.getDay()); if (s.length && (i > 0 || s.some(function (h) { return h > nowH + 1; }))) break; next.setDate(next.getDate() + 1); }
+    var defaultDate = toISO(next);
+    function fillTimes(pref) {
+      var sl = date.value ? slotsFor(parse(date.value).getDay()) : [], prev = pref || time.value;
+      time.innerHTML = '';
+      if (!sl.length) { time.add(new Option('–', '')); return; }
+      var labels = sl.map(fmt); labels.forEach(function (l) { time.add(new Option(l, l)); });
+      time.value = labels.indexOf(prev) > -1 ? prev : (labels.indexOf('19:00') > -1 ? '19:00' : labels[Math.floor(labels.length / 2)]);
+    }
+    function checkDate() {
+      date.setCustomValidity(''); hint.textContent = '';
+      if (!date.value) { hint.textContent = 'Bitte wählen Sie ein Datum.'; date.setCustomValidity(hint.textContent); return false; }
+      var d = parse(date.value), t0 = new Date(); t0.setHours(0, 0, 0, 0);
+      if (d.getDay() === 1 || d.getDay() === 2) { hint.textContent = 'Montags und dienstags haben wir Ruhetag. Bitte wählen Sie einen Tag von Mittwoch bis Sonntag.'; date.setCustomValidity(hint.textContent); return false; }
+      if (d < t0) { hint.textContent = 'Dieses Datum liegt in der Vergangenheit. Bitte wählen Sie einen späteren Tag.'; date.setCustomValidity(hint.textContent); return false; }
+      return true;
+    }
+    date.value = defaultDate; fillTimes('19:00');
+    date.addEventListener('change', function () { checkDate(); fillTimes(); });
+    var n = 2;
+    function setN(v) {
+      n = Math.max(1, Math.min(20, v)); pOut.textContent = n; pIn.value = n; $('#persons-word').textContent = n === 1 ? 'Person' : 'Personen';
+      if (n === 20) hint.textContent = 'Ab 20 Personen planen wir gerne eine Feier mit Ihnen. Schreiben Sie uns dazu eine Anmerkung.';
+      else if (hint.textContent.indexOf('Ab 20') === 0) hint.textContent = '';
+    }
+    $('#p-minus').addEventListener('click', function () { setN(n - 1); });
+    $('#p-plus').addEventListener('click', function () { setN(n + 1); });
+    var fields = [['f-name', 'e-name', 'Bitte geben Sie Ihren Namen an.'], ['f-phone', 'e-phone', 'Bitte geben Sie eine Telefonnummer an, unter der wir Sie erreichen.'], ['f-mail', 'e-mail', 'Bitte geben Sie eine gültige E-Mail-Adresse an, zum Beispiel name@beispiel.de.']];
+    fields.forEach(function (fd) {
+      var inp = $('#' + fd[0]); inp.setAttribute('aria-describedby', fd[1]);
+      inp.addEventListener('input', function () { inp.closest('.field').classList.remove('is-invalid'); $('#' + fd[1]).textContent = ''; inp.removeAttribute('aria-invalid'); });
+    });
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var first = checkDate() ? null : date;
+      fields.forEach(function (fd) {
+        var inp = $('#' + fd[0]), v = inp.value.trim(), ok = v !== '' && inp.checkValidity();
+        if (fd[0] === 'f-phone' && v.replace(/\D/g, '').length < 6) ok = false;
+        inp.closest('.field').classList.toggle('is-invalid', !ok); inp.setAttribute('aria-invalid', String(!ok));
+        $('#' + fd[1]).textContent = ok ? '' : fd[2]; if (!ok && !first) first = inp;
+      });
+      if (first) { first.focus(); return; }
+      var ds = parse(date.value).toLocaleDateString('de-DE', { weekday: 'long', day: 'numeric', month: 'long' });
+      var name = $('#f-name').value.trim().split(/\s+/)[0];
+      $('#success-title').textContent = 'Vielen Dank, ' + name + '!';
+      $('#success-text').textContent = 'Ihre Anfrage für ' + ds + ' um ' + time.value + ' Uhr, ' + n + ' ' + (n === 1 ? 'Person' : 'Personen') + ', haben wir notiert. Die Bestätigung schicken wir an ' + $('#f-mail').value.trim() + '.';
+      f.hidden = true; succ.hidden = false; succ.focus({ preventScroll: true });
+      if (hasGSAP && !reduced) G.from(succ.children, { y: 16, opacity: 0, stagger: .08, duration: .7, ease: 'power3.out' });
+      if (hasGSAP) ST.refresh();
+    });
+    $('#res-again').addEventListener('click', function () {
+      f.reset(); setN(2); date.value = defaultDate; fillTimes('19:00'); hint.textContent = '';
+      succ.hidden = true; f.hidden = false; $('#f-name').focus(); if (hasGSAP) ST.refresh();
+    });
+  }
+  function copyInit() {
+    var b = $('#copy-phone'); if (!b) return;
+    b.addEventListener('click', function () {
+      var lbl = $('.btn__label', b), num = $('#phone').textContent.trim();
+      var done = function (t) { lbl.textContent = t; setTimeout(function () { lbl.textContent = 'Nummer kopieren'; }, 2200); };
+      var fallback = function () { var r = document.createRange(); r.selectNodeContents($('#phone')); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); done('Markiert, bitte kopieren'); };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(num).then(function () { done('Kopiert'); }, fallback); else fallback();
+    });
+    var mb = $('#map-btn');
+    if (mb) mb.addEventListener('click', function () { $('#map-note').textContent = 'Im Musterdesign wird keine externe Karte geladen. Auf Ihrer Seite erscheint hier die Karte, sobald Gäste zustimmen.'; mb.hidden = true; });
+  }
+
+  /* ---------- Start ---------- */
+  buildMap(); buildPlan(); tiltInit(); formInit(); copyInit(); marquee(); magnetic(); lightsInit(); bokehInit();
+  $$('.steam').forEach(steamInit);
+  glassInit();
+  /* Nach dem Laden alle übrigen Fotos vorab holen, damit beim Scrollen nichts nachlädt */
+  window.addEventListener('load', function () { setTimeout(function () { $$('img[loading="lazy"]').forEach(function (i) { i.loading = 'eager'; }); }, 150); });
+
+  var fontsReady = document.fonts && document.fonts.ready ? Promise.race([document.fonts.ready, new Promise(function (r) { setTimeout(r, 1800); })]) : Promise.resolve();
+  fontsReady.then(function () {
+    placeInk(true); setupReveals(); mapAnim(); buildVine();
+    if (hasGSAP) ST.refresh();
+    requestAnimationFrame(function () { requestAnimationFrame(runIntro); });
+    var vw = window.innerWidth, rt;
+    window.addEventListener('resize', function () {
+      clearTimeout(rt); rt = setTimeout(function () { if (Math.abs(window.innerWidth - vw) > 30) { vw = window.innerWidth; buildVine(); if (hasGSAP) ST.refresh(); } }, 250);
+    });
+  });
+})();
+</script>
+
+</body></html>
