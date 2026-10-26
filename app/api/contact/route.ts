@@ -1,11 +1,14 @@
 import { NextResponse } from "next/server";
+import nodemailer from "nodemailer";
+
+export const runtime = "nodejs";
 
 /**
- * Kontaktformular-Versand über Resend (https://resend.com).
- * In Vercel unter Settings → Environment Variables setzen:
- *   RESEND_API_KEY   = re_xxx
- *   CONTACT_TO       = kontakt@pfalz-multiservice.de   (Empfänger)
- *   CONTACT_FROM     = Pfalz Multiservice <anfrage@ihre-domain.de>  (verifizierte Absender-Domain)
+ * Kontaktformular-Versand direkt über das eigene Strato-Postfach (SMTP), ohne Drittanbieter.
+ * In Vercel unter Settings → Environment Variables setzen (Production + Preview):
+ *   SMTP_USER   = kontakt@pfalz-multiservice.de
+ *   SMTP_PASS   = Passwort des Strato-Postfachs
+ *   optional: SMTP_HOST (Standard smtp.strato.de), SMTP_PORT (Standard 465), CONTACT_TO (Standard = SMTP_USER)
  * Ohne Konfiguration antwortet die Route mit { fallback: true } und das Formular öffnet das E-Mail-Programm.
  */
 export async function POST(req: Request) {
@@ -13,36 +16,50 @@ export async function POST(req: Request) {
   try { data = await req.json(); } catch { return NextResponse.json({ error: "Ungültige Anfrage" }, { status: 400 }); }
 
   if (data.website) return NextResponse.json({ ok: true }); // Honeypot: Bots still ignorieren
-  const name = (data.name || "").trim().slice(0, 200);
-  const email = (data.email || "").trim().slice(0, 200);
-  const message = (data.message || "").trim().slice(0, 5000);
-  if (!name || !/.+@.+\..+/.test(email) || !message) {
+  const clean = (s: unknown, max: number) => String(s ?? "").replace(/[\r\n]+/g, " ").trim().slice(0, max);
+  const name = clean(data.name, 200);
+  const email = clean(data.email, 200);
+  const company = clean(data.company, 200);
+  const phone = clean(data.phone, 100);
+  const service = clean(data.service, 120) || "Allgemeine Anfrage";
+  const message = String(data.message ?? "").trim().slice(0, 5000);
+  if (!name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || !message) {
     return NextResponse.json({ error: "Pflichtfelder fehlen" }, { status: 422 });
   }
 
-  const key = process.env.RESEND_API_KEY;
-  if (!key) return NextResponse.json({ fallback: true }, { status: 503 });
+  const user = process.env.SMTP_USER;
+  const pass = process.env.SMTP_PASS;
+  if (!user || !pass) return NextResponse.json({ fallback: true }, { status: 503 });
+
+  const port = Number(process.env.SMTP_PORT || 465);
+  const transporter = nodemailer.createTransport({
+    host: process.env.SMTP_HOST || "smtp.strato.de",
+    port,
+    secure: port === 465,
+    auth: { user, pass },
+  });
 
   const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]!));
-  const rows = [
-    ["Name", name], ["Unternehmen", data.company || "–"], ["E-Mail", email], ["Telefon", data.phone || "–"],
-    ["Leistungsbereich", data.service || "Allgemeine Anfrage"],
+  const rows: [string, string][] = [
+    ["Name", name], ["Unternehmen", company || "–"], ["E-Mail", email], ["Telefon", phone || "–"], ["Leistungsbereich", service],
   ];
-  const html = `<h2>Neue Anfrage über pfalz-multiservice</h2><table>${rows
-    .map(([k, v]) => `<tr><td style="padding:4px 12px 4px 0"><b>${k}</b></td><td>${esc(String(v))}</td></tr>`).join("")}</table>
-    <p style="white-space:pre-wrap">${esc(message)}</p>`;
+  const html = `<h2 style="font-family:sans-serif">Neue Anfrage über pfalz-multiservice.de</h2><table style="font-family:sans-serif">${rows
+    .map(([k, v]) => `<tr><td style="padding:4px 12px 4px 0"><b>${k}</b></td><td>${esc(v)}</td></tr>`).join("")}</table>
+    <p style="font-family:sans-serif;white-space:pre-wrap">${esc(message)}</p>`;
+  const text = `${rows.map(([k, v]) => `${k}: ${v}`).join("\n")}\n\n${message}`;
 
-  const res = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
-    body: JSON.stringify({
-      from: process.env.CONTACT_FROM || "Pfalz Multiservice <onboarding@resend.dev>",
-      to: [process.env.CONTACT_TO || "kontakt@pfalz-multiservice.de"],
-      reply_to: email,
-      subject: `Anfrage: ${data.service || "Allgemeine Anfrage"} – ${name}`,
+  try {
+    await transporter.sendMail({
+      from: `"Pfalz Multiservice – Kontaktformular" <${user}>`,
+      to: process.env.CONTACT_TO || user,
+      replyTo: { name, address: email },
+      subject: `Anfrage: ${service} – ${name}`,
+      text,
       html,
-    }),
-  });
-  if (!res.ok) return NextResponse.json({ error: "Versand fehlgeschlagen" }, { status: 502 });
+    });
+  } catch (err) {
+    console.error("[contact] Versand fehlgeschlagen:", err instanceof Error ? err.message : err);
+    return NextResponse.json({ error: "Versand fehlgeschlagen" }, { status: 502 });
+  }
   return NextResponse.json({ ok: true });
 }
