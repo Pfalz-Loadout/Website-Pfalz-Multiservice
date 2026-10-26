@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CLASSIC_EXAMPLES, CONTACT, EXAMPLES, WEB_EXTRAS, WEB_FAQ, WEB_PACKAGES, WEB_PROBLEMS } from "@/lib/data";
+import { CLASSIC_EXAMPLES, CONTACT, EXAMPLES, WEB_ADDONS, WEB_FAQ, WEB_INCLUDED, WEB_PACKAGES, WEB_PROBLEMS } from "@/lib/data";
 import { SectionHeading } from "../SectionHeading";
 import { Button } from "../Button";
 import { Icon } from "../Icon";
@@ -90,27 +90,53 @@ export function WebPackages() {
     <section className="section" id="pakete">
       <div className="container">
         <SectionHeading align="center" eyebrow="Pakete & Preise" title="Was kostet" highlight="eine Website?"
-          intro="Sie zahlen nur für das, was Sie wirklich brauchen. Vorher besprechen wir gemeinsam den Umfang und nennen Ihnen einen Festpreis." style={{ marginBottom: 56 }} />
+          intro="Klare Festpreise, damit Sie von Anfang an wissen, woran Sie sind. Von der kompakten Visitenkarte bis zum Online-Shop." style={{ marginBottom: 56 }} />
         <div className="pk-grid pm-reveal" data-reveal="stagger">
           {WEB_PACKAGES.map((p) => (
-            <div key={p.name} className={`pk ${p.highlight ? "pk--hi" : ""}`}>
-              {p.highlight && <span className="pk__badge">Festpreis</span>}
+            <div key={p.name} className={`pk ${p.badge ? "pk--hi" : ""}`}>
+              {p.badge && <span className="pk__badge">{p.badge}</span>}
               <h3 className="pk__name">{p.name}</h3>
-              <p className={`pk__price ${p.price.startsWith("ab") ? "" : "pk__price--req"}`}>{p.price}{p.unit && <span className="pk__unit"> {p.unit}</span>}</p>
+              <p className={`pk__price ${/\d/.test(p.price) ? "" : "pk__price--req"}`}>{p.price}{p.unit && <span className="pk__unit"> {p.unit}</span>}</p>
               <p className="pk__note">{p.note}</p>
               <ul className="pk__list">
-                {p.items.map((it) => <li key={it}><Icon name="check" size={16} />{it}</li>)}
+                {p.items.map((it) => (
+                  <li key={it}><Icon name="check" size={16} />
+                    {it === "Alle Inklusivleistungen" ? <a href="#inklusive" className="pk__link">Alle Inklusivleistungen</a> : it}
+                  </li>
+                ))}
               </ul>
             </div>
           ))}
         </div>
+
+        <div className="pk-boxes">
+          <div className="pk-box pk-box--incl pm-reveal" data-reveal="up" id="inklusive">
+            <span className="pk-box__eyebrow">In allen Paketen inklusive</span>
+            <h3 className="pk-box__title">Ohne Aufpreis</h3>
+            <p className="pk-box__intro">Damit Ihre Website von Anfang an gefunden wird und Anfragen bringt.</p>
+            <ul className="pk-box__list">
+              {WEB_INCLUDED.map((x) => <li key={x}><Icon name="check" size={16} />{x}</li>)}
+            </ul>
+          </div>
+          <div className="pk-box pm-reveal" data-reveal="up" id="zusatzleistungen">
+            <span className="pk-box__eyebrow">Zusatzleistungen</span>
+            <h3 className="pk-box__title">Optional zu jedem Paket</h3>
+            <p className="pk-box__intro">Für einen Auftritt, der heraussticht.</p>
+            <ul className="addons">
+              {WEB_ADDONS.map((a) => (
+                <li key={a.title} className="addon">
+                  <span className="addon__icon"><Icon name={a.icon} size={20} /></span>
+                  <span><b className="addon__title">{a.title}</b><span className="addon__text">{a.text}</span></span>
+                </li>
+              ))}
+            </ul>
+            <p className="pk-box__foot">Die Preise für Zusatzleistungen nennen wir Ihnen in Ihrem Angebot.</p>
+          </div>
+        </div>
+
         <div className="pk-free pm-reveal" data-reveal="up">
           <Icon name="file-check" size={26} />
-          <p><strong>Kein Abo, kein Zwang.</strong> Keine versteckten Kosten, keine Vertragsbindung. Die Website gehört Ihnen.</p>
-        </div>
-        <div className="pk-extras pm-reveal" data-reveal="pop">
-          <span className="pk-extras__label">Auf Wunsch erweiterbar</span>
-          {WEB_EXTRAS.map((x) => <span key={x} className="chip">{x}</span>)}
+          <p><strong>Kein Abo, kein Zwang.</strong> Einmaliger Festpreis, keine versteckten Kosten, die Website gehört Ihnen. Hosting und Domain buchen Sie direkt beim Anbieter Ihrer Wahl, gern helfen wir bei der Auswahl.</p>
         </div>
         <div className="cta__btns pm-reveal" data-reveal="stagger" style={{ marginTop: 48 }}>
           <Button variant="accent" size="lg" icon="arrow-right" href="/kontakt?leistung=web">Kostenloses Angebot anfordern</Button>

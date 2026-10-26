@@ -13,7 +13,8 @@ export type IconName =
   | "shopping-cart" | "recycle" | "warehouse" | "truck" | "monitor-cog" | "wrench"
   | "lightbulb" | "layers" | "file-check" | "map-pin" | "message-circle" | "phone"
   | "mail" | "check" | "arrow-right" | "chevron-down" | "chevron-right"
-  | "circle-arrow-right" | "star" | "menu" | "x" | "arrow-up" | "external-link" | "layout-template";
+  | "circle-arrow-right" | "star" | "menu" | "x" | "arrow-up" | "external-link" | "layout-template"
+  | "clapperboard" | "camera" | "pen-tool" | "languages";
 
 export type Service = {
   id: string;
@@ -214,27 +215,47 @@ export const WEB_PROBLEMS: [string, string][] = [
   ["Keine Zeit", "Texte, Bilder, Technik, Updates: Neben dem Tagesgeschäft bleibt die Website liegen."],
 ];
 
-export type WebPackage = { name: string; price: string; unit?: string; note: string; items: string[]; highlight?: boolean };
+export type WebPackage = { name: string; price: string; unit?: string; note: string; items: string[]; badge?: string };
+/** Inhalte 1:1 aus der Preisliste (Preisliste_Pfalz-Multiservice.pdf) */
 export const WEB_PACKAGES: WebPackage[] = [
   {
-    name: "Start", price: "ab 99 €", note: "Ideal für Gründer, Selbstständige und Vereine", highlight: true,
-    items: ["One-Page-Website im individuellen Design", "Optimiert für Smartphone, Tablet und PC", "Impressum & Datenschutzerklärung eingebunden", "SSL-Verschlüsselung", "Anmeldung bei Google", "Schnelle Ladezeiten & SEO-Grundlagen"],
+    name: "Start", price: "99 €", unit: "einmalig", note: "OnePager · bis 5 Abschnitte",
+    items: ["Alle Inhalte übersichtlich auf einer Seite", "Ideal für Gründer, Selbstständige und Vereine", "Alle Inklusivleistungen"],
   },
   {
-    name: "Business", price: "ab 149 €", note: "Für Handwerk, Gastronomie und Dienstleister",
-    items: ["Mehrere Seiten mit Menü", "Kontaktformular, Google Maps & WhatsApp-Button", "Ausrichtung auf Ihre Region und Leistungen", "Alles aus dem Start-Paket"],
+    name: "Business", price: "149 €", unit: "einmalig", note: "Mehrseitige Website · bis 8 Seiten", badge: "Beliebt",
+    items: ["Mehrere Seiten mit Menü", "Ideal für Handwerk, Gastronomie und Dienstleister", "Alle Inklusivleistungen"],
   },
   {
-    name: "Shop & Premium", price: "auf Anfrage", note: "Für Händler und größere Angebote",
-    items: ["Online-Shop oder umfangreiche Website", "Warenkorb, Zahlung, Versand oder Terminbuchung", "Aufwendiges Design mit Animationen", "Alles aus dem Business-Paket"],
+    name: "Shop / Premium", price: "individuell", unit: "nach Angebot", note: "Bis 20 Seiten, Online-Shop oder Sonderprojekt",
+    items: ["Online-Shop oder umfangreiche Website", "Ideal für Händler und größere Angebote", "Alle Inklusivleistungen"],
   },
   {
-    name: "Wartung & Betreuung", price: "ab 19 €", unit: "/ Monat", note: "Monatlich kündbar, auch für bestehende Websites",
-    items: ["Hosting, Updates und Backups", "Kleine Änderungen an Texten, Bildern, Öffnungszeiten", "Überwachung der Erreichbarkeit", "Egal, wer die Seite gebaut hat"],
+    name: "Wartung", price: "ab 19 €", unit: "/ Monat", note: "Monatlich kündbar · Sie melden Änderungen, wir setzen sie um",
+    items: [
+      "Wartung 19 €: bis 1 Std. Änderungen pro Monat",
+      "Wartung Pro 29 €: bis 2 Std. Änderungen pro Monat, neue KI-Fotos & 3D-Motion-Clips nach Bedarf, Pflege Ihres Google-Profils",
+      "Domain und E-Mail-Adressen einrichten",
+      "Änderungen ohne Paket: 29 € einmalig pro Stunde",
+    ],
   },
 ];
 
-export const WEB_EXTRAS = ["Bildergalerie", "Kundenbewertungen", "Terminbuchung", "Mehrsprachigkeit", "Weitere Unterseiten", "Domain & E-Mail-Adresse", "Google-Unternehmensprofil"];
+/** In allen Paketen inklusive – ohne Aufpreis */
+export const WEB_INCLUDED = [
+  "Design für Smartphone und Desktop", "Kontaktformular", "WhatsApp-Button", "Google-Maps-Karte", "Social-Media-Links",
+  "Texte erstellen oder alte Inhalte übernehmen", "Stockfotos, Auswahl und Einbau", "SEO: Suchbegriffe, Meta-Texte, FAQ",
+  "Vorbereitet für Google- und KI-Suche", "Google-Unternehmensprofil einrichten und optimieren", "Online-Terminbuchung",
+  "Google-Bewertungen einbinden", "Vorher-Nachher-Galerie",
+];
+
+/** Zusatzleistungen – optional zu jedem Paket (Preise bewusst nicht auf der Website) */
+export const WEB_ADDONS: { icon: IconName; title: string; text: string }[] = [
+  { icon: "clapperboard", title: "3D Motion & Cinematic Video", text: "Animierte Website mit KI-Videoclips in Kino-Optik: Kamerafahrten wie Dolly-Zoom, 360°-Orbit oder FPV-Drohnenflug, für OnePager oder mehrere Seiten." },
+  { icon: "camera", title: "KI-Fotografie in Studioqualität", text: "Fotorealistische Produkt- und Szenen-Shots mit Relight und Upscale für gestochen scharfe Darstellung, so viele, wie Ihre Website benötigt." },
+  { icon: "pen-tool", title: "Logo-Design", text: "Ein eigenes Logo für Ihren Auftritt." },
+  { icon: "languages", title: "Mehrsprachigkeit", text: "Ihre Website zusätzlich in einer anderen Sprache." },
+];
 
 export const WEB_STEPS: [string, string, string][] = [
   ["01", "Anfrage", "Sie schildern kurz Ihr Vorhaben, per Formular, Telefon oder WhatsApp. Kostenlos."],
@@ -245,11 +266,12 @@ export const WEB_STEPS: [string, string, string][] = [
 ];
 
 export const WEB_FAQ: [string, string][] = [
-  ["Was kostet eine Website?", "Eine One-Page-Website gibt es ab 99 €, eine Website mit mehreren Seiten ab 149 €, jeweils zum Festpreis. Für Online-Shops und umfangreiche Projekte erhalten Sie nach einem kurzen Gespräch ein verbindliches Festpreis-Angebot. Versteckte Kosten gibt es nicht."],
-  ["Gibt es ein Abo oder eine Vertragsbindung?", "Nein. Kein Abo, kein Zwang. Die Website gehört Ihnen. Wartung und Betreuung können Sie auf Wunsch ab 19 € im Monat dazubuchen, monatlich kündbar, müssen es aber nicht."],
+  ["Was kostet eine Website?", "Start (OnePager, bis 5 Abschnitte) kostet 99 €, Business (mehrseitige Website, bis 8 Seiten) 149 €, jeweils als einmaliger Festpreis. Online-Shops und Sonderprojekte bis 20 Seiten bieten wir individuell nach Angebot an. Versteckte Kosten gibt es nicht."],
+  ["Was ist im Preis enthalten?", "In allen Paketen ohne Aufpreis: Design für Smartphone und Desktop, Kontaktformular, WhatsApp-Button, Google-Maps-Karte, Social-Media-Links, Texte erstellen oder übernehmen, Stockfotos, SEO-Grundlagen, Vorbereitung für Google- und KI-Suche, Google-Unternehmensprofil, Online-Terminbuchung, Google-Bewertungen und Vorher-Nachher-Galerie."],
+  ["Gibt es ein Abo oder eine Vertragsbindung?", "Nein. Kein Abo, kein Zwang. Die Website kostet einmalig und gehört Ihnen. Wartung können Sie auf Wunsch ab 19 € im Monat dazubuchen, monatlich kündbar, müssen es aber nicht."],
   ["Wie lange dauert es, bis meine Website online ist?", "Das hängt vom Umfang ab. Den Zeitplan legen wir vorab gemeinsam fest, damit Sie vor dem Start wissen, wann Ihre Seite online geht."],
-  ["Was brauchen Sie von mir?", "Ihr Logo, ein paar Fotos und Stichpunkte zu Ihren Leistungen reichen für den Anfang. Alles Weitere besprechen wir im Gespräch."],
-  ["Kümmern Sie sich auch nach dem Livegang um die Website?", "Ja, wenn Sie möchten. Hosting, Updates, Backups und kleine Änderungen übernehmen wir im Rahmen von Wartung & Betreuung, ab 19 € im Monat und monatlich kündbar."],
-  ["Ich habe schon eine Website. Können Sie die übernehmen?", "Ja. Wir betreuen auch bestehende Websites, egal wer sie gebaut hat. Schicken Sie uns zuerst den Link für den kostenlosen Website-Check."],
+  ["Was brauchen Sie von mir?", "Ihr Logo, ein paar Fotos und Stichpunkte zu Ihren Leistungen reichen für den Anfang. Texte erstellen wir auf Wunsch, Stockfotos sind inklusive. Alles Weitere besprechen wir im Gespräch."],
+  ["Kümmern Sie sich auch nach dem Livegang um die Website?", "Ja, wenn Sie möchten. Mit Wartung (19 € im Monat, bis 1 Std. Änderungen) oder Wartung Pro (29 € im Monat, bis 2 Std. Änderungen) setzen wir Ihre Änderungen um. Einzelne Änderungen ohne Paket kosten 29 € pro Stunde. Hosting und Domain buchen Sie direkt beim Anbieter Ihrer Wahl, gern helfen wir bei der Auswahl."],
+  ["Ich habe schon eine Website. Können Sie die übernehmen?", "Ja. Wir überarbeiten auch bestehende Websites und übernehmen alte Inhalte. Schicken Sie uns zuerst den Link für den kostenlosen Website-Check."],
   ["Sind die Beispiele echte Kunden?", "Nein. Die Beispiele sind Musterdesigns für erfundene Betriebe. Sie zeigen, was möglich ist. Ihre Website gestalten wir individuell für Ihren Betrieb."],
 ];
