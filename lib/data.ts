@@ -190,6 +190,7 @@ export const CLASSIC_EXAMPLES: ClassicExample[] = [
     text: "Seriöser Auftritt für ein Beratungsbüro: Leistungen mit Schnell-Check, Projekte mit Vorher-Nachher-Grundriss, klarer Ablauf und Team.",
     tags: ["6 Seiten", "Schnell-Check", "Projektgalerie"],
     pages: [
+      { key: "start", label: "Start", path: "" },
       { key: "leistungen", label: "Leistungen", path: "/leistungen" },
       { key: "projekte", label: "Projekte", path: "/projekte" },
       { key: "ablauf", label: "Ablauf", path: "/ablauf" },
