@@ -9,6 +9,7 @@ import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { SmoothScroll } from "@/components/motion/SmoothScroll";
+import { CopyGuard } from "@/components/CopyGuard";
 import { ScrollProgress } from "@/components/motion/ScrollProgress";
 import { Cursor } from "@/components/motion/Cursor";
 import { SITE, SITE_NAME, TITLE, DESC, OG_IMAGE } from "@/lib/site";
@@ -75,6 +76,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         <SmoothScroll />
+        <CopyGuard />
         <ScrollProgress />
         <Header />
         <main id="main">{children}</main>
