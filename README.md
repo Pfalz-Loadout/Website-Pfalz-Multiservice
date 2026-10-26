@@ -34,7 +34,7 @@ Logo: `public/logo-white.png` (weiß, transparent – aus dem Original-Logo erze
 Ohne Konfiguration öffnet das Formular das E-Mail-Programm des Besuchers mit vorausgefüllter Nachricht.
 Für echten Versand in Vercel unter Settings → Environment Variables eintragen (Konto bei resend.com, kostenlos bis 3.000 Mails/Monat):
 - `RESEND_API_KEY`
-- `CONTACT_TO` = kontakt@pfalz-loadout.de
+- `CONTACT_TO` = kontakt@pfalz-multiservice.de
 - `CONTACT_FROM` = z. B. `Pfalz Multiservice <anfrage@ihre-domain.de>` (Domain bei Resend verifizieren)
 - optional `NEXT_PUBLIC_SITE_URL` = endgültige Adresse (für Sitemap/Metadaten)
 

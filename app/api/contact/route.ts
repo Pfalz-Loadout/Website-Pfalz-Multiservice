@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
  * Kontaktformular-Versand über Resend (https://resend.com).
  * In Vercel unter Settings → Environment Variables setzen:
  *   RESEND_API_KEY   = re_xxx
- *   CONTACT_TO       = kontakt@pfalz-loadout.de   (Empfänger)
+ *   CONTACT_TO       = kontakt@pfalz-multiservice.de   (Empfänger)
  *   CONTACT_FROM     = Pfalz Multiservice <anfrage@ihre-domain.de>  (verifizierte Absender-Domain)
  * Ohne Konfiguration antwortet die Route mit { fallback: true } und das Formular öffnet das E-Mail-Programm.
  */
@@ -37,7 +37,7 @@ export async function POST(req: Request) {
     headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
     body: JSON.stringify({
       from: process.env.CONTACT_FROM || "Pfalz Multiservice <onboarding@resend.dev>",
-      to: [process.env.CONTACT_TO || "kontakt@pfalz-loadout.de"],
+      to: [process.env.CONTACT_TO || "kontakt@pfalz-multiservice.de"],
       reply_to: email,
       subject: `Anfrage: ${data.service || "Allgemeine Anfrage"} – ${name}`,
       html,

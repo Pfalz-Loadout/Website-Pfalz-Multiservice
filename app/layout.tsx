@@ -12,7 +12,7 @@ import { SmoothScroll } from "@/components/motion/SmoothScroll";
 import { ScrollProgress } from "@/components/motion/ScrollProgress";
 import { Cursor } from "@/components/motion/Cursor";
 import { SITE, SITE_NAME, TITLE, DESC, OG_IMAGE } from "@/lib/site";
-import { AREA, CONTACT, SERVICES } from "@/lib/data";
+import { AREA, CONTACT, SERVICES, serviceHref } from "@/lib/data";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
@@ -54,7 +54,7 @@ const jsonLd = {
         name: "Leistungen",
         itemListElement: SERVICES.map((s) => ({
           "@type": "Offer",
-          itemOffered: { "@type": "Service", name: s.title, description: s.short, url: `${SITE}/leistungen/${s.id}` },
+          itemOffered: { "@type": "Service", name: s.title, description: s.short, url: `${SITE}${serviceHref(s)}` },
         })),
       },
     },

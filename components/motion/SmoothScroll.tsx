@@ -1,9 +1,9 @@
 "use client";
 import Lenis from "lenis";
 import { usePathname } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
-import { setLenis, scrollToHash } from "@/lib/lenis";
+import { getLenis, setLenis, scrollToHash } from "@/lib/lenis";
 
 /** Lenis-Smooth-Scroll, synchron mit GSAP ScrollTrigger */
 export function SmoothScroll() {
@@ -19,6 +19,26 @@ export function SmoothScroll() {
     gsap.ticker.lagSmoothing(0);
     return () => { gsap.ticker.remove(tick); lenis.destroy(); setLenis(null); };
   }, []);
+
+  // Zurück/Vor im Browser merken: dort soll die alte Scroll-Position erhalten bleiben
+  const popNav = useRef(false);
+  const firstPath = useRef(true);
+  useEffect(() => {
+    const onPop = () => { popNav.current = true; };
+    window.addEventListener("popstate", onPop);
+    return () => window.removeEventListener("popstate", onPop);
+  }, []);
+
+  // Neue Seite beginnt immer ganz oben. Wichtig, falls beim Klick noch das weiche
+  // Nachrollen von Lenis läuft – sonst rollt Lenis auf der neuen Seite einfach weiter.
+  useLayoutEffect(() => {
+    if (firstPath.current) { firstPath.current = false; return; }
+    if (popNav.current) { popNav.current = false; return; }
+    if (window.location.hash) return;
+    const lenis = getLenis();
+    if (lenis) lenis.scrollTo(0, { immediate: true, force: true });
+    else window.scrollTo(0, 0);
+  }, [pathname]);
 
   // Nach jedem Seitenwechsel: Höhe neu messen, ggf. zum Anker springen
   useEffect(() => {

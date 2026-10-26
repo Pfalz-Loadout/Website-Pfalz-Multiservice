@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { AREA, CTA, CONTACT, IMG, SERVICES, USPS, homeServiceOrder } from "@/lib/data";
+import { AREA, CTA, CONTACT, IMG, SERVICES, USPS, homeServiceOrder, serviceHref } from "@/lib/data";
 import { bg } from "@/lib/bg";
 import { SectionHeading } from "../SectionHeading";
 import { ServiceCard } from "../ServiceCard";
@@ -7,7 +7,6 @@ import { CheckList } from "../CheckList";
 import { Button } from "../Button";
 import { Eyebrow } from "../Eyebrow";
 import { Icon } from "../Icon";
-import { ShowcaseList } from "../Showcase";
 
 export function TrustStrip() {
   const ic = ["layers", "file-check", "map-pin"] as const;
@@ -40,11 +39,11 @@ export function Services() {
         <div className="pm-reveal" data-reveal="cards">
           <div className="grid-3">
             {homeServiceOrder().map((s) => (
-              <ServiceCard key={s.id} href={`/leistungen/${s.id}`} image={s.image} title={s.title} text={s.short} linkLabel="Details" />
+              <ServiceCard key={s.id} href={serviceHref(s)} image={s.image} title={s.title} text={s.short} linkLabel="Details" />
             ))}
           </div>
           {side.map((s) => (
-            <Link key={s.id} href={`/leistungen/${s.id}`} className="side-card pm-card" data-cursor>
+            <Link key={s.id} href={serviceHref(s)} className="side-card pm-card" data-cursor>
               <div className="side-card__media">
                 <div className="card__parallax"><div className="card__img pm-img" style={bg(s.image)} /></div>
               </div>
@@ -136,31 +135,6 @@ export function CtaBand({ image, intro }: { image?: string; intro?: React.ReactN
         <div className="cta__btns pm-reveal" data-reveal="stagger">
           <Button variant="accent" size="lg" icon="arrow-right" href="/kontakt">Unverbindlich anfragen</Button>
           <Button variant="outline-light" size="lg" iconLeft="phone" href={CONTACT.phoneHref}>{CONTACT.phone}</Button>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-export function Examples({ heading = true, alt = false }: { heading?: boolean; alt?: boolean }) {
-  return (
-    <section className={`section ${alt ? "section--alt" : ""}`} id="beispiele">
-      <div className="container">
-        {heading && (
-          <SectionHeading
-            eyebrow="Webdesign · Musterdesigns" title="Websites, die" highlight="wirken"
-            intro="Vier One-Pager für fiktive Betriebe aus der Region: individuell gestaltet, mit Animationen und für jedes Gerät optimiert. Öffnen Sie die Beispiele live und scrollen Sie selbst."
-          />
-        )}
-        <ShowcaseList />
-        <div className="showcase-foot">
-          <SectionHeading align="center" title="Ihre Website," highlight="als Nächstes?" size="h2" maxWidth={720}
-            intro="Websites ab 99 €, Betreuung und Wartung auf Anfrage. Schildern Sie kurz Ihr Vorhaben, wir melden uns mit einem Vorschlag." />
-          <div className="cta__btns pm-reveal" data-reveal="stagger">
-            <Button variant="accent" size="lg" icon="arrow-right" href="/kontakt?leistung=web">Website anfragen</Button>
-            <Button variant="outline" size="lg" iconLeft="message-circle" href={CONTACT.whatsapp}>WhatsApp</Button>
-          </div>
-          <p className="showcase-note">Alle gezeigten Betriebe, Personen und Angebote sind frei erfunden. Die Seiten sind Musterdesigns von Pfalz Multiservice.</p>
         </div>
       </div>
     </section>

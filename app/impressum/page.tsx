@@ -20,7 +20,7 @@ export default function ImpressumPage() {
             </div>
             <div>
               <h2>Kontakt:</h2>
-              <p>Telefon: <a href="tel:+491605086983">+49 160 5086983</a><br />E-Mail: <a href="mailto:kontakt@pfalz-loadout.de">kontakt@pfalz-loadout.de</a></p>
+              <p>Telefon: <a href="tel:+491605086983">+49 160 5086983</a><br />E-Mail: <a href="mailto:kontakt@pfalz-multiservice.de">kontakt@pfalz-multiservice.de</a></p>
             </div>
             <div>
               <h2>Umsatzsteuer-ID:</h2>

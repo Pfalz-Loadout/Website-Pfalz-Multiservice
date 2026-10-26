@@ -4,7 +4,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { gsap, ScrollTrigger, useGSAP, MOTION_OK, introDelay } from "@/lib/gsap";
 import { getLenis, scrollToHash } from "@/lib/lenis";
-import { SERVICES } from "@/lib/data";
+import { SERVICES, serviceHref } from "@/lib/data";
 import { Icon } from "./Icon";
 import { Logo } from "./Logo";
 
@@ -19,7 +19,7 @@ export function Header() {
   const mobTl = useRef<gsap.core.Timeline | null>(null);
 
   const active =
-    pathname.startsWith("/leistungen") ? "leistungen" : pathname.startsWith("/beispiele") ? "beispiele" : pathname.startsWith("/kontakt") ? "kontakt" : null;
+    pathname.startsWith("/leistungen") ? "leistungen" : pathname.startsWith("/webdesign") ? "webdesign" : pathname.startsWith("/kontakt") ? "kontakt" : null;
 
   // Einblenden, Hide-on-scroll, Hintergrund
   useGSAP(() => {
@@ -120,7 +120,7 @@ export function Header() {
               </button>
               <div className="dropdown" role="menu">
                 {SERVICES.map((s) => (
-                  <Link key={s.id} href={`/leistungen/${s.id}`} className="dropdown__link" role="menuitem" data-cursor
+                  <Link key={s.id} href={serviceHref(s)} className="dropdown__link" role="menuitem" data-cursor
                     onClick={() => setDdOpen(false)}>
                     <Icon name={s.icon} size={18} />
                     {s.title}
@@ -132,7 +132,7 @@ export function Header() {
               <Link href="/#ueber" className="nav__link" onClick={goUeber} data-cursor>Über uns</Link>
             </div>
             <div className="nav__item">
-              <Link href="/beispiele" className={`nav__link ${active === "beispiele" ? "nav__link--active" : ""}`} data-cursor>Beispiele</Link>
+              <Link href="/webdesign" className={`nav__link ${active === "webdesign" ? "nav__link--active" : ""}`} data-cursor>Webdesign</Link>
             </div>
             <div className="nav__item">
               <Link href="/kontakt" className={`nav__link ${active === "kontakt" ? "nav__link--active" : ""}`} data-cursor>Kontakt</Link>
@@ -149,12 +149,12 @@ export function Header() {
       <div className="mobile-nav" aria-hidden={!mobile}>
         <Link href="/#leistungen" className="mobile-nav__link" onClick={(e) => { if (pathname === "/") { e.preventDefault(); setMobile(false); scrollToHash("#leistungen"); } }}>Leistungen</Link>
         {SERVICES.map((s) => (
-          <Link key={s.id} href={`/leistungen/${s.id}`} className="mobile-nav__link mobile-nav__link--sub">
+          <Link key={s.id} href={serviceHref(s)} className="mobile-nav__link mobile-nav__link--sub">
             <Icon name={s.icon} size={18} /> {s.title}
           </Link>
         ))}
         <Link href="/#ueber" className="mobile-nav__link" onClick={goUeber}>Über uns</Link>
-        <Link href="/beispiele" className="mobile-nav__link">Beispiele</Link>
+        <Link href="/webdesign" className="mobile-nav__link">Webdesign</Link>
         <Link href="/kontakt" className="mobile-nav__link">Kontakt</Link>
       </div>
     </>
