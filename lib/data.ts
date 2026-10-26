@@ -23,6 +23,8 @@ export type Service = {
   text: string;
   image: string;
   side?: boolean;
+  /** eigene Zielseite statt /leistungen/<id> */
+  href?: string;
 };
 
 export const SERVICES: Service[] = [
@@ -60,6 +62,7 @@ export const SERVICES: Service[] = [
   },
   {
     id: "web",
+    href: "/webdesign",
     icon: "monitor-cog",
     title: "Web Maintenance & Management",
     short: "Stabile Systeme, aktuelle Inhalte",
@@ -84,6 +87,9 @@ export const SERVICES: Service[] = [
     image: IMG + "smarthome-knx.png",
   },
 ];
+
+/** Link einer Leistung: eigene Seite (z. B. /webdesign) oder /leistungen/<id> */
+export const serviceHref = (s: Service) => s.href ?? `/leistungen/${s.id}`;
 
 /** Reihenfolge der Kacheln auf der Startseite (wie im Kit: E-Commerce↔Reselling und Clearance↔Web getauscht) */
 export function homeServiceOrder(): Service[] {

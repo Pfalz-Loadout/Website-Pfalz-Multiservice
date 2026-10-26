@@ -4,7 +4,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { gsap, ScrollTrigger, useGSAP, MOTION_OK, introDelay } from "@/lib/gsap";
 import { getLenis, scrollToHash } from "@/lib/lenis";
-import { SERVICES } from "@/lib/data";
+import { SERVICES, serviceHref } from "@/lib/data";
 import { Icon } from "./Icon";
 import { Logo } from "./Logo";
 
@@ -120,7 +120,7 @@ export function Header() {
               </button>
               <div className="dropdown" role="menu">
                 {SERVICES.map((s) => (
-                  <Link key={s.id} href={`/leistungen/${s.id}`} className="dropdown__link" role="menuitem" data-cursor
+                  <Link key={s.id} href={serviceHref(s)} className="dropdown__link" role="menuitem" data-cursor
                     onClick={() => setDdOpen(false)}>
                     <Icon name={s.icon} size={18} />
                     {s.title}
@@ -149,7 +149,7 @@ export function Header() {
       <div className="mobile-nav" aria-hidden={!mobile}>
         <Link href="/#leistungen" className="mobile-nav__link" onClick={(e) => { if (pathname === "/") { e.preventDefault(); setMobile(false); scrollToHash("#leistungen"); } }}>Leistungen</Link>
         {SERVICES.map((s) => (
-          <Link key={s.id} href={`/leistungen/${s.id}`} className="mobile-nav__link mobile-nav__link--sub">
+          <Link key={s.id} href={serviceHref(s)} className="mobile-nav__link mobile-nav__link--sub">
             <Icon name={s.icon} size={18} /> {s.title}
           </Link>
         ))}

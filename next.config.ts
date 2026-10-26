@@ -14,7 +14,10 @@ const nextConfig: NextConfig = {
   },
 
   async redirects() {
-    return [{ source: "/beispiele", destination: "/webdesign#beispiele", permanent: true }];
+    return [
+      { source: "/beispiele", destination: "/webdesign#beispiele", permanent: true },
+      { source: "/leistungen/web", destination: "/webdesign", permanent: true },
+    ];
   },
 
   // Fiktive Betriebe sollen nicht als echte Firmen bei Google landen

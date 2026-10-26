@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { SERVICES, USPS } from "@/lib/data";
+import { SERVICES, USPS, serviceHref } from "@/lib/data";
 import { PageHero } from "@/components/PageHero";
 import { SectionHeading } from "@/components/SectionHeading";
 import { CheckList } from "@/components/CheckList";
 import { ServiceCard } from "@/components/ServiceCard";
 import { Button } from "@/components/Button";
 import { CtaBand } from "@/components/home/HomeSections";
-import { WebTeaser } from "@/components/web/WebSections";
 
 export function generateStaticParams() {
-  return SERVICES.map((s) => ({ id: s.id }));
+  return SERVICES.filter((s) => !s.href).map((s) => ({ id: s.id }));
 }
 export const dynamicParams = false;
 
@@ -58,13 +57,12 @@ export default async function ServicePage({ params }: { params: Promise<{ id: st
           </div>
         </div>
       </section>
-      {s.id === "web" && <WebTeaser />}
       <section className="section section--alt">
         <div className="container">
           <SectionHeading eyebrow="Kombinierbar" title="Weitere" highlight="Leistungen" style={{ marginBottom: 48 }} />
           <div className="grid-3 pm-reveal" data-reveal="cards" style={{ gap: 20 }}>
             {others.map((o) => (
-              <ServiceCard key={o.id} variant="overlay" href={`/leistungen/${o.id}`} image={o.image} title={o.title} text={o.short} />
+              <ServiceCard key={o.id} variant="overlay" href={serviceHref(o)} image={o.image} title={o.title} text={o.short} />
             ))}
           </div>
         </div>

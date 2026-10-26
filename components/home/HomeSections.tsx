@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { AREA, CTA, CONTACT, IMG, SERVICES, USPS, homeServiceOrder } from "@/lib/data";
+import { AREA, CTA, CONTACT, IMG, SERVICES, USPS, homeServiceOrder, serviceHref } from "@/lib/data";
 import { bg } from "@/lib/bg";
 import { SectionHeading } from "../SectionHeading";
 import { ServiceCard } from "../ServiceCard";
@@ -39,11 +39,11 @@ export function Services() {
         <div className="pm-reveal" data-reveal="cards">
           <div className="grid-3">
             {homeServiceOrder().map((s) => (
-              <ServiceCard key={s.id} href={`/leistungen/${s.id}`} image={s.image} title={s.title} text={s.short} linkLabel="Details" />
+              <ServiceCard key={s.id} href={serviceHref(s)} image={s.image} title={s.title} text={s.short} linkLabel="Details" />
             ))}
           </div>
           {side.map((s) => (
-            <Link key={s.id} href={`/leistungen/${s.id}`} className="side-card pm-card" data-cursor>
+            <Link key={s.id} href={serviceHref(s)} className="side-card pm-card" data-cursor>
               <div className="side-card__media">
                 <div className="card__parallax"><div className="card__img pm-img" style={bg(s.image)} /></div>
               </div>

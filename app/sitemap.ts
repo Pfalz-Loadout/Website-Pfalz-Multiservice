@@ -7,7 +7,7 @@ const BUILD = new Date();
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages: { path: string; priority: number }[] = [
     { path: "", priority: 1 },
-    ...SERVICES.map((s) => ({ path: `/leistungen/${s.id}`, priority: 0.8 })),
+    ...SERVICES.filter((s) => !s.href).map((s) => ({ path: `/leistungen/${s.id}`, priority: 0.8 })),
     { path: "/webdesign", priority: 0.9 },
     { path: "/kontakt", priority: 0.7 },
     { path: "/impressum", priority: 0.2 },
