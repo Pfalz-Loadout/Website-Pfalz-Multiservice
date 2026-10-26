@@ -31,12 +31,15 @@ Logo: `public/logo-white.png` (weiß, transparent – aus dem Original-Logo erze
 (Intro-Animation), Favicon `app/icon.png`.
 
 ## Kontaktformular
-Ohne Konfiguration öffnet das Formular das E-Mail-Programm des Besuchers mit vorausgefüllter Nachricht.
-Für echten Versand in Vercel unter Settings → Environment Variables eintragen (Konto bei resend.com, kostenlos bis 3.000 Mails/Monat):
-- `RESEND_API_KEY`
-- `CONTACT_TO` = kontakt@pfalz-multiservice.de
-- `CONTACT_FROM` = z. B. `Pfalz Multiservice <anfrage@ihre-domain.de>` (Domain bei Resend verifizieren)
+Versand direkt über das Strato-Postfach (SMTP), ohne Drittanbieter. In Vercel unter Settings → Environment Variables
+(Production und Preview) eintragen:
+- `SMTP_USER` = kontakt@pfalz-multiservice.de
+- `SMTP_PASS` = Passwort des Postfachs
+- optional `SMTP_HOST` (Standard smtp.strato.de), `SMTP_PORT` (Standard 465), `CONTACT_TO` (Standard = SMTP_USER)
 - optional `NEXT_PUBLIC_SITE_URL` = endgültige Adresse (für Sitemap/Metadaten)
+
+Ohne diese Einträge öffnet das Formular das E-Mail-Programm des Besuchers mit vorausgefüllter Nachricht.
+Nach dem Eintragen einmal neu deployen.
 
 ## Aufbau
 - `lib/data.ts` – alle Texte, Leistungen, Kontaktdaten

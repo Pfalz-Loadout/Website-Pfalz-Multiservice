@@ -6,7 +6,7 @@ import { CONTACT, SERVICES } from "@/lib/data";
 import { Button } from "./Button";
 import { Icon } from "./Icon";
 
-type State = "idle" | "sending" | "sent";
+type State = "idle" | "sending" | "sent" | "mailto";
 
 export function ContactForm({ initial }: { initial?: string }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -17,7 +17,7 @@ export function ContactForm({ initial }: { initial?: string }) {
 
   // Erfolgsmeldung einblenden
   useGSAP(() => {
-    if (state !== "sent") return;
+    if (state !== "sent" && state !== "mailto") return;
     const el = ref.current!.querySelector(".success");
     gsap.timeline()
       .from(el!.querySelector(".success__badge"), { scale: 0, rotate: -120, duration: 0.9, ease: "back.out(1.8)" })
@@ -51,7 +51,7 @@ export function ContactForm({ initial }: { initial?: string }) {
         // Kein Mail-Dienst konfiguriert: E-Mail-Programm mit vorausgefüllter Nachricht öffnen
         const body = `Name: ${data.name}\nUnternehmen: ${data.company || "-"}\nTelefon: ${data.phone || "-"}\nLeistungsbereich: ${data.service}\n\n${data.message}`;
         window.location.href = `mailto:${CONTACT.email}?subject=${encodeURIComponent("Anfrage: " + data.service)}&body=${encodeURIComponent(body)}`;
-        setState("sent");
+        setState("mailto");
         return;
       }
       throw new Error(j.error || "Senden fehlgeschlagen");
@@ -67,8 +67,18 @@ export function ContactForm({ initial }: { initial?: string }) {
         <div className="success" role="status">
           <span className="success__badge"><Icon name="check" size={28} /></span>
           <h3 className="success__title">Vielen <strong>Dank</strong></h3>
-          <p style={{ margin: 0, font: "var(--type-body)", color: "var(--text-muted)" }}>Wir melden uns zeitnah mit einem passenden Lösungsvorschlag.</p>
+          <p style={{ margin: 0, font: "var(--type-body)", color: "var(--text-muted)" }}>Ihre Anfrage ist bei uns eingegangen. Wir melden uns zeitnah mit einem passenden Lösungsvorschlag.</p>
           <Button variant="outline" href="/">Zur Startseite</Button>
+        </div>
+      ) : state === "mailto" ? (
+        <div className="success" role="status">
+          <span className="success__badge"><Icon name="mail" size={26} /></span>
+          <h3 className="success__title">Fast <strong>geschafft</strong></h3>
+          <p style={{ margin: 0, font: "var(--type-body)", color: "var(--text-muted)" }}>
+            Ihr E-Mail-Programm wurde mit Ihrer Anfrage geöffnet. Bitte senden Sie die Nachricht dort ab.
+            Falls sich nichts geöffnet hat, schreiben Sie uns an <a href={`mailto:${CONTACT.email}`} style={{ color: "var(--brand-accent)" }}>{CONTACT.email}</a> oder per WhatsApp.
+          </p>
+          <Button variant="outline" iconLeft="message-circle" href={CONTACT.whatsapp}>WhatsApp</Button>
         </div>
       ) : (
         <form className="form-grid" onSubmit={submit} noValidate>
