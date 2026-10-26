@@ -161,3 +161,88 @@ export const EXAMPLES: Example[] = [
     tags: ["3D-Energiefluss", "PV-Rechner", "Smart Home"],
   },
 ];
+
+/** Klassische Musterdesigns mit Menü – Unterseiten für den Seiten-Umschalter */
+export type ClassicExample = Example & {
+  pages: { key: string; label: string; path: string }[];
+};
+
+export const CLASSIC_EXAMPLES: ClassicExample[] = [
+  {
+    slug: "seifenmanufaktur",
+    name: "Honigstück",
+    branch: "Seifenmanufaktur · Online-Shop",
+    text: "Ruhiger, warmer Online-Shop: Produktfilter, Warenkorb, Geschenkideen und eine Karte, woher die Zutaten kommen.",
+    tags: ["6 Seiten", "Produktfilter", "Warenkorb"],
+    pages: [
+      { key: "start", label: "Start", path: "" },
+      { key: "shop", label: "Shop", path: "" },
+      { key: "geschenke", label: "Geschenke", path: "" },
+      { key: "zutaten", label: "Zutaten", path: "" },
+      { key: "manufaktur", label: "Manufaktur", path: "" },
+      { key: "kontakt", label: "Kontakt", path: "" },
+    ],
+  },
+  {
+    slug: "beratungsbuero",
+    name: "Umraum",
+    branch: "Beratungsbüro · Ludwigshafen",
+    text: "Seriöser Auftritt für ein Beratungsbüro: Leistungen mit Schnell-Check, Projekte mit Vorher-Nachher-Grundriss, klarer Ablauf und Team.",
+    tags: ["6 Seiten", "Schnell-Check", "Projektgalerie"],
+    pages: [
+      { key: "leistungen", label: "Leistungen", path: "/leistungen" },
+      { key: "projekte", label: "Projekte", path: "/projekte" },
+      { key: "ablauf", label: "Ablauf", path: "/ablauf" },
+      { key: "ueber-uns", label: "Über uns", path: "/ueber-uns" },
+      { key: "kontakt", label: "Kontakt", path: "/kontakt" },
+    ],
+  },
+];
+
+/** Webdesign-Seite: Pakete, Ablauf, FAQ */
+export const WEB_PROBLEMS: [string, string][] = [
+  ["Veraltete Website", "Die Seite ist in die Jahre gekommen, lädt langsam und ist auf dem Smartphone kaum zu bedienen."],
+  ["Kaum Anfragen", "Besucher finden nicht schnell genug, was Sie anbieten und wie man Sie erreicht."],
+  ["Baukasten-Look", "Eine Vorlage von der Stange: Ihr Betrieb sieht aus wie tausend andere."],
+  ["Keine Zeit", "Texte, Bilder, Technik, Updates: Neben dem Tagesgeschäft bleibt die Website liegen."],
+];
+
+export type WebPackage = { name: string; price: string; note: string; items: string[]; highlight?: boolean };
+export const WEB_PACKAGES: WebPackage[] = [
+  {
+    name: "Start", price: "ab 99 €", note: "Ideal für Gründer, Selbstständige und Vereine", highlight: true,
+    items: ["One-Page-Website im individuellen Design", "Optimiert für Smartphone, Tablet und PC", "Impressum & Datenschutzerklärung eingebunden", "SSL-Verschlüsselung", "Anmeldung bei Google", "Schnelle Ladezeiten & SEO-Grundlagen"],
+  },
+  {
+    name: "Business", price: "auf Anfrage", note: "Für Handwerk, Gastronomie und Dienstleister",
+    items: ["Mehrere Seiten mit Menü", "Kontaktformular, Google Maps & WhatsApp-Button", "Ausrichtung auf Ihre Region und Leistungen", "Alles aus dem Start-Paket"],
+  },
+  {
+    name: "Shop & Premium", price: "auf Anfrage", note: "Für Händler und größere Angebote",
+    items: ["Online-Shop oder umfangreiche Website", "Warenkorb, Zahlung, Versand oder Terminbuchung", "Aufwendiges Design mit Animationen", "Alles aus dem Business-Paket"],
+  },
+  {
+    name: "Wartung & Betreuung", price: "auf Anfrage", note: "Auch für bestehende Websites",
+    items: ["Hosting, Updates und Backups", "Kleine Änderungen an Texten, Bildern, Öffnungszeiten", "Überwachung der Erreichbarkeit", "Egal, wer die Seite gebaut hat"],
+  },
+];
+
+export const WEB_EXTRAS = ["Bildergalerie", "Kundenbewertungen", "Terminbuchung", "Mehrsprachigkeit", "Weitere Unterseiten", "Domain & E-Mail-Adresse", "Google-Unternehmensprofil"];
+
+export const WEB_STEPS: [string, string, string][] = [
+  ["01", "Anfrage", "Sie schildern kurz Ihr Vorhaben, per Formular, Telefon oder WhatsApp. Kostenlos."],
+  ["02", "Gespräch", "Wir klären gemeinsam, was Sie wirklich brauchen, und was nicht."],
+  ["03", "Angebot", "Sie erhalten einen Festpreis mit klarem Leistungsumfang."],
+  ["04", "Entwurf & Freigabe", "Sie sehen alles vorab. Nichts geht ohne Ihr OK online."],
+  ["05", "Livegang", "Ihre Website geht online. Auf Wunsch betreuen wir sie danach weiter."],
+];
+
+export const WEB_FAQ: [string, string][] = [
+  ["Was kostet eine Website?", "Eine One-Page-Website gibt es ab 99 € zum Festpreis. Für größere Websites und Online-Shops erhalten Sie nach einem kurzen Gespräch ein verbindliches Festpreis-Angebot. Versteckte Kosten gibt es nicht."],
+  ["Gibt es ein Abo oder eine Vertragsbindung?", "Nein. Kein Abo, kein Zwang. Die Website gehört Ihnen. Wartung und Betreuung können Sie auf Wunsch dazubuchen, müssen es aber nicht."],
+  ["Wie lange dauert es, bis meine Website online ist?", "Das hängt vom Umfang ab. Den Zeitplan legen wir vorab gemeinsam fest, damit Sie vor dem Start wissen, wann Ihre Seite online geht."],
+  ["Was brauchen Sie von mir?", "Ihr Logo, ein paar Fotos und Stichpunkte zu Ihren Leistungen reichen für den Anfang. Alles Weitere besprechen wir im Gespräch."],
+  ["Kümmern Sie sich auch nach dem Livegang um die Website?", "Ja, wenn Sie möchten. Hosting, Updates, Backups und kleine Änderungen übernehmen wir im Rahmen von Wartung & Betreuung. Den Preis nennen wir Ihnen auf Anfrage."],
+  ["Ich habe schon eine Website. Können Sie die übernehmen?", "Ja. Wir betreuen auch bestehende Websites, egal wer sie gebaut hat. Schicken Sie uns zuerst den Link für den kostenlosen Website-Check."],
+  ["Sind die Beispiele echte Kunden?", "Nein. Die Beispiele sind Musterdesigns für erfundene Betriebe. Sie zeigen, was möglich ist. Ihre Website gestalten wir individuell für Ihren Betrieb."],
+];

@@ -8,11 +8,11 @@ import { Icon } from "./Icon";
 const HOST = SITE.replace(/^https?:\/\//, "").replace("pfalz-loadout.de", "pfalz-multiservice.de");
 
 /** Webdesign-Musterdesigns: Browser- und Smartphone-Mockup, Scroll-Vorschau, 3D-Tilt */
-export function ShowcaseList() {
+export function ShowcaseList({ offset = 0, total = EXAMPLES.length }: { offset?: number; total?: number }) {
   return (
     <div className="showcase">
       {EXAMPLES.map((e, i) => (
-        <ShowcaseItem key={e.slug} ex={e} index={i} total={EXAMPLES.length} />
+        <ShowcaseItem key={e.slug} ex={e} index={i + offset} total={total} />
       ))}
     </div>
   );

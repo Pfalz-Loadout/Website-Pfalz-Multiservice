@@ -1,7 +1,8 @@
 import { Hero } from "@/components/home/Hero";
 import { Process } from "@/components/home/Process";
-import { About, CtaBand, Examples, Region, Services, TrustStrip } from "@/components/home/HomeSections";
+import { About, CtaBand, Region, Services, TrustStrip } from "@/components/home/HomeSections";
 import { IMG } from "@/lib/data";
+import { WebTeaser } from "@/components/web/WebSections";
 
 export default function HomePage() {
   return (
@@ -11,7 +12,7 @@ export default function HomePage() {
       <Services />
       <About />
       <Process />
-      <Examples alt />
+      <WebTeaser alt />
       <Region />
       <CtaBand
         image={IMG + "lagerraum-hoch.png"}

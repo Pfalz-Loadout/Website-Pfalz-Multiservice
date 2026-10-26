@@ -4,9 +4,9 @@ import { gsap, useGSAP, MOTION_OK, introDelay, splitHeading } from "@/lib/gsap";
 import { bg } from "@/lib/bg";
 import { SectionHeading } from "./SectionHeading";
 
-type Props = { eyebrow: string; title: string; highlight: string; intro: string; image: string; crumbs?: { label: string; href?: string }[] };
+type Props = { eyebrow: string; title: string; highlight: string; intro: string; image: string; crumbs?: { label: string; href?: string }[]; children?: React.ReactNode };
 
-export function PageHero({ eyebrow, title, highlight, intro, image }: Props) {
+export function PageHero({ eyebrow, title, highlight, intro, image, children }: Props) {
   const ref = useRef<HTMLElement>(null);
 
   useGSAP(() => {
@@ -23,6 +23,8 @@ export function PageHero({ eyebrow, title, highlight, intro, image }: Props) {
         .from(root.querySelector(".eyebrow__text"), { opacity: 0, x: -12, duration: 0.8 }, 0.3)
         .from(split.targets, whole ? { y: 40, opacity: 0, duration: 1.3 } : { yPercent: 118, rotate: 2, transformOrigin: "0% 100%", duration: 1.3, stagger: 0.1 }, 0.25)
         .from(root.querySelector(".sh__intro"), { opacity: 0, y: 22, duration: 1.1 }, 0.6);
+      const extra = root.querySelector(".page-hero__extra");
+      if (extra) gsap.from(extra.children, { opacity: 0, y: 22, duration: 1.1, stagger: 0.1, delay: introDelay() + 0.6 });
       gsap.to(root.querySelector(".page-hero__bg"), {
         yPercent: 12, ease: "none", scrollTrigger: { trigger: root, start: "top top", end: "bottom top", scrub: true },
       });
@@ -37,6 +39,7 @@ export function PageHero({ eyebrow, title, highlight, intro, image }: Props) {
       <div className="hero__scrim" />
       <div className="container" style={{ position: "relative" }}>
         <SectionHeading dark level={1} size="h1" motion="intro" maxWidth={720} eyebrow={eyebrow} title={title} highlight={highlight} intro={intro} />
+        {children && <div className="page-hero__extra">{children}</div>}
       </div>
     </section>
   );

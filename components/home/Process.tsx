@@ -5,7 +5,9 @@ import { STEPS } from "@/lib/data";
 import { SectionHeading } from "../SectionHeading";
 
 /** Ablauf 01–04: goldene Linie läuft beim Scrollen mit, Schritte leuchten nacheinander auf */
-export function Process() {
+type ProcessProps = { steps?: [string, string, string][]; eyebrow?: string; title?: string; highlight?: string; alt?: boolean };
+
+export function Process({ steps = STEPS, eyebrow = "Unser Ablauf", title = "Jedes Projekt folgt einem klaren", highlight = "Ablauf", alt = false }: ProcessProps = {}) {
   const ref = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
@@ -46,12 +48,12 @@ export function Process() {
   }, { scope: ref });
 
   return (
-    <section className="section">
+    <section className={`section ${alt ? "section--alt" : ""}`}>
       <div className="container">
-        <SectionHeading align="center" eyebrow="Unser Ablauf" title="Jedes Projekt folgt einem klaren" highlight="Ablauf" style={{ marginBottom: 64 }} />
-        <div ref={ref} className="process__grid pm-reveal">
+        <SectionHeading align="center" eyebrow={eyebrow} title={title} highlight={highlight} style={{ marginBottom: 64 }} />
+        <div ref={ref} className="process__grid pm-reveal" style={{ ["--steps" as string]: steps.length }}>
           <div className="process__rail" aria-hidden="true"><div className="process__rail-fill" /></div>
-          {STEPS.map(([n, t, x]) => (
+          {steps.map(([n, t, x]) => (
             <div key={n} className="step">
               <span className="step__seg" aria-hidden="true" />
               <span className="step__num">{n}</span>
