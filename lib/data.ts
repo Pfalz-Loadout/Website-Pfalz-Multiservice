@@ -4,7 +4,7 @@ export const IMG = "/images/";
 export const CONTACT = {
   phone: "+49 160 5086983",
   phoneHref: "tel:+491605086983",
-  email: "kontakt@pfalz-loadout.de",
+  email: "kontakt@pfalz-multiservice.de",
   city: "67551 Worms",
   whatsapp: "https://wa.me/491605086983",
 };

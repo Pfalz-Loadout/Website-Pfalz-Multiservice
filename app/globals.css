@@ -485,8 +485,9 @@ a .contact-row__value { color: var(--brand-accent); }
 @keyframes cl-prog { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 .sc-browser .cl-view:hover + * , .sc-browser:hover { border-color: rgba(221,187,77,.45); }
 
-.pk-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 20px; align-items: stretch; }
-.pk { position: relative; display: flex; flex-direction: column; gap: 10px; padding: 30px 26px; background: var(--surface-card);
+.pk-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); column-gap: 20px; row-gap: 20px; align-items: stretch; }
+/* Titel, Preis, Hinweis und Liste liegen per Subgrid in allen Karten einer Reihe auf gleicher Höhe */
+.pk { position: relative; display: grid; grid-row: span 4; grid-template-rows: subgrid; row-gap: 10px; align-content: start; padding: 30px 26px; background: var(--surface-card);
   border: 1px solid var(--border-subtle); transition: border-color var(--dur-base) var(--ease-out), transform .5s var(--ease-out); }
 .pk:hover { border-color: rgba(221,187,77,.35); transform: translateY(-4px); }
 .pk--hi { border-color: var(--brand-accent); box-shadow: 0 0 0 1px var(--brand-accent), 0 30px 60px -30px rgba(221,187,77,.35); }
@@ -496,8 +497,9 @@ a .contact-row__value { color: var(--brand-accent); }
 .pk__price { margin: 0; font: 800 clamp(28px, 2.6vw, 36px)/1.1 var(--font-display); letter-spacing: -.02em; color: var(--brand-accent); }
 .pk__price--req { color: #fff; font-size: clamp(22px, 2vw, 26px); padding: 4px 0 3px; }
 .pk__unit { font-size: .45em; font-weight: 600; letter-spacing: 0; color: var(--text-subtle); white-space: nowrap; }
-.pk__note { margin: 0; font: 400 14px/1.5 var(--font-body); color: var(--text-subtle); min-height: 42px; }
-.pk__list { list-style: none; margin: 10px 0 0; padding: 18px 0 0; border-top: 1px solid var(--border-subtle); display: flex; flex-direction: column; gap: 11px; }
+.pk__note { margin: 0; font: 400 14px/1.5 var(--font-body); color: var(--text-subtle); }
+.pk__name, .pk__price { align-self: end; }
+.pk__list { list-style: none; margin: 10px 0 0; align-self: start; padding: 18px 0 0; border-top: 1px solid var(--border-subtle); display: flex; flex-direction: column; gap: 11px; }
 .pk__list li { display: flex; gap: 10px; align-items: flex-start; font: 400 15px/1.5 var(--font-body); color: var(--text-body); }
 .pk__list svg { flex: none; margin-top: 4px; color: var(--brand-accent); }
 .pk-free { margin-top: 36px; display: flex; align-items: center; gap: 18px; padding: 22px 28px; background: var(--surface-tint); border: 1px solid var(--border-subtle); }
