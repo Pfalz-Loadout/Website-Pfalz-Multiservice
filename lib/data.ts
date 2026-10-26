@@ -214,14 +214,14 @@ export const WEB_PROBLEMS: [string, string][] = [
   ["Keine Zeit", "Texte, Bilder, Technik, Updates: Neben dem Tagesgeschäft bleibt die Website liegen."],
 ];
 
-export type WebPackage = { name: string; price: string; note: string; items: string[]; highlight?: boolean };
+export type WebPackage = { name: string; price: string; unit?: string; note: string; items: string[]; highlight?: boolean };
 export const WEB_PACKAGES: WebPackage[] = [
   {
     name: "Start", price: "ab 99 €", note: "Ideal für Gründer, Selbstständige und Vereine", highlight: true,
     items: ["One-Page-Website im individuellen Design", "Optimiert für Smartphone, Tablet und PC", "Impressum & Datenschutzerklärung eingebunden", "SSL-Verschlüsselung", "Anmeldung bei Google", "Schnelle Ladezeiten & SEO-Grundlagen"],
   },
   {
-    name: "Business", price: "auf Anfrage", note: "Für Handwerk, Gastronomie und Dienstleister",
+    name: "Business", price: "ab 149 €", note: "Für Handwerk, Gastronomie und Dienstleister",
     items: ["Mehrere Seiten mit Menü", "Kontaktformular, Google Maps & WhatsApp-Button", "Ausrichtung auf Ihre Region und Leistungen", "Alles aus dem Start-Paket"],
   },
   {
@@ -229,7 +229,7 @@ export const WEB_PACKAGES: WebPackage[] = [
     items: ["Online-Shop oder umfangreiche Website", "Warenkorb, Zahlung, Versand oder Terminbuchung", "Aufwendiges Design mit Animationen", "Alles aus dem Business-Paket"],
   },
   {
-    name: "Wartung & Betreuung", price: "auf Anfrage", note: "Auch für bestehende Websites",
+    name: "Wartung & Betreuung", price: "ab 19 €", unit: "/ Monat", note: "Monatlich kündbar, auch für bestehende Websites",
     items: ["Hosting, Updates und Backups", "Kleine Änderungen an Texten, Bildern, Öffnungszeiten", "Überwachung der Erreichbarkeit", "Egal, wer die Seite gebaut hat"],
   },
 ];
@@ -245,11 +245,11 @@ export const WEB_STEPS: [string, string, string][] = [
 ];
 
 export const WEB_FAQ: [string, string][] = [
-  ["Was kostet eine Website?", "Eine One-Page-Website gibt es ab 99 € zum Festpreis. Für größere Websites und Online-Shops erhalten Sie nach einem kurzen Gespräch ein verbindliches Festpreis-Angebot. Versteckte Kosten gibt es nicht."],
-  ["Gibt es ein Abo oder eine Vertragsbindung?", "Nein. Kein Abo, kein Zwang. Die Website gehört Ihnen. Wartung und Betreuung können Sie auf Wunsch dazubuchen, müssen es aber nicht."],
+  ["Was kostet eine Website?", "Eine One-Page-Website gibt es ab 99 €, eine Website mit mehreren Seiten ab 149 €, jeweils zum Festpreis. Für Online-Shops und umfangreiche Projekte erhalten Sie nach einem kurzen Gespräch ein verbindliches Festpreis-Angebot. Versteckte Kosten gibt es nicht."],
+  ["Gibt es ein Abo oder eine Vertragsbindung?", "Nein. Kein Abo, kein Zwang. Die Website gehört Ihnen. Wartung und Betreuung können Sie auf Wunsch ab 19 € im Monat dazubuchen, monatlich kündbar, müssen es aber nicht."],
   ["Wie lange dauert es, bis meine Website online ist?", "Das hängt vom Umfang ab. Den Zeitplan legen wir vorab gemeinsam fest, damit Sie vor dem Start wissen, wann Ihre Seite online geht."],
   ["Was brauchen Sie von mir?", "Ihr Logo, ein paar Fotos und Stichpunkte zu Ihren Leistungen reichen für den Anfang. Alles Weitere besprechen wir im Gespräch."],
-  ["Kümmern Sie sich auch nach dem Livegang um die Website?", "Ja, wenn Sie möchten. Hosting, Updates, Backups und kleine Änderungen übernehmen wir im Rahmen von Wartung & Betreuung. Den Preis nennen wir Ihnen auf Anfrage."],
+  ["Kümmern Sie sich auch nach dem Livegang um die Website?", "Ja, wenn Sie möchten. Hosting, Updates, Backups und kleine Änderungen übernehmen wir im Rahmen von Wartung & Betreuung, ab 19 € im Monat und monatlich kündbar."],
   ["Ich habe schon eine Website. Können Sie die übernehmen?", "Ja. Wir betreuen auch bestehende Websites, egal wer sie gebaut hat. Schicken Sie uns zuerst den Link für den kostenlosen Website-Check."],
   ["Sind die Beispiele echte Kunden?", "Nein. Die Beispiele sind Musterdesigns für erfundene Betriebe. Sie zeigen, was möglich ist. Ihre Website gestalten wir individuell für Ihren Betrieb."],
 ];

@@ -30,7 +30,11 @@ const serviceLd = {
   serviceType: "Webdesign",
   provider: { "@id": `${SITE}/#business` },
   areaServed: ["Worms", "Pfalz"],
-  offers: { "@type": "Offer", name: "One-Page-Website", price: "99", priceCurrency: "EUR", description: "Ab-Preis, Festpreis" },
+  offers: [
+    { "@type": "Offer", name: "Start: One-Page-Website", price: "99", priceCurrency: "EUR", description: "Ab-Preis, Festpreis" },
+    { "@type": "Offer", name: "Business: Website mit mehreren Seiten", price: "149", priceCurrency: "EUR", description: "Ab-Preis, Festpreis" },
+    { "@type": "Offer", name: "Wartung & Betreuung", priceCurrency: "EUR", priceSpecification: { "@type": "UnitPriceSpecification", price: "19", priceCurrency: "EUR", unitText: "Monat" }, description: "Ab-Preis, monatlich kündbar" },
+  ],
 };
 
 export default function WebdesignPage() {

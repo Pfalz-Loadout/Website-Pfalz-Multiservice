@@ -494,7 +494,8 @@ a .contact-row__value { color: var(--brand-accent); }
   font: 700 11px var(--font-display); letter-spacing: .14em; text-transform: uppercase; }
 .pk__name { margin: 0; font: 800 20px/1.2 var(--font-display); text-transform: uppercase; letter-spacing: .02em; color: var(--text-strong); }
 .pk__price { margin: 0; font: 800 clamp(28px, 2.6vw, 36px)/1.1 var(--font-display); letter-spacing: -.02em; color: var(--brand-accent); }
-.pk:not(.pk--hi) .pk__price { color: #fff; font-size: clamp(22px, 2vw, 26px); padding: 4px 0 3px; }
+.pk__price--req { color: #fff; font-size: clamp(22px, 2vw, 26px); padding: 4px 0 3px; }
+.pk__unit { font-size: .45em; font-weight: 600; letter-spacing: 0; color: var(--text-subtle); white-space: nowrap; }
 .pk__note { margin: 0; font: 400 14px/1.5 var(--font-body); color: var(--text-subtle); min-height: 42px; }
 .pk__list { list-style: none; margin: 10px 0 0; padding: 18px 0 0; border-top: 1px solid var(--border-subtle); display: flex; flex-direction: column; gap: 11px; }
 .pk__list li { display: flex; gap: 10px; align-items: flex-start; font: 400 15px/1.5 var(--font-body); color: var(--text-body); }

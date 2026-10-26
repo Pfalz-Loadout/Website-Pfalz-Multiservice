@@ -96,7 +96,7 @@ export function WebPackages() {
             <div key={p.name} className={`pk ${p.highlight ? "pk--hi" : ""}`}>
               {p.highlight && <span className="pk__badge">Festpreis</span>}
               <h3 className="pk__name">{p.name}</h3>
-              <p className="pk__price">{p.price}</p>
+              <p className={`pk__price ${p.price.startsWith("ab") ? "" : "pk__price--req"}`}>{p.price}{p.unit && <span className="pk__unit"> {p.unit}</span>}</p>
               <p className="pk__note">{p.note}</p>
               <ul className="pk__list">
                 {p.items.map((it) => <li key={it}><Icon name="check" size={16} />{it}</li>)}
