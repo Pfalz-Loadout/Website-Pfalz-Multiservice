@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { AREA, CTA, CONTACT, IMG, SERVICES, USPS, homeServiceOrder, serviceHref } from "@/lib/data";
+import { AREA, COMPANY, CTA, CONTACT, IMG, SERVICES, USPS, homeServiceOrder, serviceHref } from "@/lib/data";
 import { BgImage } from "../BgImage";
 import { SectionHeading } from "../SectionHeading";
 import { ServiceCard } from "../ServiceCard";
@@ -70,11 +70,12 @@ export function About() {
     <section className="section section--alt" id="ueber">
       <div className="container split">
         <div className="stack" style={{ gap: 24 }}>
-          <SectionHeading eyebrow="Inhabergeführt · Worms" title="Über" highlight="uns" />
+          <SectionHeading eyebrow={`Inhabergeführt seit ${COMPANY.founded} · Worms`} title="Über" highlight="uns" />
           <div className="stack pm-reveal" data-reveal="stagger" style={{ gap: 24 }}>
             <p style={{ margin: 0, font: "var(--type-body)", color: "var(--text-body)" }}>
-              Pfalz Multiservice ist ein inhabergeführtes Dienstleistungsunternehmen mit Sitz in Worms, gewachsen aus dem E-Commerce. Die
-              Erfahrung aus Handel, Logistik und digitalen Prozessen bildet heute die Grundlage für ein breites Dienstleistungsportfolio.
+              Pfalz Multiservice ist ein inhabergeführtes Dienstleistungsunternehmen mit Sitz in Worms, gegründet {COMPANY.founded} von
+              {" "}{COMPANY.owner} und gewachsen aus dem E-Commerce. Die Erfahrung aus Handel, Logistik und digitalen Prozessen bildet heute
+              die Grundlage für ein breites Dienstleistungsportfolio.
             </p>
             <p style={{ margin: 0, font: "var(--type-body)", color: "var(--text-body)" }}>
               Wir denken lösungsorientiert, arbeiten strukturiert und legen Wert auf langfristige Geschäftsbeziehungen.

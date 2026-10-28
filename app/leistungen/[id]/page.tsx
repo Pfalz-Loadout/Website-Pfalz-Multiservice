@@ -7,7 +7,8 @@ import { CheckList } from "@/components/CheckList";
 import { ServiceCard } from "@/components/ServiceCard";
 import { Button } from "@/components/Button";
 import { CtaBand } from "@/components/home/HomeSections";
-import { JsonLd, breadcrumb } from "@/lib/schema";
+import { JsonLd, breadcrumb, faqPage } from "@/lib/schema";
+import { Faq } from "@/components/Faq";
 import { SITE } from "@/lib/site";
 
 export function generateStaticParams() {
@@ -22,11 +23,11 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   const description = s.seo ?? s.short;
   const url = `/leistungen/${s.id}`;
   return {
-    title: s.title,
+    title: s.seoTitle ?? s.title,
     description,
     alternates: { canonical: url },
-    openGraph: { type: "website", url, title: `${s.title} · Pfalz Multiservice`, description, images: [{ url: s.image, alt: s.title }] },
-    twitter: { card: "summary_large_image", title: `${s.title} · Pfalz Multiservice`, description, images: [s.image] },
+    openGraph: { type: "website", url, title: `${s.seoTitle ?? s.title} · Pfalz Multiservice`, description, images: [{ url: s.image, alt: s.title }] },
+    twitter: { card: "summary_large_image", title: `${s.seoTitle ?? s.title} · Pfalz Multiservice`, description, images: [s.image] },
   };
 }
 
@@ -50,7 +51,7 @@ export default async function ServicePage({ params }: { params: Promise<{ id: st
 
   return (
     <>
-      <JsonLd data={[serviceLd, breadcrumb([{ name: s.title, path: `/leistungen/${s.id}` }])]} />
+      <JsonLd data={[serviceLd, breadcrumb([{ name: s.title, path: `/leistungen/${s.id}` }]), ...(s.faq ? [faqPage(s.faq)] : [])]} />
       <PageHero
         eyebrow="Unsere Leistungen"
         title={words.length > 1 ? words.slice(0, -1).join(" ") : ""}
@@ -71,7 +72,8 @@ export default async function ServicePage({ params }: { params: Promise<{ id: st
           </div>
         </div>
       </section>
-      <section className="section section--alt">
+      {s.faq && <Faq items={s.faq} alt />}
+      <section className="section">
         <div className="container">
           <SectionHeading eyebrow="Kombinierbar" title="Weitere" highlight="Leistungen" style={{ marginBottom: 48 }} />
           <div className="grid-3 pm-reveal" data-reveal="cards" style={{ gap: 20 }}>

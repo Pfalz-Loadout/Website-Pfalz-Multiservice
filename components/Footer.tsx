@@ -1,4 +1,5 @@
 "use client";
+import { UPDATED, UPDATED_ISO } from "@/lib/site";
 import Link from "next/link";
 import { useRef } from "react";
 import { gsap, useGSAP, MOTION_OK } from "@/lib/gsap";
@@ -57,6 +58,7 @@ export function Footer() {
               <span>|</span>
               <Link href="/datenschutz">Datenschutz</Link>
             </span>
+            <span className="footer__legal">Zuletzt aktualisiert: <time dateTime={UPDATED_ISO}>{UPDATED}</time></span>
           </div>
           <button className="to-top" onClick={toTop} aria-label="Nach oben scrollen" data-cursor>
             <Icon name="arrow-up" size={18} />

@@ -28,11 +28,37 @@ export type Service = {
   href?: string;
   /** Meta-Beschreibung (max. ca. 155 Zeichen) */
   seo?: string;
+  /** Seitentitel im Suchergebnis mit Ort (max. ca. 38 Zeichen, „ · Pfalz Multiservice“ kommt dazu) */
+  seoTitle?: string;
+  /** Häufige Fragen auf der Leistungsseite */
+  faq?: Faq[];
 };
+
+export type Faq = [question: string, answer: string];
+
+/** Angaben zum Unternehmen für „Über uns“, Footer und strukturierte Daten */
+export const COMPANY = {
+  owner: "Jasmin Beer",
+  founded: "2021",
+  hours: "Termine nach Vereinbarung",
+  /** Ortsmitte Worms (bewusst ohne Straße) */
+  geo: { latitude: 49.6341, longitude: 8.3507 },
+};
+
+const PRICE_FAQ = (what: string): Faq => [
+  `Was kostet ${what}?`,
+  "Nach einer kurzen Bedarfsanalyse erhalten Sie ein verbindliches Angebot. Sie kennen Umfang und Kosten, bevor wir beginnen – ohne versteckte Posten.",
+];
 
 export const SERVICES: Service[] = [
   {
     id: "ecommerce",
+    seoTitle: "E-Commerce & Fulfillment in Worms",
+    faq: [
+      ["Was umfasst der Bereich E-Commerce?", "Den gesamten Ablauf im Online-Handel: Beschaffung, Listing der Artikel, Verkauf und Fulfillment, also Lagerung, Verpackung und Versand."],
+      ["Verkaufen Sie über eigene Shops oder über Marktplätze?", "Beides. Wir betreiben eigene Online-Shops und nutzen zusätzlich etablierte Marktplätze. So erreichen Artikel mehr Käufer, ohne dass die Abläufe aufwendig werden."],
+      PRICE_FAQ("die Unterstützung im E-Commerce"),
+    ],
     seo: "E-Commerce aus Worms: eigene Online-Shops und Marktplätze, Listing, Versand und Fulfillment aus einer Hand. Pfalz Multiservice – jetzt anfragen.",
     icon: "shopping-cart",
     title: "E-Commerce",
@@ -42,6 +68,12 @@ export const SERVICES: Service[] = [
   },
   {
     id: "reselling",
+    seoTitle: "Reselling & Restpostenankauf Worms",
+    faq: [
+      ["Welche Ware kaufen Sie an?", "Überbestände, Restposten und Retourenware. Schildern Sie uns kurz Art, Menge und Zustand – am besten mit ein paar Fotos."],
+      ["Was passiert mit der angekauften Ware?", "Wir bereiten sie auf und bringen sie über unsere eigenen Vertriebskanäle zurück in den Markt, statt sie abzuschreiben oder zu entsorgen."],
+      ["Welche Vorteile habe ich als Händler?", "Gebundenes Kapital wird schnell wieder flüssig, Lagerfläche wird frei und die Ware wird weiter genutzt statt vernichtet."],
+    ],
     seo: "Reselling & Asset Recovery: Wir kaufen Überbestände, Restposten und Retouren an und bringen sie zurück in den Markt. Schnelle Liquidität aus Worms.",
     icon: "recycle",
     title: "Reselling & Asset Recovery",
@@ -51,6 +83,12 @@ export const SERVICES: Service[] = [
   },
   {
     id: "storage",
+    seoTitle: "Lagerfläche mieten in Worms",
+    faq: [
+      ["Für wen ist die Lagerfläche gedacht?", "Für Gewerbekunden mit saisonalen Spitzen ebenso wie für Privatkunden in Übergangsphasen, etwa bei Umzug oder Renovierung."],
+      ["Wie lange kann ich einlagern?", "Kurzfristig oder langfristig – die Fläche richtet sich nach Ihrem Bedarf und ist ohne starre Vertragsbindung."],
+      PRICE_FAQ("die Lagerfläche"),
+    ],
     seo: "Lagerfläche in Worms nach Bedarf: für Gewerbe mit Saisonspitzen und Privatkunden in Übergangsphasen, ohne starre Vertragsbindung. Jetzt anfragen.",
     icon: "warehouse",
     title: "Storage Solutions",
@@ -60,6 +98,12 @@ export const SERVICES: Service[] = [
   },
   {
     id: "clearance",
+    seoTitle: "Räumung & Entrümpelung in Worms",
+    faq: [
+      ["Welche Flächen räumen Sie?", "Garagen, Lager, Hallen und Gewerbeflächen in Worms und der Pfalz – vollständig bis zur besenreinen Übergabe."],
+      ["Wie läuft eine Räumung ab?", "Bestandsaufnahme vor Ort, verbindliches Festpreis-Angebot, Durchführung zum vereinbarten Termin und besenreine Übergabe."],
+      ["Was passiert mit dem Räumgut?", "Verwertbare Bestände führen wir in den Wirtschaftskreislauf zurück, alles Weitere wird fachgerecht entsorgt."],
+    ],
     seo: "Räumung von Garagen, Lagern, Hallen und Gewerbeflächen in Worms und der Pfalz: Festpreis-Angebot, fachgerechte Verwertung, besenreine Übergabe.",
     icon: "truck",
     title: "Clearance Services",
@@ -79,6 +123,12 @@ export const SERVICES: Service[] = [
   },
   {
     id: "facility",
+    seoTitle: "Solutions & Support in Worms",
+    faq: [
+      ["Bei welchen Anliegen helfen Sie?", "Bei kurzfristigen Engpässen, organisatorischen Aufgaben und Anliegen, für die es sonst keinen passenden Ansprechpartner gibt."],
+      ["Wie gehen Sie vor?", "Wir sehen uns die Situation an, schlagen eine pragmatische Lösung vor und setzen sie um. Bei Bedarf binden wir Partner aus unserem Netzwerk ein."],
+      PRICE_FAQ("ein Einsatz"),
+    ],
     seo: "Solutions & Support aus Worms: pragmatische Lösungen für Engpässe und Aufgaben ohne passenden Ansprechpartner. Pfalz Multiservice – jetzt anfragen.",
     icon: "wrench",
     title: "Solutions & Support",
@@ -88,6 +138,12 @@ export const SERVICES: Service[] = [
   },
   {
     id: "smarthome",
+    seoTitle: "KNX-Programmierung in Worms",
+    faq: [
+      ["Was programmieren Sie bei KNX?", "Parametrierung mit der ETS, Licht-, Jalousie- und Heizungssteuerung, Szenen und Visualisierung für Wohn- und Gewerbeobjekte."],
+      ["Passen Sie auch bestehende Anlagen an?", "Ja. Wir übernehmen Erweiterungen und Änderungen an vorhandenen KNX-Anlagen."],
+      PRICE_FAQ("die KNX-Programmierung"),
+    ],
     seo: "KNX-Programmierung in Worms und der Pfalz: ETS-Parametrierung, Licht, Jalousien, Heizung, Szenen und Visualisierung für Wohn- und Gewerbeobjekte.",
     side: true,
     icon: "lightbulb",
@@ -125,6 +181,16 @@ export const STEPS: [string, string, string][] = [
   ["02", "Bedarfsanalyse", "Persönliches Gespräch oder Besichtigung vor Ort."],
   ["03", "Angebot", "Verbindlich und mit transparentem Leistungsumfang."],
   ["04", "Umsetzung", "Termingerecht, und wir bleiben Ihr Ansprechpartner."],
+];
+
+/** Häufige Fragen auf der Startseite */
+export const HOME_FAQ: Faq[] = [
+  ["Welche Leistungen bietet Pfalz Multiservice an?", "E-Commerce, Reselling und Warenankauf, Lagerfläche, Räumungen, Webdesign mit Website-Betreuung, Solutions & Support sowie KNX-Programmierung – alles mit einem Ansprechpartner."],
+  ["In welchem Gebiet sind Sie tätig?", "In Worms und der Umgebung, unter anderem in Frankenthal, Ludwigshafen, Mannheim, Alzey, Grünstadt und Bensheim. Webdesign bieten wir auch überregional an."],
+  ["Arbeiten Sie für Firmen und Privatkunden?", "Ja. Wir arbeiten für Unternehmen ebenso wie für Privatkunden, zum Beispiel bei Lagerung oder Räumung."],
+  ["Wie läuft eine Anfrage ab?", "Sie schildern Ihr Anliegen per Formular, Telefon oder WhatsApp. Nach einem Gespräch oder einer Besichtigung erhalten Sie ein verbindliches Angebot, danach setzen wir den Auftrag termingerecht um."],
+  ["Was kostet ein Auftrag?", "Das hängt vom Umfang ab. Sie erhalten vorab ein verbindliches Angebot und kennen die Kosten, bevor wir beginnen. Für Websites gibt es Festpreise ab 99 €."],
+  ["Wann sind Sie erreichbar?", "Telefonisch und per WhatsApp unter +49 160 5086983 oder per E-Mail an kontakt@pfalz-multiservice.de. Termine vor Ort vereinbaren wir individuell."],
 ];
 
 export const AREA = ["Worms", "Frankenthal", "Ludwigshafen", "Mannheim", "Alzey", "Grünstadt", "Bensheim"];

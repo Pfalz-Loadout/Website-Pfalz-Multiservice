@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { IMG, WEB_FAQ, WEB_STEPS } from "@/lib/data";
 import { SITE } from "@/lib/site";
-import { breadcrumb } from "@/lib/schema";
+import { breadcrumb, faqPage } from "@/lib/schema";
 import { PageHero } from "@/components/PageHero";
 import { Button } from "@/components/Button";
 import { Process } from "@/components/home/Process";
@@ -19,11 +19,7 @@ export const metadata: Metadata = {
     images: [{ url: "/images/beispiele/seifenmanufaktur-start.png", alt: "Webdesign-Beispiel Honigstück" }] },
 };
 
-const faqLd = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: WEB_FAQ.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })),
-};
+const faqLd = faqPage(WEB_FAQ);
 const serviceLd = {
   "@context": "https://schema.org",
   "@type": "Service",
