@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { OG_IMAGE, SITE_NAME } from "@/lib/site";
 import { SectionHeading } from "@/components/SectionHeading";
 import { JsonLd, breadcrumb } from "@/lib/schema";
 
@@ -6,6 +7,7 @@ export const metadata: Metadata = {
   title: "Impressum",
   description: "Impressum von Pfalz Multiservice, einem Angebot von Pfalz Loadout, Inhaberin Jasmin Beer, Wormser Landstraße 117, 67551 Worms.",
   alternates: { canonical: "/impressum" },
+  openGraph: { type: "website", locale: "de_DE", url: "/impressum", siteName: SITE_NAME, images: [OG_IMAGE] },
   robots: { index: true, follow: true },
 };
 

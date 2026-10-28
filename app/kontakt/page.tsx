@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { OG_IMAGE, SITE_NAME } from "@/lib/site";
 import { CONTACT, CTA, IMG, SERVICES } from "@/lib/data";
 import { PageHero } from "@/components/PageHero";
 import { SectionHeading } from "@/components/SectionHeading";
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
   title: "Kontakt",
   description: "Kontakt zu Pfalz Multiservice in Worms: Anfrage per Formular, Telefon oder WhatsApp. Wir melden uns zeitnah mit einem Lösungsvorschlag.",
   alternates: { canonical: "/kontakt" },
+  openGraph: { type: "website", locale: "de_DE", url: "/kontakt", siteName: SITE_NAME, images: [OG_IMAGE] },
 };
 
 function Row({ icon, label, value, href }: { icon: IconName; label: string; value: string; href?: string }) {
