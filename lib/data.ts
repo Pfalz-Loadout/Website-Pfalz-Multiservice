@@ -26,11 +26,14 @@ export type Service = {
   side?: boolean;
   /** eigene Zielseite statt /leistungen/<id> */
   href?: string;
+  /** Meta-Beschreibung (max. ca. 155 Zeichen) */
+  seo?: string;
 };
 
 export const SERVICES: Service[] = [
   {
     id: "ecommerce",
+    seo: "E-Commerce aus Worms: eigene Online-Shops und Marktplätze, Listing, Versand und Fulfillment aus einer Hand. Pfalz Multiservice – jetzt anfragen.",
     icon: "shopping-cart",
     title: "E-Commerce",
     short: "Digitaler Handel mit Fokus auf Effizienz",
@@ -39,6 +42,7 @@ export const SERVICES: Service[] = [
   },
   {
     id: "reselling",
+    seo: "Reselling & Asset Recovery: Wir kaufen Überbestände, Restposten und Retouren an und bringen sie zurück in den Markt. Schnelle Liquidität aus Worms.",
     icon: "recycle",
     title: "Reselling & Asset Recovery",
     short: "Werterhalt statt Abschreibung",
@@ -47,6 +51,7 @@ export const SERVICES: Service[] = [
   },
   {
     id: "storage",
+    seo: "Lagerfläche in Worms nach Bedarf: für Gewerbe mit Saisonspitzen und Privatkunden in Übergangsphasen, ohne starre Vertragsbindung. Jetzt anfragen.",
     icon: "warehouse",
     title: "Storage Solutions",
     short: "Lagerkapazität nach Bedarf",
@@ -55,6 +60,7 @@ export const SERVICES: Service[] = [
   },
   {
     id: "clearance",
+    seo: "Räumung von Garagen, Lagern, Hallen und Gewerbeflächen in Worms und der Pfalz: Festpreis-Angebot, fachgerechte Verwertung, besenreine Übergabe.",
     icon: "truck",
     title: "Clearance Services",
     short: "Strukturierte Räumung, fachgerechte Verwertung",
@@ -63,6 +69,7 @@ export const SERVICES: Service[] = [
   },
   {
     id: "web",
+    seo: "Webdesign und Website-Wartung aus Worms: individuelle Websites ab 99 €, Betreuung ab 19 € im Monat. Persönlich, ohne Baukasten.",
     href: "/webdesign",
     icon: "monitor-cog",
     title: "Web Maintenance & Management",
@@ -72,6 +79,7 @@ export const SERVICES: Service[] = [
   },
   {
     id: "facility",
+    seo: "Solutions & Support aus Worms: pragmatische Lösungen für Engpässe und Aufgaben ohne passenden Ansprechpartner. Pfalz Multiservice – jetzt anfragen.",
     icon: "wrench",
     title: "Solutions & Support",
     short: "Für jede Aufgabe eine schnelle Lösung",
@@ -80,6 +88,7 @@ export const SERVICES: Service[] = [
   },
   {
     id: "smarthome",
+    seo: "KNX-Programmierung in Worms und der Pfalz: ETS-Parametrierung, Licht, Jalousien, Heizung, Szenen und Visualisierung für Wohn- und Gewerbeobjekte.",
     side: true,
     icon: "lightbulb",
     title: "Smart Home & KNX",

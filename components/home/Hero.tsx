@@ -2,7 +2,7 @@
 import { useRef } from "react";
 import { gsap, useGSAP, MOTION_OK, introDelay, splitHeading } from "@/lib/gsap";
 import { CONTACT, IMG } from "@/lib/data";
-import { bg } from "@/lib/bg";
+import { BgImage } from "../BgImage";
 import { SectionHeading } from "../SectionHeading";
 import { Button } from "../Button";
 
@@ -63,7 +63,7 @@ export function Hero() {
   return (
     <section ref={ref} className="hero" id="start">
       <div className="hero__bg">
-        <div className="hero__bg-img pm-img" style={bg(IMG + "transporter-halle.png")} />
+        <BgImage className="hero__bg-img" src={IMG + "transporter-halle.png"} eager />
       </div>
       <div className="hero__scrim" />
       <div className="hero__glow" />

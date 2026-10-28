@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
 import { SectionHeading } from "@/components/SectionHeading";
 import { CONTACT } from "@/lib/data";
+import { JsonLd, breadcrumb } from "@/lib/schema";
 
-export const metadata: Metadata = { title: "Datenschutzerklärung" };
+export const metadata: Metadata = {
+  title: "Datenschutzerklärung",
+  description: "Datenschutzerklärung von Pfalz Multiservice: keine Cookies, kein Tracking. Hosting bei Vercel, Kontaktformular über Strato, Ihre Rechte nach DSGVO.",
+  alternates: { canonical: "/datenschutz" },
+};
 
 const PRIVACY: { h?: string; p: string[]; l?: string[]; p2?: string[] }[] = [
   { p: ["Pfalz Multiservice ist ein Angebot von Pfalz Loadout (Inhaberin: Jasmin Beer, Wormser Landstraße 117, 67551 Worms). Wir betreiben diese Website, einschließlich aller zugehörigen Informationen, Inhalte, Funktionen und Kontaktmöglichkeiten, um Ihnen unsere Dienstleistungen vorzustellen und Anfragen entgegenzunehmen (die „Services“). In dieser Datenschutzerklärung wird beschrieben, wie wir personenbezogene Daten erfassen, verwenden oder weitergeben, wenn Sie die Website besuchen, uns eine Anfrage senden, einen Auftrag erteilen oder anderweitig mit uns kommunizieren.", "Lesen Sie sich diese Datenschutzerklärung bitte sorgfältig durch. Indem Sie die Services nutzen, bestätigen Sie, dass Sie diese Datenschutzerklärung zur Kenntnis genommen haben."] },
@@ -27,6 +32,7 @@ const PRIVACY: { h?: string; p: string[]; l?: string[]; p2?: string[] }[] = [
 export default function DatenschutzPage() {
   return (
     <section className="section section--legal">
+      <JsonLd data={breadcrumb([{ name: "Datenschutzerklärung", path: "/datenschutz" }])} />
       <div className="container">
         <div className="legal">
           <div className="stack" style={{ gap: 12 }}>

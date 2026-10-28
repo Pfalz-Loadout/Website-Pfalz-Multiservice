@@ -7,6 +7,8 @@ import { CheckList } from "@/components/CheckList";
 import { ServiceCard } from "@/components/ServiceCard";
 import { Button } from "@/components/Button";
 import { CtaBand } from "@/components/home/HomeSections";
+import { JsonLd, breadcrumb } from "@/lib/schema";
+import { SITE } from "@/lib/site";
 
 export function generateStaticParams() {
   return SERVICES.filter((s) => !s.href).map((s) => ({ id: s.id }));
@@ -17,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   const { id } = await params;
   const s = SERVICES.find((x) => x.id === id);
   if (!s) return {};
-  const description = `${s.short}. ${s.text.slice(0, 130).trim()}… Jetzt unverbindlich anfragen.`;
+  const description = s.seo ?? s.short;
   const url = `/leistungen/${s.id}`;
   return {
     title: s.title,
@@ -35,8 +37,20 @@ export default async function ServicePage({ params }: { params: Promise<{ id: st
   const words = s.title.split(" ");
   const others = SERVICES.filter((x) => x.id !== s.id);
 
+  const serviceLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: s.title,
+    description: s.seo ?? s.short,
+    serviceType: s.title,
+    url: `${SITE}/leistungen/${s.id}`,
+    provider: { "@id": `${SITE}/#business` },
+    areaServed: ["Worms", "Pfalz"],
+  };
+
   return (
     <>
+      <JsonLd data={[serviceLd, breadcrumb([{ name: s.title, path: `/leistungen/${s.id}` }])]} />
       <PageHero
         eyebrow="Unsere Leistungen"
         title={words.length > 1 ? words.slice(0, -1).join(" ") : ""}
