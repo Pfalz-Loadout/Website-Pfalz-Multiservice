@@ -43,7 +43,7 @@ export function Curtain() {
       <div className="curtain__panel curtain__panel--bottom" />
       <div className="curtain__line" />
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img className="curtain__mark" src="/logo-mark-white.png" alt="" width={120} height={101} />
+      <img className="curtain__mark" src="/logo-mark-white.webp" alt="" width={120} height={101} />
     </div>
   );
 }

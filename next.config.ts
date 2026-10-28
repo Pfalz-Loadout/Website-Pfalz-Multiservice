@@ -3,6 +3,9 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   poweredByHeader: false,
 
+  // CSS direkt im HTML ausliefern: spart die blockierende Stylesheet-Anfrage (PageSpeed „Rendering blockiert“)
+  experimental: { inlineCss: true },
+
   // PNG-Originale bleiben im Repo; ausgeliefert werden passende AVIF/WebP-Größen
   images: { formats: ["image/avif", "image/webp"], qualities: [75], minimumCacheTTL: 2678400 },
 
@@ -29,7 +32,19 @@ const nextConfig: NextConfig = {
 
   // Fiktive Betriebe sollen nicht als echte Firmen bei Google landen
   async headers() {
-    return [{ source: "/beispiele/:path+", headers: [{ key: "X-Robots-Tag", value: "noindex, follow" }] }];
+    const security = [
+      { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains" },
+      { key: "X-Frame-Options", value: "SAMEORIGIN" },
+      { key: "Content-Security-Policy", value: "frame-ancestors 'self'; base-uri 'self'; object-src 'none'; form-action 'self'" },
+      { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
+      { key: "X-Content-Type-Options", value: "nosniff" },
+      { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+      { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), interest-cohort=()" },
+    ];
+    return [
+      { source: "/:path*", headers: security },
+      { source: "/beispiele/:path+", headers: [{ key: "X-Robots-Tag", value: "noindex, follow" }] },
+    ];
   },
 };
 

@@ -5,7 +5,7 @@ const RATIO = 900 / 284;
 export function Logo({ height = 48, className }: { height?: number; className?: string }) {
   return (
     <img
-      src="/logo-white.png"
+      src="/logo-white.webp"
       alt="Pfalz Multiservice"
       width={Math.round(height * RATIO)}
       height={height}
