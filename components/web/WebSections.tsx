@@ -6,6 +6,7 @@ import { Button } from "../Button";
 import { Icon } from "../Icon";
 import { ClassicList } from "../ClassicShowcase";
 import { ShowcaseList } from "../Showcase";
+import { Faq } from "../Faq";
 
 const TOTAL = CLASSIC_EXAMPLES.length + EXAMPLES.length;
 const CHECK_TEXT = "Hallo, bitte prüfen Sie kostenlos meine Website: ";
@@ -44,7 +45,7 @@ export function WebProblem() {
         <div className="prob-grid pm-reveal" data-reveal="stagger">
           {WEB_PROBLEMS.map(([t, x], i) => (
             <div key={t} className="prob">
-              <span className="prob__num">{String(i + 1).padStart(2, "0")}</span>
+              <span className="prob__num" aria-hidden="true" data-n={String(i + 1).padStart(2, "0")} />
               <h3 className="prob__title">{t}</h3>
               <p className="prob__text">{x}</p>
             </div>
@@ -68,13 +69,13 @@ export function WebExamples() {
 
         <div className="sc-group">
           <h3 className="sc-group__title">Klassische Websites <span>mit Menü und Unterseiten</span></h3>
-          <span className="sc-group__count">{String(CLASSIC_EXAMPLES.length).padStart(2, "0")}</span>
+          <span className="sc-group__count" aria-hidden="true" data-n={String(CLASSIC_EXAMPLES.length).padStart(2, "0")} />
         </div>
         <ClassicList total={TOTAL} />
 
         <div className="sc-group sc-group--later">
           <h3 className="sc-group__title">One-Pager <span>alles auf einer Seite, mit Animationen</span></h3>
-          <span className="sc-group__count">{String(EXAMPLES.length).padStart(2, "0")}</span>
+          <span className="sc-group__count" aria-hidden="true" data-n={String(EXAMPLES.length).padStart(2, "0")} />
         </div>
         <ShowcaseList offset={CLASSIC_EXAMPLES.length} total={TOTAL} />
 
@@ -196,29 +197,7 @@ export function WebCheck() {
 }
 
 export function WebFaq() {
-  return (
-    <section className="section" id="faq">
-      <div className="container split split--faq" style={{ alignItems: "start" }}>
-        <div className="stack" style={{ gap: 24 }}>
-          <SectionHeading eyebrow="Häufige Fragen" title="Kurz" highlight="beantwortet" />
-          <p className="pm-reveal" data-reveal="up" style={{ margin: 0, font: "var(--type-body)", color: "var(--text-body)" }}>
-            Ihre Frage ist nicht dabei? Rufen Sie an oder schreiben Sie uns per WhatsApp.
-          </p>
-          <div className="pm-reveal" data-reveal="up" style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
-            <Button variant="outline" iconLeft="phone" href={CONTACT.phoneHref}>{CONTACT.phone}</Button>
-          </div>
-        </div>
-        <div className="faq pm-reveal" data-reveal="stagger">
-          {WEB_FAQ.map(([q, a], i) => (
-            <details key={q} className="faq__item" open={i === 0}>
-              <summary className="faq__q" data-cursor>{q}<span className="faq__icon" aria-hidden="true" /></summary>
-              <p className="faq__a">{a}</p>
-            </details>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
+  return <Faq items={WEB_FAQ} />;
 }
 
 /** Kompakter Teaser für Startseite und Leistungsseite: Referenz-Wand mit allen Beispielen */

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { OG_IMAGE, SITE_NAME } from "@/lib/site";
-import { CONTACT, CTA, IMG, SERVICES } from "@/lib/data";
+import { COMPANY, CONTACT, CTA, IMG, SERVICES } from "@/lib/data";
 import { PageHero } from "@/components/PageHero";
 import { SectionHeading } from "@/components/SectionHeading";
 import { ContactForm } from "@/components/ContactForm";
@@ -10,7 +10,7 @@ import { Icon } from "@/components/Icon";
 import type { IconName } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "Kontakt",
+  title: "Kontakt in Worms",
   description: "Kontakt zu Pfalz Multiservice in Worms: Anfrage per Formular, Telefon oder WhatsApp. Wir melden uns zeitnah mit einem Lösungsvorschlag.",
   alternates: { canonical: "/kontakt" },
   openGraph: { type: "website", locale: "de_DE", url: "/kontakt", siteName: SITE_NAME, images: [OG_IMAGE] },
@@ -47,7 +47,8 @@ export default async function KontaktPage({ searchParams }: { searchParams: Prom
               <Row icon="phone" label="Telefon" value={CONTACT.phone} href={CONTACT.phoneHref} />
               <Row icon="message-circle" label="WhatsApp" value="Nachricht schreiben" href={CONTACT.whatsapp} />
               <Row icon="mail" label="E-Mail" value={CONTACT.email} href={`mailto:${CONTACT.email}`} />
-              <Row icon="map-pin" label="Standort" value={CONTACT.city} />
+              <Row icon="map-pin" label="Standort" value={`${CONTACT.city} · Einsätze in Worms und Umgebung`} />
+              <Row icon="file-check" label="Erreichbarkeit" value={`Telefon und WhatsApp · ${COMPANY.hours}`} />
               <div><Button variant="outline-light" iconLeft="message-circle" href={CONTACT.whatsapp}>WhatsApp-Chat starten</Button></div>
             </div>
           </div>

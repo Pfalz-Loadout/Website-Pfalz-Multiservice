@@ -12,7 +12,7 @@ import { CopyGuard } from "@/components/CopyGuard";
 import { ScrollProgress } from "@/components/motion/ScrollProgress";
 import { Cursor } from "@/components/motion/Cursor";
 import { SITE, SITE_NAME, TITLE, DESC, OG_IMAGE } from "@/lib/site";
-import { AREA, CONTACT, SERVICES, serviceHref } from "@/lib/data";
+import { AREA, COMPANY, CONTACT, SERVICES, serviceHref } from "@/lib/data";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
@@ -47,7 +47,11 @@ const jsonLd = {
       telephone: CONTACT.phone,
       email: CONTACT.email,
       address: { "@type": "PostalAddress", postalCode: "67551", addressLocality: "Worms", addressRegion: "Rheinland-Pfalz", addressCountry: "DE" },
+      geo: { "@type": "GeoCoordinates", ...COMPANY.geo },
       areaServed: AREA.map((name) => ({ "@type": "City", name })),
+      foundingDate: COMPANY.founded,
+      founder: { "@type": "Person", name: COMPANY.owner },
+      contactPoint: { "@type": "ContactPoint", contactType: "customer service", telephone: CONTACT.phone, email: CONTACT.email, availableLanguage: "de", areaServed: "DE" },
       knowsAbout: SERVICES.map((s) => s.title),
       hasOfferCatalog: {
         "@type": "OfferCatalog",

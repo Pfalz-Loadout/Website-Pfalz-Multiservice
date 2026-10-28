@@ -1,8 +1,8 @@
 import type { MetadataRoute } from "next";
 import { SERVICES } from "@/lib/data";
-import { SITE } from "@/lib/site";
+import { SITE, UPDATED_ISO } from "@/lib/site";
 
-const BUILD = new Date();
+const BUILD = new Date(UPDATED_ISO);
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages: { path: string; priority: number }[] = [
