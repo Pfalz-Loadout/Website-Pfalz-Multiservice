@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useRef } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
-import { bg } from "@/lib/bg";
+import { BgImage } from "./BgImage";
 import { Icon } from "./Icon";
 
 type Props = {
@@ -52,7 +52,7 @@ export function ServiceCard({ href, image, title, text, linkLabel = "Mehr erfahr
   if (variant === "overlay") {
     return (
       <Link ref={ref} href={href} className="card card--overlay pm-card" data-cursor>
-        <div className="card__parallax"><div className="card__img pm-img" style={bg(image)} /></div>
+        <div className="card__parallax"><BgImage className="card__img" src={image} sizes="(max-width: 640px) 100vw, (max-width: 1080px) 50vw, 33vw" /></div>
         <div className="card__shade" />
         <div className="card__spot" />
         <div className="card__body">
@@ -67,7 +67,7 @@ export function ServiceCard({ href, image, title, text, linkLabel = "Mehr erfahr
   return (
     <Link ref={ref} href={href} className="card pm-card" data-cursor>
       <div className="card__media">
-        <div className="card__parallax"><div className="card__img pm-img" style={bg(image)} /></div>
+        <div className="card__parallax"><BgImage className="card__img" src={image} sizes="(max-width: 640px) 100vw, (max-width: 1080px) 50vw, 33vw" /></div>
       </div>
       <div className="card__spot" />
       <div className="card__body">

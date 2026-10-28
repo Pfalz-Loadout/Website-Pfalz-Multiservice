@@ -1,7 +1,7 @@
 "use client";
 import { useRef } from "react";
 import { gsap, useGSAP, MOTION_OK, introDelay, splitHeading } from "@/lib/gsap";
-import { bg } from "@/lib/bg";
+import { BgImage } from "./BgImage";
 import { SectionHeading } from "./SectionHeading";
 
 type Props = { eyebrow: string; title: string; highlight: string; intro: string; image: string; crumbs?: { label: string; href?: string }[]; children?: React.ReactNode };
@@ -35,7 +35,7 @@ export function PageHero({ eyebrow, title, highlight, intro, image, children }: 
 
   return (
     <section ref={ref} className="page-hero">
-      <div className="page-hero__bg"><div className="page-hero__img pm-img" style={bg(image)} /></div>
+      <div className="page-hero__bg"><BgImage className="page-hero__img" src={image} eager /></div>
       <div className="hero__scrim" />
       <div className="container" style={{ position: "relative" }}>
         <SectionHeading dark level={1} size="h1" motion="intro" maxWidth={720} eyebrow={eyebrow} title={title} highlight={highlight} intro={intro} />

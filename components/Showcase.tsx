@@ -1,11 +1,12 @@
 "use client";
+import Image from "next/image";
 import { useRef } from "react";
 import { gsap, ScrollTrigger, useGSAP, MOTION_OK } from "@/lib/gsap";
 import { EXAMPLES, type Example } from "@/lib/data";
 import { SITE } from "@/lib/site";
 import { Icon } from "./Icon";
 
-const HOST = SITE.replace(/^https?:\/\//, "").replace("pfalz-loadout.de", "pfalz-multiservice.de");
+const HOST = SITE.replace(/^https?:\/\//, "").replace(/^www\./, "");
 
 /** Webdesign-Musterdesigns: Browser- und Smartphone-Mockup, Scroll-Vorschau, 3D-Tilt */
 export function ShowcaseList({ offset = 0, total = EXAMPLES.length }: { offset?: number; total?: number }) {
@@ -113,14 +114,14 @@ function ShowcaseItem({ ex, index, total }: { ex: Example; index: number; total:
             <span className="sc-browser__url">{HOST}/beispiele/{ex.slug}</span>
           </div>
           <div className="sc-browser__view">
-            <img className="sc-browser__shot" src={`/images/beispiele/${ex.slug}-scroll.png`} alt={`Vorschau der Website ${ex.name}`}
-              width={1000} height={3750} loading="lazy" decoding="async" />
+            <Image className="sc-browser__shot" src={`/images/beispiele/${ex.slug}-scroll.png`} alt={`Vorschau der Website ${ex.name}`}
+              width={1000} height={3750} sizes="(max-width: 900px) 100vw, 800px" />
             <span className="sc-browser__hint" aria-hidden="true">Maus drauf – Seite scrollt</span>
           </div>
           <div className="sc-spot" aria-hidden="true" />
         </div>
         <div className="sc-phone pm-reveal" aria-hidden="true">
-          <img src={`/images/beispiele/${ex.slug}-mobile.png`} alt="" width={390} height={844} loading="lazy" decoding="async" />
+          <Image src={`/images/beispiele/${ex.slug}-mobile.png`} alt="" width={390} height={844} sizes="(max-width: 900px) 30vw, 220px" />
         </div>
       </a>
 

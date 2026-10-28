@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { IMG, WEB_FAQ, WEB_STEPS } from "@/lib/data";
 import { SITE } from "@/lib/site";
+import { breadcrumb } from "@/lib/schema";
 import { PageHero } from "@/components/PageHero";
 import { Button } from "@/components/Button";
 import { Process } from "@/components/home/Process";
@@ -8,10 +9,10 @@ import { CtaBand } from "@/components/home/HomeSections";
 import { WebCheck, WebExamples, WebFaq, WebPackages, WebProblem, WebTrust } from "@/components/web/WebSections";
 
 const description =
-  "Website erstellen lassen in Worms und der Pfalz: individuelles Webdesign zum Festpreis ab 99 €, ohne Abo und Vertragsbindung. Beispiele ansehen, kostenloser Website-Check.";
+  "Website erstellen lassen in Worms und der Pfalz: individuelles Webdesign zum Festpreis ab 99 €, ohne Abo. Beispiele ansehen, kostenloser Website-Check.";
 
 export const metadata: Metadata = {
-  title: "Webdesign Worms · Website erstellen lassen ab 99 €",
+  title: "Webdesign Worms: Website ab 99 €",
   description,
   alternates: { canonical: "/webdesign" },
   openGraph: { type: "website", url: "/webdesign", title: "Webdesign Worms · Pfalz Multiservice", description,
@@ -43,7 +44,7 @@ const serviceLd = {
 export default function WebdesignPage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([faqLd, serviceLd]) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([faqLd, serviceLd, breadcrumb([{ name: "Webdesign", path: "/webdesign" }])]) }} />
       <PageHero
         eyebrow="Webdesign aus Worms"
         title="Websites, die"

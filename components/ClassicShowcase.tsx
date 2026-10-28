@@ -1,11 +1,12 @@
 "use client";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { gsap, ScrollTrigger, useGSAP, MOTION_OK } from "@/lib/gsap";
 import { CLASSIC_EXAMPLES, type ClassicExample } from "@/lib/data";
 import { SITE } from "@/lib/site";
 import { Icon } from "./Icon";
 
-const HOST = SITE.replace(/^https?:\/\//, "").replace("pfalz-loadout.de", "pfalz-multiservice.de");
+const HOST = SITE.replace(/^https?:\/\//, "").replace(/^www\./, "");
 const AUTOPLAY_MS = 3800;
 
 /** Klassische Websites mit Menü: Browser-Mockup mit Seiten-Umschalter */
@@ -69,8 +70,8 @@ function ClassicItem({ ex, index, total }: { ex: ClassicExample; index: number; 
           <a className="cl-view" href={href} target="_blank" rel="noopener" data-cursor
             aria-label={`${ex.name}, Seite ${page.label} live ansehen (öffnet in neuem Tab)`}>
             {ex.pages.map((p, i) => (
-              <img key={p.key} className={`cl-shot ${i === cur ? "is-on" : ""}`} src={`/images/beispiele/${ex.slug}-${p.key}.png`}
-                alt={i === cur ? `Vorschau ${ex.name}, Seite ${p.label}` : ""} width={1200} height={750} loading="lazy" decoding="async" />
+              <Image key={p.key} className={`cl-shot ${i === cur ? "is-on" : ""}`} src={`/images/beispiele/${ex.slug}-${p.key}.png`}
+                alt={i === cur ? `Vorschau ${ex.name}, Seite ${p.label}` : ""} fill sizes="(max-width: 900px) 100vw, 800px" />
             ))}
           </a>
         </div>

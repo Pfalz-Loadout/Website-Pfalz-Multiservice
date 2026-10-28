@@ -63,7 +63,8 @@ a { color: inherit; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 
 /* Bildflächen: echtes Foto aus /public/images, darunter ein Fallback-Verlauf */
-.pm-img { background-color: #0d0b07; background-position: center; background-size: cover; }
+.pm-img { background: radial-gradient(120% 90% at 70% 30%, #3a2c0f 0%, #16110a 45%, #050505 100%) #0d0b07; overflow: hidden; }
+.pm-img__el { object-fit: cover; object-position: center; }
 
 /* ---------- Motion-Vorbereitung (nur wenn JS läuft und keine reduzierte Bewegung) ---------- */
 html.pm-motion .pm-intro, html.pm-motion .pm-reveal { visibility: hidden; animation: pm-failsafe 0s 4s forwards; }

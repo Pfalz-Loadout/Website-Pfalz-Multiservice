@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { AREA, CTA, CONTACT, IMG, SERVICES, USPS, homeServiceOrder, serviceHref } from "@/lib/data";
-import { bg } from "@/lib/bg";
+import { BgImage } from "../BgImage";
 import { SectionHeading } from "../SectionHeading";
 import { ServiceCard } from "../ServiceCard";
 import { CheckList } from "../CheckList";
@@ -45,7 +45,7 @@ export function Services() {
           {side.map((s) => (
             <Link key={s.id} href={serviceHref(s)} className="side-card pm-card" data-cursor>
               <div className="side-card__media">
-                <div className="card__parallax"><div className="card__img pm-img" style={bg(s.image)} /></div>
+                <div className="card__parallax"><BgImage className="card__img" src={s.image} sizes="(max-width: 900px) 100vw, 40vw" /></div>
               </div>
               <div className="side-card__body">
                 <Eyebrow>Ergänzende Leistung</Eyebrow>
@@ -89,7 +89,7 @@ export function About() {
           </div>
         </div>
         <div className="media-frame pm-reveal" data-reveal="clip" style={{ aspectRatio: "4/3.4" }}>
-          <div className="media-frame__img pm-img" data-clip-img data-parallax="8" style={bg(IMG + "lager-ware.png")} />
+          <BgImage className="media-frame__img" data-clip-img="" data-parallax="8" src={IMG + "lager-ware.png"} sizes="(max-width: 900px) 100vw, 50vw" />
           <span className="media-frame__corner media-frame__corner--tl" />
           <span className="media-frame__corner media-frame__corner--br" />
         </div>
@@ -103,7 +103,7 @@ export function Region() {
     <section className="section" id="region">
       <div className="container split split--region" style={{ gridTemplateColumns: "1.1fr 1fr" }}>
         <div className="media-frame pm-reveal" data-reveal="clip" style={{ aspectRatio: "16/11" }}>
-          <div className="media-frame__img pm-img" data-clip-img data-parallax="8" style={bg(IMG + "pfalz-landschaft.png")} />
+          <BgImage className="media-frame__img" data-clip-img="" data-parallax="8" src={IMG + "pfalz-landschaft.png"} sizes="(max-width: 900px) 100vw, 55vw" />
         </div>
         <div className="stack" style={{ gap: 28 }}>
           <SectionHeading
@@ -126,7 +126,7 @@ export function CtaBand({ image, intro }: { image?: string; intro?: React.ReactN
     <section className="cta">
       {image && (
         <div className="cta__bg" data-parallax="8">
-          <div className="cta__img pm-img" style={bg(image)} />
+          <BgImage className="cta__img" src={image} />
         </div>
       )}
       <div className="cta__scrim" style={image ? undefined : { background: "transparent" }} />

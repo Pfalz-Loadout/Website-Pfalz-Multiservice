@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { CLASSIC_EXAMPLES, CONTACT, EXAMPLES, WEB_ADDONS, WEB_FAQ, WEB_CARE, WEB_INCLUDED, WEB_PACKAGES, WEB_PROBLEMS, type WebPackage } from "@/lib/data";
 import { SectionHeading } from "../SectionHeading";
 import { Button } from "../Button";
@@ -241,7 +242,7 @@ export function WebTeaser({ alt = false }: { alt?: boolean }) {
             <a key={s.href} className="wall__item pm-card" href={s.href} target="_blank" rel="noopener" data-cursor aria-label={`${s.name} live ansehen (öffnet in neuem Tab)`}>
               <div className="wall__frame">
                 <div className="sc-browser__bar" aria-hidden="true"><span className="sc-browser__dots"><i /><i /><i /></span></div>
-                <div className="wall__view"><div className="card__parallax"><img src={s.img} alt="" loading="lazy" decoding="async" /></div></div>
+                <div className="wall__view"><div className="card__parallax"><Image src={s.img} alt="" fill sizes="(max-width: 640px) 100vw, (max-width: 1080px) 50vw, 400px" /></div></div>
               </div>
               <span className="wall__meta"><b>{s.name}</b>{s.branch}<Icon name="external-link" size={15} /></span>
             </a>
