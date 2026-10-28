@@ -40,7 +40,7 @@ export function Footer() {
           <p className="footer__text"><br /><br />Pfalz Multiservice bündelt Dienstleistungen für Unternehmen und Privatkunden in der Region Worms.</p>
         </div>
         <div className="footer__col pm-reveal">
-          <h4 className="footer__h">Kontakt</h4>
+          <h2 className="footer__h">Kontakt</h2>
           <div className="footer__contact">
             <span className="footer__gold"><Icon name="map-pin" size={16} />{CONTACT.city}</span>
             <a className="footer__gold" href={CONTACT.phoneHref} data-cursor><Icon name="phone" size={16} />{CONTACT.phone}</a>

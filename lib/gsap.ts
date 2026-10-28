@@ -15,7 +15,9 @@ export const MOTION_OK = "(prefers-reduced-motion: no-preference)";
 /** Wird vom Seiten-Vorhang gesetzt: erster Aufruf = längeres Intro, danach kurze Übergänge */
 let visited = false;
 export function introDelay() {
-  return visited ? 0.55 : 1.65;
+  if (visited) return 0.55;
+  // Auf dem Handy kein langes Marken-Intro: Inhalt erscheint früher (besserer LCP)
+  return typeof window !== "undefined" && window.matchMedia("(max-width: 900px)").matches ? 0.75 : 1.65;
 }
 export function markVisited() {
   visited = true;
