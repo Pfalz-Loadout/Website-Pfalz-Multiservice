@@ -216,43 +216,50 @@ export const WEB_PROBLEMS: [string, string][] = [
 ];
 
 export type WebPackage = { name: string; price: string; unit?: string; note: string; items: string[]; badge?: string };
-/** Inhalte 1:1 aus der Preisliste (Preisliste_Pfalz-Multiservice.pdf) */
+/** Inhalte 1:1 aus der Preisliste (Preisliste_Pfalz-Multiservice.pdf, Stand 28.10.2026) */
 export const WEB_PACKAGES: WebPackage[] = [
   {
     name: "Start", price: "99 €", unit: "einmalig", note: "OnePager · bis 5 Abschnitte",
     items: ["Alle Inhalte übersichtlich auf einer Seite", "Ideal für Gründer, Selbstständige und Vereine", "Alle Inklusivleistungen"],
   },
   {
-    name: "Business", price: "149 €", unit: "einmalig", note: "Mehrseitige Website · bis 8 Seiten", badge: "Beliebt",
-    items: ["Mehrere Seiten mit Menü", "Ideal für Handwerk, Gastronomie und Dienstleister", "Alle Inklusivleistungen"],
+    name: "Business", price: "149 €", unit: "einmalig", note: "OnePager oder mehrseitige Website · bis 8 Seiten", badge: "Beliebt",
+    items: ["Als OnePager oder mit mehreren Seiten und Menü", "Ideal für Handwerk, Gastronomie und Dienstleister", "Alle Inklusivleistungen"],
   },
   {
     name: "Shop / Premium", price: "individuell", unit: "nach Angebot", note: "Bis 20 Seiten, Online-Shop oder Sonderprojekt",
     items: ["Online-Shop oder umfangreiche Website", "Ideal für Händler und größere Angebote", "Alle Inklusivleistungen"],
   },
+];
+
+/** Betreuung nach dem Livegang */
+export const WEB_CARE: WebPackage[] = [
   {
-    name: "Wartung", price: "ab 19 €", unit: "/ Monat", note: "Monatlich kündbar · Sie melden Änderungen, wir setzen sie um",
-    items: [
-      "Wartung 19 €: bis 1 Std. Änderungen pro Monat",
-      "Wartung Pro 29 €: bis 2 Std. Änderungen pro Monat, neue KI-Fotos & 3D-Motion-Clips nach Bedarf, Pflege Ihres Google-Profils",
-      "Domain und E-Mail-Adressen einrichten",
-      "Änderungen ohne Paket: 29 € einmalig pro Stunde",
-    ],
+    name: "Wartung", price: "19 €", unit: "/ Monat", note: "Die Basis-Betreuung",
+    items: ["Bis 1 Std. Änderungen pro Monat", "Domain- und E-Mail-Einrichtung"],
+  },
+  {
+    name: "Wartung Pro", price: "29 €", unit: "/ Monat", note: "Für aktive Unternehmens-Websites",
+    items: ["Bis 2 Std. Änderungen pro Monat", "KI-Fotos & 3D-Motion-Clips nach Bedarf", "Google-Unternehmensprofil einrichten, optimieren & pflegen", "Einrichtung von Domain, E-Mail und Hosting"],
+  },
+  {
+    name: "Wartung Premium", price: "69 €", unit: "/ Monat", note: "Für große Projekte mit viel Content",
+    items: ["Bis 6 Std. Änderungen pro Monat", "Neue Inhalte mehrmals pro Woche: Beiträge, Einträge, Bilder", "Ideal für Blogs, Community- und Suchportale", "KI-Fotos & 3D-Motion-Clips im erweiterten Umfang", "Google-Unternehmensprofil einrichten, optimieren & pflegen", "Einrichtung von Domain, E-Mail und Hosting", "Bevorzugte Bearbeitung Ihrer Anfragen"],
   },
 ];
 
 /** In allen Paketen inklusive – ohne Aufpreis */
 export const WEB_INCLUDED = [
-  "Design für Smartphone und Desktop", "Kontaktformular", "WhatsApp-Button", "Google-Maps-Karte", "Social-Media-Links",
-  "Texte erstellen oder alte Inhalte übernehmen", "Stockfotos, Auswahl und Einbau", "SEO: Suchbegriffe, Meta-Texte, FAQ",
-  "Vorbereitet für Google- und KI-Suche", "Google-Unternehmensprofil einrichten und optimieren", "Online-Terminbuchung",
-  "Google-Bewertungen einbinden", "Vorher-Nachher-Galerie",
+  "Design für Smartphone und Desktop", "Menü und Navigation", "FAQ-Bereich", "Kontaktformular", "WhatsApp-Button",
+  "Google-Maps-Karte", "Social-Media-Links", "Texte erstellen oder alte Inhalte übernehmen",
+  "Kuratierte Bildauswahl, professionell eingebunden", "SEO: Suchbegriffe und Meta-Texte", "Vorbereitet für Google- und KI-Suche",
+  "Online-Terminbuchung", "Google-Bewertungen einbinden", "Vorher-Nachher-Galerie",
 ];
 
 /** Zusatzleistungen – optional zu jedem Paket (Preise bewusst nicht auf der Website) */
 export const WEB_ADDONS: { icon: IconName; title: string; text: string }[] = [
-  { icon: "clapperboard", title: "3D Motion & Cinematic Video", text: "Animierte Website mit KI-Videoclips in Kino-Optik: Kamerafahrten wie Dolly-Zoom, 360°-Orbit oder FPV-Drohnenflug, für OnePager oder mehrere Seiten." },
-  { icon: "camera", title: "KI-Fotografie in Studioqualität", text: "Fotorealistische Produkt- und Szenen-Shots mit Relight und Upscale für gestochen scharfe Darstellung, so viele, wie Ihre Website benötigt." },
+  { icon: "clapperboard", title: "3D Motion & Cinematic Video", text: "Animierte Website mit KI-Videoclips in Kino-Optik: Dolly-Zoom, 360°-Orbit, FPV-Drohnenflug." },
+  { icon: "camera", title: "KI-Fotografie in Studioqualität", text: "Fotorealistische Produkt- und Szenen-Shots mit Relight und Upscale, so viele, wie nötig." },
   { icon: "pen-tool", title: "Logo-Design", text: "Ein eigenes Logo für Ihren Auftritt." },
   { icon: "languages", title: "Mehrsprachigkeit", text: "Ihre Website zusätzlich in einer anderen Sprache." },
 ];
@@ -266,16 +273,16 @@ export const WEB_STEPS: [string, string, string][] = [
 ];
 
 export const WEB_FAQ: [string, string][] = [
-  ["Was kostet eine Website?", "Start (OnePager, bis 5 Abschnitte) kostet 99 €, Business (mehrseitige Website, bis 8 Seiten) 149 €, jeweils als einmaliger Festpreis. Online-Shops und Sonderprojekte bis 20 Seiten bieten wir individuell nach Angebot an. Versteckte Kosten gibt es nicht."],
-  ["Was ist im Preis enthalten?", "In allen Paketen ohne Aufpreis: Design für Smartphone und Desktop, Kontaktformular, WhatsApp-Button, Google-Maps-Karte, Social-Media-Links, Texte erstellen oder übernehmen, Stockfotos, SEO-Grundlagen, Vorbereitung für Google- und KI-Suche, Google-Unternehmensprofil, Online-Terminbuchung, Google-Bewertungen und Vorher-Nachher-Galerie."],
+  ["Was kostet eine Website?", "Start (OnePager, bis 5 Abschnitte) kostet 99 €, Business (OnePager oder mehrseitige Website, bis 8 Seiten) 149 €, jeweils als einmaliger Festpreis. Online-Shops und Sonderprojekte bis 20 Seiten bieten wir individuell nach Angebot an. Versteckte Kosten gibt es nicht."],
+  ["Was ist im Preis enthalten?", "In allen Paketen ohne Aufpreis: Design für Smartphone und Desktop, Menü und Navigation, FAQ-Bereich, Kontaktformular, WhatsApp-Button, Google-Maps-Karte, Social-Media-Links, Texte erstellen oder übernehmen, kuratierte Bildauswahl, SEO-Grundlagen, Vorbereitung für Google- und KI-Suche, Online-Terminbuchung, Google-Bewertungen und Vorher-Nachher-Galerie."],
   ["Mit welcher Technik bauen Sie Websites?", "Je nach Bedarf: als schlanke HTML-Website oder mit Node.js, wenn interaktive Funktionen wie Rechner, Filter oder Animationen gefragt sind. Wir arbeiten ohne Baukasten, deshalb laden die Seiten schnell und sehen nicht aus wie tausend andere."],
   ["Wie funktioniert das Kontaktformular auf meiner Website?", "Anfragen aus dem Kontaktformular verschicken wir über den E-Mail-Server (SMTP) Ihres eigenen Postfachs direkt zu Ihnen. Es ist kein Drittanbieter zwischengeschaltet, die Daten Ihrer Kunden bleiben bei Ihnen."],
   ["Welchen Hoster empfehlen Sie?", "Wir sind Agentur-Partner von IONOS und empfehlen IONOS für Hosting, Domain und E-Mail-Postfach aus einer Hand. Sie können aber auch jeden anderen Anbieter wählen oder Ihr bestehendes Paket behalten."],
-  ["Muss ich mich selbst um Domain, Hosting und E-Mail kümmern?", "Nein. Auf Wunsch begleiten wir Sie durch den kompletten Ablauf: Domain sichern, Hosting und E-Mail-Postfach einrichten, Kontaktformular anbinden, Website veröffentlichen und das Google-Unternehmensprofil anlegen."],
+  ["Muss ich mich selbst um Domain, Hosting und E-Mail kümmern?", "Nein. Auf Wunsch begleiten wir Sie durch den kompletten Ablauf: Domain sichern, Hosting und E-Mail-Postfach einrichten, Kontaktformular anbinden, Website veröffentlichen und das Google-Unternehmensprofil anlegen. Die Einrichtung von Domain, E-Mail und Hosting ist in Wartung Pro und Premium enthalten."],
   ["Gibt es ein Abo oder eine Vertragsbindung?", "Nein. Kein Abo, kein Zwang. Die Website kostet einmalig und gehört Ihnen. Wartung können Sie auf Wunsch ab 19 € im Monat dazubuchen, monatlich kündbar, müssen es aber nicht."],
   ["Wie lange dauert es, bis meine Website online ist?", "Das hängt vom Umfang ab. Den Zeitplan legen wir vorab gemeinsam fest, damit Sie vor dem Start wissen, wann Ihre Seite online geht."],
-  ["Was brauchen Sie von mir?", "Ihr Logo, ein paar Fotos und Stichpunkte zu Ihren Leistungen reichen für den Anfang. Texte erstellen wir auf Wunsch, Stockfotos sind inklusive. Alles Weitere besprechen wir im Gespräch."],
-  ["Kümmern Sie sich auch nach dem Livegang um die Website?", "Ja, wenn Sie möchten. Mit Wartung (19 € im Monat, bis 1 Std. Änderungen) oder Wartung Pro (29 € im Monat, bis 2 Std. Änderungen) setzen wir Ihre Änderungen um. Einzelne Änderungen ohne Paket kosten 29 € pro Stunde. Hosting und Domain buchen Sie direkt beim Anbieter Ihrer Wahl, gern helfen wir bei der Auswahl."],
+  ["Was brauchen Sie von mir?", "Ihr Logo, ein paar Fotos und Stichpunkte zu Ihren Leistungen reichen für den Anfang. Texte erstellen wir auf Wunsch, eine kuratierte Bildauswahl ist inklusive. Alles Weitere besprechen wir im Gespräch."],
+  ["Kümmern Sie sich auch nach dem Livegang um die Website?", "Ja, wenn Sie möchten. Sie melden Ihre Änderungen, wir setzen sie um: mit Wartung (19 € im Monat, bis 1 Std.), Wartung Pro (29 € im Monat, bis 2 Std.) oder Wartung Premium (69 € im Monat, bis 6 Std.), jeweils monatlich kündbar. Einzelne Änderungen ohne Paket kosten 29 € pro Stunde. Die laufenden Kosten für Hosting und Domain zahlen Sie direkt beim Anbieter Ihrer Wahl."],
   ["Ich habe schon eine Website. Können Sie die übernehmen?", "Ja. Wir überarbeiten auch bestehende Websites und übernehmen alte Inhalte. Schicken Sie uns zuerst den Link für den kostenlosen Website-Check."],
   ["Sind die Beispiele echte Kunden?", "Nein. Die Beispiele sind Musterdesigns für erfundene Betriebe. Sie zeigen, was möglich ist. Ihre Website gestalten wir individuell für Ihren Betrieb."],
 ];

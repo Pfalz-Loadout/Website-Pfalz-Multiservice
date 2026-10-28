@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CLASSIC_EXAMPLES, CONTACT, EXAMPLES, WEB_ADDONS, WEB_FAQ, WEB_INCLUDED, WEB_PACKAGES, WEB_PROBLEMS } from "@/lib/data";
+import { CLASSIC_EXAMPLES, CONTACT, EXAMPLES, WEB_ADDONS, WEB_FAQ, WEB_CARE, WEB_INCLUDED, WEB_PACKAGES, WEB_PROBLEMS, type WebPackage } from "@/lib/data";
 import { SectionHeading } from "../SectionHeading";
 import { Button } from "../Button";
 import { Icon } from "../Icon";
@@ -85,28 +85,32 @@ export function WebExamples() {
   );
 }
 
+function PackageCard({ p }: { p: WebPackage }) {
+  return (
+    <div className={`pk ${p.badge ? "pk--hi" : ""}`}>
+      {p.badge && <span className="pk__badge">{p.badge}</span>}
+      <h3 className="pk__name">{p.name}</h3>
+      <p className={`pk__price ${/\d/.test(p.price) ? "" : "pk__price--req"}`}>{p.price}{p.unit && <span className="pk__unit"> {p.unit}</span>}</p>
+      <p className="pk__note">{p.note}</p>
+      <ul className="pk__list">
+        {p.items.map((it) => (
+          <li key={it}><Icon name="check" size={16} />
+            {it === "Alle Inklusivleistungen" ? <a href="#inklusive" className="pk__link">Alle Inklusivleistungen</a> : it}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 export function WebPackages() {
   return (
     <section className="section" id="pakete">
       <div className="container">
         <SectionHeading align="center" eyebrow="Pakete & Preise" title="Was kostet" highlight="eine Website?"
-          intro="Klare Festpreise, damit Sie von Anfang an wissen, woran Sie sind. Von der kompakten Visitenkarte bis zum Online-Shop." style={{ marginBottom: 56 }} />
+          intro="Klare Festpreise, damit Sie von Anfang an wissen, woran Sie sind. Einmaliger Festpreis, von der kompakten Visitenkarte bis zum Online-Shop." style={{ marginBottom: 56 }} />
         <div className="pk-grid pm-reveal" data-reveal="stagger">
-          {WEB_PACKAGES.map((p) => (
-            <div key={p.name} className={`pk ${p.badge ? "pk--hi" : ""}`}>
-              {p.badge && <span className="pk__badge">{p.badge}</span>}
-              <h3 className="pk__name">{p.name}</h3>
-              <p className={`pk__price ${/\d/.test(p.price) ? "" : "pk__price--req"}`}>{p.price}{p.unit && <span className="pk__unit"> {p.unit}</span>}</p>
-              <p className="pk__note">{p.note}</p>
-              <ul className="pk__list">
-                {p.items.map((it) => (
-                  <li key={it}><Icon name="check" size={16} />
-                    {it === "Alle Inklusivleistungen" ? <a href="#inklusive" className="pk__link">Alle Inklusivleistungen</a> : it}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          {WEB_PACKAGES.map((p) => <PackageCard key={p.name} p={p} />)}
         </div>
 
         <div className="pk-boxes">
@@ -134,9 +138,21 @@ export function WebPackages() {
           </div>
         </div>
 
+        <div className="care" id="wartung">
+          <SectionHeading align="center" eyebrow="Betreuung nach dem Livegang" title="Ihre Website bleibt" highlight="aktuell"
+            intro="Sie melden Ihre Änderungen, wir setzen sie um. Monatlich kündbar." style={{ marginBottom: 48 }} />
+          <div className="pk-grid pm-reveal" data-reveal="stagger">
+            {WEB_CARE.map((p) => <PackageCard key={p.name} p={p} />)}
+          </div>
+          <div className="care__single pm-reveal" data-reveal="up">
+            <span><b>Änderungen ohne Paket</b> einmalig 1 Std., reicht in der Regel für die meisten Änderungen</span>
+            <strong>29 €</strong>
+          </div>
+        </div>
+
         <div className="pk-free pm-reveal" data-reveal="up">
           <Icon name="file-check" size={26} />
-          <p><strong>Kein Abo, kein Zwang.</strong> Einmaliger Festpreis, keine versteckten Kosten, die Website gehört Ihnen. Hosting und Domain buchen Sie direkt beim Anbieter Ihrer Wahl, gern helfen wir bei der Auswahl.</p>
+          <p><strong>Kein Abo, kein Zwang.</strong> Einmaliger Festpreis, keine versteckten Kosten, die Website gehört Ihnen. Laufende Kosten für Hosting und Domain tragen Sie direkt beim Anbieter Ihrer Wahl. Die Einrichtung übernehmen wir in Wartung Pro und Premium.</p>
         </div>
         <div className="cta__btns pm-reveal" data-reveal="stagger" style={{ marginTop: 48 }}>
           <Button variant="accent" size="lg" icon="arrow-right" href="/kontakt?leistung=web">Kostenloses Angebot anfordern</Button>
