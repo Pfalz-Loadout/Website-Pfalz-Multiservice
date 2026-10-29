@@ -1,6 +1,7 @@
 import {
   ShoppingCart, Recycle, Warehouse, Truck, MonitorCog, Wrench, Lightbulb, Layers, FileCheck, MapPin,
   MessageCircle, Phone, Mail, Check, ArrowRight, ChevronDown, ChevronRight, CircleArrowRight, Star, Menu, X, ArrowUp, ExternalLink, LayoutTemplate, Clapperboard, Camera, PenTool, Languages,
+  KeyRound, LockKeyhole, FolderCode, Copyright, SearchCheck, ClipboardList, Gauge, PencilLine,
   type LucideProps,
 } from "lucide-react";
 import type { IconName } from "@/lib/data";
@@ -12,6 +13,8 @@ const MAP = {
   "chevron-down": ChevronDown, "chevron-right": ChevronRight, "circle-arrow-right": CircleArrowRight, star: Star,
   menu: Menu, x: X, "arrow-up": ArrowUp, "external-link": ExternalLink, "layout-template": LayoutTemplate,
   clapperboard: Clapperboard, camera: Camera, "pen-tool": PenTool, languages: Languages,
+  "key-round": KeyRound, "lock-keyhole": LockKeyhole, "folder-code": FolderCode, copyright: Copyright,
+  "search-check": SearchCheck, "clipboard-list": ClipboardList, gauge: Gauge, "pencil-line": PencilLine,
 } as const;
 
 export function Icon({ name, size = 20, ...rest }: { name: IconName; size?: number } & Omit<LucideProps, "ref">) {

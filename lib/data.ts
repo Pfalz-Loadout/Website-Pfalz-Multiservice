@@ -14,7 +14,8 @@ export type IconName =
   | "lightbulb" | "layers" | "file-check" | "map-pin" | "message-circle" | "phone"
   | "mail" | "check" | "arrow-right" | "chevron-down" | "chevron-right"
   | "circle-arrow-right" | "star" | "menu" | "x" | "arrow-up" | "external-link" | "layout-template"
-  | "clapperboard" | "camera" | "pen-tool" | "languages";
+  | "clapperboard" | "camera" | "pen-tool" | "languages"
+  | "key-round" | "lock-keyhole" | "folder-code" | "copyright" | "search-check" | "clipboard-list" | "gauge" | "pencil-line";
 
 export type Service = {
   id: string;
@@ -295,15 +296,15 @@ export type WebPackage = { name: string; price: string; unit?: string; note: str
 export const WEB_PACKAGES: WebPackage[] = [
   {
     name: "Start", price: "99 €", unit: "einmalig", note: "OnePager · bis 5 Abschnitte",
-    items: ["Alle Inhalte übersichtlich auf einer Seite", "Ideal für Gründer, Selbstständige und Vereine", "Alle Inklusivleistungen"],
+    items: ["Alle Inhalte übersichtlich auf einer Seite", "Ideal für Gründer, Selbstständige und Vereine", "Alle Inklusivleistungen", "Übergabe-Paket"],
   },
   {
     name: "Business", price: "149 €", unit: "einmalig", note: "OnePager oder mehrseitige Website · bis 8 Seiten", badge: "Beliebt",
-    items: ["Als OnePager oder mit mehreren Seiten und Menü", "Ideal für Handwerk, Gastronomie und Dienstleister", "Alle Inklusivleistungen"],
+    items: ["Als OnePager oder mit mehreren Seiten und Menü", "Ideal für Handwerk, Gastronomie und Dienstleister", "Alle Inklusivleistungen", "Übergabe-Paket"],
   },
   {
     name: "Shop / Premium", price: "individuell", unit: "nach Angebot", note: "Bis 20 Seiten, Online-Shop oder Sonderprojekt",
-    items: ["Online-Shop oder umfangreiche Website", "Ideal für Händler und größere Angebote", "Alle Inklusivleistungen"],
+    items: ["Online-Shop oder umfangreiche Website", "Ideal für Händler und größere Angebote", "Alle Inklusivleistungen", "Übergabe-Paket"],
   },
 ];
 
@@ -326,9 +327,38 @@ export const WEB_CARE: WebPackage[] = [
 /** In allen Paketen inklusive – ohne Aufpreis */
 export const WEB_INCLUDED = [
   "Design für Smartphone und Desktop", "Menü und Navigation", "FAQ-Bereich", "Kontaktformular", "WhatsApp-Button",
-  "Google-Maps-Karte", "Social-Media-Links", "Texte erstellen oder alte Inhalte übernehmen",
+  "Anfahrt mit Link zu Google Maps", "Social-Media-Links", "Texte erstellen oder alte Inhalte übernehmen",
   "Kuratierte Bildauswahl, professionell eingebunden", "SEO: Suchbegriffe und Meta-Texte", "Vorbereitet für Google- und KI-Suche",
   "Online-Terminbuchung", "Google-Bewertungen einbinden", "Vorher-Nachher-Galerie",
+];
+
+/** Übergabe-Paket – in jedem Paket gleich enthalten */
+export type HandoverItem = { icon: IconName; title: string; text: string };
+export const WEB_FIX_DAYS = 30;
+export const WEB_HANDOVER: { group: string; items: HandoverItem[] }[] = [
+  {
+    group: "Eigentum & Unabhängigkeit",
+    items: [
+      { icon: "key-round", title: "Domain & Hosting auf Ihren Namen", text: "Der Vertrag läuft direkt zwischen Ihnen und dem Anbieter, zum Beispiel IONOS, nicht über uns." },
+      { icon: "lock-keyhole", title: "Alle Zugangsdaten gehören Ihnen", text: "Sicher bei der Übergabe überreicht, nicht im Klartext per E-Mail." },
+      { icon: "folder-code", title: "Quellcode & Dateien", text: "Als ZIP oder Git-Repository, ohne Lock-in. Sie können jederzeit wechseln." },
+      { icon: "copyright", title: "Nutzungsrechte an Texten & Bildern", text: "Alles, was wir für Sie erstellen, dürfen Sie unbefristet nutzen." },
+    ],
+  },
+  {
+    group: "Dokumentation",
+    items: [
+      { icon: "search-check", title: "SEO- & KI-Dokumentation", text: "Prüfbericht mit 43 Punkten als PDF: wie Ihre Website für Google und die KI-Suche aufgestellt ist." },
+      { icon: "clipboard-list", title: "Übergabeblatt", text: "Domain, Hosting, E-Mail-Postfach, Ziel des Kontaktformulars und Vertragslaufzeiten auf einen Blick." },
+      { icon: "gauge", title: "PageSpeed-Messung", text: "Ladezeit auf Smartphone und Desktop, gemessen und dokumentiert zum Livegang." },
+    ],
+  },
+  {
+    group: "Nach dem Livegang",
+    items: [
+      { icon: "pencil-line", title: `${WEB_FIX_DAYS} Tage kostenlose Korrekturen`, text: "Kleine Korrekturen nach dem Livegang übernehmen wir ohne Berechnung." },
+    ],
+  },
 ];
 
 /** Zusatzleistungen – optional zu jedem Paket (Preise bewusst nicht auf der Website) */
@@ -349,11 +379,12 @@ export const WEB_STEPS: [string, string, string][] = [
 
 export const WEB_FAQ: [string, string][] = [
   ["Was kostet eine Website?", "Start (OnePager, bis 5 Abschnitte) kostet 99 €, Business (OnePager oder mehrseitige Website, bis 8 Seiten) 149 €, jeweils als einmaliger Festpreis. Online-Shops und Sonderprojekte bis 20 Seiten bieten wir individuell nach Angebot an. Versteckte Kosten gibt es nicht."],
-  ["Was ist im Preis enthalten?", "In allen Paketen ohne Aufpreis: Design für Smartphone und Desktop, Menü und Navigation, FAQ-Bereich, Kontaktformular, WhatsApp-Button, Google-Maps-Karte, Social-Media-Links, Texte erstellen oder übernehmen, kuratierte Bildauswahl, SEO-Grundlagen, Vorbereitung für Google- und KI-Suche, Online-Terminbuchung, Google-Bewertungen und Vorher-Nachher-Galerie."],
+  ["Was ist im Preis enthalten?", "In allen Paketen ohne Aufpreis: Design für Smartphone und Desktop, Menü und Navigation, FAQ-Bereich, Kontaktformular, WhatsApp-Button, Anfahrt mit Link zu Google Maps, Social-Media-Links, Texte erstellen oder übernehmen, kuratierte Bildauswahl, SEO-Grundlagen, Vorbereitung für Google- und KI-Suche, Online-Terminbuchung, Google-Bewertungen und Vorher-Nachher-Galerie."],
   ["Mit welcher Technik bauen Sie Websites?", "Je nach Bedarf: als schlanke HTML-Website oder mit Node.js, wenn interaktive Funktionen wie Rechner, Filter oder Animationen gefragt sind. Wir arbeiten ohne Baukasten, deshalb laden die Seiten schnell und sehen nicht aus wie tausend andere."],
   ["Wie funktioniert das Kontaktformular auf meiner Website?", "Anfragen aus dem Kontaktformular verschicken wir über den E-Mail-Server (SMTP) Ihres eigenen Postfachs direkt zu Ihnen. Es ist kein Drittanbieter zwischengeschaltet, die Daten Ihrer Kunden bleiben bei Ihnen."],
   ["Welchen Hoster empfehlen Sie?", "Wir sind Agentur-Partner von IONOS und empfehlen IONOS für Hosting, Domain und E-Mail-Postfach aus einer Hand. Sie können aber auch jeden anderen Anbieter wählen oder Ihr bestehendes Paket behalten."],
   ["Muss ich mich selbst um Domain, Hosting und E-Mail kümmern?", "Nein. Auf Wunsch begleiten wir Sie durch den kompletten Ablauf: Domain sichern, Hosting und E-Mail-Postfach einrichten, Kontaktformular anbinden, Website veröffentlichen und das Google-Unternehmensprofil anlegen. Die Einrichtung von Domain, E-Mail und Hosting ist in Wartung Pro und Premium enthalten."],
+  ["Gehört mir die Website am Ende?", "Ja, vollständig – in jedem Paket. Domain und Hosting laufen auf Ihren Namen, alle Zugangsdaten gehören Ihnen und Sie erhalten den Quellcode als ZIP oder Git-Repository. Texte und Bilder, die wir erstellen, dürfen Sie unbefristet nutzen. Dazu bekommen Sie ein Übergabeblatt, eine SEO- und KI-Dokumentation als PDF und eine PageSpeed-Messung zum Livegang. Kleine Korrekturen in den ersten 30 Tagen nach dem Livegang sind kostenlos."],
   ["Gibt es ein Abo oder eine Vertragsbindung?", "Nein. Kein Abo, kein Zwang. Die Website kostet einmalig und gehört Ihnen. Wartung können Sie auf Wunsch ab 19 € im Monat dazubuchen, monatlich kündbar, müssen es aber nicht."],
   ["Wie lange dauert es, bis meine Website online ist?", "Das hängt vom Umfang ab. Den Zeitplan legen wir vorab gemeinsam fest, damit Sie vor dem Start wissen, wann Ihre Seite online geht."],
   ["Was brauchen Sie von mir?", "Ihr Logo, ein paar Fotos und Stichpunkte zu Ihren Leistungen reichen für den Anfang. Texte erstellen wir auf Wunsch, eine kuratierte Bildauswahl ist inklusive. Alles Weitere besprechen wir im Gespräch."],
