@@ -79,7 +79,7 @@ export function About() {
               die Grundlage für ein breites Dienstleistungsportfolio.
             </p>
             <p style={{ margin: 0, font: "var(--type-body)", color: "var(--text-body)" }}>
-              Wir denken lösungsorientiert, arbeiten strukturiert und legen Wert auf langfristige Geschäftsbeziehungen.
+              Wir denken lösungsorientiert, arbeiten strukturiert und<br className="br-d" /> legen Wert auf langfristige Geschäftsbeziehungen.
             </p>
           </div>)}
           <div className="pm-reveal" data-reveal="checks"><CheckList items={USPS} /></div>

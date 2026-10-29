@@ -1,5 +1,5 @@
 "use client";
-import { tidy, tidyNode } from "@/lib/typo";
+import { lines, tidy, tidyNode } from "@/lib/typo";
 import { useRef, type CSSProperties, type ReactNode } from "react";
 import { gsap, useGSAP, MOTION_OK, splitHeading } from "@/lib/gsap";
 import { Eyebrow } from "./Eyebrow";
@@ -78,7 +78,7 @@ export function SectionHeading({
           </>
         )}
       </Tag>
-      {intro && <p className={`sh__intro ${hiddenCls}`}>{typeof intro === "string" ? tidy(intro) : tidyNode(intro)}</p>}
+      {intro && <p className={`sh__intro ${hiddenCls}`}>{typeof intro === "string" ? lines(tidy(intro)) : tidyNode(intro)}</p>}
     </div>
   );
 }

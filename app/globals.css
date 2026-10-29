@@ -93,6 +93,10 @@ html.pm-motion .pm-intro, html.pm-motion .pm-reveal { visibility: hidden; animat
 p, li, dd, td, summary, blockquote, figcaption { text-wrap: pretty; }
 h1, h2, h3, h4 { text-wrap: balance; }
 
+/* Gewünschte Umbrüche nur am Desktop – auf dem Handy fließt der Text */
+.br-d { display: none; }
+@media (min-width: 901px) { .br-d { display: inline; } }
+
 /* ---------- Section heading ---------- */
 .sh { display: flex; flex-direction: column; gap: 18px; align-items: flex-start; text-align: left; }
 .sh--center { align-items: center; text-align: center; margin-inline: auto; }
