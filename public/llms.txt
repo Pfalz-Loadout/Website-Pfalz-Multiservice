@@ -1,6 +1,6 @@
 # Pfalz Multiservice
 
-> Inhabergeführtes Dienstleistungsunternehmen aus Worms (Rheinland-Pfalz), gegründet 2021 von Jasmin Beer. Schwerpunkte: Web Maintenance & Management (Webdesign und Website-Betreuung), Reselling & Asset Recovery und E-Commerce. Dazu Lagerfläche, Räumungen, Solutions & Support sowie KNX-Programmierung, alles mit einem Ansprechpartner – für Unternehmen und Privatkunden in Worms und Umgebung (Frankenthal, Ludwigshafen, Mannheim, Alzey, Grünstadt, Bensheim).
+> Inhabergeführtes Dienstleistungsunternehmen aus Worms (Rheinland-Pfalz), gegründet 2021 von Jasmin Beer. Schwerpunkte: Web Maintenance & Management (Webdesign und Website-Betreuung), Reselling & Asset Recovery und E-Commerce. Dazu Lagerfläche, Räumungen, Solutions & Support sowie Änderungen an bestehenden KNX-Anlagen, alles mit einem Ansprechpartner – für Unternehmen und Privatkunden in Worms und Umgebung (Frankenthal, Ludwigshafen, Mannheim, Alzey, Grünstadt, Bensheim).
 
 Kontakt: Telefon und WhatsApp +49 160 5086983, E-Mail kontakt@pfalz-multiservice.de. Termine nach Vereinbarung. Angebote sind verbindlich und werden vor Beginn festgelegt.
 
@@ -12,7 +12,7 @@ Kontakt: Telefon und WhatsApp +49 160 5086983, E-Mail kontakt@pfalz-multiservice
 - [Storage Solutions](https://www.pfalz-multiservice.de/leistungen/storage): Lagerfläche in Worms, kurz- oder langfristig, ohne starre Vertragsbindung
 - [Clearance Services](https://www.pfalz-multiservice.de/leistungen/clearance): Räumung von Garagen, Lagern, Hallen und Gewerbeflächen mit Festpreis-Angebot und besenreiner Übergabe
 - [Solutions & Support](https://www.pfalz-multiservice.de/leistungen/facility): pragmatische Lösungen für Engpässe und Aufgaben ohne passenden Ansprechpartner
-- [Smart Home & KNX](https://www.pfalz-multiservice.de/leistungen/smarthome): ETS-Parametrierung, Licht, Jalousien, Heizung, Szenen und Visualisierung
+- [Smart Home & KNX](https://www.pfalz-multiservice.de/leistungen/smarthome): bestehende KNX-Anlagen ändern und erweitern ab 59 € – Lichtszenen, Jalousien, neue Geräte einbinden, Fehlersuche, Backup der Projektdatei; keine Elektroinstallation und keine Planung
 
 ## Weitere Seiten
 

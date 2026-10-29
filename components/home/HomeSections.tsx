@@ -52,7 +52,7 @@ export function Services() {
                 <Eyebrow>Ergänzende Leistung</Eyebrow>
                 <h3 className="side-card__title">{s.title}</h3>
                 <p className="side-card__text">
-                  {s.short}. KNX-Programmierung, Szenen und Visualisierung für Wohn- und Gewerbeobjekte.
+                  {s.short}. Lichtszenen, Jalousien, neue Geräte und Fehlersuche an Ihrer bestehenden Anlage.
                 </p>
                 <span className="card__link" style={{ color: "var(--brand-accent)" }}>
                   Details <Icon name="arrow-right" size={16} />

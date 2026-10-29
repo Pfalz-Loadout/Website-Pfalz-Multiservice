@@ -34,6 +34,10 @@ export type Service = {
   seoTitle?: string;
   /** Häufige Fragen auf der Leistungsseite */
   faq?: Faq[];
+  /** Kasten „Typische Anliegen“ auf der Leistungsseite */
+  points?: { title: string; items: string[]; note?: string };
+  /** Kleingedrucktes unter dem Inhalt (z. B. Markenhinweis) */
+  legal?: string;
 };
 
 export type Faq = [question: string, answer: string];
@@ -140,18 +144,32 @@ export const SERVICES: Service[] = tidyDeep([
   },
   {
     id: "smarthome",
-    seoTitle: "KNX-Programmierung in Worms",
+    seoTitle: "KNX-Anlage ändern & erweitern Worms",
     faq: [
-      ["Was programmieren Sie bei KNX?", "Parametrierung mit der ETS, Licht-, Jalousie- und Heizungssteuerung, Szenen und Visualisierung für Wohn- und Gewerbeobjekte."],
-      ["Passen Sie auch bestehende Anlagen an?", "Ja. Wir übernehmen Erweiterungen und Änderungen an vorhandenen KNX-Anlagen."],
-      PRICE_FAQ("die KNX-Programmierung"),
+      ["Was kostet eine Änderung an meiner KNX-Anlage?", "Änderungen gibt es ab 59 €. Nach einer kurzen, ehrlichen Einschätzung erhalten Sie vorab einen Festpreis."],
+      ["Ich habe keine Projektdatei mehr. Geht das trotzdem?", "Projektdatei vorhanden? Super. Wenn nicht, finden wir eine Lösung. Schildern Sie uns kurz Ihre Anlage, dann sagen wir Ihnen ehrlich, was möglich ist."],
+      ["Übernehmen Sie auch Elektroinstallation oder Planung?", "Nein. Wir programmieren und ändern bestehende KNX-Anlagen. Elektroinstallation und die Planung neuer Anlagen gehören nicht zu unserem Angebot."],
+      ["Wie läuft ein Auftrag ab?", "Sie schildern uns Ihr Anliegen, wir geben Ihnen eine ehrliche Einschätzung, Sie erhalten vorab einen Festpreis, und wir setzen um, testen und übergeben."],
     ],
-    seo: "KNX-Programmierung in Worms und der Pfalz: ETS-Parametrierung, Licht, Jalousien, Heizung, Szenen und Visualisierung für Wohn- und Gewerbeobjekte.",
+    seo: "KNX-Anlage ändern oder erweitern ab 59 €: Lichtszenen, Jalousien, neue Geräte, Fehlersuche. Programmierung bestehender Anlagen in Worms und der Pfalz.",
     side: true,
     icon: "lightbulb",
     title: "Smart Home & KNX",
-    short: "Programmierung von Gebäudeautomation",
-    text: "Als ergänzende Leistung übernehmen wir die Programmierung von Smart-Home-Systemen auf KNX-Basis: Parametrierung mit der ETS, Einrichtung von Licht-, Jalousie- und Heizungssteuerung, Szenen und Visualisierung sowie Anpassungen an bestehenden Anlagen.",
+    short: "KNX-Anlagen ändern und erweitern ab 59 €",
+    text: "Sie haben eine KNX-Anlage und brauchen Hilfe? Wir programmieren und ändern Ihre bestehende Anlage – schnell, fair und ohne Fachchinesisch. Der Elektriker ist nicht mehr erreichbar, die Programmierung nicht auffindbar oder die Anlage soll einfach etwas Neues können? Schildern Sie uns kurz Ihr Anliegen, wir sagen Ihnen ehrlich, was möglich ist.",
+    points: {
+      title: "Typische Anliegen",
+      items: [
+        "Lichtszenen, Zeitschaltungen und Automatisierungen anpassen oder neu anlegen",
+        "Jalousien- und Beschattungssteuerung ändern",
+        "Neue Geräte in Ihre bestehende Anlage einbinden",
+        "Funktionen umprogrammieren, die nicht mehr wie gewünscht laufen",
+        "Fehlersuche, wenn Ihre Anlage nicht mehr richtig reagiert",
+        "Sicherung (Backup) Ihrer KNX-Projektdatei",
+      ],
+      note: "Projektdatei vorhanden? Super – wenn nicht, finden wir eine Lösung. Wir programmieren und ändern, Elektroinstallation gehört nicht zu unserem Angebot.",
+    },
+    legal: "KNX ist eine eingetragene Marke der KNX Association.",
     image: IMG + "smarthome-knx.png",
   },
 ]);
@@ -180,7 +198,7 @@ export const STEPS: [string, string, string][] = tidyDeep([
 
 /** Häufige Fragen auf der Startseite */
 export const HOME_FAQ: Faq[] = tidyDeep([
-  ["Welche Leistungen bietet Pfalz Multiservice an?", "Web Maintenance & Management mit Webdesign, Reselling & Asset Recovery, E-Commerce sowie Lagerfläche, Räumungen, Solutions & Support und KNX-Programmierung – alles mit einem Ansprechpartner."],
+  ["Welche Leistungen bietet Pfalz Multiservice an?", "Web Maintenance & Management mit Webdesign, Reselling & Asset Recovery, E-Commerce sowie Lagerfläche, Räumungen, Solutions & Support und Änderungen an bestehenden KNX-Anlagen – alles mit einem Ansprechpartner."],
   ["In welchem Gebiet sind Sie tätig?", "In Worms und der Umgebung, unter anderem in Frankenthal, Ludwigshafen, Mannheim, Alzey, Grünstadt und Bensheim. Webdesign bieten wir auch überregional an."],
   ["Arbeiten Sie für Firmen und Privatkunden?", "Ja. Wir arbeiten für Unternehmen ebenso wie für Privatkunden, zum Beispiel bei Lagerung oder Räumung."],
   ["Wie läuft eine Anfrage ab?", "Sie schildern Ihr Anliegen per Formular, Telefon oder WhatsApp. Nach einem Gespräch oder einer Besichtigung erhalten Sie ein verbindliches Angebot, danach setzen wir den Auftrag termingerecht um."],

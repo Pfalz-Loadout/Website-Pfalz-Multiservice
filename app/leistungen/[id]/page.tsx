@@ -6,6 +6,7 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { CheckList } from "@/components/CheckList";
 import { ServiceCard } from "@/components/ServiceCard";
 import { Button } from "@/components/Button";
+import { Icon } from "@/components/Icon";
 import { CtaBand } from "@/components/home/HomeSections";
 import { JsonLd, breadcrumb, faqPage } from "@/lib/schema";
 import { Faq } from "@/components/Faq";
@@ -69,7 +70,18 @@ export default async function ServicePage({ params }: { params: Promise<{ id: st
             <div className="pm-reveal" data-reveal="up">
               <Button href={`/kontakt?leistung=${s.id}`} icon="arrow-right">Anfrage zu {s.title}</Button>
             </div>
+            {s.legal && <p className="svc-legal">{s.legal}</p>}
           </div>
+          {s.points && (
+            <aside className="pk-box svc-points pm-reveal" data-reveal="up">
+              <span className="pk-box__eyebrow">Was wir für Sie tun</span>
+              <h2 className="pk-box__title">{s.points.title}</h2>
+              <ul className="svc-points__list">
+                {s.points.items.map((it) => <li key={it}><Icon name="check" size={16} />{it}</li>)}
+              </ul>
+              {s.points.note && <p className="pk-box__foot">{s.points.note}</p>}
+            </aside>
+          )}
         </div>
       </section>
       {s.faq && <Faq items={s.faq} alt />}
