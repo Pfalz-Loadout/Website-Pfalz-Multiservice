@@ -1,3 +1,4 @@
+import { tidyNode } from "@/lib/typo";
 import Link from "next/link";
 import { AREA, COMPANY, CTA, CONTACT, IMG, SERVICES, USPS, homeServiceOrder, serviceHref } from "@/lib/data";
 import { BgImage } from "../BgImage";
@@ -71,7 +72,7 @@ export function About() {
       <div className="container split">
         <div className="stack" style={{ gap: 24 }}>
           <SectionHeading eyebrow={`Inhabergeführt seit ${COMPANY.founded} · Worms`} title="Über" highlight="uns" />
-          <div className="stack pm-reveal" data-reveal="stagger" style={{ gap: 24 }}>
+          {tidyNode(<div className="stack pm-reveal" data-reveal="stagger" style={{ gap: 24 }}>
             <p style={{ margin: 0, font: "var(--type-body)", color: "var(--text-body)" }}>
               Pfalz Multiservice ist ein inhabergeführtes Dienstleistungsunternehmen mit Sitz in Worms, gegründet {COMPANY.founded} von
               {" "}{COMPANY.owner} und gewachsen aus dem E-Commerce. Die Erfahrung aus Handel, Logistik und digitalen Prozessen bildet heute
@@ -80,7 +81,7 @@ export function About() {
             <p style={{ margin: 0, font: "var(--type-body)", color: "var(--text-body)" }}>
               Wir denken lösungsorientiert, arbeiten strukturiert und legen Wert auf langfristige Geschäftsbeziehungen.
             </p>
-          </div>
+          </div>)}
           <div className="pm-reveal" data-reveal="checks"><CheckList items={USPS} /></div>
           <div className="stack pm-reveal" data-reveal="stagger" style={{ gap: 24 }}>
             <span style={{ font: "400 15px var(--font-body)", color: "var(--text-body)" }}>Mehrere Bereiche kombinieren? Sprechen Sie uns an.</span>

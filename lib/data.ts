@@ -1,3 +1,4 @@
+import { tidyDeep } from "./typo";
 // Inhalte 1:1 aus dem UI-Kit (ui_kits/website/data.jsx)
 export const IMG = "/images/";
 
@@ -51,7 +52,7 @@ const PRICE_FAQ = (what: string): Faq => [
   "Nach einer kurzen Bedarfsanalyse erhalten Sie ein verbindliches Angebot. Sie kennen Umfang und Kosten, bevor wir beginnen – ohne versteckte Posten.",
 ];
 
-export const SERVICES: Service[] = [
+export const SERVICES: Service[] = tidyDeep([
   {
     id: "ecommerce",
     seoTitle: "E-Commerce & Fulfillment in Worms",
@@ -153,7 +154,7 @@ export const SERVICES: Service[] = [
     text: "Als ergänzende Leistung übernehmen wir die Programmierung von Smart-Home-Systemen auf KNX-Basis: Parametrierung mit der ETS, Einrichtung von Licht-, Jalousie- und Heizungssteuerung, Szenen und Visualisierung sowie Anpassungen an bestehenden Anlagen.",
     image: IMG + "smarthome-knx.png",
   },
-];
+]);
 
 /** Link einer Leistung: eigene Seite (z. B. /webdesign) oder /leistungen/<id> */
 export const serviceHref = (s: Service) => s.href ?? `/leistungen/${s.id}`;
@@ -171,39 +172,39 @@ export function homeServiceOrder(): Service[] {
   return m;
 }
 
-export const USPS: { title: string; text: string; lines?: [string, string] }[] = [
+export const USPS: { title: string; text: string; lines?: [string, string] }[] = tidyDeep([
   { title: "Alles aus einer Hand", text: "Ein Kontakt für alle Aufgaben statt vieler einzelner Dienstleister.", lines: ["Ein Kontakt für alle Aufgaben statt", "vieler einzelner Dienstleister."] },
   { title: "Verbindliche Angebote", text: "Sie kennen Umfang und Kosten, bevor wir beginnen.", lines: ["Sie kennen Umfang und Kosten,", "bevor wir beginnen."] },
   { title: "Schnell vor Ort", text: "Regional in Worms verankert und kurzfristig einsatzbereit." },
-];
+]);
 
-export const STEPS: [string, string, string][] = [
+export const STEPS: [string, string, string][] = tidyDeep([
   ["01", "Anfrage", "Sie schildern Ihr Anliegen per Formular, Telefon oder WhatsApp."],
   ["02", "Bedarfsanalyse", "Persönliches Gespräch oder Besichtigung vor Ort."],
   ["03", "Angebot", "Verbindlich und mit transparentem Leistungsumfang."],
   ["04", "Umsetzung", "Termingerecht, und wir bleiben Ihr Ansprechpartner."],
-];
+]);
 
 /** Häufige Fragen auf der Startseite */
-export const HOME_FAQ: Faq[] = [
+export const HOME_FAQ: Faq[] = tidyDeep([
   ["Welche Leistungen bietet Pfalz Multiservice an?", "E-Commerce, Reselling und Warenankauf, Lagerfläche, Räumungen, Webdesign mit Website-Betreuung, Solutions & Support sowie KNX-Programmierung – alles mit einem Ansprechpartner."],
   ["In welchem Gebiet sind Sie tätig?", "In Worms und der Umgebung, unter anderem in Frankenthal, Ludwigshafen, Mannheim, Alzey, Grünstadt und Bensheim. Webdesign bieten wir auch überregional an."],
   ["Arbeiten Sie für Firmen und Privatkunden?", "Ja. Wir arbeiten für Unternehmen ebenso wie für Privatkunden, zum Beispiel bei Lagerung oder Räumung."],
   ["Wie läuft eine Anfrage ab?", "Sie schildern Ihr Anliegen per Formular, Telefon oder WhatsApp. Nach einem Gespräch oder einer Besichtigung erhalten Sie ein verbindliches Angebot, danach setzen wir den Auftrag termingerecht um."],
   ["Was kostet ein Auftrag?", "Das hängt vom Umfang ab. Sie erhalten vorab ein verbindliches Angebot und kennen die Kosten, bevor wir beginnen. Für Websites gibt es Festpreise ab 99 €."],
   ["Wann sind Sie erreichbar?", "Telefonisch und per WhatsApp unter +49 160 5086983 oder per E-Mail an kontakt@pfalz-multiservice.de. Termine vor Ort vereinbaren wir individuell."],
-];
+]);
 
 export const AREA = ["Worms", "Frankenthal", "Ludwigshafen", "Mannheim", "Alzey", "Grünstadt", "Bensheim"];
 
-export const FOOTER_TEXT =
-  "Von E-Commerce und Warenankauf über Lagerung und Räumung bis zur Betreuung von Websites und Objekten: Pfalz Multiservice bündelt Dienstleistungen für Unternehmen und Privatkunden in der Region Worms.";
+export const FOOTER_TEXT = tidyDeep(
+  "Von E-Commerce und Warenankauf über Lagerung und Räumung bis zur Betreuung von Websites und Objekten: Pfalz Multiservice bündelt Dienstleistungen für Unternehmen und Privatkunden in der Region Worms.");
 
-export const CTA = {
+export const CTA = tidyDeep({
   title: "Lassen Sie uns über Ihr",
   highlight: "Vorhaben sprechen",
   intro: "Schildern Sie uns kurz Ihr Anliegen. Wir melden uns zeitnah mit einem passenden Lösungsvorschlag.",
-};
+});
 
 /** Webdesign-Musterdesigns (statische Seiten unter public/beispiele/<slug>) */
 export type Example = {
@@ -214,7 +215,7 @@ export type Example = {
   tags: string[];
 };
 
-export const EXAMPLES: Example[] = [
+export const EXAMPLES: Example[] = tidyDeep([
   {
     slug: "weingut",
     name: "Weingut Hollerbach",
@@ -243,14 +244,14 @@ export const EXAMPLES: Example[] = [
     text: "Interaktives 3D-Haus mit Energiefluss, PV-Rechner, Tagesverlauf der Anlage und Smart-Home-Szenen.",
     tags: ["3D-Energiefluss", "PV-Rechner", "Smart Home"],
   },
-];
+]);
 
 /** Klassische Musterdesigns mit Menü – Unterseiten für den Seiten-Umschalter */
 export type ClassicExample = Example & {
   pages: { key: string; label: string; path: string }[];
 };
 
-export const CLASSIC_EXAMPLES: ClassicExample[] = [
+export const CLASSIC_EXAMPLES: ClassicExample[] = tidyDeep([
   {
     slug: "seifenmanufaktur",
     name: "Honigstück",
@@ -281,19 +282,19 @@ export const CLASSIC_EXAMPLES: ClassicExample[] = [
       { key: "kontakt", label: "Kontakt", path: "/kontakt" },
     ],
   },
-];
+]);
 
 /** Webdesign-Seite: Pakete, Ablauf, FAQ */
-export const WEB_PROBLEMS: [string, string][] = [
+export const WEB_PROBLEMS: [string, string][] = tidyDeep([
   ["Veraltete Website", "Die Seite ist in die Jahre gekommen, lädt langsam und ist auf dem Smartphone kaum zu bedienen."],
   ["Kaum Anfragen", "Besucher finden nicht schnell genug, was Sie anbieten und wie man Sie erreicht."],
   ["Baukasten-Look", "Eine Vorlage von der Stange: Ihr Betrieb sieht aus wie tausend andere."],
   ["Keine Zeit", "Texte, Bilder, Technik, Updates: Neben dem Tagesgeschäft bleibt die Website liegen."],
-];
+]);
 
 export type WebPackage = { name: string; price: string; unit?: string; note: string; items: string[]; badge?: string };
 /** Inhalte 1:1 aus der Preisliste (Preisliste_Pfalz-Multiservice.pdf, Stand 28.10.2026) */
-export const WEB_PACKAGES: WebPackage[] = [
+export const WEB_PACKAGES: WebPackage[] = tidyDeep([
   {
     name: "Start", price: "99 €", unit: "einmalig", note: "OnePager · bis 5 Abschnitte",
     items: ["Alle Inhalte übersichtlich auf einer Seite", "Ideal für Gründer, Selbstständige und Vereine", "Alle Inklusivleistungen", "Übergabe-Paket"],
@@ -306,10 +307,10 @@ export const WEB_PACKAGES: WebPackage[] = [
     name: "Shop / Premium", price: "individuell", unit: "nach Angebot", note: "Bis 20 Seiten, Online-Shop oder Sonderprojekt",
     items: ["Online-Shop oder umfangreiche Website", "Ideal für Händler und größere Angebote", "Alle Inklusivleistungen", "Übergabe-Paket"],
   },
-];
+]);
 
 /** Betreuung nach dem Livegang */
-export const WEB_CARE: WebPackage[] = [
+export const WEB_CARE: WebPackage[] = tidyDeep([
   {
     name: "Wartung", price: "19 €", unit: "/ Monat", note: "Die Basis-Betreuung",
     items: ["Bis 1 Std. Änderungen pro Monat", "Domain- und E-Mail-Einrichtung"],
@@ -322,20 +323,20 @@ export const WEB_CARE: WebPackage[] = [
     name: "Wartung Premium", price: "69 €", unit: "/ Monat", note: "Für große Projekte mit viel Content",
     items: ["Bis 6 Std. Änderungen pro Monat", "Neue Inhalte mehrmals pro Woche: Beiträge, Einträge, Bilder", "Ideal für Blogs, Community- und Suchportale", "KI-Fotos & 3D-Motion-Clips im erweiterten Umfang", "Google-Unternehmensprofil einrichten, optimieren & pflegen", "Einrichtung von Domain, E-Mail und Hosting", "Bevorzugte Bearbeitung Ihrer Anfragen"],
   },
-];
+]);
 
 /** In allen Paketen inklusive – ohne Aufpreis */
-export const WEB_INCLUDED = [
+export const WEB_INCLUDED = tidyDeep([
   "Design für Smartphone und Desktop", "Menü und Navigation", "FAQ-Bereich", "Kontaktformular", "WhatsApp-Button",
   "Anfahrt mit Link zu Google Maps", "Social-Media-Links", "Texte erstellen oder alte Inhalte übernehmen",
   "Kuratierte Bildauswahl, professionell eingebunden", "SEO: Suchbegriffe und Meta-Texte", "Vorbereitet für Google- und KI-Suche",
   "Online-Terminbuchung", "Google-Bewertungen einbinden", "Vorher-Nachher-Galerie",
-];
+]);
 
 /** Übergabe-Paket – in jedem Paket gleich enthalten */
 export type HandoverItem = { icon: IconName; title: string; text: string };
 export const WEB_FIX_DAYS = 30;
-export const WEB_HANDOVER: { group: string; items: HandoverItem[] }[] = [
+export const WEB_HANDOVER: { group: string; items: HandoverItem[] }[] = tidyDeep([
   {
     group: "Eigentum & Unabhängigkeit",
     items: [
@@ -359,25 +360,25 @@ export const WEB_HANDOVER: { group: string; items: HandoverItem[] }[] = [
       { icon: "pencil-line", title: `${WEB_FIX_DAYS} Tage kostenlose Korrekturen`, text: "Kleine Korrekturen nach dem Livegang übernehmen wir ohne Berechnung." },
     ],
   },
-];
+]);
 
 /** Zusatzleistungen – optional zu jedem Paket (Preise bewusst nicht auf der Website) */
-export const WEB_ADDONS: { icon: IconName; title: string; text: string }[] = [
+export const WEB_ADDONS: { icon: IconName; title: string; text: string }[] = tidyDeep([
   { icon: "clapperboard", title: "3D Motion & Cinematic Video", text: "Animierte Website mit KI-Videoclips in Kino-Optik: Dolly-Zoom, 360°-Orbit, FPV-Drohnenflug." },
   { icon: "camera", title: "KI-Fotografie in Studioqualität", text: "Fotorealistische Produkt- und Szenen-Shots mit Relight und Upscale, so viele, wie nötig." },
   { icon: "pen-tool", title: "Logo-Design", text: "Ein eigenes Logo für Ihren Auftritt." },
   { icon: "languages", title: "Mehrsprachigkeit", text: "Ihre Website zusätzlich in einer anderen Sprache." },
-];
+]);
 
-export const WEB_STEPS: [string, string, string][] = [
+export const WEB_STEPS: [string, string, string][] = tidyDeep([
   ["01", "Anfrage", "Sie schildern kurz Ihr Vorhaben, per Formular, Telefon oder WhatsApp. Kostenlos."],
   ["02", "Gespräch", "Wir klären gemeinsam, was Sie wirklich brauchen, und was nicht."],
   ["03", "Angebot", "Sie erhalten einen Festpreis mit klarem Leistungsumfang."],
   ["04", "Entwurf & Freigabe", "Sie sehen alles vorab. Nichts geht ohne Ihr OK online."],
   ["05", "Livegang", "Ihre Website geht online. Auf Wunsch betreuen wir sie danach weiter."],
-];
+]);
 
-export const WEB_FAQ: [string, string][] = [
+export const WEB_FAQ: [string, string][] = tidyDeep([
   ["Was kostet eine Website?", "Start (OnePager, bis 5 Abschnitte) kostet 99 €, Business (OnePager oder mehrseitige Website, bis 8 Seiten) 149 €, jeweils als einmaliger Festpreis. Online-Shops und Sonderprojekte bis 20 Seiten bieten wir individuell nach Angebot an. Versteckte Kosten gibt es nicht."],
   ["Was ist im Preis enthalten?", "In allen Paketen ohne Aufpreis: Design für Smartphone und Desktop, Menü und Navigation, FAQ-Bereich, Kontaktformular, WhatsApp-Button, Anfahrt mit Link zu Google Maps, Social-Media-Links, Texte erstellen oder übernehmen, kuratierte Bildauswahl, SEO-Grundlagen, Vorbereitung für Google- und KI-Suche, Online-Terminbuchung, Google-Bewertungen und Vorher-Nachher-Galerie."],
   ["Mit welcher Technik bauen Sie Websites?", "Je nach Bedarf: als schlanke HTML-Website oder mit Node.js, wenn interaktive Funktionen wie Rechner, Filter oder Animationen gefragt sind. Wir arbeiten ohne Baukasten, deshalb laden die Seiten schnell und sehen nicht aus wie tausend andere."],
@@ -391,4 +392,4 @@ export const WEB_FAQ: [string, string][] = [
   ["Kümmern Sie sich auch nach dem Livegang um die Website?", "Ja, wenn Sie möchten. Sie melden Ihre Änderungen, wir setzen sie um: mit Wartung (19 € im Monat, bis 1 Std.), Wartung Pro (29 € im Monat, bis 2 Std.) oder Wartung Premium (69 € im Monat, bis 6 Std.), jeweils monatlich kündbar. Einzelne Änderungen ohne Paket kosten 29 € pro Stunde. Die laufenden Kosten für Hosting und Domain zahlen Sie direkt beim Anbieter Ihrer Wahl."],
   ["Ich habe schon eine Website. Können Sie die übernehmen?", "Ja. Wir überarbeiten auch bestehende Websites und übernehmen alte Inhalte. Schicken Sie uns zuerst den Link für den kostenlosen Website-Check."],
   ["Sind die Beispiele echte Kunden?", "Nein. Die Beispiele sind Musterdesigns für erfundene Betriebe. Sie zeigen, was möglich ist. Ihre Website gestalten wir individuell für Ihren Betrieb."],
-];
+]);
