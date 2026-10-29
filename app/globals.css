@@ -553,6 +553,11 @@ a .contact-row__value { color: var(--brand-accent); }
 .pk-box--handover { margin-top: 20px; }
 .handover { margin-top: 8px; display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 0 36px; }
 .handover__h { margin: 0; padding: 18px 0 6px; border-top: 1px solid var(--brand-accent); font: 600 var(--fs-eyebrow) var(--font-display); letter-spacing: var(--ls-eyebrow); text-transform: uppercase; color: var(--brand-accent); }
+.svc-points { position: sticky; top: calc(var(--header-h) + 24px); }
+.svc-points__list { list-style: none; margin: 8px 0 0; padding: 18px 0 0; border-top: 1px solid var(--border-subtle); display: flex; flex-direction: column; gap: 12px; }
+.svc-points__list li { display: flex; gap: 10px; align-items: flex-start; font: 400 15px/1.5 var(--font-body); color: var(--text-body); }
+.svc-points__list svg { flex: none; margin-top: 4px; color: var(--brand-accent); }
+.svc-legal { margin: 0; font: 400 12px/1.5 var(--font-body); color: var(--text-subtle); }
 .pk-box__foot { margin: auto 0 0; padding-top: 14px; border-top: 1px solid var(--border-subtle); font: 400 13px/1.5 var(--font-body); color: var(--text-subtle); }
 
 .check-card { background: var(--surface-card); border: 1px solid var(--border-subtle); border-top: 3px solid var(--brand-accent); padding: 36px; display: flex; flex-direction: column; gap: 22px; }
