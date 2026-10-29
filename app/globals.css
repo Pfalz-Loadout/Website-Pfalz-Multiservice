@@ -89,6 +89,10 @@ html.pm-motion .pm-intro, html.pm-motion .pm-reveal { visibility: hidden; animat
 .eyebrow__rule { width: 28px; height: 2px; background: currentColor; flex: none; transform-origin: left center; }
 .eyebrow--center .eyebrow__rule:last-child { transform-origin: right center; }
 
+/* ---------- Zeilenumbruch: keine Einzelwörter am Absatzende ---------- */
+p, li, dd, td, summary, blockquote, figcaption { text-wrap: pretty; }
+h1, h2, h3, h4 { text-wrap: balance; }
+
 /* ---------- Section heading ---------- */
 .sh { display: flex; flex-direction: column; gap: 18px; align-items: flex-start; text-align: left; }
 .sh--center { align-items: center; text-align: center; margin-inline: auto; }

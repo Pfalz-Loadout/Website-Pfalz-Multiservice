@@ -1,3 +1,4 @@
+import { tidyNode } from "@/lib/typo";
 import Link from "next/link";
 import Image from "next/image";
 import { CLASSIC_EXAMPLES, CONTACT, EXAMPLES, WEB_ADDONS, WEB_FAQ, WEB_CARE, WEB_HANDOVER, WEB_INCLUDED, WEB_PACKAGES, WEB_PROBLEMS, type WebPackage } from "@/lib/data";
@@ -79,9 +80,9 @@ export function WebExamples() {
         </div>
         <ShowcaseList offset={CLASSIC_EXAMPLES.length} total={TOTAL} />
 
-        <p className="showcase-note" style={{ margin: "72px auto 0", textAlign: "center" }}>
+        {tidyNode(<p className="showcase-note" style={{ margin: "72px auto 0", textAlign: "center" }}>
           Alle gezeigten Betriebe, Personen und Angebote sind frei erfunden. Die Seiten sind Musterdesigns von Pfalz Multiservice.
-        </p>
+        </p>)}
       </div>
     </section>
   );
@@ -97,8 +98,8 @@ function PackageCard({ p }: { p: WebPackage }) {
       <ul className="pk__list">
         {p.items.map((it) => (
           <li key={it}><Icon name="check" size={16} />
-            {it === "Alle Inklusivleistungen" ? <a href="#inklusive" className="pk__link">Alle Inklusivleistungen</a>
-              : it === "Übergabe-Paket" ? <a href="#uebergabe" className="pk__link">Übergabe-Paket: Website gehört Ihnen</a> : it}
+            {it.replace(/\u00A0/g, " ") === "Alle Inklusivleistungen" ? <a href="#inklusive" className="pk__link">Alle Inklusivleistungen</a>
+              : it === "Übergabe-Paket" ? <a href="#uebergabe" className="pk__link">Übergabe-Paket inklusive</a> : it}
           </li>
         ))}
       </ul>
@@ -107,7 +108,7 @@ function PackageCard({ p }: { p: WebPackage }) {
 }
 
 export function WebPackages() {
-  return (
+  return tidyNode(
     <section className="section" id="pakete">
       <div className="container">
         <SectionHeading align="center" eyebrow="Pakete & Preise" title="Was kostet" highlight="eine Website?"
@@ -188,7 +189,7 @@ export function WebPackages() {
 
 export function WebCheck() {
   const points = ["Darstellung auf dem Smartphone", "Ladezeit", "Auffindbarkeit bei Google", "Impressum & Datenschutz", "Kontaktwege für Anfragen"];
-  return (
+  return tidyNode(
     <section className="section section--alt" id="website-check">
       <div className="container split">
         <div className="stack" style={{ gap: 24 }}>
@@ -249,7 +250,7 @@ export function WebTeaser({ alt = false }: { alt?: boolean }) {
             </a>
           ))}
         </div>
-        <p className="showcase-note" style={{ marginTop: 28 }}>Musterdesigns für erfundene Betriebe. <Link href="/webdesign#beispiele" style={{ color: "var(--brand-accent)" }}>Alle Beispiele im Detail</Link></p>
+        <p className="showcase-note" style={{ marginTop: 28 }}>Musterdesigns für erfundene Betriebe. <Link href="/webdesign#beispiele" style={{ color: "var(--brand-accent)" }}>Alle{"\u00A0"}Beispiele im{"\u00A0"}Detail</Link></p>
       </div>
     </section>
   );

@@ -1,3 +1,4 @@
+import { tidyDeep, tidyNode } from "@/lib/typo";
 import type { Metadata } from "next";
 import { OG_IMAGE, SITE_NAME } from "@/lib/site";
 import { SectionHeading } from "@/components/SectionHeading";
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
   openGraph: { type: "website", locale: "de_DE", url: "/datenschutz", siteName: SITE_NAME, images: [OG_IMAGE] },
 };
 
-const PRIVACY: { h?: string; p: string[]; l?: string[]; p2?: string[] }[] = [
+const PRIVACY: { h?: string; p: string[]; l?: string[]; p2?: string[] }[] = tidyDeep([
   { p: ["Pfalz Multiservice ist ein Angebot von Pfalz Loadout (Inhaberin: Jasmin Beer, Wormser Landstraße 117, 67551 Worms). Wir betreiben diese Website, einschließlich aller zugehörigen Informationen, Inhalte, Funktionen und Kontaktmöglichkeiten, um Ihnen unsere Dienstleistungen vorzustellen und Anfragen entgegenzunehmen (die „Services“). In dieser Datenschutzerklärung wird beschrieben, wie wir personenbezogene Daten erfassen, verwenden oder weitergeben, wenn Sie die Website besuchen, uns eine Anfrage senden, einen Auftrag erteilen oder anderweitig mit uns kommunizieren.", "Lesen Sie sich diese Datenschutzerklärung bitte sorgfältig durch. Indem Sie die Services nutzen, bestätigen Sie, dass Sie diese Datenschutzerklärung zur Kenntnis genommen haben."] },
   { h: "Welche personenbezogenen Daten erfassen oder verarbeiten wir?", p: ["Wenn wir den Begriff „personenbezogene Daten“ verwenden, beziehen wir uns auf Informationen, die Sie identifizieren oder unmittelbar mit Ihnen in Verbindung gebracht werden können. Personenbezogene Daten umfassen keine Informationen, die anonym erfasst oder so anonymisiert wurden, dass eine Identifizierung nicht möglich ist. Je nachdem, wie Sie mit uns interagieren, können wir die folgenden Kategorien personenbezogener Daten verarbeiten:"], l: ["Kontaktdaten einschließlich Name, Firmenname, Postanschrift, Telefonnummer und E-Mail-Adresse.", "Anfrage- und Auftragsdaten einschließlich des gewünschten Leistungsbereichs, Angaben zu Objekten, Flächen oder Warenbeständen, Terminwünschen sowie Angeboten, Rechnungen und Zahlungsinformationen im Rahmen eines Auftrags.", "Kommunikation mit uns einschließlich der Informationen, die Sie uns über das Kontaktformular, per E-Mail, Telefon oder WhatsApp mitteilen.", "Geräteinformationen einschließlich Informationen über Gerät, Browser oder Netzwerkverbindung, IP-Adresse sowie Datum und Uhrzeit des Zugriffs.", "Nutzungsinformationen einschließlich Informationen darüber, welche Seiten der Website Sie aufrufen."] },
   { h: "Quellen von personenbezogenen Daten", p: ["Wir können personenbezogene Daten über die folgenden Quellen erfassen:"], l: ["Direkt von Ihnen, wenn Sie uns eine Anfrage senden, einen Auftrag erteilen oder anderweitig mit uns kommunizieren.", "Automatisch beim Besuch der Website, insbesondere über die Server-Protokolle unseres Hosting-Anbieters.", "Von unseren Dienstanbietern, wenn sie Daten in unserem Auftrag erfassen oder verarbeiten."] },
@@ -29,7 +30,7 @@ const PRIVACY: { h?: string; p: string[]; l?: string[]; p2?: string[] }[] = [
   { h: "Beschwerden", p: ["Wenn Sie Beschwerden darüber haben, wie wir Ihre personenbezogenen Daten verarbeiten, wenden Sie sich bitte an uns. Sie haben außerdem das Recht, sich bei einer Datenschutzaufsichtsbehörde zu beschweren. Für uns zuständig ist der Landesbeauftragte für den Datenschutz und die Informationsfreiheit Rheinland-Pfalz."] },
   { h: "Internationale Übertragungen", p: ["Soweit wir Daten außerhalb des Europäischen Wirtschaftsraums übermitteln, etwa durch das Hosting bei Vercel oder bei der Nutzung von WhatsApp, stützen wir uns auf anerkannte Übermittlungsmechanismen wie die Standardvertragsklauseln der Europäischen Kommission oder einen Angemessenheitsbeschluss."] },
   { h: "Änderungen an dieser Datenschutzerklärung", p: ["Wir können diese Datenschutzerklärung von Zeit zu Zeit aktualisieren, um Änderungen unserer Verfahrensweisen oder rechtliche Anforderungen zu berücksichtigen. Die aktuelle Fassung wird auf dieser Website veröffentlicht und das Datum der „Letzten Fassung“ entsprechend angepasst."] },
-];
+]);
 
 export default function DatenschutzPage() {
   return (
@@ -49,7 +50,7 @@ export default function DatenschutzPage() {
               {s.p2?.map((t, j) => <p key={j}>{t}</p>)}
             </div>
           ))}
-          <div className="legal__block pm-reveal" data-reveal="up">
+          {tidyNode(<div className="legal__block pm-reveal" data-reveal="up">
             <h2>Kontakt</h2>
             <p>
               Sollten Sie Fragen zu unseren Datenschutzverfahren oder dieser Datenschutzerklärung haben oder eines Ihrer Rechte ausüben möchten,
@@ -58,7 +59,7 @@ export default function DatenschutzPage() {
             </p>
             <p>Pfalz Loadout<br />Inhaberin: Jasmin Beer<br />Wormser Landstraße 117<br />67551 Worms, Deutschland</p>
             <p>Im Sinne der geltenden Datenschutzgesetze sind wir der Verantwortliche für Ihre personenbezogenen Daten.</p>
-          </div>
+          </div>)}
         </div>
       </div>
     </section>

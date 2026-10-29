@@ -1,3 +1,4 @@
+import { tidy } from "@/lib/typo";
 import type { Metadata } from "next";
 import { OG_IMAGE, SITE_NAME } from "@/lib/site";
 import { COMPANY, CONTACT, CTA, IMG, SERVICES } from "@/lib/data";
@@ -22,7 +23,7 @@ function Row({ icon, label, value, href }: { icon: IconName; label: string; valu
       <span className="contact-row__icon"><Icon name={icon} size={20} /></span>
       <div>
         <div className="contact-row__label">{label}</div>
-        <div className="contact-row__value">{value}</div>
+        <div className="contact-row__value">{tidy(value)}</div>
       </div>
     </>
   );

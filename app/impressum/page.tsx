@@ -1,3 +1,4 @@
+import { tidyNode } from "@/lib/typo";
 import type { Metadata } from "next";
 import { OG_IMAGE, SITE_NAME } from "@/lib/site";
 import { SectionHeading } from "@/components/SectionHeading";
@@ -18,7 +19,7 @@ export default function ImpressumPage() {
       <div className="container">
         <div className="legal">
           <SectionHeading level={1} size="h1" eyebrow="Rechtliches" title="" highlight="Impressum" />
-          <div className="legal__stack stack pm-reveal" data-reveal="stagger" style={{ gap: 48 }}>
+          {tidyNode(<div className="legal__stack stack pm-reveal" data-reveal="stagger" style={{ gap: 48 }}>
             <div>
               <h2>Angaben gemäß § 5 DDG</h2>
               <p>Pfalz Multiservice ist ein Angebot von:<br />Pfalz Loadout<br />Wormser Landstraße 117, 67551 Worms, Deutschland</p>
@@ -36,7 +37,7 @@ export default function ImpressumPage() {
               <p>Kleinunternehmer gemäß § 19 UStG, daher wird keine Umsatzsteuer ausgewiesen.</p>
             </div>
             <div><p>Zur Teilnahme an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle sind wir nicht verpflichtet und nicht bereit.</p></div>
-          </div>
+          </div>)}
         </div>
       </div>
     </section>
