@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { IMG } from "@/lib/data";
-import { BRIEFING_INTRO } from "@/lib/briefing";
+import { BRIEFING_INTRO, BRIEFING_PDF } from "@/lib/briefing";
 import { PageHero } from "@/components/PageHero";
 import { BriefingForm } from "@/components/briefing/BriefingForm";
 import { JsonLd, breadcrumb } from "@/lib/schema";
@@ -34,6 +34,9 @@ export default function BriefingPage() {
             ))}
           </ol>
           <BriefingForm />
+          {BRIEFING_PDF && (
+            <p className="bf-paper">Lieber auf Papier? <a href={BRIEFING_PDF} download>Hier die PDF zum Herunterladen</a> – ausdrucken, ausfüllen und per Foto per WhatsApp oder E-Mail schicken.</p>
+          )}
         </div>
       </section>
     </>

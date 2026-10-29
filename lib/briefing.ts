@@ -165,6 +165,9 @@ export const UPLOAD_TYPES: Record<string, string> = {
   docx: "Word", odt: "OpenDocument", txt: "Text", xlsx: "Excel", pptx: "PowerPoint",
   zip: "ZIP", mp4: "MP4", mov: "MOV",
 };
+/** Papier-Version zum Herunterladen (Datei unter public/ ablegen und hier eintragen, z. B. "/briefing/Website-Briefing_Pfalz-Multiservice.pdf") */
+export const BRIEFING_PDF: string | null = null;
+
 export const UPLOAD_MAX_MB = 25;
 export const UPLOAD_MAX_FILES = 20;
 export const UPLOAD_ACCEPT = Object.keys(UPLOAD_TYPES).map((e) => "." + e).join(",");

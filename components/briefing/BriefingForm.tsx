@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { upload } from "@vercel/blob/client";
 import { BRIEFING, UPLOAD_ACCEPT, UPLOAD_MAX_FILES, UPLOAD_MAX_MB, UPLOAD_TYPES, type BriefingField } from "@/lib/briefing";
 import { CONTACT } from "@/lib/data";
 import { Button } from "../Button";
@@ -8,11 +9,20 @@ import { Icon } from "../Icon";
 
 type Values = Record<string, string | string[]>;
 type Files = Record<string, File[]>;
+type Phase = { kind: "edit" } | { kind: "sending"; text: string; pct: number } | { kind: "sent"; rejected: { name: string; reason: string }[] };
+const ACCESS = process.env.NEXT_PUBLIC_BLOB_ACCESS === "public" ? "public" : "private";
+const newId = () => Array.from(crypto.getRandomValues(new Uint8Array(16)), (b) => b.toString(16).padStart(2, "0")).join("");
+/** Dateiname für den Speicher: nur sichere Zeichen */
+function storeName(name: string) {
+  const ext = (name.split(".").pop() || "").toLowerCase();
+  const base = name.slice(0, name.length - ext.length - 1).normalize("NFKD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-zA-Z0-9_-]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 60) || "datei";
+  return `${base}.${ext}`;
+}
 const STORE = "pm-briefing-v1";
 const LAST = BRIEFING.length; // Index der Zusammenfassung
 
 /** Gespeicherte Eingaben laden – nur im Browser dieses Geräts, kein Ablaufdatum */
-function load(): { values: Values; step: number } | null {
+function load(): { values: Values; step: number; id?: string; startedAt?: number } | null {
   try {
     const raw = window.localStorage.getItem(STORE);
     return raw ? JSON.parse(raw) : null;
@@ -31,10 +41,14 @@ export function BriefingForm() {
   const [ok, setOk] = useState(false);
   const [notice, setNotice] = useState("");
   const startedAt = useRef(Date.now());
+  const sid = useRef("");
+  const [phase, setPhase] = useState<Phase>({ kind: "edit" });
 
   // Beim Öffnen: gespeicherten Stand wiederherstellen
   useEffect(() => {
     const saved = load();
+    sid.current = saved?.id && /^[a-f0-9]{32}$/.test(saved.id) ? saved.id : newId();
+    if (saved?.startedAt) startedAt.current = saved.startedAt;
     if (saved && Object.keys(saved.values || {}).length) {
       setValues(saved.values);
       setStep(Math.min(saved.step || 0, LAST));
@@ -46,7 +60,7 @@ export function BriefingForm() {
   useEffect(() => {
     const t = window.setTimeout(() => {
       try {
-        if (Object.keys(values).length) window.localStorage.setItem(STORE, JSON.stringify({ values, step, savedAt: Date.now() }));
+        if (Object.keys(values).length) window.localStorage.setItem(STORE, JSON.stringify({ values, step, id: sid.current, startedAt: startedAt.current, savedAt: Date.now() }));
       } catch { /* Speicher nicht verfügbar – Formular funktioniert trotzdem */ }
     }, 400);
     return () => window.clearTimeout(t);
@@ -82,6 +96,7 @@ export function BriefingForm() {
 
   const reset = () => {
     try { window.localStorage.removeItem(STORE); } catch { /* egal */ }
+    sid.current = newId(); startedAt.current = Date.now();
     setValues({}); setFiles({}); setErrors({}); setRestored(false); setOk(false); goto(0);
   };
 
@@ -102,14 +117,77 @@ export function BriefingForm() {
   };
   const removeFile = (id: string, i: number) => setFiles((s) => ({ ...s, [id]: (s[id] || []).filter((_, k) => k !== i) }));
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (phase.kind === "sending") return;
     if (!checkContact()) { goto(0); return; }
     if (!ok) { setNotice("Bitte bestätigen Sie noch die Datenschutzerklärung."); return; }
-    // Versand folgt im nächsten Schritt (Freigabe durch Daniel)
-    setNotice("Vorschau: Der Versand wird im nächsten Schritt eingerichtet. Ihre Eingaben bleiben auf diesem Gerät gespeichert.");
-    void startedAt;
+    const honey = (e.currentTarget as HTMLFormElement).querySelector<HTMLInputElement>('input[name="website"]')?.value || "";
+    setNotice("");
+
+    // 1) Dateien direkt in den sicheren Speicher hochladen (je Datei eine eigene Freigabe)
+    const all = Object.entries(files).flatMap(([field, list]) => list.map((file) => ({ field, file })));
+    const total = all.reduce((n, x) => n + x.file.size, 0) || 1;
+    let done = 0;
+    const failed: string[] = [];
+    for (let i = 0; i < all.length; i++) {
+      const { field, file } = all[i];
+      const label = `Datei ${i + 1} von ${all.length} wird hochgeladen …`;
+      setPhase({ kind: "sending", text: label, pct: Math.round((done / total) * 90) });
+      try {
+        await upload(`briefing/${sid.current}/${field}/${storeName(file.name)}`, file, {
+          access: ACCESS, handleUploadUrl: "/api/briefing/upload", multipart: file.size > 8 * 1024 * 1024,
+          contentType: file.type || "application/octet-stream",
+          onUploadProgress: (p) => setPhase({ kind: "sending", text: label, pct: Math.round(((done + (p.loaded || 0)) / total) * 90) }),
+        });
+      } catch {
+        failed.push(file.name);
+      }
+      done += file.size;
+    }
+    if (failed.length) {
+      setPhase({ kind: "edit" });
+      setNotice(`Diese Dateien konnten nicht hochgeladen werden: ${failed.join(", ")}. Entfernen Sie sie oder senden Sie sie später per WhatsApp/E-Mail – Ihre Angaben bleiben gespeichert.`);
+      return;
+    }
+
+    // 2) Antworten absenden
+    setPhase({ kind: "sending", text: "Briefing wird gesendet …", pct: 95 });
+    try {
+      const res = await fetch("/api/briefing", {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: sid.current, startedAt: startedAt.current, website: honey, values }),
+      });
+      const j = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(j.error || "Senden fehlgeschlagen");
+      try { window.localStorage.removeItem(STORE); } catch { /* egal */ }
+      setPhase({ kind: "sent", rejected: j.rejected || [] });
+      requestAnimationFrame(() => top.current?.scrollIntoView({ behavior: "smooth", block: "start" }));
+    } catch (err) {
+      setPhase({ kind: "edit" });
+      setNotice(`${err instanceof Error ? err.message : "Senden fehlgeschlagen"}. Ihre Angaben bleiben auf diesem Gerät gespeichert. Versuchen Sie es erneut oder melden Sie sich unter ${CONTACT.phone}.`);
+    }
   };
+
+  if (phase.kind === "sent") {
+    return (
+      <div className="bf" ref={top}>
+        <div className="bf__card bf__done" role="status">
+          <span className="success__badge"><Icon name="check" size={28} /></span>
+          <h2 className="bf__title">Vielen Dank!</h2>
+          <p className="bf__note">Ihr Website-Briefing ist bei uns eingegangen. Wir melden uns innerhalb kürzester Zeit mit einem unverbindlichen Vorschlag und Festpreis bei Ihnen.
+            {str("email") ? " Eine Kopie Ihrer Angaben haben wir Ihnen per E-Mail geschickt." : ""}</p>
+          {phase.rejected.length > 0 && (
+            <p className="bf__warn"><Icon name="file-check" size={18} />Diese Dateien haben wir aus Sicherheitsgründen nicht angenommen: {phase.rejected.map((r) => `${r.name} (${r.reason})`).join(", ")}. Schicken Sie sie gern per WhatsApp oder E-Mail.</p>
+          )}
+          <div style={{ display: "flex", gap: 14, flexWrap: "wrap", justifyContent: "center" }}>
+            <Button variant="accent" iconLeft="message-circle" href={CONTACT.whatsapp}>WhatsApp</Button>
+            <Button variant="outline" iconLeft="mail" href={`mailto:${CONTACT.email}`}>{CONTACT.email}</Button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   const section = BRIEFING[step];
   const pct = Math.round((Math.min(step, LAST) / LAST) * 100);
@@ -122,7 +200,7 @@ export function BriefingForm() {
           <span className="bf__progress-label">{step < LAST ? `Schritt ${step + 1} von ${LAST}` : "Zusammenfassung"}</span>
           <span className="bf__progress-saved"><Icon name="check" size={14} /> Wird auf diesem Gerät gespeichert</span>
         </div>
-        <div className="bf__bar" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={pct}><span style={{ width: `${pct}%` }} /></div>
+        <div className="bf__bar" role="progressbar" aria-label="Fortschritt" aria-valuemin={0} aria-valuemax={100} aria-valuenow={pct}><span style={{ width: `${pct}%` }} /></div>
         <ol className="bf__dots" aria-label="Abschnitte">
           {BRIEFING.map((s, i) => (
             <li key={s.nr}>
@@ -167,6 +245,13 @@ export function BriefingForm() {
         )}
 
         {notice && <p className="bf__notice" role="alert">{notice}</p>}
+        {phase.kind === "sending" && (
+          <div className="bf__sending" role="status" aria-live="polite">
+            <span>{phase.text}</span>
+            <div className="bf__bar"><span style={{ width: `${phase.pct}%` }} /></div>
+            <span className="bf__hint">Bitte die Seite nicht schließen.</span>
+          </div>
+        )}
 
         <div className="bf__nav">
           {step > 0 ? (
@@ -174,7 +259,7 @@ export function BriefingForm() {
           ) : <span />}
           {step < LAST
             ? <Button type="button" icon="arrow-right" onClick={next}>{step === LAST - 1 ? "Zur Zusammenfassung" : "Weiter"}</Button>
-            : <Button type="submit" icon="arrow-right" disabled={!ok}>Briefing absenden</Button>}
+            : <Button type="submit" icon="arrow-right" disabled={!ok || phase.kind === "sending"}>{phase.kind === "sending" ? "Wird gesendet …" : "Briefing absenden"}</Button>}
         </div>
       </form>
 
