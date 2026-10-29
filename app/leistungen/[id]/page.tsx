@@ -1,3 +1,4 @@
+import { social } from "@/lib/social";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { SERVICES, USPS, serviceHref } from "@/lib/data";
@@ -27,8 +28,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
     title: s.seoTitle ?? s.title,
     description,
     alternates: { canonical: url },
-    openGraph: { type: "website", url, title: `${s.seoTitle ?? s.title} · Pfalz Multiservice`, description, images: [{ url: s.image, alt: s.title }] },
-    twitter: { card: "summary_large_image", title: `${s.seoTitle ?? s.title} · Pfalz Multiservice`, description, images: [s.image] },
+    ...social({ path: url, title: `${s.seoTitle ?? s.title} · Pfalz Multiservice`, description, image: `/og/${s.id}.jpg`, alt: s.title }),
   };
 }
 

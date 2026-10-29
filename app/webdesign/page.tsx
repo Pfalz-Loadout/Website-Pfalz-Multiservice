@@ -1,3 +1,4 @@
+import { social } from "@/lib/social";
 import type { Metadata } from "next";
 import { IMG, WEB_FAQ, WEB_STEPS } from "@/lib/data";
 import { SITE } from "@/lib/site";
@@ -15,8 +16,7 @@ export const metadata: Metadata = {
   title: "Webdesign Worms: Website ab 99 €",
   description,
   alternates: { canonical: "/webdesign" },
-  openGraph: { type: "website", url: "/webdesign", title: "Webdesign Worms · Pfalz Multiservice", description,
-    images: [{ url: "/images/beispiele/seifenmanufaktur-start.png", alt: "Webdesign-Beispiel Honigstück" }] },
+  ...social({ path: "/webdesign", title: "Webdesign Worms: Website ab 99 € · Pfalz Multiservice", description, image: "/og/webdesign.jpg", alt: "Webdesign von Pfalz Multiservice" }),
 };
 
 const faqLd = faqPage(WEB_FAQ);

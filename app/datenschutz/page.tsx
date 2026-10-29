@@ -1,6 +1,6 @@
+import { social } from "@/lib/social";
 import { tidyDeep, tidyNode } from "@/lib/typo";
 import type { Metadata } from "next";
-import { OG_IMAGE, SITE_NAME } from "@/lib/site";
 import { SectionHeading } from "@/components/SectionHeading";
 import { CONTACT } from "@/lib/data";
 import { JsonLd, breadcrumb } from "@/lib/schema";
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: "Datenschutzerklärung",
   description: "Datenschutzerklärung von Pfalz Multiservice: keine Cookies, kein Tracking. Hosting bei Vercel, Kontaktformular über Strato, Ihre Rechte nach DSGVO.",
   alternates: { canonical: "/datenschutz" },
-  openGraph: { type: "website", locale: "de_DE", url: "/datenschutz", siteName: SITE_NAME, images: [OG_IMAGE] },
+  ...social({ path: "/datenschutz", title: "Datenschutzerklärung · Pfalz Multiservice", description: "Datenschutzerklärung von Pfalz Multiservice: keine Cookies, kein Tracking. Hosting bei Vercel, Kontaktformular über Strato, Ihre Rechte nach DSGVO." }),
 };
 
 const PRIVACY: { h?: string; p: string[]; l?: string[]; p2?: string[] }[] = tidyDeep([
