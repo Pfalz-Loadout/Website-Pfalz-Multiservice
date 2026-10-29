@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { CLASSIC_EXAMPLES, CONTACT, EXAMPLES, WEB_ADDONS, WEB_FAQ, WEB_CARE, WEB_INCLUDED, WEB_PACKAGES, WEB_PROBLEMS, type WebPackage } from "@/lib/data";
+import { CLASSIC_EXAMPLES, CONTACT, EXAMPLES, WEB_ADDONS, WEB_FAQ, WEB_CARE, WEB_HANDOVER, WEB_INCLUDED, WEB_PACKAGES, WEB_PROBLEMS, type WebPackage } from "@/lib/data";
 import { SectionHeading } from "../SectionHeading";
 import { Button } from "../Button";
 import { Icon } from "../Icon";
@@ -97,7 +97,8 @@ function PackageCard({ p }: { p: WebPackage }) {
       <ul className="pk__list">
         {p.items.map((it) => (
           <li key={it}><Icon name="check" size={16} />
-            {it === "Alle Inklusivleistungen" ? <a href="#inklusive" className="pk__link">Alle Inklusivleistungen</a> : it}
+            {it === "Alle Inklusivleistungen" ? <a href="#inklusive" className="pk__link">Alle Inklusivleistungen</a>
+              : it === "Übergabe-Paket" ? <a href="#uebergabe" className="pk__link">Übergabe-Paket: Website gehört Ihnen</a> : it}
           </li>
         ))}
       </ul>
@@ -137,6 +138,27 @@ export function WebPackages() {
               ))}
             </ul>
             <p className="pk-box__foot">Die Preise für Zusatzleistungen nennen wir Ihnen in Ihrem Angebot.</p>
+          </div>
+        </div>
+
+        <div className="pk-box pk-box--handover pm-reveal" data-reveal="up" id="uebergabe">
+          <span className="pk-box__eyebrow">Übergabe-Paket · in jedem Paket enthalten</span>
+          <h3 className="pk-box__title">Ihre Website gehört Ihnen</h3>
+          <p className="pk-box__intro">Kein Lock-in, keine Abhängigkeit: Sie bekommen alles, um Ihre Website selbst zu besitzen und jederzeit frei zu entscheiden.</p>
+          <div className="handover">
+            {WEB_HANDOVER.map((g) => (
+              <div key={g.group} className="handover__group">
+                <h4 className="handover__h">{g.group}</h4>
+                <ul className="addons">
+                  {g.items.map((a) => (
+                    <li key={a.title} className="addon">
+                      <span className="addon__icon"><Icon name={a.icon} size={20} /></span>
+                      <span><b className="addon__title">{a.title}</b><span className="addon__text">{a.text}</span></span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         </div>
 
