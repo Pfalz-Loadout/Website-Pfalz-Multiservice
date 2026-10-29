@@ -24,7 +24,7 @@ const nextConfig: NextConfig = {
       { source: "/beispiele", destination: "/webdesign#beispiele", permanent: true },
       { source: "/leistungen/web", destination: "/webdesign", permanent: true },
       // Alle Nebenadressen dauerhaft auf die Hauptadresse www.pfalz-multiservice.de
-      ...["pfalz-multiservice.de", "pfalz-loadout.de", "www.pfalz-loadout.de"].map((value) => ({
+      ...["pfalz-multiservice.de", "pfalz-loadout.de", "www.pfalz-loadout.de", "garage-pfalz.de", "www.garage-pfalz.de"].map((value) => ({
         source: "/:path*", has: [{ type: "host" as const, value }], destination: "https://www.pfalz-multiservice.de/:path*", permanent: true,
       })),
     ];
