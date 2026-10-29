@@ -63,7 +63,7 @@ export const SERVICES: Service[] = tidyDeep([
     href: "/webdesign",
     icon: "monitor-cog",
     title: "Web Maintenance & Management",
-    short: "Stabile Systeme, aktuelle Inhalte",
+    short: "Webdesign, Aufbau & Betreuung",
     text: "Laufende technische Betreuung von Websites und Online-Shops: Updates, Sicherheitsmonitoring, Content-Pflege und Systemverwaltung. Aus dem Betrieb eigener E-Commerce-Plattformen bringen wir praxisnahes Know-how mit.",
     image: IMG + "webseite-laptop.png",
   },
