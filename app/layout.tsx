@@ -1,3 +1,4 @@
+import { social } from "@/lib/social";
 import type { Metadata, Viewport } from "next";
 import "@fontsource/poppins/400.css";
 import "@fontsource/poppins/500.css";
@@ -21,8 +22,7 @@ export const metadata: Metadata = {
   applicationName: SITE_NAME,
   alternates: { canonical: "/" },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } },
-  openGraph: { type: "website", locale: "de_DE", url: "/", siteName: SITE_NAME, title: TITLE, description: DESC, images: [OG_IMAGE] },
-  twitter: { card: "summary_large_image", title: TITLE, description: DESC, images: [OG_IMAGE.url] },
+  ...social({ path: "/", title: TITLE, description: DESC }),
 };
 
 const jsonLd = {
