@@ -73,7 +73,7 @@ export function Hero() {
             dark level={1} size="hero" motion="intro" maxWidth={1300}
             eyebrow="Pfalz Multiservice · Worms"
             title={<span className="sh__line">Viele Leistungen.</span>}
-            highlight={"Ein Ansprech\u00ADpartner."}
+            highlight={"Ein\u00A0Ansprech\u00ADpartner."}
           />
           <div className="hero__ctas pm-intro">
             <Button variant="accent" size="lg" href="/kontakt">Unverbindlich anfragen</Button>

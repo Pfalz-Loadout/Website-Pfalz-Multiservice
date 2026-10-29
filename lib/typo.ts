@@ -1,4 +1,4 @@
-import { Children, cloneElement, isValidElement, type ReactNode, type ReactElement } from "react";
+import { Children, cloneElement, createElement, isValidElement, type ReactNode, type ReactElement } from "react";
 
 /**
  * Typografie für Fließtext: verhindert unschöne Zeilenumbrüche durch geschützte Leerzeichen.
@@ -53,6 +53,16 @@ export function tidy(text: string): string {
     if (k < words.length - 1) out += glue[k] ? NB : tokens[2 * k + 1];
   }
   return out;
+}
+
+/**
+ * Gewünschter Zeilenumbruch: „\n“ im Text wird am Desktop zum Umbruch,
+ * auf dem Handy fließt der Text normal weiter (CSS-Klasse .br-d).
+ */
+export function lines(text: string): ReactNode {
+  if (!text.includes("\n")) return text;
+  const parts = text.split("\n");
+  return parts.flatMap((p, i) => (i === 0 ? [p] : [createElement("br", { key: i, className: "br-d" }), " ", p.replace(/^\s+/, "")]));
 }
 
 /** Wie tidy(), behandelt den Text aber als Satzanfang (z. B. nach einem fetten Vorspann) */

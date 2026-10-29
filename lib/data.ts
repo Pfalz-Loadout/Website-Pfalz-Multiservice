@@ -173,9 +173,9 @@ export function homeServiceOrder(): Service[] {
 }
 
 export const USPS: { title: string; text: string; lines?: [string, string] }[] = tidyDeep([
-  { title: "Alles aus einer Hand", text: "Ein Kontakt für alle Aufgaben statt vieler einzelner Dienstleister.", lines: ["Ein Kontakt für alle Aufgaben statt", "vieler einzelner Dienstleister."] },
-  { title: "Verbindliche Angebote", text: "Sie kennen Umfang und Kosten, bevor wir beginnen.", lines: ["Sie kennen Umfang und Kosten,", "bevor wir beginnen."] },
-  { title: "Schnell vor Ort", text: "Regional in Worms verankert und kurzfristig einsatzbereit." },
+  { title: "Alles aus einer Hand", text: "Ein Kontakt für alle Aufgaben\nstatt vieler einzelner Dienstleister.", lines: ["Ein Kontakt für alle Aufgaben statt", "vieler einzelner Dienstleister."] },
+  { title: "Verbindliche Angebote", text: "Sie kennen Umfang und Kosten,\nbevor wir beginnen.", lines: ["Sie kennen Umfang und Kosten,", "bevor wir beginnen."] },
+  { title: "Schnell vor Ort", text: "Regional in Worms verankert und\nkurzfristig einsatzbereit.", lines: ["Regional in Worms verankert und", "kurzfristig einsatzbereit."] },
 ]);
 
 export const STEPS: [string, string, string][] = tidyDeep([
@@ -317,7 +317,7 @@ export const WEB_CARE: WebPackage[] = tidyDeep([
   },
   {
     name: "Wartung Pro", price: "29 €", unit: "/ Monat", note: "Für aktive Unternehmens-Websites",
-    items: ["Bis 2 Std. Änderungen pro Monat", "KI-Fotos & 3D-Motion-Clips nach Bedarf", "Google-Unternehmensprofil einrichten, optimieren & pflegen", "Einrichtung von Domain, E-Mail und Hosting"],
+    items: ["Bis 2 Std. Änderungen pro Monat", "KI-Fotos & 3D-Motion-Clips\nMenge nach Bedarf", "Google-Unternehmensprofil einrichten, optimieren & pflegen", "Einrichtung von Domain, E-Mail und Hosting"],
   },
   {
     name: "Wartung Premium", price: "69 €", unit: "/ Monat", note: "Für große Projekte mit viel Content",
@@ -328,7 +328,7 @@ export const WEB_CARE: WebPackage[] = tidyDeep([
 /** In allen Paketen inklusive – ohne Aufpreis */
 export const WEB_INCLUDED = tidyDeep([
   "Design für Smartphone und Desktop", "Menü und Navigation", "FAQ-Bereich", "Kontaktformular", "WhatsApp-Button",
-  "Anfahrt mit Link zu Google Maps", "Social-Media-Links", "Texte erstellen oder alte Inhalte übernehmen",
+  "Anfahrt mit Link zu Google Maps", "Social-Media-Links", "Texte erstellen oder\nalte Inhalte übernehmen",
   "Kuratierte Bildauswahl, professionell eingebunden", "SEO: Suchbegriffe und Meta-Texte", "Vorbereitet für Google- und KI-Suche",
   "Online-Terminbuchung", "Google-Bewertungen einbinden", "Vorher-Nachher-Galerie",
 ]);
@@ -342,7 +342,7 @@ export const WEB_HANDOVER: { group: string; items: HandoverItem[] }[] = tidyDeep
     items: [
       { icon: "key-round", title: "Domain & Hosting auf Ihren Namen", text: "Der Vertrag läuft direkt zwischen Ihnen und dem Anbieter, zum Beispiel IONOS, nicht über uns." },
       { icon: "lock-keyhole", title: "Alle Zugangsdaten gehören Ihnen", text: "Sicher bei der Übergabe überreicht, nicht im Klartext per E-Mail." },
-      { icon: "folder-code", title: "Quellcode & Dateien", text: "Als ZIP oder Git-Repository, ohne Lock-in. Sie können jederzeit wechseln." },
+      { icon: "folder-code", title: "Quellcode & Dateien", text: "Als ZIP oder Git-Repository, ohne Lock-in.\nSie können jederzeit wechseln." },
       { icon: "copyright", title: "Nutzungsrechte an Texten & Bildern", text: "Alles, was wir für Sie erstellen, dürfen Sie unbefristet nutzen." },
     ],
   },
@@ -364,8 +364,8 @@ export const WEB_HANDOVER: { group: string; items: HandoverItem[] }[] = tidyDeep
 
 /** Zusatzleistungen – optional zu jedem Paket (Preise bewusst nicht auf der Website) */
 export const WEB_ADDONS: { icon: IconName; title: string; text: string }[] = tidyDeep([
-  { icon: "clapperboard", title: "3D Motion & Cinematic Video", text: "Animierte Website mit KI-Videoclips in Kino-Optik: Dolly-Zoom, 360°-Orbit, FPV-Drohnenflug." },
-  { icon: "camera", title: "KI-Fotografie in Studioqualität", text: "Fotorealistische Produkt- und Szenen-Shots mit Relight und Upscale, so viele, wie nötig." },
+  { icon: "clapperboard", title: "3D Motion & Cinematic Video", text: "Animierte Website mit KI-Videoclips in Kino-Optik:\nDolly-Zoom, 360°-Orbit, FPV-Drohnenflug." },
+  { icon: "camera", title: "KI-Fotografie in Studioqualität", text: "Fotorealistische Produkt- und Szenen-Shots mit\nRelight und Upscale, so viele, wie nötig." },
   { icon: "pen-tool", title: "Logo-Design", text: "Ein eigenes Logo für Ihren Auftritt." },
   { icon: "languages", title: "Mehrsprachigkeit", text: "Ihre Website zusätzlich in einer anderen Sprache." },
 ]);

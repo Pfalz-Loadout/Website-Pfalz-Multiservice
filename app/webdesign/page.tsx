@@ -45,7 +45,7 @@ export default function WebdesignPage() {
         eyebrow="Webdesign aus Worms"
         title="Websites, die"
         highlight="Anfragen bringen"
-        intro="Individuell gestaltet, zum fairen Festpreis und persönlich betreut. Für Betriebe, Selbstständige und Vereine in Worms und der Pfalz."
+        intro={"Individuell gestaltet, zum fairen Festpreis und persönlich betreut.\nFür Betriebe, Selbstständige und Vereine in Worms und der Pfalz."}
         image={IMG + "webseite-laptop.png"}
       >
         <Button variant="accent" size="lg" icon="arrow-right" href="/kontakt?leistung=web">Kostenloses Angebot</Button>

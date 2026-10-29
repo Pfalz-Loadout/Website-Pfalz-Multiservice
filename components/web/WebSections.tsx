@@ -1,4 +1,4 @@
-import { tidyNode } from "@/lib/typo";
+import { lines, tidyNode } from "@/lib/typo";
 import Link from "next/link";
 import Image from "next/image";
 import { CLASSIC_EXAMPLES, CONTACT, EXAMPLES, WEB_ADDONS, WEB_FAQ, WEB_CARE, WEB_HANDOVER, WEB_INCLUDED, WEB_PACKAGES, WEB_PROBLEMS, type WebPackage } from "@/lib/data";
@@ -15,10 +15,10 @@ export const WHATSAPP_CHECK = `${CONTACT.whatsapp}?text=${encodeURIComponent(CHE
 
 export function WebTrust() {
   const items: [string, string][] = [
-    ["Festpreis ab 99 €", "Sie kennen den Preis, bevor wir beginnen."],
+    ["Festpreis ab 99 €", "Sie kennen den Preis,\nbevor wir beginnen."],
     ["Kein Abo, kein Zwang", "Die Website gehört Ihnen."],
     ["Freigabe vor Livegang", "Nichts geht ohne Ihr OK online."],
-    ["Persönlich aus Worms", "Ein fester Ansprechpartner statt Hotline."],
+    ["Persönlich aus Worms", "Ein fester Ansprechpartner\nstatt Hotline."],
   ];
   return (
     <div className="trust">
@@ -28,7 +28,7 @@ export function WebTrust() {
             <Icon name="check" size={24} className="trust__icon" />
             <div>
               <span className="trust__title">{t}</span>
-              <span className="trust__text">{x}</span>
+              <span className="trust__text">{lines(x)}</span>
             </div>
           </div>
         ))}
@@ -66,7 +66,7 @@ export function WebExamples() {
     <section className="section section--alt" id="beispiele">
       <div className="container">
         <SectionHeading eyebrow="Musterdesigns" title="Unsere" highlight="Beispiele"
-          intro={`${TOTAL} Websites für erfundene Betriebe aus der Region. Klassisch mit Menü oder als One-Pager mit Animationen. Öffnen Sie die Beispiele live und klicken Sie sich durch.`} />
+          intro={`${TOTAL} Websites für erfundene Betriebe aus der Region.\nKlassisch mit Menü oder als One-Pager mit Animationen. Öffnen Sie die Beispiele live und klicken Sie sich durch.`} />
 
         <div className="sc-group">
           <h3 className="sc-group__title">Klassische Websites <span>mit Menü und Unterseiten</span></h3>
@@ -99,7 +99,7 @@ function PackageCard({ p }: { p: WebPackage }) {
         {p.items.map((it) => (
           <li key={it}><Icon name="check" size={16} />
             {it.replace(/\u00A0/g, " ") === "Alle Inklusivleistungen" ? <a href="#inklusive" className="pk__link">Alle Inklusivleistungen</a>
-              : it === "Übergabe-Paket" ? <a href="#uebergabe" className="pk__link">Übergabe-Paket inklusive</a> : it}
+              : it === "Übergabe-Paket" ? <a href="#uebergabe" className="pk__link">Übergabe-Paket inklusive</a> : <span>{lines(it)}</span>}
           </li>
         ))}
       </ul>
@@ -112,7 +112,7 @@ export function WebPackages() {
     <section className="section" id="pakete">
       <div className="container">
         <SectionHeading align="center" eyebrow="Pakete & Preise" title="Was kostet" highlight="eine Website?"
-          intro="Klare Festpreise, damit Sie von Anfang an wissen, woran Sie sind. Einmaliger Festpreis, von der kompakten Visitenkarte bis zum Online-Shop." style={{ marginBottom: 56 }} />
+          intro={"Klare Festpreise, damit Sie von Anfang an wissen, woran Sie sind.\nEinmaliger Festpreis, von der kompakten Visitenkarte bis zum Online-Shop."} style={{ marginBottom: 56 }} />
         <div className="pk-grid pm-reveal" data-reveal="stagger">
           {WEB_PACKAGES.map((p) => <PackageCard key={p.name} p={p} />)}
         </div>
@@ -123,7 +123,7 @@ export function WebPackages() {
             <h3 className="pk-box__title">Ohne Aufpreis</h3>
             <p className="pk-box__intro">Damit Ihre Website von Anfang an gefunden wird und Anfragen bringt.</p>
             <ul className="pk-box__list">
-              {WEB_INCLUDED.map((x) => <li key={x}><Icon name="check" size={16} />{x}</li>)}
+              {WEB_INCLUDED.map((x) => <li key={x}><Icon name="check" size={16} /><span>{lines(x)}</span></li>)}
             </ul>
           </div>
           <div className="pk-box pm-reveal" data-reveal="up" id="zusatzleistungen">
@@ -134,7 +134,7 @@ export function WebPackages() {
               {WEB_ADDONS.map((a) => (
                 <li key={a.title} className="addon">
                   <span className="addon__icon"><Icon name={a.icon} size={20} /></span>
-                  <span><b className="addon__title">{a.title}</b><span className="addon__text">{a.text}</span></span>
+                  <span><b className="addon__title">{a.title}</b><span className="addon__text">{lines(a.text)}</span></span>
                 </li>
               ))}
             </ul>
@@ -154,7 +154,7 @@ export function WebPackages() {
                   {g.items.map((a) => (
                     <li key={a.title} className="addon">
                       <span className="addon__icon"><Icon name={a.icon} size={20} /></span>
-                      <span><b className="addon__title">{a.title}</b><span className="addon__text">{a.text}</span></span>
+                      <span><b className="addon__title">{a.title}</b><span className="addon__text">{lines(a.text)}</span></span>
                     </li>
                   ))}
                 </ul>
