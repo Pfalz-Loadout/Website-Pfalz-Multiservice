@@ -187,6 +187,46 @@ export function WebPackages() {
   );
 }
 
+/** Hinführung zum Online-Briefing: Text links, kleine Formular-Vorschau rechts */
+export function WebBriefingTeaser() {
+  return tidyNode(
+    <section className="section section--alt" id="briefing">
+      <div className="container split bft">
+        <div className="stack" style={{ gap: 24 }}>
+          <SectionHeading eyebrow="Schon entschieden?" title="Starten Sie mit dem" highlight="Website-Briefing"
+            intro="Elf kurze Abschnitte zu Ihrem Betrieb, Ihren Zielen und Ihrem Wunsch-Design. Daraus erstellen wir Ihr unverbindliches Festpreis-Angebot." />
+          <ul className="bft__facts pm-reveal" data-reveal="stagger">
+            <li><Icon name="check" size={16} />ca. 15–20 Minuten, am Handy oder PC</li>
+            <li><Icon name="check" size={16} />Kein Zeitlimit: Eingaben bleiben auf Ihrem Gerät gespeichert</li>
+            <li><Icon name="check" size={16} />Logo, Fotos und Unterlagen direkt hochladen</li>
+            <li><Icon name="check" size={16} />Nur Firma, Ansprechpartner und Kontakt sind Pflicht</li>
+          </ul>
+          <div className="pm-reveal" data-reveal="up" style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
+            <Button variant="accent" icon="arrow-right" href="/briefing">Briefing ausfüllen</Button>
+            <Button variant="outline" href="/kontakt?leistung=web">Lieber erst sprechen</Button>
+          </div>
+        </div>
+        <Link href="/briefing" className="bft__preview pm-reveal" data-reveal="up" aria-label="Zum Website-Briefing" data-cursor>
+          <span className="bft__top" aria-hidden="true">
+            <span className="bft__step">Schritt 2 von 11</span>
+            <span className="bft__bar"><i /></span>
+          </span>
+          <span className="bft__head" aria-hidden="true"><b>02</b> Ihr Unternehmen &amp; Angebot</span>
+          <span className="bft__label" aria-hidden="true">Was macht Ihr Unternehmen?</span>
+          <span className="bft__input" aria-hidden="true">Wir sind ein Familienbetrieb aus Worms und …<i /></span>
+          <span className="bft__label" aria-hidden="true">Was soll die Website erreichen?</span>
+          <span className="bft__chips" aria-hidden="true">
+            <span className="is-on">Mehr Anfragen</span><span>Online verkaufen</span><span className="is-on">Vertrauen &amp; Image</span>
+          </span>
+          <span className="bft__label" aria-hidden="true">Logo &amp; Fotos</span>
+          <span className="bft__drop" aria-hidden="true">Dateien hierher ziehen · bis 25 MB</span>
+          <span className="bft__cta" aria-hidden="true">Weiter →</span>
+        </Link>
+      </div>
+    </section>
+  );
+}
+
 export function WebCheck() {
   const points = ["Darstellung auf dem Smartphone", "Ladezeit", "Auffindbarkeit bei Google", "Impressum & Datenschutz", "Kontaktwege für Anfragen"];
   return tidyNode(
