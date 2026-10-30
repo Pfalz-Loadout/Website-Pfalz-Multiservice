@@ -50,6 +50,7 @@ const jsonLd = {
       geo: { "@type": "GeoCoordinates", ...COMPANY.geo },
       areaServed: AREA.map((name) => ({ "@type": "City", name })),
       foundingDate: COMPANY.founded,
+      vatID: "DE444410908",
       founder: { "@type": "Person", name: COMPANY.owner },
       contactPoint: { "@type": "ContactPoint", contactType: "customer service", telephone: CONTACT.phone, email: CONTACT.email, availableLanguage: "de", areaServed: "DE" },
       knowsAbout: SERVICES.map((s) => s.title),
