@@ -3,8 +3,8 @@ import nodemailer from "nodemailer";
 import { del, put } from "@vercel/blob";
 import { BRIEFING, type BriefingField } from "@/lib/briefing";
 import { ACCESS, FILE_TTL_DAYS, ID_RE, filesOf, inspect, ipOf, limited, parsePath, sameOrigin, sign } from "@/lib/briefing-server";
-import { CONTACT } from "@/lib/data";
 import { SITE } from "@/lib/site";
+import { customerMail } from "@/lib/briefing-mail";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;
@@ -134,15 +134,16 @@ ${sections.map((sec) => `<h3 style="margin:24px 0 8px;border-bottom:1px solid #d
     await put(`briefing/${id}/_abgeschickt.json`, JSON.stringify({ at: now.toISOString() }), { access: ACCESS, addRandomSuffix: false, allowOverwrite: true, contentType: "application/json" }).catch(() => {});
   }
 
-  // Bestätigung an den Kunden (ohne Dateilinks)
+  // Bestätigung an den Kunden (ohne Dateilinks, mit Signatur)
   if (validMail) {
-    const intro = `Guten Tag ${person},\n\nvielen Dank für Ihr Website-Briefing! Wir haben Ihre Angaben erhalten und melden uns innerhalb kürzester Zeit mit einem unverbindlichen Vorschlag und Festpreis bei Ihnen.\n\nFragen? Rufen Sie an oder schreiben Sie per WhatsApp: ${CONTACT.phone}\n\nViele Grüße\nPfalz Multiservice\n${SITE.replace("https://", "")}\n\n————————————————————\nKopie Ihrer Angaben\n————————————————————\n\n`;
+    const mail = customerMail({ person, firma, stamp, sections, site: SITE });
     await transporter.sendMail({
       from: `"Pfalz Multiservice" <${user}>`,
       to: { name: person, address: email },
       replyTo: process.env.CONTACT_TO || user,
       subject: "Ihr Website-Briefing bei Pfalz Multiservice",
-      text: intro + text.replace(/^Website-Briefing: .*\n/, ""),
+      text: mail.text,
+      html: mail.html,
     }).catch((err) => console.error("[briefing] Bestätigung fehlgeschlagen:", err instanceof Error ? err.message : err));
   }
 
