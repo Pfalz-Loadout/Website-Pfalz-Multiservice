@@ -43,10 +43,7 @@ function ClassicItem({ ex, index, total }: { ex: ClassicExample; index: number; 
     const mm = gsap.matchMedia();
     mm.add(MOTION_OK, () => {
       gsap.set(root.querySelectorAll(".pm-reveal"), { visibility: "visible" });
-      const tl = gsap.timeline({ scrollTrigger: { trigger: root, start: "top 80%", once: true } });
-      tl.from(root.querySelector(".sc-browser"), { y: 70, opacity: 0, duration: 1.4, ease: "expo.out" }, 0)
-        .from(root.querySelectorAll(".cl-tab"), { y: 16, opacity: 0, stagger: 0.05, duration: 0.8 }, 0.35)
-        .from(root.querySelectorAll(".sc-copy > *"), { y: 36, opacity: 0, stagger: 0.08, duration: 1.1 }, 0.2);
+      // Statisch: kein Einflug mehr, nur Seiten-Autoplay und Hover-Effekte
       const st = ScrollTrigger.create({
         trigger: root, start: "top 70%", end: "bottom 30%",
         onToggle: (self) => setVisible(self.isActive),

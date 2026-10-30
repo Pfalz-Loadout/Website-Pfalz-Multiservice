@@ -303,20 +303,22 @@ export const WEB_PROBLEMS: [string, string][] = tidyDeep([
   ["Keine Zeit", "Texte, Bilder, Technik, Updates: Neben dem Tagesgeschäft bleibt die Website liegen."],
 ]);
 
-export type WebPackage = { name: string; price: string; unit?: string; note: string; items: string[]; badge?: string };
+export type WebPackage = { name: string; price: string; unit?: string; note: string; items: string[]; badge?: string; tagline?: string };
 /** Inhalte 1:1 aus der Preisliste (Preisliste_Pfalz-Multiservice.pdf, Stand 28.10.2026) */
+/** Pakete: Grundleistungen in jedem Paket, darüber die Besonderheit des Pakets */
+export const WEB_BASE_ITEMS: string[] = tidyDeep(["Individuelles Design", "Responsive für alle Geräte", "Individuelle Icons", "Ladezeit-Optimierung", "DSGVO-konform", "Impressum & Datenschutz", "Übergabe-Paket"]);
 export const WEB_PACKAGES: WebPackage[] = tidyDeep([
   {
-    name: "Start", price: "99 €", unit: "einmalig", note: "OnePager · bis 5 Abschnitte",
-    items: ["Alle Inhalte übersichtlich auf einer Seite", "Ideal für Gründer, Selbstständige und Vereine", "Alle Inklusivleistungen", "Übergabe-Paket"],
+    name: "Start", price: "99 €", unit: "einmalig", tagline: "Für den schnellen, starken Auftritt auf einer Seite.", note: "OnePager · bis 5 Abschnitte · mehrere Bildlizenzen",
+    items: ["Alle Inhalte übersichtlich auf einer Seite", ...WEB_BASE_ITEMS],
   },
   {
-    name: "Business", price: "149 €", unit: "einmalig", note: "OnePager oder mehrseitige Website · bis 8 Seiten", badge: "Beliebt",
-    items: ["Als OnePager oder mit mehreren Seiten und Menü", "Ideal für Handwerk, Gastronomie und Dienstleister", "Alle Inklusivleistungen", "Übergabe-Paket"],
+    name: "Business", price: "149 €", unit: "einmalig", badge: "Beliebt", tagline: "Für Betriebe, die mehr zeigen wollen.", note: "OnePager oder bis 8 Seiten · Bildlizenzen inklusive",
+    items: ["Mehrere Seiten mit Menü und Unterseiten", ...WEB_BASE_ITEMS],
   },
   {
-    name: "Shop / Premium", price: "individuell", unit: "nach Angebot", note: "Bis 20 Seiten, Online-Shop oder Sonderprojekt",
-    items: ["Online-Shop oder umfangreiche Website", "Ideal für Händler und größere Angebote", "Alle Inklusivleistungen", "Übergabe-Paket"],
+    name: "Shop / Premium", price: "individuell", unit: "nach Angebot", tagline: "Für Online-Shops und größere Projekte.", note: "Bis 20 Seiten · Shop oder Sonderfunktionen · Bildlizenzen inklusive",
+    items: ["Online-Shop oder besondere Funktionen", ...WEB_BASE_ITEMS],
   },
 ]);
 
@@ -344,6 +346,18 @@ export const WEB_INCLUDED = tidyDeep([
   "Online-Terminbuchung", "Google-Bewertungen einbinden", "Vorher-Nachher-Galerie",
 ]);
 
+/** „Was bekomme ich?“ – der Leistungsumfang jeder Website, klar benannt */
+export const WEB_DELIVER: { icon: IconName; title: string; text: string }[] = tidyDeep([
+  { icon: "layout-template", title: "Individuelles Webdesign", text: "Eigenes Design für Ihren Betrieb, kein Baukasten, keine Vorlage von der Stange." },
+  { icon: "monitor-cog", title: "Für Handy, Tablet & PC", text: "Geprüft ab 360 px Breite – ohne seitliches Scrollen, mit großen Tippflächen." },
+  { icon: "search-check", title: "SEO-Grundlagen", text: "Seitentitel, Beschreibungen, Überschriften, Sitemap, robots.txt und strukturierte Daten für Google und KI-Suche." },
+  { icon: "gauge", title: "Ladezeit-Optimierung", text: "Bilder in modernen Formaten, schlanker Code, gemessen mit PageSpeed." },
+  { icon: "lock-keyhole", title: "DSGVO-konform", text: "Keine Tracking-Cookies, Schriften vom eigenen Server, Kontaktformular ohne Drittanbieter." },
+  { icon: "file-check", title: "Impressum & Datenschutz", text: "Wir binden Ihre rechtlichen Angaben ein und halten sie aktuell. Keine Rechtsberatung." },
+  { icon: "message-circle", title: "Kontaktwege", text: "Formular direkt in Ihr Postfach, dazu WhatsApp, Telefon und E-Mail." },
+  { icon: "external-link", title: "Fertig veröffentlicht", text: "Online unter Ihrer eigenen Domain, mit SSL-Verschlüsselung – nach Ihrer Freigabe." },
+]);
+
 /** Übergabe-Paket – in jedem Paket gleich enthalten */
 export type HandoverItem = { icon: IconName; title: string; text: string };
 export const WEB_FIX_DAYS = 30;
@@ -354,7 +368,7 @@ export const WEB_HANDOVER: { group: string; items: HandoverItem[] }[] = tidyDeep
       { icon: "key-round", title: "Domain & Hosting auf Ihren Namen", text: "Der Vertrag läuft direkt zwischen Ihnen und dem Anbieter, zum Beispiel IONOS, nicht über uns." },
       { icon: "lock-keyhole", title: "Alle Zugangsdaten gehören Ihnen", text: "Sicher bei der Übergabe überreicht, nicht im Klartext per E-Mail." },
       { icon: "folder-code", title: "Quellcode & Dateien", text: "Als ZIP oder Git-Repository, ohne Lock-in.\nSie können jederzeit wechseln." },
-      { icon: "copyright", title: "Nutzungsrechte an Texten & Bildern", text: "Alles, was wir für Sie erstellen, dürfen Sie unbefristet nutzen." },
+      { icon: "copyright", title: "Nutzungsrechte an Texten & Bildern", text: "Alles, was wir für Sie erstellen, dürfen Sie nach vollständiger Bezahlung unbefristet nutzen." },
     ],
   },
   {
@@ -391,12 +405,15 @@ export const WEB_STEPS: [string, string, string][] = tidyDeep([
 
 export const WEB_FAQ: [string, string][] = tidyDeep([
   ["Was kostet eine Website?", "Start (OnePager, bis 5 Abschnitte) kostet 99 €, Business (OnePager oder mehrseitige Website, bis 8 Seiten) 149 €, jeweils als einmaliger Festpreis. Online-Shops und Sonderprojekte bis 20 Seiten bieten wir individuell nach Angebot an. Versteckte Kosten gibt es nicht."],
-  ["Was ist im Preis enthalten?", "In allen Paketen ohne Aufpreis: Design für Smartphone und Desktop, Menü und Navigation, FAQ-Bereich, Kontaktformular, WhatsApp-Button, Anfahrt mit Link zu Google Maps, Social-Media-Links, Texte erstellen oder übernehmen, kuratierte Bildauswahl, SEO-Grundlagen, Vorbereitung für Google- und KI-Suche, Online-Terminbuchung, Google-Bewertungen und Vorher-Nachher-Galerie."],
+  ["Was ist im Preis enthalten?", "In jedem Paket: individuelles Design, responsive Umsetzung für alle Geräte, individuelle Icons, Ladezeit-Optimierung, DSGVO-konforme Umsetzung, eingebundenes Impressum und Datenschutz, Bildlizenzen und das Übergabe-Paket. Dazu ohne Aufpreis: Design für Smartphone und Desktop, Menü und Navigation, FAQ-Bereich, Kontaktformular, WhatsApp-Button, Anfahrt mit Link zu Google Maps, Social-Media-Links, Texte erstellen oder übernehmen, kuratierte Bildauswahl, SEO-Grundlagen, Vorbereitung für Google- und KI-Suche, Online-Terminbuchung, Google-Bewertungen und Vorher-Nachher-Galerie."],
+  ["Was gehört zur SEO-Grundoptimierung?", "Seitentitel und Beschreibungen für jede Seite, eine saubere Überschriften-Struktur, Bildbeschreibungen, eine XML-Sitemap, robots.txt, strukturierte Daten für Ihren Betrieb und die Anmeldung bei der Google Search Console. Platz 1 bei Google kann seriös niemand versprechen, aber Ihre Website ist technisch so aufgestellt, dass Google und KI-Suchen sie gut lesen können."],
+  ["Was heißt DSGVO-konform bei Ihnen?", "Keine Tracking- oder Werbe-Cookies, keine Schriften von Google-Servern, Kontaktformular ohne Drittanbieter und verschlüsselte Verbindung per SSL. Impressum und Datenschutzerklärung binden wir ein; die Inhalte stammen von Ihnen oder einem Generator Ihrer Wahl, eine Rechtsberatung ersetzen wir nicht."],
+  ["Welche laufenden Kosten kommen nach dem Livegang?", "Nur Hosting und Domain, die Sie direkt beim Anbieter Ihrer Wahl bezahlen, nicht über uns. Wie hoch sie sind, hängt von Anbieter und Tarif ab; den Betrag weisen wir in Ihrem Angebot getrennt aus. Es gibt kein verstecktes Abo. Wartung ist freiwillig und monatlich kündbar."],
   ["Mit welcher Technik bauen Sie Websites?", "Je nach Bedarf: als schlanke HTML-Website oder mit Node.js, wenn interaktive Funktionen wie Rechner, Filter oder Animationen gefragt sind. Wir arbeiten ohne Baukasten, deshalb laden die Seiten schnell und sehen nicht aus wie tausend andere."],
   ["Wie funktioniert das Kontaktformular auf meiner Website?", "Anfragen aus dem Kontaktformular verschicken wir über den E-Mail-Server (SMTP) Ihres eigenen Postfachs direkt zu Ihnen. Es ist kein Drittanbieter zwischengeschaltet, die Daten Ihrer Kunden bleiben bei Ihnen."],
   ["Welchen Hoster empfehlen Sie?", "Wir sind Agentur-Partner von IONOS und empfehlen IONOS für Hosting, Domain und E-Mail-Postfach aus einer Hand. Sie können aber auch jeden anderen Anbieter wählen oder Ihr bestehendes Paket behalten."],
   ["Muss ich mich selbst um Domain, Hosting und E-Mail kümmern?", "Nein. Auf Wunsch begleiten wir Sie durch den kompletten Ablauf: Domain sichern, Hosting und E-Mail-Postfach einrichten, Kontaktformular anbinden, Website veröffentlichen und das Google-Unternehmensprofil anlegen. Die Einrichtung von Domain, E-Mail und Hosting ist in Wartung Pro und Premium enthalten."],
-  ["Gehört mir die Website am Ende?", "Ja, vollständig – in jedem Paket. Domain und Hosting laufen auf Ihren Namen, alle Zugangsdaten gehören Ihnen und Sie erhalten den Quellcode als ZIP oder Git-Repository. Texte und Bilder, die wir erstellen, dürfen Sie unbefristet nutzen. Dazu bekommen Sie ein Übergabeblatt, eine SEO- und KI-Dokumentation als PDF und eine PageSpeed-Messung zum Livegang. Kleine Korrekturen in den ersten 30 Tagen nach dem Livegang sind kostenlos."],
+  ["Gehört mir die Website am Ende?", "Ja, vollständig – in jedem Paket. Nach vollständiger Bezahlung erhalten Sie alle Nutzungsrechte und Zugangsdaten. Domain und Hosting laufen auf Ihren Namen, alle Zugangsdaten gehören Ihnen und Sie erhalten den Quellcode als ZIP oder Git-Repository. Texte und Bilder, die wir erstellen, dürfen Sie unbefristet nutzen. Dazu bekommen Sie ein Übergabeblatt, eine SEO- und KI-Dokumentation als PDF und eine PageSpeed-Messung zum Livegang. Kleine Korrekturen in den ersten 30 Tagen nach dem Livegang sind kostenlos."],
   ["Gibt es ein Abo oder eine Vertragsbindung?", "Nein. Kein Abo, kein Zwang. Die Website kostet einmalig und gehört Ihnen. Wartung können Sie auf Wunsch ab 19 € im Monat dazubuchen, monatlich kündbar, müssen es aber nicht."],
   ["Wie lange dauert es, bis meine Website online ist?", "Das hängt vom Umfang ab. Den Zeitplan legen wir vorab gemeinsam fest, damit Sie vor dem Start wissen, wann Ihre Seite online geht."],
   ["Was brauchen Sie von mir?", "Ihr Logo, ein paar Fotos und Stichpunkte zu Ihren Leistungen reichen für den Anfang. Texte erstellen wir auf Wunsch, eine kuratierte Bildauswahl ist inklusive. Alles Weitere besprechen wir im Gespräch."],

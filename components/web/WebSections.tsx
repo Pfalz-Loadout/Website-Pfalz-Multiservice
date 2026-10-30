@@ -1,13 +1,12 @@
 import { lines, tidyNode } from "@/lib/typo";
 import Link from "next/link";
 import Image from "next/image";
-import { CLASSIC_EXAMPLES, CONTACT, EXAMPLES, WEB_ADDONS, WEB_FAQ, WEB_CARE, WEB_HANDOVER, WEB_INCLUDED, WEB_PACKAGES, WEB_PROBLEMS, type WebPackage } from "@/lib/data";
+import { CLASSIC_EXAMPLES, CONTACT, EXAMPLES, WEB_ADDONS, WEB_BASE_ITEMS, WEB_DELIVER, WEB_FAQ, WEB_CARE, WEB_HANDOVER, WEB_INCLUDED, WEB_PACKAGES, WEB_PROBLEMS, type WebPackage } from "@/lib/data";
 import { SectionHeading } from "../SectionHeading";
 import { Button } from "../Button";
 import { Icon } from "../Icon";
 import { ClassicList } from "../ClassicShowcase";
 import { ShowcaseList } from "../Showcase";
-import { Faq } from "../Faq";
 
 const TOTAL = CLASSIC_EXAMPLES.length + EXAMPLES.length;
 const CHECK_TEXT = "Hallo, bitte prüfen Sie kostenlos meine Website: ";
@@ -90,20 +89,54 @@ export function WebExamples() {
 
 function PackageCard({ p }: { p: WebPackage }) {
   return (
-    <div className={`pk ${p.badge ? "pk--hi" : ""}`}>
+    <div className={`pk ${p.badge ? "pk--hi" : ""} ${p.tagline ? "pk--tag" : ""}`}>
       {p.badge && <span className="pk__badge">{p.badge}</span>}
       <h3 className="pk__name">{p.name}</h3>
+      {p.tagline && <p className="pk__tag">{p.tagline}</p>}
       <p className={`pk__price ${/\d/.test(p.price) ? "" : "pk__price--req"}`}>{p.price}{p.unit && <span className="pk__unit"> {p.unit}</span>}</p>
       <p className="pk__note">{p.note}</p>
       <ul className="pk__list">
         {p.items.map((it) => (
-          <li key={it}><Icon name="check" size={16} />
-            {it.replace(/\u00A0/g, " ") === "Alle Inklusivleistungen" ? <a href="#inklusive" className="pk__link">Alle Inklusivleistungen</a>
-              : it === "Übergabe-Paket" ? <a href="#uebergabe" className="pk__link">Übergabe-Paket inklusive</a> : <span>{lines(it)}</span>}
+          <li key={it} className={WEB_BASE_ITEMS.includes(it) ? "pk__base" : undefined}><Icon name="check" size={16} />
+            {it === "Übergabe-Paket" ? <a href="#uebergabe" className="pk__link">Übergabe-Paket inklusive</a> : <span>{lines(it)}</span>}
           </li>
         ))}
+        {p.items.some((it) => WEB_BASE_ITEMS.includes(it)) && (
+          <li className="pk__basesum"><Icon name="check" size={16} /><span>Inklusive: {WEB_BASE_ITEMS.join(" · ")}</span></li>
+        )}
       </ul>
     </div>
+  );
+}
+
+/** Ohne Aufpreis: zwei gegenläufige Laufbänder statt langer Liste (bei reduzierter Bewegung statisch umbrechend) */
+function IncludedMarquee() {
+  const n = Math.ceil(WEB_INCLUDED.length / 3);
+  const rows = [0, 1, 2].map((r) => WEB_INCLUDED.slice(r * n, r * n + n));
+  return (
+    <div className="marq">
+      <ul className="sr-only">{WEB_INCLUDED.map((x) => <li key={x}>{x.replace(/\n/g, " ")}</li>)}</ul>
+      {rows.map((row, r) => (
+        <div key={r} className={`marq__row ${r % 2 ? "marq__row--rev" : ""}`} aria-hidden="true">
+          <div className="marq__track">
+            {[0, 1].map((dup) => row.map((x) => (
+              <span key={`${dup}-${x}`} className={`marq__chip ${dup ? "marq__chip--dup" : ""}`}>
+                <Icon name="check" size={14} />{x.replace(/\n/g, " ")}
+              </span>
+            )))}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function Addon({ a }: { a: { icon: Parameters<typeof Icon>[0]["name"]; title: string; text: string } }) {
+  return (
+    <li className="addon">
+      <span className="addon__icon"><Icon name={a.icon} size={20} /></span>
+      <span><b className="addon__title">{a.title}</b><span className="addon__text">{lines(a.text)}</span></span>
+    </li>
   );
 }
 
@@ -112,52 +145,53 @@ export function WebPackages() {
     <section className="section" id="pakete">
       <div className="container">
         <SectionHeading align="center" eyebrow="Pakete & Preise" title="Was kostet" highlight="eine Website?"
-          intro={"Klare Festpreise, damit Sie von Anfang an wissen, woran Sie sind.\nEinmaliger Festpreis, von der kompakten Visitenkarte bis zum Online-Shop."} style={{ marginBottom: 56 }} />
+          intro={"Einmaliger Festpreis, von der kompakten Visitenkarte bis zum Online-Shop.\nSie wissen von Anfang an, woran Sie sind."} style={{ marginBottom: 48 }} />
         <div className="pk-grid pm-reveal" data-reveal="stagger">
           {WEB_PACKAGES.map((p) => <PackageCard key={p.name} p={p} />)}
         </div>
 
-        <div className="pk-boxes">
+        <div className="pk-incl">
           <div className="pk-box pk-box--incl pm-reveal" data-reveal="up" id="inklusive">
             <span className="pk-box__eyebrow">In allen Paketen inklusive</span>
             <h3 className="pk-box__title">Ohne Aufpreis</h3>
             <p className="pk-box__intro">Damit Ihre Website von Anfang an gefunden wird und Anfragen bringt.</p>
-            <ul className="pk-box__list">
-              {WEB_INCLUDED.map((x) => <li key={x}><Icon name="check" size={16} /><span>{lines(x)}</span></li>)}
-            </ul>
+            <IncludedMarquee />
           </div>
-          <div className="pk-box pm-reveal" data-reveal="up" id="zusatzleistungen">
-            <span className="pk-box__eyebrow">Zusatzleistungen</span>
-            <h3 className="pk-box__title">Optional zu jedem Paket</h3>
-            <p className="pk-box__intro">Für einen Auftritt, der heraussticht.</p>
-            <ul className="addons">
-              {WEB_ADDONS.map((a) => (
-                <li key={a.title} className="addon">
-                  <span className="addon__icon"><Icon name={a.icon} size={20} /></span>
-                  <span><b className="addon__title">{a.title}</b><span className="addon__text">{lines(a.text)}</span></span>
-                </li>
-              ))}
-            </ul>
-            <p className="pk-box__foot">Die Preise für Zusatzleistungen nennen wir Ihnen in Ihrem Angebot.</p>
+          <div className="pk-box pk-box--sm pm-reveal" data-reveal="up" id="zusatzleistungen">
+            <span className="pk-box__eyebrow">Optional zu jedem Paket</span>
+            <h3 className="pk-box__title">Zusatzleistungen</h3>
+            <ul className="addons addons--sm">{WEB_ADDONS.map((a) => <Addon key={a.title} a={a} />)}</ul>
+            <p className="pk-box__foot">Preise nennen wir Ihnen im Angebot.</p>
           </div>
+        </div>
+
+        <div className="pk-free pm-reveal" data-reveal="up">
+          <Icon name="file-check" size={26} />
+          <p><strong>Kein Abo, kein Zwang.</strong> Einmaliger Festpreis, keine versteckten Kosten, die Website gehört Ihnen. Laufende Kosten entstehen nur für Hosting und Domain: Die zahlen Sie direkt beim Anbieter Ihrer Wahl, den Betrag weisen wir im Angebot getrennt aus. Die Einrichtung übernehmen wir in Wartung Pro und Premium.</p>
+        </div>
+
+        <div className="deliver" id="leistungsumfang">
+          <h3 className="deliver__title pm-reveal" data-reveal="up">Was bekomme ich?</h3>
+          <ul className="deliver__grid pm-reveal" data-reveal="stagger">
+            {WEB_DELIVER.map((d) => (
+              <li key={d.title} className="deliver__item">
+                <span className="addon__icon"><Icon name={d.icon} size={20} /></span>
+                <b>{d.title}</b>
+                <span>{d.text}</span>
+              </li>
+            ))}
+          </ul>
         </div>
 
         <div className="pk-box pk-box--handover pm-reveal" data-reveal="up" id="uebergabe">
           <span className="pk-box__eyebrow">Übergabe-Paket · in jedem Paket enthalten</span>
           <h3 className="pk-box__title">Ihre Website gehört Ihnen</h3>
-          <p className="pk-box__intro">Kein Lock-in, keine Abhängigkeit: Sie bekommen alles, um Ihre Website selbst zu besitzen und jederzeit frei zu entscheiden.</p>
+          <p className="pk-box__intro">Kein Lock-in, keine Abhängigkeit: Nach vollständiger Bezahlung bekommen Sie alles, um Ihre Website selbst zu besitzen.</p>
           <div className="handover">
             {WEB_HANDOVER.map((g) => (
               <div key={g.group} className="handover__group">
                 <h4 className="handover__h">{g.group}</h4>
-                <ul className="addons">
-                  {g.items.map((a) => (
-                    <li key={a.title} className="addon">
-                      <span className="addon__icon"><Icon name={a.icon} size={20} /></span>
-                      <span><b className="addon__title">{a.title}</b><span className="addon__text">{lines(a.text)}</span></span>
-                    </li>
-                  ))}
-                </ul>
+                <ul className="addons">{g.items.map((a) => <Addon key={a.title} a={a} />)}</ul>
               </div>
             ))}
           </div>
@@ -165,20 +199,17 @@ export function WebPackages() {
 
         <div className="care" id="wartung">
           <SectionHeading align="center" eyebrow="Betreuung nach dem Livegang" title="Ihre Website bleibt" highlight="aktuell"
-            intro="Sie melden Ihre Änderungen, wir setzen sie um. Monatlich kündbar." style={{ marginBottom: 48 }} />
+            intro="Freiwillig: Sie melden Ihre Änderungen, wir setzen sie um. Monatlich kündbar." style={{ marginBottom: 40 }} />
           <div className="pk-grid pm-reveal" data-reveal="stagger">
             {WEB_CARE.map((p) => <PackageCard key={p.name} p={p} />)}
           </div>
+          <p className="care__swipe" aria-hidden="true">← wischen für weitere Pakete →</p>
           <div className="care__single pm-reveal" data-reveal="up">
             <span><b>Änderungen ohne Paket</b> einmalig 1 Std., reicht in der Regel für die meisten Änderungen</span>
             <strong>29 €</strong>
           </div>
         </div>
 
-        <div className="pk-free pm-reveal" data-reveal="up">
-          <Icon name="file-check" size={26} />
-          <p><strong>Kein Abo, kein Zwang.</strong> Einmaliger Festpreis, keine versteckten Kosten, die Website gehört Ihnen. Laufende Kosten für Hosting und Domain tragen Sie direkt beim Anbieter Ihrer Wahl. Die Einrichtung übernehmen wir in Wartung Pro und Premium.</p>
-        </div>
         <div className="cta__btns pm-reveal" data-reveal="stagger" style={{ marginTop: 48 }}>
           <Button variant="accent" size="lg" icon="arrow-right" href="/kontakt?leistung=web">Kostenloses Angebot anfordern</Button>
         </div>
@@ -241,43 +272,55 @@ export function WebBriefingTeaser() {
   );
 }
 
-export function WebCheck() {
-  const points = ["Darstellung auf dem Smartphone", "Ladezeit", "Auffindbarkeit bei Google", "Impressum & Datenschutz", "Kontaktwege für Anfragen"];
+/** FAQ und kompakter Website-Check nebeneinander, darunter der Briefing-Streifen */
+export function WebFaqCheck() {
+  const points: [string, string][] = [
+    ["Darstellung auf dem Smartphone", "Ist alles lesbar, passen Bilder und Tasten, muss man seitlich scrollen?"],
+    ["Ladezeit", "Wie schnell lädt die Seite am Handy, und was bremst sie?"],
+    ["Auffindbarkeit bei Google", "Titel, Beschreibungen, Überschriften und Indexierung."],
+    ["Impressum & Datenschutz", "Sind beide vorhanden, erreichbar und eingebunden?"],
+    ["Kontaktwege für Anfragen", "Finden Kunden schnell Telefon, Formular oder WhatsApp?"],
+  ];
   return tidyNode(
-    <section className="section section--alt" id="website-check">
-      <div className="container split">
-        <div className="stack" style={{ gap: 24 }}>
-          <SectionHeading eyebrow="Kostenlos & unverbindlich" title="Kostenloser" highlight="Website-Check"
-            intro="Sie haben schon eine Website? Schicken Sie uns den Link. Wir schauen kostenlos drüber und sagen Ihnen ehrlich, was wir verbessern würden." />
-          <ul className="checklist pm-reveal" data-reveal="checks">
-            {points.map((p) => (
-              <li key={p}><span className="checklist__box"><Icon name="check" size={16} /></span><span className="checklist__txt">{p}</span></li>
+    <section className="section section--alt" id="faq">
+      <div className="container faqcheck">
+        <div className="faqcheck__faq">
+          <SectionHeading eyebrow="Häufige Fragen" title="Kurz" highlight="beantwortet" style={{ marginBottom: 28 }} />
+          <div className="faq pm-reveal" data-reveal="stagger">
+            {WEB_FAQ.map(([q, a]) => (
+              <details key={q} className="faq__item">
+                <summary className="faq__q" data-cursor>{q}<span className="faq__icon" aria-hidden="true" /></summary>
+                <p className="faq__a">{a}</p>
+              </details>
             ))}
-          </ul>
+          </div>
+          <p className="faqcheck__more">Ihre Frage ist nicht dabei? Rufen Sie an unter <a href={CONTACT.phoneHref}>{CONTACT.phone}</a> oder schreiben Sie uns per <a href={CONTACT.whatsapp} target="_blank" rel="noopener">WhatsApp</a>.</p>
         </div>
-        <div className="check-card pm-reveal" data-reveal="up">
-          <span className="check-card__eyebrow">So einfach geht’s</span>
-          <ol className="check-card__steps">
-            <li><b>1</b>Link Ihrer Website senden</li>
-            <li><b>2</b>Wir prüfen die Seite</li>
-            <li><b>3</b>Sie erhalten eine ehrliche Einschätzung</li>
-          </ol>
+        <aside className="check-card check-card--compact pm-reveal" data-reveal="up" id="website-check" aria-labelledby="wc-title">
+          <span className="check-card__eyebrow">Kostenlos & unverbindlich</span>
+          <h2 className="check-card__title" id="wc-title">Kostenloser Website-Check</h2>
+          <p className="check-card__lead">Sie haben schon eine Website? Schicken Sie uns den Link. Wir sagen Ihnen ehrlich, was wir verbessern würden.</p>
+          <div className="check-card__points">
+            <span className="check-card__sub">Das prüfen wir</span>
+            {points.map(([t, x]) => (
+              <details key={t} className="ccp">
+                <summary data-cursor><Icon name="check" size={15} /><span>{t}</span><span className="faq__icon" aria-hidden="true" /></summary>
+                <p>{x}</p>
+              </details>
+            ))}
+          </div>
           <div className="check-card__btns">
             <Button variant="accent" iconLeft="message-circle" href={WHATSAPP_CHECK} fullWidth>Link per WhatsApp senden</Button>
             <Button variant="outline" iconLeft="mail" href="/kontakt?leistung=web" fullWidth>Per Formular senden</Button>
           </div>
           <p className="check-card__note">Ohne Verpflichtung. Sie entscheiden danach in Ruhe.</p>
-        </div>
+        </aside>
       </div>
-      <div className="container" style={{ marginTop: 32 }}>
+      <div className="container" style={{ marginTop: 40 }}>
         <BriefingStrip title="Noch keine Website – oder lieber neu starten?" />
       </div>
     </section>
   );
-}
-
-export function WebFaq() {
-  return <Faq items={WEB_FAQ} />;
 }
 
 /** Kompakter Teaser für Startseite und Leistungsseite: Referenz-Wand mit allen Beispielen */
