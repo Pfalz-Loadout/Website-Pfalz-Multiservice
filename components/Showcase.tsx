@@ -30,8 +30,6 @@ function ShowcaseItem({ ex, index, total }: { ex: Example; index: number; total:
     const browser = root.querySelector<HTMLElement>(".sc-browser")!;
     const view = root.querySelector<HTMLElement>(".sc-browser__view")!;
     const shot = root.querySelector<HTMLImageElement>(".sc-browser__shot")!;
-    const phone = root.querySelector<HTMLElement>(".sc-phone")!;
-    const copy = root.querySelectorAll(".sc-copy > *");
     const mm = gsap.matchMedia();
 
     const maxScroll = () => Math.max(0, shot.offsetHeight - view.offsetHeight);
@@ -39,17 +37,7 @@ function ShowcaseItem({ ex, index, total }: { ex: Example; index: number; total:
     mm.add(MOTION_OK, () => {
       gsap.set(root.querySelectorAll(".pm-reveal"), { visibility: "visible" });
 
-      // Einflug: Browser kippt aus der Tiefe nach vorn, Smartphone folgt
-      const tl = gsap.timeline({ scrollTrigger: { trigger: root, start: "top 80%", once: true } });
-      tl.from(browser, { y: 90, rotationX: 18, rotationY: index % 2 ? 8 : -8, opacity: 0, transformPerspective: 1400, duration: 1.6, ease: "expo.out" }, 0)
-        .from(phone, { y: 140, rotation: index % 2 ? -8 : 8, opacity: 0, duration: 1.5, ease: "expo.out" }, 0.25)
-        .from(copy, { y: 36, opacity: 0, stagger: 0.08, duration: 1.1 }, 0.2);
-
-      // Smartphone schwebt beim Scrollen gegenläufig
-      gsap.fromTo(phone, { yPercent: 10 }, {
-        yPercent: -14, ease: "none",
-        scrollTrigger: { trigger: root, start: "top bottom", end: "bottom top", scrub: true },
-      });
+      // Statisch: kein Einflug, keine Parallaxe (wirkte schräg und ruckelte)
     });
 
     // Desktop: Maus über dem Browser scrollt durch die ganze Seite, dazu 3D-Tilt
