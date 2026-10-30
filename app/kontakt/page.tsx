@@ -8,6 +8,7 @@ import { ContactForm } from "@/components/ContactForm";
 import { JsonLd, breadcrumb } from "@/lib/schema";
 import { Button } from "@/components/Button";
 import { Icon } from "@/components/Icon";
+import { BriefingStrip } from "@/components/web/WebSections";
 import type { IconName } from "@/lib/data";
 
 export const metadata: Metadata = {
@@ -52,6 +53,7 @@ export default async function KontaktPage({ searchParams }: { searchParams: Prom
               <Row icon="file-check" label="Erreichbarkeit" value={`Telefon und WhatsApp · ${COMPANY.hours}`} />
               <div><Button variant="outline-light" iconLeft="message-circle" href={CONTACT.whatsapp}>WhatsApp-Chat starten</Button></div>
             </div>
+            <BriefingStrip text="Für eine neue Website gibt es unser Website-Briefing: Schritt für Schritt ausfüllen, Logo und Fotos hochladen und ein unverbindliches Festpreis-Angebot erhalten." />
           </div>
           <ContactForm initial={initial} />
         </div>

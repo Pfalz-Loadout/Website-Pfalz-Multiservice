@@ -72,13 +72,13 @@ export function WebExamples() {
           <h3 className="sc-group__title">Klassische Websites <span>mit Menü und Unterseiten</span></h3>
           <span className="sc-group__count" aria-hidden="true" data-n={String(CLASSIC_EXAMPLES.length).padStart(2, "0")} />
         </div>
-        <ClassicList total={TOTAL} />
+        <ClassicList total={TOTAL} grid />
 
         <div className="sc-group sc-group--later">
           <h3 className="sc-group__title">One-Pager <span>alles auf einer Seite, mit Animationen</span></h3>
           <span className="sc-group__count" aria-hidden="true" data-n={String(EXAMPLES.length).padStart(2, "0")} />
         </div>
-        <ShowcaseList offset={CLASSIC_EXAMPLES.length} total={TOTAL} />
+        <ShowcaseList offset={CLASSIC_EXAMPLES.length} total={TOTAL} grid />
 
         {tidyNode(<p className="showcase-note" style={{ margin: "72px auto 0", textAlign: "center" }}>
           Alle gezeigten Betriebe, Personen und Angebote sind frei erfunden. Die Seiten sind Musterdesigns von Pfalz Multiservice.
@@ -187,6 +187,20 @@ export function WebPackages() {
   );
 }
 
+/** Kompakter Hinweis aufs Website-Briefing (unter dem Website-Check, auf der Kontaktseite) */
+export function BriefingStrip({ title = "Website geplant?", text = "Füllen Sie unser Website-Briefing aus – in 15–20 Minuten, ohne Zeitdruck, mit Upload für Logo und Fotos. Danach erhalten Sie ein unverbindliches Festpreis-Angebot." }: { title?: string; text?: string }) {
+  return tidyNode(
+    <div className="bstrip pm-reveal" data-reveal="up">
+      <span className="bstrip__icon" aria-hidden="true"><Icon name="clipboard-list" size={26} /></span>
+      <div className="bstrip__txt">
+        <b>{title}</b>
+        <span>{text}</span>
+      </div>
+      <Button variant="accent" icon="arrow-right" href="/briefing">Briefing starten</Button>
+    </div>
+  );
+}
+
 /** Hinführung zum Online-Briefing: Text links, kleine Formular-Vorschau rechts */
 export function WebBriefingTeaser() {
   return tidyNode(
@@ -254,6 +268,9 @@ export function WebCheck() {
           </div>
           <p className="check-card__note">Ohne Verpflichtung. Sie entscheiden danach in Ruhe.</p>
         </div>
+      </div>
+      <div className="container" style={{ marginTop: 32 }}>
+        <BriefingStrip title="Noch keine Website – oder lieber neu starten?" />
       </div>
     </section>
   );
