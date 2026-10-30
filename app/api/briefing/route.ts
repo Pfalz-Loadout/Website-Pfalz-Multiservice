@@ -5,6 +5,7 @@ import { BRIEFING, type BriefingField } from "@/lib/briefing";
 import { ACCESS, FILE_TTL_DAYS, ID_RE, filesOf, inspect, ipOf, limited, parsePath, sameOrigin, sign } from "@/lib/briefing-server";
 import { SITE } from "@/lib/site";
 import { customerMail } from "@/lib/briefing-mail";
+import { EMAIL_LOGO_PNG_BASE64 } from "@/lib/email-logo";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;
@@ -46,6 +47,10 @@ export async function POST(req: Request) {
   const user = process.env.SMTP_USER, pass = process.env.SMTP_PASS;
   if (!user || !pass) return NextResponse.json({ error: "Der Versand ist noch nicht eingerichtet." }, { status: 503 });
 
+  // Links in der E-Mail zeigen auf genau die Website, über die abgeschickt wurde (Live oder Vorschau)
+  const host = req.headers.get("x-forwarded-host") || new URL(req.url).host;
+  const base = /(^|\.)pfalz-multiservice\.de$/.test(host) ? SITE : host.endsWith(".vercel.app") || host.startsWith("localhost") ? `${host.startsWith("localhost") ? "http" : "https"}://${host}` : SITE;
+
   /* ---------- Dateien prüfen ---------- */
   type Checked = { field: string; name: string; size: number; link?: string; rejected?: string };
   const files: Checked[] = [];
@@ -60,7 +65,7 @@ export async function POST(req: Request) {
         await del(b.pathname).catch(() => {});
         files.push({ field: p.field, name, size: b.size, rejected: reason });
       } else {
-        files.push({ field: p.field, name, size: b.size, link: `${SITE}/api/briefing/file?p=${encodeURIComponent(b.pathname)}&s=${sign(b.pathname)}` });
+        files.push({ field: p.field, name, size: b.size, link: `${base}/api/briefing/file?p=${encodeURIComponent(b.pathname)}&s=${sign(b.pathname)}` });
       }
     }
   }
@@ -136,7 +141,7 @@ ${sections.map((sec) => `<h3 style="margin:24px 0 8px;border-bottom:1px solid #d
 
   // Bestätigung an den Kunden (ohne Dateilinks, mit Signatur)
   if (validMail) {
-    const mail = customerMail({ person, firma, stamp, sections, site: SITE });
+    const mail = customerMail({ person, firma, stamp, sections, site: SITE, logoSrc: "cid:pm-logo" });
     await transporter.sendMail({
       from: `"Pfalz Multiservice" <${user}>`,
       to: { name: person, address: email },
@@ -144,6 +149,7 @@ ${sections.map((sec) => `<h3 style="margin:24px 0 8px;border-bottom:1px solid #d
       subject: "Ihr Website-Briefing bei Pfalz Multiservice",
       text: mail.text,
       html: mail.html,
+      attachments: [{ filename: "pfalz-multiservice.png", content: Buffer.from(EMAIL_LOGO_PNG_BASE64, "base64"), contentType: "image/png", cid: "pm-logo", contentDisposition: "inline" }],
     }).catch((err) => console.error("[briefing] Bestätigung fehlgeschlagen:", err instanceof Error ? err.message : err));
   }
 

@@ -9,11 +9,11 @@ const NAVY = "#002347", GOLD = "#B8935A", TEXT = "#333333", MUTED = "#666666", L
 const esc = (x: string) => x.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]!));
 
 /** Signatur Jasmin Beer (Vorlage: Pfalz_Multiservice_Jasmin_Beer), Logo von der eigenen Website statt aus dem Webmail */
-export function signatureHtml(site: string) {
+export function signatureHtml(site: string, logoSrc = `${site}/email/logo.png`) {
   const lbl = `font-size:10px;font-weight:bold;letter-spacing:1.4px;color:${GOLD};`;
   const link = `color:${NAVY};text-decoration:none;`;
   return `<table role="presentation" style="width:460px;max-width:100%;font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:1.5;color:${TEXT};" border="0" width="460" cellspacing="0" cellpadding="0">
-<tr><td style="padding:0 0 14px;"><a style="text-decoration:none;" href="${site}"><img style="display:block;width:230px;height:auto;border:0;" src="${site}/email/logo.png" alt="Pfalz Multiservice – Ihr starker Partner in der Region" width="230"></a></td></tr>
+<tr><td style="padding:0 0 14px;"><a style="text-decoration:none;" href="${site}"><img style="display:block;width:230px;height:auto;border:0;" src="${logoSrc}" alt="Pfalz Multiservice – Ihr starker Partner in der Region" width="230"></a></td></tr>
 <tr><td style="padding:0 0 14px;"><table role="presentation" border="0" width="100%" cellspacing="0" cellpadding="0"><tr>
 <td style="background-color:${GOLD};font-size:0;line-height:0;height:4px;" bgcolor="${GOLD}" width="64" height="4">&nbsp;</td>
 <td style="font-size:0;line-height:0;border-bottom:1px solid ${LINE};" height="1">&nbsp;</td></tr></table></td></tr>
@@ -47,7 +47,7 @@ Web Maintenance & Management · Asset Recovery Reselling · E-Commerce · Lageru
 Pfalz Loadout · Inhaberin: Jasmin Beer · USt-IdNr. DE444410908`;
 
 /** Bestätigungs-Mail an den Kunden */
-export function customerMail({ person, firma, stamp, sections, site }: { person: string; firma: string; stamp: string; sections: MailSection[]; site: string }) {
+export function customerMail({ person, firma, stamp, sections, site, logoSrc }: { person: string; firma: string; stamp: string; sections: MailSection[]; site: string; logoSrc?: string }) {
   const steps: [string, string][] = [
     ["01", "Wir lesen Ihr Briefing und melden uns bei Rückfragen."],
     ["02", "Sie erhalten einen Vorschlag mit unverbindlichem Festpreis."],
@@ -68,7 +68,7 @@ ${steps.map(([n, t]) => `<tr><td valign="top" style="padding:4px 12px 4px 0;font
 </table>
 <p style="margin:0 0 24px;">Mit dem Briefing entsteht noch kein Auftrag. Fragen? Antworten Sie einfach auf diese E-Mail oder schreiben Sie uns per <a href="https://wa.me/491605086983" style="color:${NAVY};">WhatsApp</a>.</p>
 <p style="margin:0 0 28px;">Viele Grüße</p>
-${signatureHtml(site)}
+${signatureHtml(site, logoSrc)}
 </td></tr>
 <tr><td style="padding:28px 36px 36px;">
 <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border-top:1px solid ${LINE};"><tr><td style="padding:24px 0 0;">

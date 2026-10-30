@@ -13,7 +13,7 @@ export async function GET(req: Request) {
   const s = u.searchParams.get("s") || "";
   const info = parsePath(p);
   if (!info || !verify(p, s)) return new Response("Link ungültig.", { status: 403 });
-  const r = await get(p, { access: ACCESS }).catch(() => null);
+  const r = (await get(p, { access: ACCESS }).catch(() => null)) || (await get(p, { access: ACCESS === "private" ? "public" : "private" }).catch(() => null));
   if (!r?.stream) return new Response("Datei nicht mehr vorhanden (Dateien werden nach 30 Tagen gelöscht).", { status: 404 });
   const name = p.split("/").pop() || "datei";
   return new Response(r.stream, {
