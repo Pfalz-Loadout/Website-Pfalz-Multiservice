@@ -10,9 +10,9 @@ const HOST = SITE.replace(/^https?:\/\//, "").replace(/^www\./, "");
 const AUTOPLAY_MS = 3800;
 
 /** Klassische Websites mit Menü: Browser-Mockup mit Seiten-Umschalter */
-export function ClassicList({ total }: { total: number }) {
+export function ClassicList({ total, grid = false }: { total: number; grid?: boolean }) {
   return (
-    <div className="showcase">
+    <div className={`showcase${grid ? " showcase--grid" : ""}`}>
       {CLASSIC_EXAMPLES.map((e, i) => (
         <ClassicItem key={e.slug} ex={e} index={i} total={total} />
       ))}

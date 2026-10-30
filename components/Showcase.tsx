@@ -9,9 +9,9 @@ import { Icon } from "./Icon";
 const HOST = SITE.replace(/^https?:\/\//, "").replace(/^www\./, "");
 
 /** Webdesign-Musterdesigns: Browser- und Smartphone-Mockup, Scroll-Vorschau, 3D-Tilt */
-export function ShowcaseList({ offset = 0, total = EXAMPLES.length }: { offset?: number; total?: number }) {
+export function ShowcaseList({ offset = 0, total = EXAMPLES.length, grid = false }: { offset?: number; total?: number; grid?: boolean }) {
   return (
-    <div className="showcase">
+    <div className={`showcase${grid ? " showcase--grid" : ""}`}>
       {EXAMPLES.map((e, i) => (
         <ShowcaseItem key={e.slug} ex={e} index={i + offset} total={total} />
       ))}
