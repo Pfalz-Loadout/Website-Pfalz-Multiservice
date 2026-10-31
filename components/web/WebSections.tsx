@@ -93,7 +93,10 @@ function PackageCard({ p }: { p: WebPackage }) {
       {p.badge && <span className="pk__badge">{p.badge}</span>}
       <h3 className="pk__name">{p.name}</h3>
       {p.tagline && <p className="pk__tag">{p.tagline}</p>}
-      <p className={`pk__price ${/\d/.test(p.price) ? "" : "pk__price--req"}`}>{p.price}{p.unit && <span className="pk__unit"> {p.unit}</span>}</p>
+      <p className={`pk__price ${/\d/.test(p.price) ? "" : "pk__price--req"}`}>
+        {p.regular && <span className="pk__regular"><span className="pk__offer">Angebot</span> Normalpreis <s>{p.regular}</s></span>}
+        {p.price}{p.unit && <span className="pk__unit"> {p.unit}</span>}
+      </p>
       <p className="pk__note">{p.note}</p>
       <ul className="pk__list">
         {p.items.map((it) => (

@@ -30,8 +30,8 @@ const serviceLd = {
   provider: { "@id": `${SITE}/#business` },
   areaServed: ["Worms", "Pfalz"],
   offers: [
-    { "@type": "Offer", name: "Start: OnePager, bis 5 Abschnitte", price: "99", priceCurrency: "EUR", description: "Einmaliger Festpreis" },
-    { "@type": "Offer", name: "Business: OnePager oder mehrseitige Website, bis 8 Seiten", price: "149", priceCurrency: "EUR", description: "Einmaliger Festpreis" },
+    { "@type": "Offer", name: "Start: OnePager, bis 5 Abschnitte", price: "99", priceCurrency: "EUR", description: "Einmaliger Festpreis im Angebot, Normalpreis 199 €" },
+    { "@type": "Offer", name: "Business: OnePager oder mehrseitige Website, bis 8 Seiten", price: "149", priceCurrency: "EUR", description: "Einmaliger Festpreis im Angebot, Normalpreis 299 €" },
     ...[["Wartung", "19", "Bis 1 Std. Änderungen pro Monat"], ["Wartung Pro", "29", "Bis 2 Std. Änderungen pro Monat"], ["Wartung Premium", "69", "Bis 6 Std. Änderungen pro Monat"]].map(([name, price, description]) => ({
       "@type": "Offer", name, priceCurrency: "EUR", description: `${description}, monatlich kündbar`,
       priceSpecification: { "@type": "UnitPriceSpecification", price, priceCurrency: "EUR", unitText: "Monat" },
