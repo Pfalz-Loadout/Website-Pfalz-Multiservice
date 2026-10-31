@@ -303,17 +303,17 @@ export const WEB_PROBLEMS: [string, string][] = tidyDeep([
   ["Keine Zeit", "Texte, Bilder, Technik, Updates: Neben dem Tagesgeschäft bleibt die Website liegen."],
 ]);
 
-export type WebPackage = { name: string; price: string; unit?: string; note: string; items: string[]; badge?: string; tagline?: string };
+export type WebPackage = { name: string; price: string; unit?: string; note: string; items: string[]; badge?: string; tagline?: string; regular?: string };
 /** Inhalte 1:1 aus der Preisliste (Preisliste_Pfalz-Multiservice.pdf, Stand 28.10.2026) */
 /** Pakete: Grundleistungen in jedem Paket, darüber die Besonderheit des Pakets */
 export const WEB_BASE_ITEMS: string[] = tidyDeep(["Individuelles Design", "Responsive für alle Geräte", "Individuelle Icons", "Ladezeit-Optimierung", "DSGVO-konform", "Impressum & Datenschutz", "Übergabe-Paket"]);
 export const WEB_PACKAGES: WebPackage[] = tidyDeep([
   {
-    name: "Start", price: "99 €", unit: "einmalig", tagline: "Für den schnellen, starken Auftritt auf einer Seite.", note: "OnePager · bis 5 Abschnitte · mehrere Bildlizenzen",
+    name: "Start", price: "99 €", regular: "199 €", unit: "einmalig", tagline: "Für den schnellen, starken Auftritt auf einer Seite.", note: "OnePager · bis 5 Abschnitte · mehrere Bildlizenzen",
     items: ["Alle Inhalte übersichtlich auf einer Seite", ...WEB_BASE_ITEMS],
   },
   {
-    name: "Business", price: "149 €", unit: "einmalig", badge: "Beliebt", tagline: "Für Betriebe, die mehr zeigen wollen.", note: "OnePager oder bis 8 Seiten · Bildlizenzen inklusive",
+    name: "Business", price: "299 €", unit: "einmalig", badge: "Beliebt", tagline: "Für Betriebe, die mehr zeigen wollen.", note: "OnePager oder bis 8 Seiten · Bildlizenzen inklusive",
     items: ["Mehrere Seiten mit Menü und Unterseiten", ...WEB_BASE_ITEMS],
   },
   {
@@ -404,7 +404,7 @@ export const WEB_STEPS: [string, string, string][] = tidyDeep([
 ]);
 
 export const WEB_FAQ: [string, string][] = tidyDeep([
-  ["Was kostet eine Website?", "Start (OnePager, bis 5 Abschnitte) kostet 99 €, Business (OnePager oder mehrseitige Website, bis 8 Seiten) 149 €, jeweils als einmaliger Festpreis. Online-Shops und Sonderprojekte bis 20 Seiten bieten wir individuell nach Angebot an. Versteckte Kosten gibt es nicht."],
+  ["Was kostet eine Website?", "Im aktuellen Angebot kostet Start (OnePager, bis 5 Abschnitte) 99 € statt 199 € Business (OnePager oder mehrseitige Website, bis 8 Seiten) kostet 299 €. Beides sind einmalige Festpreise. Online-Shops und Sonderprojekte bis 20 Seiten bieten wir individuell nach Angebot an. Versteckte Kosten gibt es nicht."],
   ["Was ist im Preis enthalten?", "In jedem Paket: individuelles Design, responsive Umsetzung für alle Geräte, individuelle Icons, Ladezeit-Optimierung, DSGVO-konforme Umsetzung, eingebundenes Impressum und Datenschutz, Bildlizenzen und das Übergabe-Paket. Dazu ohne Aufpreis: Design für Smartphone und Desktop, Menü und Navigation, FAQ-Bereich, Kontaktformular, WhatsApp-Button, Anfahrt mit Link zu Google Maps, Social-Media-Links, Texte erstellen oder übernehmen, kuratierte Bildauswahl, SEO-Grundlagen, Vorbereitung für Google- und KI-Suche, Online-Terminbuchung, Google-Bewertungen und Vorher-Nachher-Galerie."],
   ["Was gehört zur SEO-Grundoptimierung?", "Seitentitel und Beschreibungen für jede Seite, eine saubere Überschriften-Struktur, Bildbeschreibungen, eine XML-Sitemap, robots.txt, strukturierte Daten für Ihren Betrieb und die Anmeldung bei der Google Search Console. Platz 1 bei Google kann seriös niemand versprechen, aber Ihre Website ist technisch so aufgestellt, dass Google und KI-Suchen sie gut lesen können."],
   ["Was heißt DSGVO-konform bei Ihnen?", "Keine Tracking- oder Werbe-Cookies, keine Schriften von Google-Servern, Kontaktformular ohne Drittanbieter und verschlüsselte Verbindung per SSL. Impressum und Datenschutzerklärung binden wir ein; die Inhalte stammen von Ihnen oder einem Generator Ihrer Wahl, eine Rechtsberatung ersetzen wir nicht."],
