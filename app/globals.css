@@ -667,24 +667,24 @@ a .contact-row__value { color: var(--brand-accent); }
 .addon__text { display: block; margin-top: 4px; font: 400 14px/1.55 var(--font-body); color: var(--text-body); }
 .care { margin-top: clamp(80px, 9vw, 112px); }
 /* Schieber monatlich / jährlich */
-.billing { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; margin-bottom: 34px; }
+.billing { display: flex; align-items: center; justify-content: flex-end; gap: 16px; flex-wrap: wrap; margin-bottom: 34px; }
 .billing__label { font: 700 14px/1 var(--font-display); letter-spacing: .06em; text-transform: uppercase; color: var(--text-subtle);
   transition: color var(--dur-base) var(--ease-out); }
 .billing__label.is-on { color: var(--text-strong); }
 .billing__save { padding: 7px 12px; border: 1px dashed rgba(221,187,77,.5); color: var(--brand-accent);
-  font: 700 11px/1 var(--font-display); letter-spacing: .12em; text-transform: uppercase; }
-.switch { position: relative; width: 66px; height: 34px; flex: none; padding: 0; cursor: pointer;
-  background: var(--surface-card); border: 1px solid var(--border-strong); border-radius: var(--radius-pill);
-  transition: background var(--dur-base) var(--ease-out), border-color var(--dur-base) var(--ease-out); }
-.switch:hover { border-color: var(--brand-accent); }
-.switch:focus-visible { outline: 2px solid var(--brand-accent); outline-offset: 3px; }
-.switch.is-on { background: rgba(221,187,77,.18); border-color: var(--brand-accent); }
-.switch__knob { position: absolute; top: 3px; left: 3px; width: 26px; height: 26px; border-radius: 50%;
-  background: var(--brand-accent); box-shadow: var(--shadow-glow);
-  transition: transform var(--dur-base) var(--ease-out); }
-.switch.is-on .switch__knob { transform: translateX(32px); }
-.pk__billed { margin: -6px 0 14px; font: 400 14px/1.5 var(--font-body); color: var(--text-subtle); }
+  font: 700 11px/1 var(--font-display); letter-spacing: .12em; text-transform: uppercase;
+  animation: billing-in var(--dur-slow) var(--ease-out) both; }
+@keyframes billing-in { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: none; } }
+.switch { position: relative; width: 116px; height: 30px; flex: none; padding: 0; cursor: pointer; background: none; border: none; }
+.switch::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 4px; transform: translateY(-50%);
+  background: var(--border-strong); border-radius: var(--radius-pill); transition: background var(--dur-base) var(--ease-out); }
+.switch:hover::before, .switch.is-on::before { background: rgba(221,187,77,.45); }
+.switch:focus-visible { outline: 2px solid var(--brand-accent); outline-offset: 6px; border-radius: var(--radius-pill); }
+.switch__knob { position: absolute; top: 50%; left: 4px; margin-top: -11px; width: 22px; height: 22px; border-radius: 50%;
+  background: var(--brand-accent); box-shadow: var(--shadow-glow); }
+.pk__billed { display: block; margin-top: 8px; font: 400 14px/1.5 var(--font-body); letter-spacing: 0; color: var(--text-subtle); }
 .pk__billed b { color: var(--text-body); font-weight: 700; }
+@media (max-width: 560px) { .billing { justify-content: center; } }
 
 .care__notes { list-style: none; margin: 28px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: var(--grid-gap); }
 .care__note { background: var(--surface-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-card); padding: 22px 24px; }

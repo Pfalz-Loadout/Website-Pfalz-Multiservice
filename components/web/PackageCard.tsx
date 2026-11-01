@@ -21,8 +21,8 @@ export function PackageCard({ p, yearly = false }: { p: WebPackage; yearly?: boo
           ? <span className="pk__regular">Statt <s>{p.price}</s> im Monat</span>
           : p.regular && <span className="pk__regular"><span className="pk__offer">Angebot</span> Normalpreis <s>{p.regular}</s></span>}
         {price}{unit && <span className="pk__unit"> {unit}</span>}
+        {jahr && <span className="pk__billed"><b>{p.priceYear}</b> pro Jahr, einmal jährlich abgerechnet</span>}
       </p>
-      {jahr && <p className="pk__billed"><b>{p.priceYear}</b> pro Jahr, einmal jährlich abgerechnet</p>}
       <p className="pk__note">{p.note}</p>
       <ul className="pk__list">
         {p.items.map((it) => (
