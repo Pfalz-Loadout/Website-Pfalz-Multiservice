@@ -415,7 +415,7 @@
     var hit = { name: 'Momo, Funkelgeist', rarity: 'gold', art: 'momo', c1: '#FF2E93', c2: '#FFD23F', set: 'NBF', no: '001', lang: 'JP', pwr: 120 };
     main.innerHTML =
       '<section class="hero" aria-labelledby="heroT">' +
-        '<div class="hero-city" aria-hidden="true"><div class="sky"></div>' + (K.IMAGES.H01.ready ? '<div class="hero-photo">' + K.ph('H01', { sizes: '100vw' }) + '</div>' : '') + cityWindows() + '<div class="hero-floor"></div></div>' +
+        '<div class="hero-city" aria-hidden="true"><div class="sky"></div>' + (K.IMAGES.H01.ready ? '<div class="hero-photo">' + K.ph('H01', { sizes: '100vw', eager: 1, alt: '' }) + '</div>' : '') + cityWindows() + '<div class="hero-floor"></div></div>' +
         '<canvas class="hero-canvas" id="heroCanvas" aria-hidden="true"></canvas>' +
         '<span class="hero-kanji" aria-hidden="true">キラキラ</span>' +
         '<span class="sign sign-1 flicker" aria-hidden="true">カード</span><span class="sign sign-2 flicker d2" aria-hidden="true">ガチャ</span><span class="sign sign-3 flicker d3" aria-hidden="true">アニメ</span>' +

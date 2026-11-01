@@ -871,3 +871,5 @@ html.reduce-motion .mq-track { animation: none; }
 .pcard-img .kimg { position: absolute; inset: 0; border-radius: 0; }
 .pcard:hover .pcard-img .kimg { transform: scale(1.05); }
 .manga-panels .kimg, .soc .kimg { width: 100%; height: 100%; object-fit: cover; border-radius: 0; display: block; }
+.hero-photo .kimg { width: 100%; height: 100%; aspect-ratio: auto !important; object-fit: cover; border-radius: 0; }
+[data-mode="day"] .hero-photo { opacity: .22; mix-blend-mode: luminosity; }

@@ -223,7 +223,7 @@
     var im = K.IMAGES[id] || { motif: '', ratio: '4/3' };
     var alt = opts.alt || im.motif;
     if (im.ready) {
-      return '<img class="kimg ' + (opts.cls || '') + '" src="' + (K.IMG_BASE || 'img/') + id.toLowerCase() + '-640.webp" srcset="' + (K.IMG_BASE || 'img/') + id.toLowerCase() + '-640.webp 640w, ' + (K.IMG_BASE || 'img/') + id.toLowerCase() + '-' + (im.big || 1200) + '.webp ' + (im.big || 1200) + 'w" sizes="' + (opts.sizes || '(max-width: 700px) 92vw, 40vw') + '" loading="lazy" decoding="async" alt="' + alt + '" style="aspect-ratio:' + im.ratio + (im.lqip ? ';background-image:url(' + im.lqip + ');background-size:cover' : '') + '">';
+      return '<img class="kimg ' + (opts.cls || '') + '" src="' + (K.IMG_BASE || 'img/') + id.toLowerCase() + '-640.webp" srcset="' + (K.IMG_BASE || 'img/') + id.toLowerCase() + '-640.webp 640w, ' + (K.IMG_BASE || 'img/') + id.toLowerCase() + '-' + (im.big || 1200) + '.webp ' + (im.big || 1200) + 'w" sizes="' + (opts.sizes || '(max-width: 700px) 92vw, 40vw') + '" loading="' + (opts.eager ? 'eager" fetchpriority="high' : 'lazy') + '" decoding="async" alt="' + alt + '" style="aspect-ratio:' + im.ratio + (im.lqip ? ';background-image:url(' + im.lqip + ');background-size:cover' : '') + '">';
     }
     return '<div class="ph ' + (opts.cls || '') + '" style="aspect-ratio:' + im.ratio + '" role="img" aria-label="Bild-Platzhalter ' + id + ': ' + alt + '"><span class="ph-id">' + id + '</span><span class="ph-motif">' + im.motif + '</span></div>';
   };
