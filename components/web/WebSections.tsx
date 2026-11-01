@@ -1,5 +1,6 @@
 import { lines, tidy, tidyNode } from "@/lib/typo";
 import { PackageCard } from "./PackageCard";
+import { BriefingPreview } from "./BriefingPreview";
 import { CarePricing } from "./CarePricing";
 import Link from "next/link";
 import Image from "next/image";
@@ -82,7 +83,8 @@ export function WebExamples() {
         <ShowcaseList offset={CLASSIC_EXAMPLES.length} total={TOTAL} grid />
 
         {tidyNode(<p className="showcase-note" style={{ margin: "72px auto 0", textAlign: "center" }}>
-          Alle gezeigten Betriebe, Personen und Angebote sind frei erfunden. Die Seiten sind Musterdesigns von Pfalz Multiservice.
+          <span className="line">Alle gezeigten Betriebe, Personen und Angebote sind frei erfunden.</span>
+          <span className="line">Die Seiten sind Musterdesigns von Pfalz Multiservice.</span>
         </p>)}
       </div>
     </section>
@@ -129,6 +131,7 @@ export function WebPackages() {
         <div className="pk-grid pm-reveal" data-reveal="stagger">
           {WEB_PACKAGES.map((p) => <PackageCard key={p.name} p={p} />)}
         </div>
+        <p className="care__swipe" aria-hidden="true">← wischen für weitere Pakete →</p>
 
         <div className="pk-incl">
           <div className="pk-box pk-box--incl pm-reveal" data-reveal="up" id="inklusive">
@@ -234,22 +237,7 @@ export function WebBriefingTeaser() {
             <Button variant="outline" href="/kontakt?leistung=web">Lieber erst sprechen</Button>
           </div>
         </div>
-        <Link href="/briefing" className="bft__preview pm-reveal" data-reveal="up" aria-label="Zum Website-Briefing" data-cursor>
-          <span className="bft__top" aria-hidden="true">
-            <span className="bft__step">Schritt 2 von 11</span>
-            <span className="bft__bar"><i /></span>
-          </span>
-          <span className="bft__head" aria-hidden="true"><b>02</b> Ihr Unternehmen &amp; Angebot</span>
-          <span className="bft__label" aria-hidden="true">Was macht Ihr Unternehmen?</span>
-          <span className="bft__input" aria-hidden="true">Wir sind ein Familienbetrieb aus Worms und …<i /></span>
-          <span className="bft__label" aria-hidden="true">Was soll die Website erreichen?</span>
-          <span className="bft__chips" aria-hidden="true">
-            <span className="is-on">Mehr Anfragen</span><span>Online verkaufen</span><span className="is-on">Vertrauen &amp; Image</span>
-          </span>
-          <span className="bft__label" aria-hidden="true">Logo &amp; Fotos</span>
-          <span className="bft__drop" aria-hidden="true">Dateien hierher ziehen · bis 25 MB</span>
-          <span className="bft__cta" aria-hidden="true">Weiter →</span>
-        </Link>
+        <BriefingPreview />
       </div>
     </section>
   );
