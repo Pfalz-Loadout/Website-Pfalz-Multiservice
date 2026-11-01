@@ -44,6 +44,7 @@ export default function WebdesignPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([faqLd, serviceLd, breadcrumb([{ name: "Webdesign", path: "/webdesign" }])]) }} />
       <PageHero
+        fitTitle
         eyebrow="Webdesign aus Worms"
         title={<span className="sh__line">Websites,</span>}
         highlight="die Anfragen bringen"
