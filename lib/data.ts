@@ -53,7 +53,7 @@ export const COMPANY = {
 
 const PRICE_FAQ = (what: string): Faq => [
   `Was kostet ${what}?`,
-  "Nach einer kurzen Bedarfsanalyse erhalten Sie ein verbindliches Angebot. Sie kennen Umfang und Kosten, bevor wir beginnen – ohne versteckte Posten.",
+  "Nach einer kurzen Bedarfsanalyse erhalten Sie ein verbindliches Angebot. Sie kennen Umfang und Kosten, bevor wir beginnen, ohne versteckte Posten.",
 ];
 
 export const SERVICES: Service[] = tidyDeep([
@@ -71,7 +71,7 @@ export const SERVICES: Service[] = tidyDeep([
     id: "reselling",
     seoTitle: "Reselling & Restpostenankauf Worms",
     faq: [
-      ["Welche Ware kaufen Sie an?", "Überbestände, Restposten und Retourenware. Schildern Sie uns kurz Art, Menge und Zustand – am besten mit ein paar Fotos."],
+      ["Welche Ware kaufen Sie an?", "Überbestände, Restposten und Retourenware. Schildern Sie uns kurz Art, Menge und Zustand, am besten mit ein paar Fotos."],
       ["Was passiert mit der angekauften Ware?", "Wir bereiten sie auf und bringen sie über unsere eigenen Vertriebskanäle zurück in den Markt, statt sie abzuschreiben oder zu entsorgen."],
       ["Welche Vorteile habe ich als Händler?", "Gebundenes Kapital wird schnell wieder flüssig, Lagerfläche wird frei und die Ware wird weiter genutzt statt vernichtet."],
     ],
@@ -90,7 +90,7 @@ export const SERVICES: Service[] = tidyDeep([
       ["Verkaufen Sie über eigene Shops oder über Marktplätze?", "Beides. Wir betreiben eigene Online-Shops und nutzen zusätzlich etablierte Marktplätze. So erreichen Artikel mehr Käufer, ohne dass die Abläufe aufwendig werden."],
       PRICE_FAQ("die Unterstützung im E-Commerce"),
     ],
-    seo: "E-Commerce aus Worms: eigene Online-Shops und Marktplätze, Listing, Versand und Fulfillment aus einer Hand. Pfalz Multiservice – jetzt anfragen.",
+    seo: "E-Commerce aus Worms: eigene Online-Shops und Marktplätze, Listing, Versand und Fulfillment aus einer Hand. Jetzt bei Pfalz Multiservice anfragen.",
     icon: "shopping-cart",
     title: "E-Commerce",
     short: "Digitaler Handel mit Fokus auf Effizienz",
@@ -102,7 +102,7 @@ export const SERVICES: Service[] = tidyDeep([
     seoTitle: "Lagerfläche mieten in Worms",
     faq: [
       ["Für wen ist die Lagerfläche gedacht?", "Für Gewerbekunden mit saisonalen Spitzen ebenso wie für Privatkunden in Übergangsphasen, etwa bei Umzug oder Renovierung."],
-      ["Wie lange kann ich einlagern?", "Kurzfristig oder langfristig – die Fläche richtet sich nach Ihrem Bedarf und ist ohne starre Vertragsbindung."],
+      ["Wie lange kann ich einlagern?", "Kurzfristig oder langfristig. Die Fläche richtet sich nach Ihrem Bedarf und ist ohne starre Vertragsbindung."],
       PRICE_FAQ("die Lagerfläche"),
     ],
     seo: "Lagerfläche in Worms nach Bedarf: für Gewerbe mit Saisonspitzen und Privatkunden in Übergangsphasen, ohne starre Vertragsbindung. Jetzt anfragen.",
@@ -116,7 +116,7 @@ export const SERVICES: Service[] = tidyDeep([
     id: "clearance",
     seoTitle: "Räumung & Entrümpelung in Worms",
     faq: [
-      ["Welche Flächen räumen Sie?", "Garagen, Lager, Hallen und Gewerbeflächen in Worms und der Pfalz – vollständig bis zur besenreinen Übergabe."],
+      ["Welche Flächen räumen Sie?", "Garagen, Lager, Hallen und Gewerbeflächen in Worms und der Pfalz, vollständig bis zur besenreinen Übergabe."],
       ["Wie läuft eine Räumung ab?", "Bestandsaufnahme vor Ort, verbindliches Festpreis-Angebot, Durchführung zum vereinbarten Termin und besenreine Übergabe."],
       ["Was passiert mit dem Räumgut?", "Verwertbare Bestände führen wir in den Wirtschaftskreislauf zurück, alles Weitere wird fachgerecht entsorgt."],
     ],
@@ -135,7 +135,7 @@ export const SERVICES: Service[] = tidyDeep([
       ["Wie gehen Sie vor?", "Wir sehen uns die Situation an, schlagen eine pragmatische Lösung vor und setzen sie um. Bei Bedarf binden wir Partner aus unserem Netzwerk ein."],
       PRICE_FAQ("ein Einsatz"),
     ],
-    seo: "Solutions & Support aus Worms: pragmatische Lösungen für Engpässe und Aufgaben ohne passenden Ansprechpartner. Pfalz Multiservice – jetzt anfragen.",
+    seo: "Solutions & Support aus Worms: pragmatische Lösungen für Engpässe und Aufgaben ohne passenden Ansprechpartner. Jetzt bei Pfalz Multiservice anfragen.",
     icon: "wrench",
     title: "Solutions & Support",
     short: "Für jede Aufgabe eine schnelle Lösung",
@@ -156,7 +156,7 @@ export const SERVICES: Service[] = tidyDeep([
     icon: "lightbulb",
     title: "Smart Home & KNX",
     short: "KNX-Anlagen ändern und erweitern ab 59 €",
-    text: "Sie haben eine KNX-Anlage und brauchen Hilfe? Wir programmieren und ändern Ihre bestehende Anlage – schnell, fair und ohne Fachchinesisch. Der Elektriker ist nicht mehr erreichbar, die Programmierung nicht auffindbar oder die Anlage soll einfach etwas Neues können? Schildern Sie uns kurz Ihr Anliegen, wir sagen Ihnen ehrlich, was möglich ist.",
+    text: "Sie haben eine KNX-Anlage und brauchen Hilfe? Wir programmieren und ändern Ihre bestehende Anlage: schnell, fair und ohne Fachchinesisch. Der Elektriker ist nicht mehr erreichbar, die Programmierung nicht auffindbar oder die Anlage soll einfach etwas Neues können? Schildern Sie uns kurz Ihr Anliegen, wir sagen Ihnen ehrlich, was möglich ist.",
     points: {
       title: "Typische Anliegen",
       items: [
@@ -167,7 +167,7 @@ export const SERVICES: Service[] = tidyDeep([
         "Fehlersuche, wenn Ihre Anlage nicht mehr richtig reagiert",
         "Sicherung (Backup) Ihrer KNX-Projektdatei",
       ],
-      note: "Projektdatei vorhanden? Super – wenn nicht, finden wir eine Lösung. Wir programmieren und ändern, Elektroinstallation gehört nicht zu unserem Angebot.",
+      note: "Projektdatei vorhanden? Super. Wenn nicht, finden wir eine Lösung. Wir programmieren und ändern, Elektroinstallation gehört nicht zu unserem Angebot.",
     },
     legal: "KNX ist eine eingetragene Marke der KNX Association.",
     image: IMG + "smarthome-knx.png",
@@ -203,9 +203,9 @@ export const CORE: { id: string; kicker: string; title: string; text: string; it
     id: "web",
     kicker: "Web Maintenance & Management",
     title: "Websites: aufbauen und betreuen",
-    text: "Individuelle Websites ab 99 €, laufende Betreuung ab 19 € im Monat. Updates, Sicherheit, Inhalte – Sie haben einen Ansprechpartner, keine Hotline.",
+    text: "Individuelle Websites ab 99 €, laufende Betreuung ab 19 € im Monat. Updates, Sicherheit, Inhalte. Sie haben einen Ansprechpartner, keine Hotline.",
     items: [
-      "Neue Website oder Übernahme der bestehenden",
+      "Neubau oder Übernahme Ihrer Website",
       "Updates, Backups, Sicherheitsmonitoring",
       "Inhaltsänderungen ohne Stundenzettel",
     ],
@@ -252,7 +252,7 @@ export const STEPS: [string, string, string][] = tidyDeep([
 
 /** Häufige Fragen auf der Startseite */
 export const HOME_FAQ: Faq[] = tidyDeep([
-  ["Welche Leistungen bietet Pfalz Multiservice an?", "Web Maintenance & Management mit Webdesign, Reselling & Asset Recovery, E-Commerce sowie Lagerfläche, Räumungen, Solutions & Support und Änderungen an bestehenden KNX-Anlagen – alles mit einem Ansprechpartner."],
+  ["Welche Leistungen bietet Pfalz Multiservice an?", "Web Maintenance & Management mit Webdesign, Reselling & Asset Recovery, E-Commerce sowie Lagerfläche, Räumungen, Solutions & Support und Änderungen an bestehenden KNX-Anlagen, alles mit einem Ansprechpartner."],
   ["In welchem Gebiet sind Sie tätig?", "In Worms und der Umgebung, unter anderem in Frankenthal, Ludwigshafen, Mannheim, Alzey, Grünstadt und Bensheim. Webdesign bieten wir auch überregional an."],
   ["Arbeiten Sie für Firmen und Privatkunden?", "Ja. Wir arbeiten für Unternehmen ebenso wie für Privatkunden, zum Beispiel bei Lagerung oder Räumung."],
   ["Wie läuft eine Anfrage ab?", "Sie schildern Ihr Anliegen per Formular, Telefon oder WhatsApp. Nach einem Gespräch oder einer Besichtigung erhalten Sie ein verbindliches Angebot, danach setzen wir den Auftrag termingerecht um."],
@@ -414,13 +414,13 @@ export const WEB_INCLUDED = tidyDeep([
 /** „Was bekomme ich?“ – der Leistungsumfang jeder Website, klar benannt */
 export const WEB_DELIVER: { icon: IconName; title: string; text: string }[] = tidyDeep([
   { icon: "layout-template", title: "Individuelles Webdesign", text: "Eigenes Design für Ihren Betrieb, kein Baukasten, keine Vorlage von der Stange." },
-  { icon: "monitor-cog", title: "Für Handy, Tablet & PC", text: "Geprüft ab 360 px Breite – ohne seitliches Scrollen, mit großen Tippflächen." },
+  { icon: "monitor-cog", title: "Für Handy, Tablet & PC", text: "Geprüft ab 360 px Breite, ohne seitliches Scrollen und mit großen Tippflächen." },
   { icon: "search-check", title: "SEO-Grundlagen", text: "Seitentitel, Beschreibungen, Überschriften, Sitemap, robots.txt und strukturierte Daten für Google und KI-Suche." },
   { icon: "gauge", title: "Ladezeit-Optimierung", text: "Bilder in modernen Formaten, schlanker Code, gemessen mit PageSpeed." },
   { icon: "lock-keyhole", title: "DSGVO-konform", text: "Keine Tracking-Cookies, Schriften vom eigenen Server, Kontaktformular ohne Drittanbieter." },
   { icon: "file-check", title: "Impressum & Datenschutz", text: "Wir binden Ihre rechtlichen Angaben ein und halten sie aktuell. Keine Rechtsberatung." },
   { icon: "message-circle", title: "Kontaktwege", text: "Formular direkt in Ihr Postfach, dazu WhatsApp, Telefon und E-Mail." },
-  { icon: "external-link", title: "Fertig veröffentlicht", text: "Online unter Ihrer eigenen Domain, mit SSL-Verschlüsselung – nach Ihrer Freigabe." },
+  { icon: "external-link", title: "Fertig veröffentlicht", text: "Online unter Ihrer eigenen Domain, mit SSL-Verschlüsselung, sobald Sie freigegeben haben." },
 ]);
 
 /** Übergabe-Paket – in jedem Paket gleich enthalten */
@@ -478,7 +478,7 @@ export const WEB_FAQ: [string, string][] = tidyDeep([
   ["Wie funktioniert das Kontaktformular auf meiner Website?", "Anfragen aus dem Kontaktformular verschicken wir über den E-Mail-Server (SMTP) Ihres eigenen Postfachs direkt zu Ihnen. Es ist kein Drittanbieter zwischengeschaltet, die Daten Ihrer Kunden bleiben bei Ihnen."],
   ["Welchen Hoster empfehlen Sie?", "Wir sind Agentur-Partner von IONOS und empfehlen IONOS für Hosting, Domain und E-Mail-Postfach aus einer Hand. Sie können aber auch jeden anderen Anbieter wählen oder Ihr bestehendes Paket behalten."],
   ["Muss ich mich selbst um Domain, Hosting und E-Mail kümmern?", "Nein. Auf Wunsch begleiten wir Sie durch den kompletten Ablauf: Domain sichern, Hosting und E-Mail-Postfach einrichten, Kontaktformular anbinden, Website veröffentlichen und das Google-Unternehmensprofil anlegen. Die Einrichtung von Domain, E-Mail und Hosting ist in Wartung Pro und Premium enthalten."],
-  ["Gehört mir die Website am Ende?", "Ja, vollständig – in jedem Paket. Nach vollständiger Bezahlung erhalten Sie alle Nutzungsrechte und Zugangsdaten. Domain und Hosting laufen auf Ihren Namen, alle Zugangsdaten gehören Ihnen und Sie erhalten den Quellcode als ZIP oder Git-Repository. Texte und Bilder, die wir erstellen, dürfen Sie unbefristet nutzen. Dazu bekommen Sie ein Übergabeblatt, eine SEO- und KI-Dokumentation als PDF und eine PageSpeed-Messung zum Livegang. Kleine Korrekturen in den ersten 30 Tagen nach dem Livegang sind kostenlos."],
+  ["Gehört mir die Website am Ende?", "Ja, vollständig, und das in jedem Paket. Nach vollständiger Bezahlung erhalten Sie alle Nutzungsrechte und Zugangsdaten. Domain und Hosting laufen auf Ihren Namen, alle Zugangsdaten gehören Ihnen und Sie erhalten den Quellcode als ZIP oder Git-Repository. Texte und Bilder, die wir erstellen, dürfen Sie unbefristet nutzen. Dazu bekommen Sie ein Übergabeblatt, eine SEO- und KI-Dokumentation als PDF und eine PageSpeed-Messung zum Livegang. Kleine Korrekturen in den ersten 30 Tagen nach dem Livegang sind kostenlos."],
   ["Gibt es ein Abo oder eine Vertragsbindung?", "Nein. Kein Abo, kein Zwang. Die Website kostet einmalig und gehört Ihnen. Wartung können Sie auf Wunsch ab 19 € im Monat dazubuchen, monatlich kündbar, müssen es aber nicht."],
   ["Wie lange dauert es, bis meine Website online ist?", "Das hängt vom Umfang ab. Den Zeitplan legen wir vorab gemeinsam fest, damit Sie vor dem Start wissen, wann Ihre Seite online geht."],
   ["Was brauchen Sie von mir?", "Ihr Logo, ein paar Fotos und Stichpunkte zu Ihren Leistungen reichen für den Anfang. Texte erstellen wir auf Wunsch, eine kuratierte Bildauswahl ist inklusive. Alles Weitere besprechen wir im Gespräch."],
