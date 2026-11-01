@@ -398,7 +398,6 @@ export const WEB_CARE: WebPackage[] = tidyDeep([
 
 /** Gut zu wissen zum Wartungsprogramm (Preisliste 2026) */
 export const WEB_CARE_NOTES: { title: string; text: string }[] = tidyDeep([
-  { title: "Jahreszahlung", text: "12 Monate nutzen, 10 zahlen. Umschalten können Sie oben über den Schalter." },
   { title: "Reaktionszeit", text: "Premium 24 Std., Wartung und Pro 48 Std. (werktags). 100 % Erreichbarkeit kann niemand garantieren." },
   { title: "Nicht enthalten", text: "Redesign, Neuentwicklung, Hack-Behebung und vom Kunden verursachte Fehler: 29 € pro Stunde." },
 ]);
