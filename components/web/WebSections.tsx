@@ -1,7 +1,9 @@
 import { lines, tidyNode } from "@/lib/typo";
+import { PackageCard } from "./PackageCard";
+import { CarePricing } from "./CarePricing";
 import Link from "next/link";
 import Image from "next/image";
-import { CLASSIC_EXAMPLES, CONTACT, EXAMPLES, WEB_ADDONS, WEB_BASE_ITEMS, WEB_DELIVER, WEB_FAQ, WEB_CARE, WEB_HANDOVER, WEB_INCLUDED, WEB_PACKAGES, WEB_PROBLEMS, type WebPackage } from "@/lib/data";
+import { CLASSIC_EXAMPLES, CONTACT, EXAMPLES, WEB_ADDONS, WEB_BASE_ITEMS, WEB_DELIVER, WEB_FAQ, WEB_CARE_NOTES, WEB_HANDOVER, WEB_INCLUDED, WEB_PACKAGES, WEB_PROBLEMS, type WebPackage } from "@/lib/data";
 import { SectionHeading } from "../SectionHeading";
 import { Button } from "../Button";
 import { Icon } from "../Icon";
@@ -87,31 +89,6 @@ export function WebExamples() {
   );
 }
 
-function PackageCard({ p }: { p: WebPackage }) {
-  return (
-    <div className={`pk ${p.badge ? "pk--hi" : ""} ${p.tagline ? "pk--tag" : ""}`}>
-      {p.badge && <span className="pk__badge">{p.badge}</span>}
-      <h3 className="pk__name">{p.name}</h3>
-      {p.tagline && <p className="pk__tag">{p.tagline}</p>}
-      <p className={`pk__price ${/\d/.test(p.price) ? "" : "pk__price--req"}`}>
-        {p.regular && <span className="pk__regular"><span className="pk__offer">Angebot</span> Normalpreis <s>{p.regular}</s></span>}
-        {p.price}{p.unit && <span className="pk__unit"> {p.unit}</span>}
-      </p>
-      <p className="pk__note">{p.note}</p>
-      <ul className="pk__list">
-        {p.items.map((it) => (
-          <li key={it} className={WEB_BASE_ITEMS.includes(it) ? "pk__base" : undefined}><Icon name="check" size={16} />
-            {it === "Übergabe-Paket" ? <a href="#uebergabe" className="pk__link">Übergabe-Paket inklusive</a> : <span>{lines(it)}</span>}
-          </li>
-        ))}
-        {p.items.some((it) => WEB_BASE_ITEMS.includes(it)) && (
-          <li className="pk__basesum"><Icon name="check" size={16} /><span>Inklusive: {WEB_BASE_ITEMS.join(" · ")}</span></li>
-        )}
-      </ul>
-    </div>
-  );
-}
-
 /** Ohne Aufpreis: zwei gegenläufige Laufbänder statt langer Liste (bei reduzierter Bewegung statisch umbrechend) */
 function IncludedMarquee() {
   const n = Math.ceil(WEB_INCLUDED.length / 3);
@@ -170,7 +147,7 @@ export function WebPackages() {
 
         <div className="pk-free pm-reveal" data-reveal="up">
           <Icon name="file-check" size={26} />
-          <p><strong>Kein Abo, kein Zwang.</strong> Einmaliger Festpreis, keine versteckten Kosten, die Website gehört Ihnen. Laufende Kosten entstehen nur für Hosting und Domain: Die zahlen Sie direkt beim Anbieter Ihrer Wahl, den Betrag weisen wir im Angebot getrennt aus. Die Einrichtung übernehmen wir in Wartung Pro und Premium.</p>
+          <p><strong>Kein Abo, kein Zwang.</strong> Einmaliger Festpreis, keine versteckten Kosten, die Website gehört Ihnen. Laufende Kosten entstehen nur für Hosting und Domain: Die zahlen Sie direkt beim Anbieter Ihrer Wahl, den Betrag weisen wir im Angebot getrennt aus. Die Einrichtung übernehmen wir in Wartung Pro und Premium; in Premium ist das Hosting bei uns enthalten.</p>
         </div>
 
         <div className="deliver" id="leistungsumfang">
@@ -203,10 +180,13 @@ export function WebPackages() {
         <div className="care" id="wartung">
           <SectionHeading align="center" eyebrow="Betreuung nach dem Livegang" title="Ihre Website bleibt" highlight="aktuell"
             intro="Freiwillig: Sie melden Ihre Änderungen, wir setzen sie um. Monatlich kündbar." style={{ marginBottom: 40 }} />
-          <div className="pk-grid pm-reveal" data-reveal="stagger">
-            {WEB_CARE.map((p) => <PackageCard key={p.name} p={p} />)}
-          </div>
+          <CarePricing />
           <p className="care__swipe" aria-hidden="true">← wischen für weitere Pakete →</p>
+          <ul className="care__notes pm-reveal" data-reveal="stagger">
+            {WEB_CARE_NOTES.map((n) => (
+              <li key={n.title} className="care__note"><b>{n.title}</b><span>{n.text}</span></li>
+            ))}
+          </ul>
           <div className="care__single pm-reveal" data-reveal="up">
             <span><b>Änderungen ohne Paket</b> einmalig 1 Std., reicht in der Regel für die meisten Änderungen</span>
             <strong>29 €</strong>
