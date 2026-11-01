@@ -1,6 +1,7 @@
 import { tidyNode } from "@/lib/typo";
 import Link from "next/link";
-import { AREA, COMPANY, CTA, CONTACT, IMG, SERVICES, USPS, homeServiceOrder, serviceHref } from "@/lib/data";
+import { AREA, COMPANY, CTA, CONTACT, IMG, SERVICES, USPS, homeSubServices, serviceHref } from "@/lib/data";
+import { Core } from "./Core";
 import { BgImage } from "../BgImage";
 import { SectionHeading } from "../SectionHeading";
 import { ServiceCard } from "../ServiceCard";
@@ -35,11 +36,15 @@ export function Services() {
       <div className="container">
         <SectionHeading
           align="center" eyebrow="Kompetenzbereiche" title="Unsere" highlight="Leistungen"
-          intro="Kompetenzbereiche, einzeln buchbar oder als kombinierte Lösung." style={{ marginBottom: 56 }}
+          intro="Drei Kernbereiche, dazu ergänzende Leistungen – einzeln buchbar oder als kombinierte Lösung." style={{ marginBottom: 56 }}
         />
-        <div className="pm-reveal" data-reveal="cards">
+      </div>
+      <Core />
+      <div className="container services__sub">
+        <Eyebrow>Weitere Bereiche</Eyebrow>
+        <div className="pm-reveal" data-reveal="cards" style={{ marginTop: 28 }}>
           <div className="grid-3">
-            {homeServiceOrder().map((s) => (
+            {homeSubServices().map((s) => (
               <ServiceCard key={s.id} href={serviceHref(s)} image={s.image} title={s.title} text={s.short} linkLabel="Details" />
             ))}
           </div>
@@ -71,7 +76,7 @@ export function About() {
     <section className="section section--alt" id="ueber">
       <div className="container split">
         <div className="stack" style={{ gap: 24 }}>
-          <SectionHeading eyebrow={`Inhabergeführt seit ${COMPANY.founded} · Worms`} title="Über" highlight="uns" />
+          <SectionHeading eyebrow={`Inhabergeführt seit ${COMPANY.founded} · Worms`} title="Wer" highlight="dahintersteht" />
           {tidyNode(<div className="stack pm-reveal" data-reveal="stagger" style={{ gap: 24 }}>
             <p style={{ margin: 0, font: "var(--type-body)", color: "var(--text-body)" }}>
               Pfalz Multiservice ist ein inhabergeführtes Dienstleistungsunternehmen mit Sitz in Worms, gegründet {COMPANY.founded} von
@@ -85,8 +90,9 @@ export function About() {
           <div className="pm-reveal" data-reveal="checks"><CheckList items={USPS} /></div>
           <div className="stack pm-reveal" data-reveal="stagger" style={{ gap: 24 }}>
             <span style={{ font: "400 15px var(--font-body)", color: "var(--text-body)" }}>Mehrere Bereiche kombinieren? Sprechen Sie uns an.</span>
-            <div style={{ display: "flex", gap: 14 }}>
+            <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
               <Button href="/kontakt">Unverbindlich anfragen</Button>
+              <Button variant="outline" iconLeft="message-circle" href={CONTACT.whatsapp}>Per WhatsApp schreiben</Button>
             </div>
           </div>
         </div>
