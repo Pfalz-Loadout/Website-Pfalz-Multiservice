@@ -189,6 +189,60 @@ export const USPS: { title: string; text: string; lines?: [string, string] }[] =
   { title: "Schnell vor Ort", text: "Regional in Worms verankert und\nkurzfristig einsatzbereit.", lines: ["Regional in Worms verankert und", "kurzfristig einsatzbereit."] },
 ]);
 
+/** Zahlenleiste direkt unter dem Hero */
+export const STATS: { value: string; label: string }[] = tidyDeep([
+  { value: "seit 2021", label: "inhabergeführt in Worms" },
+  { value: "3", label: "Kernbereiche aus einer Hand" },
+  { value: "< 1 Werktag", label: "Antwortzeit auf Anfragen" },
+  { value: "Festpreis", label: "verbindlich vor Beginn" },
+]);
+
+/** Die drei Hauptthemen als große Blöcke auf der Startseite */
+export const CORE: { id: string; kicker: string; title: string; text: string; items: string[]; link: string }[] = tidyDeep([
+  {
+    id: "web",
+    kicker: "Web Maintenance & Management",
+    title: "Websites: aufbauen und betreuen",
+    text: "Individuelle Websites ab 99 €, laufende Betreuung ab 19 € im Monat. Updates, Sicherheit, Inhalte – Sie haben einen Ansprechpartner, keine Hotline.",
+    items: [
+      "Neue Website oder Übernahme der bestehenden",
+      "Updates, Backups, Sicherheitsmonitoring",
+      "Inhaltsänderungen ohne Stundenzettel",
+    ],
+    link: "Zum Webdesign",
+  },
+  {
+    id: "reselling",
+    kicker: "Reselling & Asset Recovery",
+    title: "Reselling: Werterhalt statt Abschreibung",
+    text: "Wir kaufen Überbestände, Restposten und Retouren an und bringen sie über eigene Kanäle zurück in den Markt. Sie bekommen Fläche und Liquidität zurück.",
+    items: [
+      "Ankauf ab Kleinmengen bis Palettenware",
+      "Bewertung nach Fotos, oft am selben Tag",
+      "Abholung durch uns",
+    ],
+    link: "Zum Reselling",
+  },
+  {
+    id: "ecommerce",
+    kicker: "E-Commerce",
+    title: "E-Commerce: Handel, der läuft",
+    text: "Eigene Shops und Marktplätze, von der Beschaffung über das Listing bis zum Versand. Praxis aus dem eigenen Handel, nicht aus dem Lehrbuch.",
+    items: [
+      "Eigene Online-Shops im Betrieb",
+      "Multichannel inklusive Marktplätze",
+      "Lagerung, Verpackung, Versand",
+    ],
+    link: "Zum E-Commerce",
+  },
+]);
+
+/** Kacheln „Weitere Bereiche“: alles außer den drei Kernbereichen */
+export function homeSubServices(): Service[] {
+  const core = new Set(CORE.map((c) => c.id));
+  return SERVICES.filter((s) => !s.side && !core.has(s.id));
+}
+
 export const STEPS: [string, string, string][] = tidyDeep([
   ["01", "Anfrage", "Sie schildern Ihr Anliegen per Formular, Telefon oder WhatsApp."],
   ["02", "Bedarfsanalyse", "Persönliches Gespräch oder Besichtigung vor Ort."],

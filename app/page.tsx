@@ -1,6 +1,7 @@
 import { Hero } from "@/components/home/Hero";
 import { Process } from "@/components/home/Process";
-import { About, CtaBand, Region, Services, TrustStrip } from "@/components/home/HomeSections";
+import { About, CtaBand, Region, Services } from "@/components/home/HomeSections";
+import { Stats } from "@/components/home/Stats";
 import { HOME_FAQ, IMG } from "@/lib/data";
 import { Faq } from "@/components/Faq";
 import { JsonLd, faqPage } from "@/lib/schema";
@@ -11,7 +12,7 @@ export default function HomePage() {
     <>
       <JsonLd data={faqPage(HOME_FAQ)} />
       <Hero />
-      <TrustStrip />
+      <Stats />
       <Services />
       <About />
       <Process />
