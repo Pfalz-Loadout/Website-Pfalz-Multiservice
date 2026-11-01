@@ -668,29 +668,27 @@ a .contact-row__value { color: var(--brand-accent); }
 .care { margin-top: clamp(80px, 9vw, 112px); }
 /* Umschalter monatlich / jährlich – Pillen-Schalter wie am Handy */
 .billing { display: flex; align-items: center; justify-content: flex-end; gap: 16px; flex-wrap: wrap; margin-bottom: 34px; }
-.billing__label { font: 700 14px/1 var(--font-display); letter-spacing: .06em; text-transform: uppercase; color: var(--text-subtle);
-  transition: color var(--dur-base) var(--ease-out); }
-.billing__label.is-on { color: var(--text-strong); }
+.billing__label { font: 700 14px/1 var(--font-display); letter-spacing: .06em; text-transform: uppercase; color: var(--text-strong); }
 .billing__save { padding: 7px 12px; border: 1px dashed rgba(221,187,77,.5); color: var(--brand-accent);
   font: 700 11px/1 var(--font-display); letter-spacing: .12em; text-transform: uppercase;
   animation: billing-in var(--dur-slow) var(--ease-out) both; }
 @keyframes billing-in { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: none; } }
 
-.switch { position: relative; width: 62px; height: 34px; flex: none; padding: 0; cursor: pointer;
-  background: var(--surface-tint); border: 1px solid var(--border-strong); border-radius: var(--radius-pill);
+.switch { position: relative; width: 78px; height: 38px; flex: none; padding: 0; cursor: pointer;
+  background: var(--surface-tint); border: 1px solid var(--border-strong); border-radius: 999px;
   transition: background var(--dur-base) var(--ease-out), border-color var(--dur-base) var(--ease-out); }
 .switch:hover { border-color: var(--brand-accent); }
-.switch:focus-visible { outline: 2px solid var(--brand-accent); outline-offset: 4px; }
+.switch:focus-visible { outline: 2px solid var(--brand-accent); outline-offset: 4px; border-radius: 999px; }
 .switch.is-on { background: var(--brand-accent); border-color: var(--brand-accent); }
-.switch__knob { position: absolute; top: 50%; left: 4px; margin-top: -13px; width: 26px; height: 26px; border-radius: 50%;
+.switch__knob { position: absolute; top: 50%; left: 5px; margin-top: -14px; width: 28px; height: 28px; border-radius: 50%;
   background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,.45);
   transition: transform var(--dur-base) var(--ease-out); }
-.switch.is-on .switch__knob { transform: translateX(28px); }
+.switch.is-on .switch__knob { transform: translateX(38px); }
 /* wippt einladend, bis jemand ihn benutzt */
 .switch:not(.is-touched) .switch__knob { animation: switch-hint 3.4s var(--ease-in-out) 1.4s infinite; }
 @keyframes switch-hint {
   0%, 68%, 100% { transform: translateX(0); }
-  78%, 86% { transform: translateX(11px); }
+  78%, 86% { transform: translateX(15px); }
 }
 @media (prefers-reduced-motion: reduce) {
   .switch__knob { animation: none !important; transition: none; }

@@ -28,7 +28,7 @@ export function CarePricing() {
   return (
     <>
       <div className="billing">
-        <span className={`billing__label ${yearly ? "" : "is-on"}`}>Monatlich</span>
+        <span className="billing__label">Monatlich</span>
         <button
           type="button" role="switch" aria-checked={yearly} aria-label="Jährlich zahlen und zwei Monate sparen"
           className={`switch ${yearly ? "is-on" : ""} ${touched ? "is-touched" : ""}`} onClick={() => toggle(!yearly)}
@@ -39,7 +39,7 @@ export function CarePricing() {
         >
           <span className="switch__knob" aria-hidden="true" />
         </button>
-        <span className={`billing__label ${yearly ? "is-on" : ""}`}>Jährlich</span>
+        <span className="billing__label">Jährlich</span>
         {yearly && <span className="billing__save">2 Monate geschenkt</span>}
       </div>
 
