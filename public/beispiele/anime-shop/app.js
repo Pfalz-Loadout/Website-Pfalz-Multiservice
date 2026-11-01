@@ -606,13 +606,15 @@
     var g = gameById[p.game];
     var fits = ['p20', 'p21', 'p25', 'p22', 'p23', 'p24'].filter(function (x) { return x !== p.id; }).slice(0, 4).map(function (x) { return K.byId[x]; });
     var canBuy = p.preorder || p.stock > 0;
+    var photo = K.IMAGES[p.img] && K.IMAGES[p.img].ready;
+    var phHtml = K.ph(p.img, { sizes: '(max-width:1000px) 92vw, 46vw', alt: 'Produktfoto: ' + p.name });
+    var photoBtn = '<button type="button" data-view="photo" aria-pressed="' + (photo ? 'true' : 'false') + '" aria-label="Produktfoto">' + (photo ? K.ph(p.img, { sizes: '80px', alt: '' }) : p.img) + '</button>';
     main.innerHTML = '<div class="wrap"><div class="pd" style="--c1:' + p.c1 + '">' +
-      '<div><div class="gal-main" id="galMain">' + K.productArt(p) + '</div>' +
-        '<div class="gal-thumbs" role="group" aria-label="Ansichten">' +
-          '<button type="button" data-view="" aria-pressed="true" aria-label="Vorderseite">' + K.productArt(p) + '</button>' +
+      '<div><div class="gal-main' + (photo ? ' has-photo' : '') + '" id="galMain">' + (photo ? phHtml : K.productArt(p)) + '</div>' +
+        '<div class="gal-thumbs" role="group" aria-label="Ansichten">' + (photo ? photoBtn : '') +
+          '<button type="button" data-view="" aria-pressed="' + (photo ? 'false' : 'true') + '" aria-label="Grafik">' + K.productArt(p) + '</button>' +
           '<button type="button" data-view="v3d" aria-pressed="false" aria-label="3D-Ansicht">3D</button>' +
-          '<button type="button" data-view="vzoom" aria-pressed="false" aria-label="Detail">ZOOM</button>' +
-          '<button type="button" data-view="photo" aria-pressed="false" aria-label="Produktfoto ' + p.img + '">' + p.img + '</button>' +
+          '<button type="button" data-view="vzoom" aria-pressed="false" aria-label="Detail">ZOOM</button>' + (photo ? '' : photoBtn) +
         '</div></div>' +
       '<div><nav class="crumbs" aria-label="Brotkrumen"><a href="#/">Start</a><span>›</span><a href="#/shop">Shop</a><span>›</span><a href="#/shop?type=' + p.type + '">' + typeById[p.type].name + '</a></nav>' +
         '<div class="pcard-meta"><span class="badge badge-c">' + g.name + '</span><span class="badge">' + p.lang + '</span><span class="badge">' + condById[p.cond].name + '</span>' + (p.tag ? '<span class="badge badge-p">' + p.tag + '</span>' : '') + '</div>' +
@@ -636,8 +638,8 @@
     $$('[data-view]').forEach(function (b) {
       b.addEventListener('click', function () {
         $$('[data-view]').forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
-        var gm = $('#galMain'); gm.className = 'gal-main ' + (b.dataset.view !== 'photo' ? b.dataset.view : '');
-        gm.innerHTML = b.dataset.view === 'photo' ? K.ph(p.img, { sizes: '(max-width:1000px) 92vw, 46vw' }) : K.productArt(p);
+        var gm = $('#galMain'); gm.className = 'gal-main ' + (b.dataset.view !== 'photo' ? b.dataset.view : (photo ? 'has-photo' : ''));
+        gm.innerHTML = b.dataset.view === 'photo' ? phHtml : K.productArt(p);
       });
     });
   }
