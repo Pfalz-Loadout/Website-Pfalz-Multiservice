@@ -17,11 +17,19 @@ export function PackageCard({ p, yearly = false }: { p: WebPackage; yearly?: boo
       <h3 className="pk__name">{p.name}</h3>
       {p.tagline && <p className="pk__tag">{p.tagline}</p>}
       <p className={`pk__price ${/\d/.test(price) ? "" : "pk__price--req"}`}>
-        {jahr
-          ? <span className="pk__regular">Statt <s>{p.price}</s> im Monat</span>
-          : p.regular && <span className="pk__regular"><span className="pk__offer">Angebot</span> Normalpreis <s>{p.regular}</s></span>}
-        {price}{unit && <span className="pk__unit"> {unit}</span>}
-        {jahr && <span className="pk__billed"><b>{p.priceYear}</b> pro Jahr, einmal jährlich abgerechnet</span>}
+        {p.priceYear ? (
+          // Wartungspakete: feste Höhe, damit beim Umschalten nichts darunter verrutscht
+          <>
+            <span className={`pk__regular ${jahr ? "" : "is-off"}`}>Statt <s>{p.price}</s> im Monat</span>
+            <span className="pk__amount">{price}{unit && <span className="pk__unit"> {unit}</span>}</span>
+            <span className={`pk__billed ${jahr ? "" : "is-off"}`}><b>{p.priceYear}</b> pro Jahr, einmal jährlich abgerechnet</span>
+          </>
+        ) : (
+          <>
+            {p.regular && <span className="pk__regular"><span className="pk__offer">Angebot</span> Normalpreis <s>{p.regular}</s></span>}
+            <span className="pk__amount">{price}{unit && <span className="pk__unit"> {unit}</span>}</span>
+          </>
+        )}
       </p>
       <p className="pk__note">{p.note}</p>
       <ul className="pk__list">
