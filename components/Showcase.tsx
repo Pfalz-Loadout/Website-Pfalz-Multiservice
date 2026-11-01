@@ -104,7 +104,7 @@ function ShowcaseItem({ ex, index, total }: { ex: Example; index: number; total:
           <div className="sc-browser__view">
             <Image className="sc-browser__shot" src={`/images/beispiele/${ex.slug}-scroll.png`} alt={`Vorschau der Website ${ex.name}`}
               width={1000} height={3750} sizes="(max-width: 900px) 100vw, 800px" />
-            <span className="sc-browser__hint" aria-hidden="true">Maus drauf – Seite scrollt</span>
+            <span className="sc-browser__hint" aria-hidden="true">Maus drauf, Seite scrollt</span>
           </div>
           <div className="sc-spot" aria-hidden="true" />
         </div>

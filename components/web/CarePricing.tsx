@@ -28,6 +28,7 @@ export function CarePricing() {
   return (
     <>
       <div className="billing">
+        <span className={`billing__save ${yearly ? "" : "is-off"}`}>2 Monate geschenkt</span>
         <span className="billing__label">Monatlich</span>
         <button
           type="button" role="switch" aria-checked={yearly} aria-label="Jährlich zahlen und zwei Monate sparen"
@@ -40,7 +41,6 @@ export function CarePricing() {
           <span className="switch__knob" aria-hidden="true" />
         </button>
         <span className="billing__label">Jährlich</span>
-        {yearly && <span className="billing__save">2 Monate geschenkt</span>}
       </div>
 
       <div ref={grid} className="pk-grid pm-reveal" data-reveal="stagger">

@@ -1,5 +1,6 @@
-import { lines, tidyNode } from "@/lib/typo";
+import { lines, tidy, tidyNode } from "@/lib/typo";
 import { PackageCard } from "./PackageCard";
+import { BriefingPreview } from "./BriefingPreview";
 import { CarePricing } from "./CarePricing";
 import Link from "next/link";
 import Image from "next/image";
@@ -82,7 +83,8 @@ export function WebExamples() {
         <ShowcaseList offset={CLASSIC_EXAMPLES.length} total={TOTAL} grid />
 
         {tidyNode(<p className="showcase-note" style={{ margin: "72px auto 0", textAlign: "center" }}>
-          Alle gezeigten Betriebe, Personen und Angebote sind frei erfunden. Die Seiten sind Musterdesigns von Pfalz Multiservice.
+          <span className="line">Alle gezeigten Betriebe, Personen und Angebote sind frei erfunden.</span>
+          <span className="line">Die Seiten sind Musterdesigns von Pfalz Multiservice.</span>
         </p>)}
       </div>
     </section>
@@ -115,7 +117,7 @@ function Addon({ a }: { a: { icon: Parameters<typeof Icon>[0]["name"]; title: st
   return (
     <li className="addon">
       <span className="addon__icon"><Icon name={a.icon} size={20} /></span>
-      <span><b className="addon__title">{a.title}</b><span className="addon__text">{lines(a.text)}</span></span>
+      <span><b className="addon__title">{a.title}</b><span className="addon__text">{lines(tidy(a.text))}</span></span>
     </li>
   );
 }
@@ -129,6 +131,7 @@ export function WebPackages() {
         <div className="pk-grid pm-reveal" data-reveal="stagger">
           {WEB_PACKAGES.map((p) => <PackageCard key={p.name} p={p} />)}
         </div>
+        <p className="care__swipe" aria-hidden="true">← wischen für weitere Pakete →</p>
 
         <div className="pk-incl">
           <div className="pk-box pk-box--incl pm-reveal" data-reveal="up" id="inklusive">
@@ -157,7 +160,7 @@ export function WebPackages() {
               <li key={d.title} className="deliver__item">
                 <span className="addon__icon"><Icon name={d.icon} size={20} /></span>
                 <b>{d.title}</b>
-                <span>{d.text}</span>
+                <span>{tidy(d.text)}</span>
               </li>
             ))}
           </ul>
@@ -202,7 +205,7 @@ export function WebPackages() {
 }
 
 /** Kompakter Hinweis aufs Website-Briefing (unter dem Website-Check, auf der Kontaktseite) */
-export function BriefingStrip({ title = "Website geplant?", text = "Füllen Sie unser Website-Briefing aus – in 15–20 Minuten, ohne Zeitdruck, mit Upload für Logo und Fotos. Danach erhalten Sie ein unverbindliches Festpreis-Angebot." }: { title?: string; text?: string }) {
+export function BriefingStrip({ title = "Website geplant?", text = "Füllen Sie unser Website-Briefing aus, in 15 bis 20 Minuten, ohne Zeitdruck und mit Upload für Logo und Fotos. Danach erhalten Sie ein unverbindliches Festpreis-Angebot." }: { title?: string; text?: string }) {
   return tidyNode(
     <div className="bstrip pm-reveal" data-reveal="up">
       <span className="bstrip__icon" aria-hidden="true"><Icon name="clipboard-list" size={26} /></span>
@@ -234,22 +237,7 @@ export function WebBriefingTeaser() {
             <Button variant="outline" href="/kontakt?leistung=web">Lieber erst sprechen</Button>
           </div>
         </div>
-        <Link href="/briefing" className="bft__preview pm-reveal" data-reveal="up" aria-label="Zum Website-Briefing" data-cursor>
-          <span className="bft__top" aria-hidden="true">
-            <span className="bft__step">Schritt 2 von 11</span>
-            <span className="bft__bar"><i /></span>
-          </span>
-          <span className="bft__head" aria-hidden="true"><b>02</b> Ihr Unternehmen &amp; Angebot</span>
-          <span className="bft__label" aria-hidden="true">Was macht Ihr Unternehmen?</span>
-          <span className="bft__input" aria-hidden="true">Wir sind ein Familienbetrieb aus Worms und …<i /></span>
-          <span className="bft__label" aria-hidden="true">Was soll die Website erreichen?</span>
-          <span className="bft__chips" aria-hidden="true">
-            <span className="is-on">Mehr Anfragen</span><span>Online verkaufen</span><span className="is-on">Vertrauen &amp; Image</span>
-          </span>
-          <span className="bft__label" aria-hidden="true">Logo &amp; Fotos</span>
-          <span className="bft__drop" aria-hidden="true">Dateien hierher ziehen · bis 25 MB</span>
-          <span className="bft__cta" aria-hidden="true">Weiter →</span>
-        </Link>
+        <BriefingPreview />
       </div>
     </section>
   );
@@ -300,7 +288,7 @@ export function WebFaqCheck() {
         </aside>
       </div>
       <div className="container" style={{ marginTop: 40 }}>
-        <BriefingStrip title="Noch keine Website – oder lieber neu starten?" />
+        <BriefingStrip title="Noch keine Website oder lieber neu starten?" />
       </div>
     </section>
   );

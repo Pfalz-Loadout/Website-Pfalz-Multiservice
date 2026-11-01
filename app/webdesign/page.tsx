@@ -45,8 +45,8 @@ export default function WebdesignPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([faqLd, serviceLd, breadcrumb([{ name: "Webdesign", path: "/webdesign" }])]) }} />
       <PageHero
         eyebrow="Webdesign aus Worms"
-        title="Websites, die"
-        highlight="Anfragen bringen"
+        title={<span className="sh__line">Websites,</span>}
+        highlight="die Anfragen bringen"
         intro={"Individuell gestaltet, zum fairen Festpreis und persönlich betreut.\nFür Betriebe, Selbstständige und Vereine in Worms und der Pfalz."}
         image={IMG + "webseite-laptop.png"}
       >
