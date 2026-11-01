@@ -4,7 +4,7 @@ import { gsap, useGSAP, MOTION_OK } from "@/lib/gsap";
 import { WEB_CARE } from "@/lib/data";
 import { PackageCard } from "./PackageCard";
 
-/** Wartungspakete mit Schalter monatlich / jährlich (12 Monate nutzen, 10 zahlen) */
+/** Wartungspakete mit Schieber monatlich / jährlich (12 Monate nutzen, 10 zahlen) */
 export function CarePricing() {
   const [yearly, setYearly] = useState(false);
   const grid = useRef<HTMLDivElement>(null);
@@ -13,25 +13,28 @@ export function CarePricing() {
   useGSAP(() => {
     const mm = gsap.matchMedia();
     mm.add(MOTION_OK, () => {
-      const prices = grid.current!.querySelectorAll(".pk__price");
-      gsap.fromTo(prices, { y: 12, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, stagger: 0.06, ease: "power3.out" });
+      const prices = grid.current!.querySelectorAll(".pk__price, .pk__billed");
+      gsap.fromTo(prices, { y: 10, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, stagger: 0.05, ease: "power3.out" });
     });
     return () => mm.revert();
   }, { scope: grid, dependencies: [yearly] });
 
   return (
     <>
-      <div className="toggle" role="group" aria-label="Zahlungsweise">
-        <span className="toggle__track" data-on={yearly ? "year" : "month"}>
-          <span className="toggle__pill" aria-hidden="true" />
-          <button type="button" className={`toggle__btn ${yearly ? "" : "is-on"}`} aria-pressed={!yearly} onClick={() => setYearly(false)}>
-            Monatlich
-          </button>
-          <button type="button" className={`toggle__btn ${yearly ? "is-on" : ""}`} aria-pressed={yearly} onClick={() => setYearly(true)}>
-            Jährlich
-          </button>
-        </span>
-        <span className="toggle__hint">2 Monate geschenkt</span>
+      <div className="billing">
+        <span className={`billing__label ${yearly ? "" : "is-on"}`}>Monatlich</span>
+        <button
+          type="button" role="switch" aria-checked={yearly} aria-label="Jährlich zahlen und zwei Monate sparen"
+          className={`switch ${yearly ? "is-on" : ""}`} onClick={() => setYearly(!yearly)}
+          onKeyDown={(e) => {
+            if (e.key === "ArrowRight") setYearly(true);
+            if (e.key === "ArrowLeft") setYearly(false);
+          }}
+        >
+          <span className="switch__knob" aria-hidden="true" />
+        </button>
+        <span className={`billing__label ${yearly ? "is-on" : ""}`}>Jährlich</span>
+        <span className="billing__save">2 Monate geschenkt</span>
       </div>
 
       <div ref={grid} className="pk-grid pm-reveal" data-reveal="stagger">

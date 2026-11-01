@@ -359,7 +359,9 @@ export const WEB_PROBLEMS: [string, string][] = tidyDeep([
 
 export type WebPackage = { name: string; price: string; unit?: string; note: string; items: string[]; badge?: string; tagline?: string; regular?: string;
   /** Preis bei Jahreszahlung (12 Monate nutzen, 10 zahlen) */
-  priceYear?: string; unitYear?: string; regularYear?: string };
+  priceYear?: string; unitYear?: string; regularYear?: string;
+  /** rechnerischer Monatspreis bei Jahreszahlung */
+  priceYearMonthly?: string };
 /** Inhalte 1:1 aus der Preisliste (Preisliste 2026, Stand 01.11.2026) */
 /** Pakete: Grundleistungen in jedem Paket, darüber die Besonderheit des Pakets */
 export const WEB_BASE_ITEMS: string[] = tidyDeep(["Individuelles Design", "Responsive für alle Geräte", "Individuelle Icons", "Ladezeit-Optimierung", "DSGVO-konform", "Impressum & Datenschutz", "Übergabe-Paket"]);
@@ -381,15 +383,15 @@ export const WEB_PACKAGES: WebPackage[] = tidyDeep([
 /** Betreuung nach dem Livegang */
 export const WEB_CARE: WebPackage[] = tidyDeep([
   {
-    name: "Wartung", price: "19 €", unit: "/ Monat", priceYear: "190 €", unitYear: "/ Jahr", regularYear: "228 €", note: "Die Basis-Betreuung",
+    name: "Wartung", price: "19 €", unit: "/ Monat", priceYear: "190 €", unitYear: "/ Jahr", priceYearMonthly: "15,83 €", note: "Die Basis-Betreuung",
     items: ["Bis 1 Std. Änderungen pro Monat", "Domain- und E-Mail-Einrichtung"],
   },
   {
-    name: "Wartung Pro", price: "29 €", unit: "/ Monat", priceYear: "290 €", unitYear: "/ Jahr", regularYear: "348 €", note: "Für aktive Unternehmens-Websites",
+    name: "Wartung Pro", price: "29 €", unit: "/ Monat", priceYear: "290 €", unitYear: "/ Jahr", priceYearMonthly: "24,17 €", note: "Für aktive Unternehmens-Websites",
     items: ["Bis 2 Std. Änderungen pro Monat", "KI-Fotos & 3D-Motion-Clips\nMenge nach Bedarf", "Google-Unternehmensprofil einrichten, optimieren & pflegen", "Einrichtung von Domain, E-Mail und Hosting"],
   },
   {
-    name: "Wartung Premium", price: "99 €", unit: "/ Monat", priceYear: "990 €", unitYear: "/ Jahr", regularYear: "1.188 €", note: "Für große Projekte mit viel Content",
+    name: "Wartung Premium", price: "99 €", unit: "/ Monat", priceYear: "990 €", unitYear: "/ Jahr", priceYearMonthly: "82,50 €", note: "Für große Projekte mit viel Content",
     items: ["Bis 6 Std. Änderungen pro Monat", "Neue Inhalte mehrmals pro Woche: Blogs, Community, Suchportale", "KI-Fotos & 3D-Motion-Clips im erweiterten Umfang", "Google-Unternehmensprofil einrichten, optimieren & pflegen", "Premium-Hosting auf EU-Servern inklusive", "Backups 30 Tage gespeichert, Uptime-Monitoring", "Antwort innerhalb von 24 Std. (werktags)"],
   },
 ]);
