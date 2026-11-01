@@ -1,4 +1,4 @@
-import { lines } from "@/lib/typo";
+import { lines, tidy } from "@/lib/typo";
 import { WEB_BASE_ITEMS, type WebPackage } from "@/lib/data";
 import { Icon } from "../Icon";
 
@@ -35,7 +35,7 @@ export function PackageCard({ p, yearly = false }: { p: WebPackage; yearly?: boo
       <ul className="pk__list">
         {p.items.map((it) => (
           <li key={it} className={WEB_BASE_ITEMS.includes(it) ? "pk__base" : undefined}><Icon name="check" size={16} />
-            {it === "Übergabe-Paket" ? <a href="#uebergabe" className="pk__link">Übergabe-Paket inklusive</a> : <span>{lines(it)}</span>}
+            {it === "Übergabe-Paket" ? <a href="#uebergabe" className="pk__link">Übergabe-Paket inklusive</a> : <span>{lines(tidy(it))}</span>}
           </li>
         ))}
         {p.items.some((it) => WEB_BASE_ITEMS.includes(it)) && (

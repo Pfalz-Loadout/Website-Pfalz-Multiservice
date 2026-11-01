@@ -35,7 +35,7 @@ export default function BriefingPage() {
           </ol>
           <BriefingForm />
           {BRIEFING_PDF && (
-            <p className="bf-paper">Lieber auf Papier? <a href={BRIEFING_PDF} download>Hier die PDF zum Herunterladen</a> – ausdrucken, ausfüllen und per Foto per WhatsApp oder E-Mail schicken.</p>
+            <p className="bf-paper">Lieber auf Papier? <a href={BRIEFING_PDF} download>Hier die PDF zum Herunterladen</a>. Ausdrucken, ausfüllen und per Foto per WhatsApp oder E-Mail schicken.</p>
           )}
         </div>
       </section>

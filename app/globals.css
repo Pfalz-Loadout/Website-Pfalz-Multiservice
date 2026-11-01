@@ -60,6 +60,9 @@ input, textarea, select, [contenteditable="true"] { -webkit-user-select: text; u
 a { color: inherit; }
 ::selection { background: var(--brand-accent); color: #000; }
 :focus-visible { outline: 2px solid var(--border-focus); outline-offset: 3px; }
+/* Kein blaues Aufblitzen beim Antippen auf dem Handy */
+a, button, [role="switch"], [role="button"], summary, label { -webkit-tap-highlight-color: transparent; }
+button:focus:not(:focus-visible) { outline: none; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 
 /* Bildflächen: echtes Foto aus /public/images, darunter ein Fallback-Verlauf */

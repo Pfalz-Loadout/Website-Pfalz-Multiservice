@@ -70,14 +70,14 @@ export const BRIEFING: BriefingSection[] = [
     fields: [
       { id: "website", label: "Aktuelle Website (falls vorhanden)", kind: "url" },
       { id: "websiteMeinung", label: "Was gefällt Ihnen daran, was stört Sie?", kind: "area" },
-      { id: "vorbilder", label: "2–3 Websites, die Ihnen gefallen – und warum", kind: "area", hint: "gern auch aus anderen Branchen" },
+      { id: "vorbilder", label: "2 bis 3 Websites, die Ihnen gefallen, und warum", kind: "area", hint: "gern auch aus anderen Branchen" },
       { id: "mitbewerber", label: "Ihre wichtigsten Mitbewerber", kind: "area", hint: "Name oder Website" },
     ],
   },
   {
     nr: "05", title: "Design & Wirkung",
     fields: [
-      { id: "logo", label: "Logo", kind: "check", options: ["Vektor-Logo (SVG, PDF, EPS)", "Nur als Bild (JPG/PNG)", "Kein Logo – bitte erstellen"] },
+      { id: "logo", label: "Logo", kind: "check", options: ["Vektor-Logo (SVG, PDF, EPS)", "Nur als Bild (JPG/PNG)", "Kein Logo, bitte erstellen"] },
       { id: "farben", label: "Firmenfarben (HEX-Code oder Beschreibung)", kind: "text" },
       { id: "schriften", label: "Schriftarten (falls festgelegt)", kind: "text" },
       { id: "stil", label: "Gewünschter Stil", kind: "check", options: ["Modern & minimalistisch", "Klassisch & seriös", "Hochwertig & edel", "Freundlich & farbenfroh", "Technisch & sachlich", "3D / Next-Gen (animiert)"] },
@@ -100,7 +100,7 @@ export const BRIEFING: BriefingSection[] = [
     fields: [
       { id: "texte", label: "Texte", kind: "check", options: ["Liefere ich selbst", "Sollen erstellt werden", "Teils / teils"] },
       { id: "fotos", label: "Fotos", kind: "check", options: ["Eigene Fotos vorhanden", "Fotoshooting (optional, Partner aus der Region)", "Stockfotos verwenden", "KI-Fotos erstellen lassen"] },
-      { id: "faq1", label: "Häufige Kundenfrage 1", kind: "area", hint: "Aus den 5 häufigsten Fragen entsteht ein FAQ – wichtig für Google und KI." },
+      { id: "faq1", label: "Häufige Kundenfrage 1", kind: "area", hint: "Aus den 5 häufigsten Fragen entsteht ein FAQ. Das ist wichtig für Google und die KI-Suche." },
       { id: "faq2", label: "Häufige Kundenfrage 2", kind: "area" },
       { id: "faq3", label: "Häufige Kundenfrage 3", kind: "area" },
       { id: "faq4", label: "Häufige Kundenfrage 4", kind: "area" },
@@ -122,9 +122,9 @@ export const BRIEFING: BriefingSection[] = [
   },
   {
     nr: "09", title: "Domain, Technik & Rechtliches",
-    warn: "Bitte tragen Sie hier keine Passwörter ein – Zugänge klären wir separat und sicher.",
+    warn: "Bitte tragen Sie hier keine Passwörter ein. Zugänge klären wir separat und sicher.",
     fields: [
-      { id: "domain", label: "Domain (Internetadresse)", kind: "check", options: ["Vorhanden", "Noch keine – bitte besorgen"] },
+      { id: "domain", label: "Domain (Internetadresse)", kind: "check", options: ["Vorhanden", "Noch keine, bitte besorgen"] },
       { id: "wunschdomain", label: "Domain bzw. Wunschdomain", kind: "text" },
       { id: "anbieter", label: "Anbieter", kind: "text", hint: "z. B. Strato, IONOS" },
       { id: "emails", label: "Gewünschte E-Mail-Adressen", kind: "area", hint: "z. B. info@, kontakt@, vorname@" },
@@ -137,7 +137,7 @@ export const BRIEFING: BriefingSection[] = [
     fields: [
       { id: "wunschtermin", label: "Wunschtermin für den Livegang", kind: "text" },
       { id: "deadline", label: "Feste Deadline? (z. B. Eröffnung)", kind: "text" },
-      { id: "budget", label: "Budgetrahmen", kind: "check", options: ["bis 250 €", "250 – 750 €", "750 – 1.500 €", "über 1.500 €", "Bitte beraten Sie mich"] },
+      { id: "budget", label: "Budgetrahmen", kind: "check", options: ["bis 250 €", "250 bis 750 €", "750 bis 1.500 €", "über 1.500 €", "Bitte beraten Sie mich"] },
       { id: "pflege", label: "Pflege nach dem Livegang", kind: "check", options: ["Änderungen melden", "Wartungspaket gewünscht", "Noch offen"] },
       { id: "anmerkungen", label: "Sonstige Wünsche oder Anmerkungen", kind: "areaLarge" },
     ],

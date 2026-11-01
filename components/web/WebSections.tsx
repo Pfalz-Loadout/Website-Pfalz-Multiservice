@@ -1,4 +1,4 @@
-import { lines, tidyNode } from "@/lib/typo";
+import { lines, tidy, tidyNode } from "@/lib/typo";
 import { PackageCard } from "./PackageCard";
 import { CarePricing } from "./CarePricing";
 import Link from "next/link";
@@ -115,7 +115,7 @@ function Addon({ a }: { a: { icon: Parameters<typeof Icon>[0]["name"]; title: st
   return (
     <li className="addon">
       <span className="addon__icon"><Icon name={a.icon} size={20} /></span>
-      <span><b className="addon__title">{a.title}</b><span className="addon__text">{lines(a.text)}</span></span>
+      <span><b className="addon__title">{a.title}</b><span className="addon__text">{lines(tidy(a.text))}</span></span>
     </li>
   );
 }
@@ -157,7 +157,7 @@ export function WebPackages() {
               <li key={d.title} className="deliver__item">
                 <span className="addon__icon"><Icon name={d.icon} size={20} /></span>
                 <b>{d.title}</b>
-                <span>{d.text}</span>
+                <span>{tidy(d.text)}</span>
               </li>
             ))}
           </ul>
@@ -202,7 +202,7 @@ export function WebPackages() {
 }
 
 /** Kompakter Hinweis aufs Website-Briefing (unter dem Website-Check, auf der Kontaktseite) */
-export function BriefingStrip({ title = "Website geplant?", text = "Füllen Sie unser Website-Briefing aus – in 15–20 Minuten, ohne Zeitdruck, mit Upload für Logo und Fotos. Danach erhalten Sie ein unverbindliches Festpreis-Angebot." }: { title?: string; text?: string }) {
+export function BriefingStrip({ title = "Website geplant?", text = "Füllen Sie unser Website-Briefing aus, in 15 bis 20 Minuten, ohne Zeitdruck und mit Upload für Logo und Fotos. Danach erhalten Sie ein unverbindliches Festpreis-Angebot." }: { title?: string; text?: string }) {
   return tidyNode(
     <div className="bstrip pm-reveal" data-reveal="up">
       <span className="bstrip__icon" aria-hidden="true"><Icon name="clipboard-list" size={26} /></span>
@@ -300,7 +300,7 @@ export function WebFaqCheck() {
         </aside>
       </div>
       <div className="container" style={{ marginTop: 40 }}>
-        <BriefingStrip title="Noch keine Website – oder lieber neu starten?" />
+        <BriefingStrip title="Noch keine Website oder lieber neu starten?" />
       </div>
     </section>
   );

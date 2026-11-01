@@ -1,4 +1,4 @@
-import { lines, tidyLead } from "@/lib/typo";
+import { lines, tidy, tidyLead } from "@/lib/typo";
 import { Icon } from "./Icon";
 
 export function CheckList({ items }: { items: { title: string; text?: string }[] }) {
@@ -8,7 +8,7 @@ export function CheckList({ items }: { items: { title: string; text?: string }[]
         <li key={t.title} className="checklist__item">
           <span className="checklist__box"><Icon name="check" size={16} /></span>
           <span className="checklist__txt">
-            <strong>{t.title}{t.text ? ": " : ""}</strong>
+            <strong>{tidy(t.title)}{t.text ? ": " : ""}</strong>
             {t.text && lines(tidyLead(t.text))}
           </span>
         </li>

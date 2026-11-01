@@ -40,7 +40,7 @@ export function tidy(text: string): string {
   // Textstück nach fettem Vorspann o. Ä. („<b>Titel:</b> Sie kennen …“) beginnt einen neuen Satz
   if (words[0] === "" && words.length > 3) mark(1, 3);
   // Ende des Textes: die letzten zwei Wörter zusammenhalten
-  if (words.length >= 4) mark(words.length - 2, 2);
+  if (words.length >= 3) mark(words.length - 2, 2);
 
   // Zusammengehörige Angaben nie trennen: „Art. 6“, „Abs. 1“, „lit. b“, „§ 19“, „z. B.“, „19 €“
   for (let k = 0; k < words.length - 1; k++) {
