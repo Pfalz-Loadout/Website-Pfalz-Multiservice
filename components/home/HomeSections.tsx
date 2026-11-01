@@ -78,6 +78,7 @@ export function About() {
         <div className="stack" style={{ gap: 24 }}>
           <SectionHeading eyebrow={`Inhabergeführt seit ${COMPANY.founded} · Worms`} title="Wer" highlight="dahintersteht" />
           {tidyNode(<div className="stack pm-reveal" data-reveal="stagger" style={{ gap: 24 }}>
+            <p className="about__owner">{COMPANY.owner} <span>— Inhaberin</span></p>
             <p style={{ margin: 0, font: "var(--type-body)", color: "var(--text-body)" }}>
               Pfalz Multiservice ist ein inhabergeführtes Dienstleistungsunternehmen mit Sitz in Worms, gegründet {COMPANY.founded} von
               {" "}{COMPANY.owner} und gewachsen aus dem E-Commerce. Die Erfahrung aus Handel, Logistik und digitalen Prozessen bildet heute
@@ -90,9 +91,9 @@ export function About() {
           <div className="pm-reveal" data-reveal="checks"><CheckList items={USPS} /></div>
           <div className="stack pm-reveal" data-reveal="stagger" style={{ gap: 24 }}>
             <span style={{ font: "400 15px var(--font-body)", color: "var(--text-body)" }}>Mehrere Bereiche kombinieren? Sprechen Sie uns an.</span>
-            <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
-              <Button href="/kontakt">Unverbindlich anfragen</Button>
-              <Button variant="outline" iconLeft="message-circle" href={CONTACT.whatsapp}>Per WhatsApp schreiben</Button>
+            <div className="about__btns">
+              <Button variant="accent" href="/kontakt">Unverbindlich anfragen</Button>
+              <Button variant="outline-light" iconLeft="message-circle" href={CONTACT.whatsapp}>Per WhatsApp schreiben</Button>
             </div>
           </div>
         </div>

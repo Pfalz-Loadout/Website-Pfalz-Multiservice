@@ -251,6 +251,12 @@ html.pm-motion .curtain { display: block; animation: pm-curtain-failsafe 0s 3.5s
   line-height: 1.22; letter-spacing: -.02em; color: var(--text-strong); }
 .core__text { margin: 0; font: var(--type-body); color: var(--text-body); }
 .core__media { align-self: stretch; min-height: 320px; }
+.about__owner { margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 1.25rem; line-height: 1.3; color: var(--text-strong); }
+.about__owner span { font-weight: 400; color: var(--text-subtle); }
+.about__btns { display: flex; align-items: stretch; gap: 14px; flex-wrap: wrap; }
+.about__btns .btn { flex: 1 1 240px; justify-content: center; }
+.about__btns .btn .btn__label { white-space: nowrap; }
+
 .services__sub { margin-top: clamp(56px,6vw,80px); padding-top: clamp(40px,5vw,56px); border-top: 1px solid var(--border-subtle); }
 
 /* ---------- Service card ---------- */
