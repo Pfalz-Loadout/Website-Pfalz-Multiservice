@@ -1,7 +1,7 @@
 import { lines, tidyNode } from "@/lib/typo";
 import Link from "next/link";
 import Image from "next/image";
-import { CLASSIC_EXAMPLES, CONTACT, EXAMPLES, WEB_ADDONS, WEB_BASE_ITEMS, WEB_DELIVER, WEB_FAQ, WEB_CARE, WEB_HANDOVER, WEB_INCLUDED, WEB_PACKAGES, WEB_PROBLEMS, type WebPackage } from "@/lib/data";
+import { CLASSIC_EXAMPLES, CONTACT, EXAMPLES, WEB_ADDONS, WEB_BASE_ITEMS, WEB_DELIVER, WEB_FAQ, WEB_CARE, WEB_CARE_NOTES, WEB_HANDOVER, WEB_INCLUDED, WEB_PACKAGES, WEB_PROBLEMS, type WebPackage } from "@/lib/data";
 import { SectionHeading } from "../SectionHeading";
 import { Button } from "../Button";
 import { Icon } from "../Icon";
@@ -170,7 +170,7 @@ export function WebPackages() {
 
         <div className="pk-free pm-reveal" data-reveal="up">
           <Icon name="file-check" size={26} />
-          <p><strong>Kein Abo, kein Zwang.</strong> Einmaliger Festpreis, keine versteckten Kosten, die Website gehört Ihnen. Laufende Kosten entstehen nur für Hosting und Domain: Die zahlen Sie direkt beim Anbieter Ihrer Wahl, den Betrag weisen wir im Angebot getrennt aus. Die Einrichtung übernehmen wir in Wartung Pro und Premium.</p>
+          <p><strong>Kein Abo, kein Zwang.</strong> Einmaliger Festpreis, keine versteckten Kosten, die Website gehört Ihnen. Laufende Kosten entstehen nur für Hosting und Domain: Die zahlen Sie direkt beim Anbieter Ihrer Wahl, den Betrag weisen wir im Angebot getrennt aus. Die Einrichtung übernehmen wir in Wartung Pro und Premium; in Premium ist das Hosting bei uns enthalten.</p>
         </div>
 
         <div className="deliver" id="leistungsumfang">
@@ -207,6 +207,11 @@ export function WebPackages() {
             {WEB_CARE.map((p) => <PackageCard key={p.name} p={p} />)}
           </div>
           <p className="care__swipe" aria-hidden="true">← wischen für weitere Pakete →</p>
+          <ul className="care__notes pm-reveal" data-reveal="stagger">
+            {WEB_CARE_NOTES.map((n) => (
+              <li key={n.title} className="care__note"><b>{n.title}</b><span>{n.text}</span></li>
+            ))}
+          </ul>
           <div className="care__single pm-reveal" data-reveal="up">
             <span><b>Änderungen ohne Paket</b> einmalig 1 Std., reicht in der Regel für die meisten Änderungen</span>
             <strong>29 €</strong>

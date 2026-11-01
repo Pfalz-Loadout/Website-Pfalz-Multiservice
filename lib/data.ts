@@ -358,7 +358,7 @@ export const WEB_PROBLEMS: [string, string][] = tidyDeep([
 ]);
 
 export type WebPackage = { name: string; price: string; unit?: string; note: string; items: string[]; badge?: string; tagline?: string; regular?: string };
-/** Inhalte 1:1 aus der Preisliste (Preisliste_Pfalz-Multiservice.pdf, Stand 28.10.2026) */
+/** Inhalte 1:1 aus der Preisliste (Preisliste 2026, Stand 01.11.2026) */
 /** Pakete: Grundleistungen in jedem Paket, darüber die Besonderheit des Pakets */
 export const WEB_BASE_ITEMS: string[] = tidyDeep(["Individuelles Design", "Responsive für alle Geräte", "Individuelle Icons", "Ladezeit-Optimierung", "DSGVO-konform", "Impressum & Datenschutz", "Übergabe-Paket"]);
 export const WEB_PACKAGES: WebPackage[] = tidyDeep([
@@ -387,16 +387,23 @@ export const WEB_CARE: WebPackage[] = tidyDeep([
     items: ["Bis 2 Std. Änderungen pro Monat", "KI-Fotos & 3D-Motion-Clips\nMenge nach Bedarf", "Google-Unternehmensprofil einrichten, optimieren & pflegen", "Einrichtung von Domain, E-Mail und Hosting"],
   },
   {
-    name: "Wartung Premium", price: "69 €", unit: "/ Monat", note: "Für große Projekte mit viel Content",
-    items: ["Bis 6 Std. Änderungen pro Monat", "Neue Inhalte mehrmals pro Woche: Beiträge, Einträge, Bilder", "Ideal für Blogs, Community- und Suchportale", "KI-Fotos & 3D-Motion-Clips im erweiterten Umfang", "Google-Unternehmensprofil einrichten, optimieren & pflegen", "Einrichtung von Domain, E-Mail und Hosting", "Bevorzugte Bearbeitung Ihrer Anfragen"],
+    name: "Wartung Premium", price: "99 €", unit: "/ Monat", note: "Für große Projekte mit viel Content",
+    items: ["Bis 6 Std. Änderungen pro Monat", "Neue Inhalte mehrmals pro Woche: Blogs, Community, Suchportale", "KI-Fotos & 3D-Motion-Clips im erweiterten Umfang", "Google-Unternehmensprofil einrichten, optimieren & pflegen", "Premium-Hosting auf EU-Servern inklusive", "Backups 30 Tage gespeichert, Uptime-Monitoring", "Antwort innerhalb von 24 Std. (werktags)"],
   },
+]);
+
+/** Gut zu wissen zum Wartungsprogramm (Preisliste 2026) */
+export const WEB_CARE_NOTES: { title: string; text: string }[] = tidyDeep([
+  { title: "Jahreszahlung", text: "12 Monate nutzen, 10 zahlen: Wartung 190 €, Pro 290 €, Premium 990 € pro Jahr." },
+  { title: "Reaktionszeit", text: "Premium 24 Std., Wartung und Pro 48 Std. (werktags). 100 % Erreichbarkeit kann niemand garantieren." },
+  { title: "Nicht enthalten", text: "Redesign, Neuentwicklung, Hack-Behebung und vom Kunden verursachte Fehler: 29 € pro Stunde." },
 ]);
 
 /** In allen Paketen inklusive – ohne Aufpreis */
 export const WEB_INCLUDED = tidyDeep([
   "Design für Smartphone und Desktop", "Menü und Navigation", "FAQ-Bereich", "Kontaktformular", "WhatsApp-Button",
   "Anfahrt mit Link zu Google Maps", "Social-Media-Links", "Texte erstellen oder\nalte Inhalte übernehmen",
-  "Kuratierte Bildauswahl, professionell eingebunden", "SEO: Suchbegriffe und Meta-Texte", "Vorbereitet für Google- und KI-Suche",
+  "Kuratierte Bildauswahl,\nBildlizenzen inklusive", "SEO: Suchbegriffe und Meta-Texte", "Vorbereitet für Google- und KI-Suche",
   "Online-Terminbuchung", "Google-Bewertungen einbinden", "Vorher-Nachher-Galerie",
 ]);
 
