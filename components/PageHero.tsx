@@ -4,9 +4,9 @@ import { gsap, useGSAP, MOTION_OK, introDelay, splitHeading } from "@/lib/gsap";
 import { BgImage } from "./BgImage";
 import { SectionHeading } from "./SectionHeading";
 
-type Props = { eyebrow: string; title: React.ReactNode; highlight: string; intro: string; image: string; crumbs?: { label: string; href?: string }[]; children?: React.ReactNode };
+type Props = { eyebrow: string; title: React.ReactNode; highlight: string; /** Überschrift mobil so weit verkleinern, dass jede Zeile am Stück passt */ fitTitle?: boolean; intro: string; image: string; crumbs?: { label: string; href?: string }[]; children?: React.ReactNode };
 
-export function PageHero({ eyebrow, title, highlight, intro, image, children }: Props) {
+export function PageHero({ eyebrow, title, highlight, intro, image, children, fitTitle }: Props) {
   const ref = useRef<HTMLElement>(null);
 
   useGSAP(() => {
@@ -34,7 +34,7 @@ export function PageHero({ eyebrow, title, highlight, intro, image, children }: 
   }, { scope: ref });
 
   return (
-    <section ref={ref} className="page-hero">
+    <section ref={ref} className={`page-hero ${fitTitle ? "page-hero--fit" : ""}`}>
       <div className="page-hero__bg"><BgImage className="page-hero__img" src={image} eager /></div>
       <div className="hero__scrim" />
       <div className="container" style={{ position: "relative" }}>

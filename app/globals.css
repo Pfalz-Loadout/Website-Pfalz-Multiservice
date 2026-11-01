@@ -966,6 +966,8 @@ a .contact-row__value { color: var(--brand-accent); }
 /* ---------- Webdesign mobil kompakter ---------- */
 @media (max-width: 640px) {
   .hero-brief b { display: block; }
+  /* Überschrift so weit verkleinern, dass nur nach dem Komma umgebrochen wird */
+  .page-hero--fit .sh__title { font-size: clamp(1.4rem, 6.6vw, 2.1rem); }
   /* Website-Pakete ebenfalls als Wisch-Leiste */
   #pakete > .container > .pk-grid { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 84%; overflow-x: auto; scroll-snap-type: x mandatory;
     margin: 0 -16px; padding: 14px 16px 6px; scroll-padding: 0 16px; overscroll-behavior-x: contain; scrollbar-width: none; }
