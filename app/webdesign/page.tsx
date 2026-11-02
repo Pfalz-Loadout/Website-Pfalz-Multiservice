@@ -10,6 +10,7 @@ import { Button } from "@/components/Button";
 import { Process } from "@/components/home/Process";
 import { CtaBand } from "@/components/home/HomeSections";
 import { WebBriefingTeaser, WebExamples, WebFaqCheck, WebPackages, WebProblem, WebTrust } from "@/components/web/WebSections";
+import { ShopShowcase } from "@/components/web/ShopShowcase";
 
 const description =
   "Website erstellen lassen in Worms und der Pfalz: individuelles Webdesign zum Festpreis ab 99 €, ohne Abo. Beispiele ansehen, kostenloser Website-Check.";
@@ -61,6 +62,7 @@ export default function WebdesignPage() {
       </PageHero>
       <WebTrust />
       <WebProblem />
+      <ShopShowcase />
       <WebExamples />
       <WebPackages />
       <WebBriefingTeaser />
