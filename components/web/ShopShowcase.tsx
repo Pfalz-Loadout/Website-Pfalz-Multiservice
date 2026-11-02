@@ -11,6 +11,7 @@ import { Icon } from "../Icon";
 
 const HOST = SITE.replace(/^https?:\/\//, "").replace(/^www\./, "");
 const AUTOPLAY_MS = 3600;
+const FEAT_MS = 2800;
 const BASE = `/beispiele/${ex.slug}`;
 
 /** Neues Shop-Design: eigene Bühne auf der Webdesign-Seite, getrennt vom Beispiel-Raster */
@@ -34,13 +35,36 @@ export function ShopShowcase() {
     mm.add(MOTION_OK, () => {
       const st = ScrollTrigger.create({ trigger: root.querySelector(".shopf-stage"), start: "top 75%", end: "bottom 25%", onToggle: (s) => setVisible(s.isActive) });
       setAuto(true);
+      const st2 = ScrollTrigger.create({ trigger: root.querySelector(".shopf-spot"), start: "top 85%", end: "bottom 15%", onToggle: (s) => setFeatVisible(s.isActive) });
+      setFeatAuto(true);
       gsap.from(root.querySelectorAll(".shopf-phone"), { y: 60, rotate: 6, opacity: 0, duration: 1.2, ease: "power3.out", scrollTrigger: { trigger: root.querySelector(".shopf-stage"), start: "top 70%", once: true } });
-      return () => { st.kill(); setAuto(false); };
+      return () => { st.kill(); st2.kill(); setAuto(false); setFeatAuto(false); };
     });
     return () => mm.revert();
   }, { scope: ref });
 
   const select = (i: number) => { setAuto(false); setCur(i); };
+
+  // Funktions-Spotlight: blättert automatisch, solange sichtbar und nicht angefasst
+  const spotRef = useRef<HTMLDivElement>(null);
+  const [feat, setFeat] = useState(0);
+  const [featAuto, setFeatAuto] = useState(false);
+  const [featVisible, setFeatVisible] = useState(false);
+  const featPlaying = featAuto && featVisible;
+  const pickFeat = (i: number) => { setFeatAuto(false); setFeat(i); };
+  useEffect(() => {
+    if (!featPlaying) return;
+    const id = window.setTimeout(() => setFeat((f) => (f + 1) % ex.features.length), FEAT_MS);
+    return () => window.clearTimeout(id);
+  }, [featPlaying, feat]);
+  // Handy: aktive Funktion in der wischbaren Chip-Zeile sichtbar halten (nur waagerecht, die Seite scrollt nicht mit)
+  useEffect(() => {
+    const list = spotRef.current?.querySelector<HTMLElement>(".shopf-list");
+    const chip = list?.children[feat] as HTMLElement | undefined;
+    if (!list || !chip || list.scrollWidth <= list.clientWidth + 2) return;
+    const left = chip.getBoundingClientRect().left - list.getBoundingClientRect().left + list.scrollLeft - 16;
+    list.scrollTo({ left, behavior: "smooth" });
+  }, [feat]);
 
   return (
     <section ref={ref} className="section shopf" id="shop-design" aria-labelledby="shopf-title">
@@ -96,18 +120,32 @@ export function ShopShowcase() {
           </div>
         </div>
 
-        <div className="shopf-feats-head">
-          <h3 className="sc-group__title">Was Ihr Online-Shop alles kann <span>Alles im Muster ist echt bedienbar. Probieren Sie es aus.</span></h3>
+        <div className="shopf-spot" ref={spotRef}>
+          <div className="shopf-spot__side">
+            <h3 className="shopf-spot__title">Was Ihr Online-Shop alles kann</h3>
+            <ul className="shopf-list" aria-label="Funktionen">
+              {ex.features.map((f, i) => (
+                <li key={f.title}>
+                  <button type="button" className={`shopf-li ${i === feat ? "is-on" : ""}`} aria-pressed={i === feat} aria-controls="shopf-card"
+                    onClick={() => pickFeat(i)} onMouseEnter={() => pickFeat(i)} onFocus={() => pickFeat(i)} data-cursor>
+                    <Icon name={f.icon} size={16} />
+                    <span>{f.title}</span>
+                    {i === feat && featPlaying && <i key={feat} className="shopf-li__prog" aria-hidden="true" />}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="shopf-card" id="shopf-card">
+            <div key={feat} className="shopf-card__in">
+              <span className="shopf-card__n" aria-hidden="true">{String(feat + 1).padStart(2, "0")}<small> / {ex.features.length}</small></span>
+              <span className="shopf-card__icon"><Icon name={ex.features[feat].icon} size={28} /></span>
+              <b className="shopf-card__title">{ex.features[feat].title}</b>
+              <p className="shopf-card__text">{tidy(ex.features[feat].text)}</p>
+            </div>
+            <p className="shopf-card__hint">Alles im Muster ist echt bedienbar.</p>
+          </div>
         </div>
-        <ul className="shopf-feats pm-reveal" data-reveal="stagger">
-          {ex.features.map((f) => (
-            <li key={f.title} className="shopf-feat">
-              <span className="shopf-feat__icon"><Icon name={f.icon} size={22} /></span>
-              <b className="shopf-feat__title">{f.title}</b>
-              <span className="shopf-feat__text">{tidy(f.text)}</span>
-            </li>
-          ))}
-        </ul>
 
         <div className="shopf-cta pm-reveal" data-reveal="up">
           <p><strong>Sie verkaufen etwas Besonderes?</strong> Wir bauen Ihren Shop genauso individuell: vom ruhigen Manufaktur-Shop bis zum Erlebnis-Shop. Paket „Shop / Premium“, Preis nach Angebot.</p>
