@@ -202,7 +202,7 @@ html.dlg-open .cursor{display:none!important}
 .section-head>.eyebrow{grid-column:1/-1}
 @media (max-width:860px){.section-head>.display,.section-head>.lede{grid-column:1/-1}}
 .section-head>.fict{grid-column:9/span 4}
-.stage{position:relative;height:clamp(600px,86vh,880px);margin-top:clamp(1rem,3vw,2rem)}
+.stage{position:relative;height:clamp(460px,62vh,620px);margin-top:clamp(1rem,3vw,2rem)}
 .stage-view{position:absolute;inset:0;outline:none;touch-action:pan-y;-webkit-user-select:none;user-select:none;cursor:grab}
 .stage-view.is-drag{cursor:grabbing}
 .stage-view:focus-visible{box-shadow:inset 0 0 0 1px var(--champagne)}
@@ -257,7 +257,7 @@ html.dlg-open .cursor{display:none!important}
 .readout-actions .btn{--bh:46px;padding:0 1.15rem;font-size:.88rem;flex:1}
 @media (max-width:860px){
   .stage{height:auto;display:flex;flex-direction:column}
-  .stage-view,.stage-fallback{position:relative;height:60vh;min-height:380px;max-height:560px}
+  .stage-view,.stage-fallback{position:relative;height:46vh;min-height:300px;max-height:420px}
   .stage-hud{left:16px;right:16px;bottom:.9rem;transform:none;justify-content:center;gap:.4rem}
   .view-btn{padding:0 .7rem;min-height:40px;font-size:.8rem}
   .stage-hint{top:8%}
@@ -625,10 +625,10 @@ fieldset.fld{min-width:0;min-inline-size:0}
     <div class="wrap section-head">
       <p class="eyebrow">Showroom</p>
       <h2 class="display skew" id="show-title" data-lines><span class="ln"><span>Ins Licht gedreht.</span></span></h2>
-      <p class="lede">Wählen Sie eine Klasse und drehen Sie das Fahrzeug frei: Front, Heck, Felge. Ziehen genügt, die Daten laufen mit.</p>
+      <p class="lede">Wählen Sie eine Klasse und drehen Sie das Fahrzeug einmal rundherum. Ziehen genügt, die Daten laufen mit.</p>
     </div>
     <div class="stage" id="stage">
-      <div class="stage-view" id="stage-view" tabindex="0" role="group" aria-roledescription="360-Grad-Ansicht" aria-label="Fahrzeug in 360 Grad. Ziehen oder Pfeiltasten drehen das Fahrzeug, Plus und Minus zoomen." data-cursor="Drehen">
+      <div class="stage-view" id="stage-view" tabindex="0" role="group" aria-roledescription="360-Grad-Ansicht" aria-label="Fahrzeug in 360 Grad. Ziehen oder Pfeiltasten drehen das Fahrzeug." data-cursor="Drehen">
         <canvas class="stage-gl" id="stage-gl" aria-hidden="true"></canvas>
         <div class="stage-load" id="stage-load" aria-live="polite"><span class="sl-ring" aria-hidden="true"></span><span id="stage-load-txt">Fahrzeug wird geladen</span></div>
         <p class="stage-hint" id="stage-hint" aria-hidden="true"><svg viewBox="0 0 48 20" width="44" height="18" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"><path d="M6 10c0-3.3 8-6 18-6s18 2.7 18 6-8 6-18 6c-4 0-7.6-.4-10.6-1.2"/><path d="M15 12l-2 2.8 3.2 1"/></svg>Ziehen zum Drehen</p>
@@ -638,7 +638,6 @@ fieldset.fld{min-width:0;min-inline-size:0}
             <button class="view-btn" type="button" data-view="q" aria-pressed="true">¾</button>
             <button class="view-btn" type="button" data-view="side">Seite</button>
             <button class="view-btn" type="button" data-view="rear">Heck</button>
-            <button class="view-btn" type="button" data-view="wheel">Felge</button>
           </div>
         </div>
       </div>
@@ -1672,11 +1671,11 @@ function initSpin() {
   const el = $('#stage-gl'), view = $('#stage-view'), ctx = el.getContext('2d');
   if (!ctx) throw new Error('kein 2D-Kontext');
   const BASE = '/beispiele/autovermietung/360/';
-  // Quellraster 1280×720: wheel = Vorderrad in der Seitenansicht (Bild 0)
+  // Quellbilder 1280×720, eine volle Umdrehung je Fahrzeug
   const CARS = {
-    'v8coupe':   { dir: '911',     n: 190, front: 45, rear: 136, wheel: [905, 488] },
-    'limo-lang': { dir: 'maybach', n: 121, front: 43, rear: 100, wheel: [900, 492] },
-    'suv-lux':   { dir: 'rr',      n: 121, front: 40, rear: 81,  wheel: [880, 482] }
+    'v8coupe':   { dir: '911',     n: 198, front: 46, rear: 146 },
+    'limo-lang': { dir: 'maybach', n: 121, front: 43, rear: 99 },
+    'suv-lux':   { dir: 'rr',      n: 121, front: 40, rear: 81 }
   };
   const SW = 1280, SH = 720;
   const sets = {};
@@ -1691,7 +1690,9 @@ function initSpin() {
       while (active < 6 && q < order.length) {
         const i = order[q++]; active++;
         const im = new Image(); im.decoding = 'async';
-        im.onload = () => { s.imgs[i] = im; s.ready++; active--; if (s.onprogress) s.onprogress(); pump(); };
+        const done = bmp => { s.imgs[i] = bmp; s.ready++; active--; dirty = true; if (s.onprogress) s.onprogress(); pump(); };
+        // vorab dekodieren, damit beim Drehen nichts nachgeladen/dekodiert werden muss
+        im.onload = () => { if (window.createImageBitmap) createImageBitmap(im).then(done, () => done(im)); else done(im); };
         im.onerror = () => { active--; s.failed = (s.failed || 0) + 1; if (s.onprogress) s.onprogress(); pump(); };
         im.src = BASE + c.dir + '/' + String(i).padStart(3, '0') + '.webp';
       }
@@ -1707,9 +1708,10 @@ function initSpin() {
   const loadEl = $('#stage-load'), loadTxt = $('#stage-load-txt'), hint = $('#stage-hint');
   if (hint && !fine) hint.lastChild.textContent = 'Wischen zum Drehen';
   let cur = null, want = 0;
-  const st = { pos: 0, vel: 0, zoom: 1, zoomT: 1, fx: 640, fy: 410, fxT: 640, fyT: 410, a: 0, last: performance.now(), tween: null, ox: 0 };
+  const st = { pos: 0, vel: 0, zoom: 1, zoomT: 1, a: 0, last: performance.now(), tween: null, ox: 0 };
+  let dirty = true, lastKey = '';
   const touched = () => { st.last = performance.now(); if (hint) hint.classList.add('is-gone'); };
-  const viewFrame = (name, c) => ({ side: 0, q: Math.round(c.front * .5), front: c.front, rear: c.rear, wheel: 0 })[name];
+  const viewFrame = (name, c) => ({ side: 0, q: Math.round(c.front * .5), front: c.front, rear: c.rear })[name];
   let viewName = 'q';
   const markView = n => { viewName = n; $$('.view-btn').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.view === n))); };
   function goView(n) {
@@ -1717,57 +1719,52 @@ function initSpin() {
     const N = cur.c.n, tgt = viewFrame(n, cur.c);
     let d = ((tgt - st.pos) % N + N) % N; if (d > N / 2) d -= N;
     if (st.tween) st.tween.kill(); st.vel = 0;
-    const z = n === 'wheel';
-    st.zoomT = z ? 2.3 : 1; st.fxT = z ? cur.c.wheel[0] : 640; st.fyT = z ? cur.c.wheel[1] : 410;
     st.tween = gsap.to(st, { pos: st.pos + d, duration: reduce ? 0 : Math.min(1.6, .5 + Math.abs(d) / N * 2.4), ease: 'power3.inOut', onComplete: () => { st.tween = null; } });
   }
   $$('.view-btn').forEach(b => b.addEventListener('click', () => goView(b.dataset.view)));
   markView('q');
 
-  // Ziehen / Wischen / Pinch
-  const ptrs = new Map(); let drag = null, pinch0 = 0, zoom0 = 1;
+  // Ziehen / Wischen
+  const ptrs = new Map(); let drag = null;
   view.addEventListener('pointerdown', e => {
     if ((e.button && e.button !== 0) || e.target.closest('.stage-hud')) return;
     ptrs.set(e.pointerId, { x: e.clientX, y: e.clientY });
     if (ptrs.size === 1) { drag = { x: e.clientX, t: performance.now(), moved: 0 }; try { view.setPointerCapture(e.pointerId); } catch (er) {} }
-    if (ptrs.size === 2) { const [p, q] = [...ptrs.values()]; pinch0 = Math.hypot(p.x - q.x, p.y - q.y); zoom0 = st.zoomT; }
     if (st.tween) { st.tween.kill(); st.tween = null; }
     view.classList.add('is-drag'); touched();
   });
   view.addEventListener('pointermove', e => {
     if (!ptrs.has(e.pointerId)) return;
     ptrs.set(e.pointerId, { x: e.clientX, y: e.clientY });
-    if (ptrs.size === 2) { const [p, q] = [...ptrs.values()]; const d = Math.hypot(p.x - q.x, p.y - q.y); if (pinch0) { st.zoomT = Math.max(1, Math.min(2.8, zoom0 * d / pinch0)); st.fxT = 640; st.fyT = 410; } return; }
-    if (!drag || !cur) return;
+    if (ptrs.size > 1 || !drag || !cur) return;
     const now = performance.now(), dx = e.clientX - drag.x, dt = Math.max(1, now - drag.t) / 1000;
     const k = cur.c.n / Math.max(560, view.clientWidth * 1.15);   // eine Bühnenbreite ≈ knapp eine Umdrehung
     st.pos -= dx * k; st.vel = st.vel * .4 + (-dx * k / dt) * .6;
     drag.x = e.clientX; drag.t = now; drag.moved += Math.abs(dx);
-    if (viewName && drag.moved > 6) { markView(null); if (st.zoomT > 1.5) { st.zoomT = 1; st.fxT = 640; st.fyT = 410; } }
+    if (viewName && drag.moved > 6) markView(null);
     touched();
   });
-  const up = e => { ptrs.delete(e.pointerId); if (ptrs.size < 2) pinch0 = 0; if (!ptrs.size) { if (drag && performance.now() - drag.t > 90) st.vel = 0; drag = null; view.classList.remove('is-drag'); } };
+  const up = e => { ptrs.delete(e.pointerId); if (!ptrs.size) { if (drag && performance.now() - drag.t > 90) st.vel = 0; drag = null; view.classList.remove('is-drag'); } };
   view.addEventListener('pointerup', up); view.addEventListener('pointercancel', up); view.addEventListener('lostpointercapture', up);
-  view.addEventListener('dblclick', () => goView(st.zoomT > 1.5 ? 'q' : 'wheel'));
   view.addEventListener('keydown', e => {
     if (!cur) return;
     const step = { ArrowLeft: 1, ArrowRight: -1 }[e.key];
     if (step != null) { e.preventDefault(); touched(); markView(null); if (st.tween) st.tween.kill(); st.vel = 0; st.tween = gsap.to(st, { pos: Math.round(st.pos + step * cur.c.n / 12), duration: reduce ? 0 : .5, ease: 'power2.out' }); return; }
-    if (e.key === '+' || e.key === '=' || e.key === '-') { e.preventDefault(); touched(); st.zoomT = Math.max(1, Math.min(2.8, st.zoomT * (e.key === '-' ? .8 : 1.25))); }
   });
 
   // Zeichnen
   let W = 0, H = 0, dpr = 1;
-  const resize = () => { dpr = Math.min(window.devicePixelRatio || 1, 2); W = el.clientWidth; H = el.clientHeight; if (!W || !H) return; el.width = Math.round(W * dpr); el.height = Math.round(H * dpr); const asp = W / H; st.ox = asp > 1.45 ? -Math.min(.1, (asp - 1.3) * .1) * W : 0; };
+  const resize = () => { dpr = Math.min(window.devicePixelRatio || 1, 2); W = el.clientWidth; H = el.clientHeight; if (!W || !H) return; el.width = Math.round(W * dpr); el.height = Math.round(H * dpr); const asp = W / H; st.ox = asp > 1.45 ? -Math.min(.08, (asp - 1.3) * .06) * W : 0; dirty = true; };
   resize(); new ResizeObserver(resize).observe(el);
   function draw() {
     ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, el.width, el.height);
     if (!cur || st.a <= 0.001) return;
     const N = cur.c.n, i = ((Math.round(st.pos) % N) + N) % N, img = pick(cur, i); if (!img) return;
     // Fahrzeugbox (Quelle) möglichst groß in die Bühne einpassen
-    const fit = Math.min(W * (W < 700 ? .9 : .5) / 1000, H * .6 / 380) * st.zoom;   // Fahrzeug ≈ 1000 × 380 px in der Quelle
-    const cx = W / 2 + st.ox * (1 - Math.min(1, (st.zoom - 1) / 1.2)), cy = H * .54;
-    ctx.setTransform(dpr * fit, 0, 0, dpr * fit, dpr * (cx - st.fx * fit), dpr * (cy - st.fy * fit));
+    // Fahrzeug ≈ 1000 × 380 px in der Quelle; nie über die native Auflösung hinaus vergrößern (sonst unscharf)
+    const fit = Math.min(W * (W < 700 ? .92 : .46) / 1000, H * .64 / 380, 1.1 / dpr) * st.zoom;
+    const cx = W / 2 + st.ox, cy = H * .52;
+    ctx.setTransform(dpr * fit, 0, 0, dpr * fit, dpr * (cx - 640 * fit), dpr * (cy - 410 * fit));
     ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high';
     ctx.globalAlpha = st.a;
     ctx.drawImage(img, 0, 0, SW, SH);
@@ -1787,8 +1784,9 @@ function initSpin() {
       if (!reduce && idle > 3.5 && st.zoomT < 1.2) { const auto = cur.c.n / 16; st.vel += (auto - st.vel) * Math.min(1, dt * .8); }
     }
     st.zoom += (st.zoomT - st.zoom) * Math.min(1, dt * 5);
-    st.fx += (st.fxT - st.fx) * Math.min(1, dt * 5); st.fy += (st.fyT - st.fy) * Math.min(1, dt * 5);
-    draw();
+    // nur neu zeichnen, wenn sich Bild, Deckkraft oder Größe geändert haben
+    const key = (cur ? ((Math.round(st.pos) % cur.c.n) + cur.c.n) % cur.c.n : -1) + '|' + st.a.toFixed(3) + '|' + st.zoom.toFixed(4) + '|' + W + 'x' + H;
+    if (key !== lastKey || dirty) { lastKey = key; dirty = false; draw(); }
   } };
 
   // Fahrzeugwechsel: ausblenden, neue Sequenz dreht sich ins Licht
@@ -1806,7 +1804,7 @@ function initSpin() {
         cur = set; markView('q');
         const N = set.c.n, land = viewFrame('q', set.c);
         if (st.tween) st.tween.kill();
-        st.vel = 0; st.zoom = st.zoomT = .96; st.fx = st.fxT = 640; st.fy = st.fyT = 410;
+        st.vel = 0; st.zoom = st.zoomT = .96;
         st.pos = land - N * .35;
         st.tween = gsap.timeline({ onComplete: () => { st.tween = null; } })
           .to(st, { pos: land, duration: reduce ? 0 : 1.7, ease: 'expo.out' }, 0)
