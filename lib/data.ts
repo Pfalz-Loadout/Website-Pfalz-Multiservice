@@ -16,7 +16,8 @@ export type IconName =
   | "mail" | "check" | "arrow-right" | "chevron-down" | "chevron-right"
   | "circle-arrow-right" | "star" | "menu" | "x" | "arrow-up" | "external-link" | "layout-template"
   | "clapperboard" | "camera" | "pen-tool" | "languages"
-  | "key-round" | "lock-keyhole" | "folder-code" | "copyright" | "search-check" | "clipboard-list" | "gauge" | "pencil-line";
+  | "key-round" | "lock-keyhole" | "folder-code" | "copyright" | "search-check" | "clipboard-list" | "gauge" | "pencil-line"
+  | "search" | "sliders-horizontal" | "calendar-days" | "ticket" | "sparkles" | "smartphone" | "gift" | "package-check";
 
 export type Service = {
   id: string;
@@ -348,6 +349,45 @@ export const CLASSIC_EXAMPLES: ClassicExample[] = tidyDeep([
     ],
   },
 ]);
+
+/** Neues Shop-Design: wird auf /webdesign einzeln vorgestellt (eigene Sektion, nicht im Beispiel-Raster) */
+export type ShopExample = ClassicExample & {
+  claim: string;
+  stats: [string, string][];
+  features: { icon: IconName; title: string; text: string }[];
+};
+
+export const SHOP_EXAMPLE: ShopExample = tidyDeep({
+  slug: "anime-shop",
+  name: "KIRA KIRA",
+  branch: "Anime & Sammelkarten · Online-Shop mit Laden",
+  claim: "Ein Online-Shop, der sich wie ein Erlebnis anfühlt und trotzdem in Sekunden verkauft.",
+  text: "Akihabara bei Nacht im Browser: Neonschilder, Holo-Karten, die zur Maus kippen, ein Booster zum Aufreißen und ein 3D-Gacha-Automat mit Deal des Tages. Darunter steckt ein vollständiger Shop mit Filtern, Live-Suche, Warenkorb und Vorbestellungen.",
+  tags: ["10 Seiten", "Online-Shop", "3D & Holo-Effekte"],
+  pages: [
+    { key: "start", label: "Start", path: "" },
+    { key: "shop", label: "Shop", path: "#/shop" },
+    { key: "singles", label: "Einzelkarten", path: "#/singles" },
+    { key: "produkt", label: "Produkt", path: "#/produkt/p02" },
+    { key: "vorbestellen", label: "Vorbestellen", path: "#/vorbestellungen" },
+    { key: "warenkorb", label: "Warenkorb", path: "#/shop" },
+  ],
+  stats: [["10", "Seiten"], ["52", "Produkte"], ["7", "Filter"], ["2", "Designs: Tag & Nacht"]],
+  features: [
+    { icon: "sliders-horizontal", title: "Filter & Sortierung", text: "Nach Marke, Produktart, Sprache, Zustand, Preis und Lagerstand. Am Handy als Bottom-Sheet." },
+    { icon: "search", title: "Live-Suche", text: "Treffer erscheinen beim Tippen, mit Vorschau, Preis und Tastaturbedienung." },
+    { icon: "shopping-cart", title: "Warenkorb", text: "Seitenleiste mit Mengenänderung und Balken bis zum Gratis-Versand." },
+    { icon: "package-check", title: "Produktseiten", text: "Galerie, Lagerstatus, Inhalt der Box, Versandinfos und „Passt dazu“-Empfehlungen." },
+    { icon: "calendar-days", title: "Vorbestellungen", text: "Release-Kalender mit Countdown und „Erinnere mich“ für jedes neue Produkt." },
+    { icon: "gift", title: "Aktionen & Gutscheine", text: "Deal des Tages und Gutschein-Code als Spiel verpackt: Kunden kommen wieder." },
+    { icon: "camera", title: "Ankauf mit Foto-Upload", text: "Kunden schicken Fotos und Beschreibung, Sie antworten mit einem Angebot." },
+    { icon: "ticket", title: "Events & Anmeldung", text: "Turniere und Workshops mit freien Plätzen und Anmeldeformular." },
+    { icon: "sparkles", title: "Effekte mit Wow", text: "Holo-Karten, 3D-Automat, Manga-Seitenwechsel, Maskottchen mit Tipps." },
+    { icon: "smartphone", title: "Mobil zuerst", text: "Geprüft ab 360 px, Neigung am Handy, große Tippflächen." },
+    { icon: "gauge", title: "Schnell trotz Effekten", text: "WebP-Bilder mit Vorschau, Schriften als Subset, 3D lädt erst bei Bedarf." },
+    { icon: "check", title: "Barrierearm", text: "Tastaturbedienung, sichtbarer Fokus, ruhige Variante bei reduzierter Bewegung." },
+  ],
+});
 
 /** Webdesign-Seite: Pakete, Ablauf, FAQ */
 export const WEB_PROBLEMS: [string, string][] = tidyDeep([

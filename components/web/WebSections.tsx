@@ -4,7 +4,7 @@ import { BriefingPreview } from "./BriefingPreview";
 import { CarePricing } from "./CarePricing";
 import Link from "next/link";
 import Image from "next/image";
-import { CLASSIC_EXAMPLES, CONTACT, EXAMPLES, WEB_ADDONS, WEB_BASE_ITEMS, WEB_DELIVER, WEB_FAQ, WEB_CARE_NOTES, WEB_HANDOVER, WEB_INCLUDED, WEB_PACKAGES, WEB_PROBLEMS, type WebPackage } from "@/lib/data";
+import { CLASSIC_EXAMPLES, CONTACT, EXAMPLES, SHOP_EXAMPLE, WEB_ADDONS, WEB_BASE_ITEMS, WEB_DELIVER, WEB_FAQ, WEB_CARE_NOTES, WEB_HANDOVER, WEB_INCLUDED, WEB_PACKAGES, WEB_PROBLEMS, type WebPackage } from "@/lib/data";
 import { SectionHeading } from "../SectionHeading";
 import { Button } from "../Button";
 import { Icon } from "../Icon";
@@ -69,6 +69,8 @@ export function WebExamples() {
       <div className="container">
         <SectionHeading eyebrow="Musterdesigns" title="Unsere" highlight="Beispiele"
           intro={`${TOTAL} Websites für erfundene Betriebe aus der Region.\nKlassisch mit Menü oder als One-Pager mit Animationen. Öffnen Sie die Beispiele live und klicken Sie sich durch.`} />
+
+        <p className="shopf-pointer pm-reveal" data-reveal="up"><Icon name="sparkles" size={18} /> Neu dabei: unser Erlebnis-Shop <a href="#shop-design">KIRA KIRA</a> mit Filtern, Warenkorb und 3D-Effekten.</p>
 
         <div className="sc-group">
           <h3 className="sc-group__title">Klassische Websites <span>mit Menü und Unterseiten</span></h3>
@@ -296,7 +298,7 @@ export function WebFaqCheck() {
 
 /** Kompakter Teaser für Startseite und Leistungsseite: Referenz-Wand mit allen Beispielen */
 export function WebTeaser({ alt = false }: { alt?: boolean }) {
-  const shots = [
+  const shots: { name: string; branch: string; href: string; img: string }[] = [
     ...CLASSIC_EXAMPLES.map((e) => ({ name: e.name, branch: e.branch, href: `/beispiele/${e.slug}${e.pages[0].path}`, img: `/images/beispiele/${e.slug}-${e.pages[0].key}.png` })),
     ...EXAMPLES.map((e) => ({ name: e.name, branch: e.branch, href: `/beispiele/${e.slug}`, img: `/images/beispiele/${e.slug}-scroll.png` })),
   ];
@@ -308,6 +310,25 @@ export function WebTeaser({ alt = false }: { alt?: boolean }) {
             intro="Individuell gestaltet, zum Festpreis, persönlich betreut. Kein Abo, kein Zwang. Hier eine Auswahl unserer Musterdesigns." />
           <div className="pm-reveal" data-reveal="up">
             <Button variant="accent" icon="arrow-right" href="/webdesign">Zur Webdesign-Seite</Button>
+          </div>
+        </div>
+        <div className="wall-feature pm-reveal" data-reveal="up">
+          <a className="wall-feature__img" href={`/beispiele/${SHOP_EXAMPLE.slug}`} target="_blank" rel="noopener" data-cursor aria-label={`${SHOP_EXAMPLE.name} live ansehen (öffnet in neuem Tab)`}>
+            <div className="sc-browser__bar" aria-hidden="true"><span className="sc-browser__dots"><i /><i /><i /></span></div>
+            <div className="wall-feature__view"><Image src={`/images/beispiele/${SHOP_EXAMPLE.slug}-start.png`} alt={`Vorschau ${SHOP_EXAMPLE.name}`} fill sizes="(max-width: 900px) 100vw, 620px" /></div>
+          </a>
+          <div className="wall-feature__copy">
+            <span className="wall-feature__badge">Neu · Shop-Design</span>
+            <h3 className="wall-feature__title">{SHOP_EXAMPLE.name}</h3>
+            <span className="sc-branch">{SHOP_EXAMPLE.branch}</span>
+            <p>{tidy("Ein Erlebnis-Shop mit Holo-Karten, Booster zum Aufreißen und 3D-Gacha. Dazu alles, was ein Shop braucht: Filter, Live-Suche, Warenkorb, Vorbestellungen und Ankauf.")}</p>
+            <div className="wall-feature__actions">
+              <Button variant="accent" icon="arrow-right" href="/webdesign#shop-design">Was ein Shop kann</Button>
+              <a className="btn btn--outline-light" href={`/beispiele/${SHOP_EXAMPLE.slug}`} target="_blank" rel="noopener" data-cursor>
+                <span className="btn__fill" aria-hidden="true" />
+                <span className="btn__label">Live ansehen <Icon name="external-link" size={17} className="btn__icon btn__icon--right" /></span>
+              </a>
+            </div>
           </div>
         </div>
         <div className="wall pm-reveal" data-reveal="cards">

@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="de" data-mode="night">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex, follow">
+<title>KIRA KIRA · Anime &amp; Trading Cards (Musterdesign)</title>
+<meta name="description" content="KIRA KIRA – fiktiver Anime- und Sammelkarten-Shop in Ludwigshafen am Rhein. Musterdesign von Pfalz Multiservice: Holo-Karten, Booster-Opening, Gacha-Deal, Shop mit Filtern und Warenkorb.">
+<meta name="theme-color" content="#140A2E">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Pfalz Multiservice">
+<meta property="og:locale" content="de_DE">
+<meta property="og:url" content="https://www.pfalz-multiservice.de/beispiele/anime-shop">
+<meta property="og:title" content="KIRA KIRA · Anime &amp; Trading Cards (Musterdesign)">
+<meta property="og:description" content="Musterdesign von Pfalz Multiservice für einen fiktiven Anime- und Sammelkarten-Shop: Tokyo im Browser.">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='17' r='13' fill='%23FF9FCB' stroke='%23140A2E' stroke-width='2.5'/%3E%3Cpath d='M16 6l1.6 3.3 3.6.5-2.6 2.5.6 3.6-3.2-1.7-3.2 1.7.6-3.6-2.6-2.5 3.6-.5z' fill='%23FFE34D' stroke='%23140A2E'/%3E%3C/svg%3E">
+<!--BUILD:FONTS--><link rel="stylesheet" href="/beispiele/anime-shop/fonts/fonts.css"><!--/BUILD:FONTS-->
+<!--BUILD:CSS--><link rel="stylesheet" href="/beispiele/anime-shop/app.css"><!--/BUILD:CSS-->
+<script>
+  (function () {
+    var h = document.documentElement;
+    h.classList.add('js'); h.lang = 'de';
+    if (!h.getAttribute('data-mode')) h.setAttribute('data-mode', 'night');
+    try { var t = localStorage.getItem('kira-theme'); if (t === 'day' || t === 'night') h.setAttribute('data-mode', t); } catch (e) {}
+    try { if (matchMedia('(prefers-reduced-motion: reduce)').matches) h.classList.add('reduce-motion'); } catch (e) {}
+    window.KIRA = { LIB: { three: '/beispiele/anime-shop/js/three.min.js' }, IMG_BASE: '/beispiele/anime-shop/img/' };
+  })();
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Zum Inhalt springen</a>
+
+<div class="demo-bar" role="note"><b>MUSTERDESIGN</b> · fiktiver Shop · alle Produkte, Preise und Events sind erfunden</div>
+
+<header class="hdr" id="hdr">
+  <div class="wrap hdr-in">
+    <a class="logo" href="#/" aria-label="KIRA KIRA – zur Startseite" data-momo-logo>
+      <span data-slot="logo-momo"></span>
+      <span><span class="logo-t">KIRA KIRA</span><span class="logo-k">キラキラ · TCG &amp; ANIME</span></span>
+    </a>
+    <nav class="nav" aria-label="Hauptmenü" id="nav"></nav>
+    <div class="hdr-tools">
+      <button class="searchbar" type="button" data-open-search aria-label="Suche öffnen">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        <span>Booster, Karten, Figuren …</span><kbd>/</kbd>
+      </button>
+      <button class="theme-sw" type="button" data-theme-toggle aria-label="Zwischen Nacht- und Tagmodus wechseln" aria-pressed="false">
+        <span class="tl" aria-hidden="true">夜</span><span class="tr" aria-hidden="true"></span><span class="tl" aria-hidden="true">昼</span>
+      </button>
+      <button class="ibtn cart-btn" type="button" data-open-cart aria-label="Warenkorb öffnen, 0 Artikel" id="cartBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2.5l2.2 11h10.6L21 7H7"/><circle cx="9.5" cy="19.5" r="1.6"/><circle cx="17" cy="19.5" r="1.6"/></svg>
+        <span class="cart-n" id="cartN" aria-hidden="true">0</span>
+      </button>
+      <button class="ibtn burger" type="button" data-open-menu aria-label="Menü öffnen" aria-expanded="false" aria-controls="mmenu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mmenu" id="mmenu" hidden role="dialog" aria-modal="true" aria-label="Menü">
+  <div class="mmenu-top">
+    <span class="logo-t">KIRA KIRA</span>
+    <button class="ibtn" type="button" data-close-menu aria-label="Menü schließen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <nav aria-label="Mobiles Menü" id="mnav"></nav>
+  <div class="mmenu-foot">
+    <button class="theme-sw" type="button" data-theme-toggle aria-label="Zwischen Nacht- und Tagmodus wechseln" aria-pressed="false"><span class="tl" aria-hidden="true">夜 Nacht</span><span class="tr" aria-hidden="true"></span><span class="tl" aria-hidden="true">Tag 昼</span></button>
+  </div>
+</div>
+
+<main id="main" tabindex="-1"></main>
+
+<footer class="ftr" id="ftr"></footer>
+
+<!-- Warenkorb -->
+<div class="backdrop" id="backdrop"></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawerT" aria-hidden="true">
+  <div class="drawer-head">
+    <h2 id="drawerT">Warenkorb <small>カート</small></h2>
+    <button class="ibtn" type="button" data-close-cart aria-label="Warenkorb schließen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <div class="ship" id="ship"></div>
+  <div class="drawer-list" id="cartList"></div>
+  <div class="drawer-foot" id="cartFoot"></div>
+</aside>
+
+<!-- Suche -->
+<div class="search" id="search" hidden role="dialog" aria-modal="true" aria-label="Suche">
+  <div class="search-box">
+    <div class="search-in">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <label class="sr" for="q">Shop durchsuchen</label>
+      <input id="q" type="search" placeholder="Suche: Booster, PSA 10, Momo …" autocomplete="off" spellcheck="false" role="combobox" aria-expanded="true" aria-controls="searchRes" aria-autocomplete="list">
+      <button class="btn btn-ghost btn-s" type="button" data-close-search>Esc</button>
+    </div>
+    <div class="search-res" id="searchRes" role="listbox" aria-label="Suchergebnisse"></div>
+  </div>
+</div>
+
+<!-- Momo-Buddy -->
+<div class="buddy idle" id="buddy">
+  <button class="buddy-btn" type="button" id="buddyBtn" aria-label="Momo, das Maskottchen: Tipp anzeigen"></button>
+  <div class="bubble" id="bubble" role="status" aria-live="polite"><span id="bubbleT"></span><button class="bubble-x" type="button" id="bubbleX" aria-label="Tipp schließen">×</button></div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="wipe" id="wipe" aria-hidden="true"><i></i><i></i><i></i><i></i><b>ドン!</b></div>
+<div id="modalRoot"></div>
+
+<div class="intro" id="intro" hidden aria-hidden="true">
+  <div class="intro-in">
+    <div data-slot="intro-momo"></div>
+    <div class="intro-logo"><span>K</span><span>I</span><span>R</span><span>A</span><span>&nbsp;</span><span class="c">K</span><span class="c">I</span><span class="c">R</span><span class="c">A</span></div>
+    <div class="intro-k">キラキラ</div>
+  </div>
+  <button class="btn btn-ghost btn-s intro-skip" type="button" id="introSkip">Intro überspringen</button>
+</div>
+
+<!--BUILD:JS-->
+<script src="/beispiele/anime-shop/js/gsap.min.js"></script>
+<script src="/beispiele/anime-shop/js/ScrollTrigger.min.js"></script>
+<script src="/beispiele/anime-shop/js/lenis.min.js"></script>
+<script src="/beispiele/anime-shop/data.js"></script>
+<script src="/beispiele/anime-shop/art.js"></script>
+<script src="/beispiele/anime-shop/fx.js"></script>
+<script src="/beispiele/anime-shop/app.js"></script>
+<!--/BUILD:JS-->
+</body>
+</html>
