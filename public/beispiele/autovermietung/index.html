@@ -99,7 +99,7 @@ main,footer{position:relative;z-index:1}
 .cursor.is-hidden{opacity:0}
 html,body{cursor:default;-webkit-user-select:none;user-select:none}
 input,textarea{-webkit-user-select:text;user-select:text;cursor:text}
-select,a,button,summary,label.check,.car-card,.stage-gl{cursor:pointer}
+select,a,button,summary,label.check,.car-card,.stage-view{cursor:pointer}
 html.dlg-open,html.dlg-open *{cursor:default!important}
 html.dlg-open button,html.dlg-open a{cursor:pointer!important}
 html.dlg-open .cursor{display:none!important}
@@ -203,25 +203,17 @@ html.dlg-open .cursor{display:none!important}
 @media (max-width:860px){.section-head>.display,.section-head>.lede{grid-column:1/-1}}
 .section-head>.fict{grid-column:9/span 4}
 .stage{position:relative;height:clamp(460px,62vh,620px);margin-top:clamp(1rem,3vw,2rem)}
-.stage-view{position:absolute;inset:0;outline:none;touch-action:pan-y;-webkit-user-select:none;user-select:none;cursor:grab}
-.stage-view.is-drag{cursor:grabbing}
+.stage-view{position:absolute;inset:0;outline:none;overflow:hidden;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.stage-videos{position:absolute;inset:0}
+/* Video nicht über die eigene Auflösung (1280 px) hinaus vergrößern */
+.stage-video{position:absolute;left:50%;top:52%;width:min(84%,940px);aspect-ratio:16/9;height:auto;transform:translate(calc(-50% + var(--stage-shift,0px)),-50%);object-fit:cover;opacity:0;transition:opacity .55s var(--ease);pointer-events:none;background:var(--night)}
+.stage-video.is-on{opacity:1}
+@media (min-width:1100px){.stage{--stage-shift:-8vw}}
+.stage-again{position:absolute;left:50%;bottom:1.4rem;transform:translate(calc(-50% + var(--stage-shift,0px)),8px);display:inline-flex;align-items:center;gap:.55rem;min-height:44px;padding:0 1.15rem;border-radius:999px;border:1px solid var(--line);background:rgba(15,17,20,.92);color:var(--muted);font:inherit;font-size:.84rem;letter-spacing:.02em;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .5s var(--ease),transform .5s var(--ease),color .4s var(--ease);z-index:3}
+.stage-again:hover{color:var(--white)}
+.stage-view.is-ended .stage-again{opacity:1;pointer-events:auto;transform:translate(calc(-50% + var(--stage-shift,0px)),0)}
 .stage-view:focus-visible{box-shadow:inset 0 0 0 1px var(--champagne)}
 .stage-view::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 75% 70% at 50% 55%,transparent 55%,rgba(7,8,10,.55))}
-.stage-gl{position:absolute;inset:0;width:100%;height:100%;display:block}
-.stage-load{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;align-items:center;gap:.8rem;font-size:var(--fs-xs);color:var(--muted);letter-spacing:.04em;opacity:0;transition:opacity .5s var(--ease);pointer-events:none;z-index:2}
-.stage-load.is-on{opacity:1}
-.sl-ring{width:22px;height:22px;border-radius:50%;border:1px solid rgba(217,194,154,.25);border-top-color:var(--champagne);animation:slspin 1s linear infinite}
-@keyframes slspin{to{transform:rotate(360deg)}}
-.stage-hint{position:absolute;left:50%;top:14%;transform:translateX(-50%);margin:0;display:flex;align-items:center;gap:.7rem;font-size:var(--fs-xs);letter-spacing:.14em;text-transform:uppercase;color:var(--champagne);pointer-events:none;transition:opacity .8s var(--ease),transform .8s var(--ease);z-index:2;white-space:nowrap}
-.stage-hint svg{animation:hintsway 2.6s var(--ease) infinite}
-@keyframes hintsway{0%,100%{transform:translateX(-6px)}50%{transform:translateX(6px)}}
-.stage-hint.is-gone{opacity:0;transform:translate(-50%,-8px)}
-.stage-hud{position:absolute;left:50%;bottom:1.6rem;transform:translateX(-50%);display:flex;align-items:center;gap:.6rem;z-index:3}
-.views{display:flex;gap:2px;padding:4px;border-radius:999px;background:rgba(15,17,20,.92);border:1px solid var(--line)}
-.view-btn{min-height:40px;padding:0 1rem;border-radius:999px;border:0;background:transparent;color:var(--muted);font:inherit;font-size:.84rem;letter-spacing:.02em;cursor:pointer;transition:background .4s var(--ease),color .4s var(--ease)}
-.view-btn:hover{color:var(--white)}
-.view-btn[aria-pressed="true"]{background:var(--champagne);color:var(--night)}
-.view-btn:focus-visible{outline:1px solid var(--champagne);outline-offset:2px}
 .stage-fallback{position:absolute;inset:0;display:none;align-items:center;justify-content:center;overflow:hidden}
 .no-spin .stage-fallback{display:flex}
 .sf-platform{position:absolute;left:50%;top:66%;width:min(78vw,760px);aspect-ratio:4.2/1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(closest-side,rgba(241,227,196,.16),rgba(26,28,32,.95) 62%,#0c0d10 100%);box-shadow:0 0 0 1px rgba(217,194,154,.35),0 30px 80px rgba(0,0,0,.8)}
@@ -259,11 +251,10 @@ html.dlg-open .cursor{display:none!important}
 .readout-actions .btn{--bh:46px;padding:0 1.15rem;font-size:.88rem;flex:1}
 @media (max-width:860px){
   .stage{height:auto;display:flex;flex-direction:column}
-  .stage-view,.stage-fallback{position:relative;height:46vh;min-height:300px;max-height:420px}
-  .stage-hud{left:16px;right:16px;bottom:.9rem;transform:none;justify-content:center;gap:.4rem}
-  .view-btn{padding:0 .7rem;min-height:40px;font-size:.8rem}
-  .stage-hint{top:8%}
-  .stage-ui{position:relative;flex-direction:column;gap:1.25rem;padding-block:0 1rem}
+  .stage-view,.stage-fallback{position:relative;height:auto;aspect-ratio:16/10;min-height:0;max-height:none}
+  .stage-video{width:118%;top:50%}
+  .stage-again{bottom:.4rem}
+      .stage-ui{position:relative;flex-direction:column;gap:1.25rem;padding-block:0 1rem}
   .classes{flex-direction:row;justify-content:flex-start;overflow-x:auto;align-self:stretch;gap:1.4rem;padding-bottom:.4rem;order:-1;margin-top:-1rem;scrollbar-width:none}
   .class-tab{font-size:1.2rem;white-space:nowrap;padding-left:1.1rem}
   .class-tab[aria-selected="true"]{transform:none}
@@ -627,21 +618,12 @@ fieldset.fld{min-width:0;min-inline-size:0}
     <div class="wrap section-head">
       <p class="eyebrow">Showroom</p>
       <h2 class="display skew" id="show-title" data-lines><span class="ln"><span>Ins Licht gedreht.</span></span></h2>
-      <p class="lede">Wählen Sie eine Klasse und drehen Sie das Fahrzeug einmal rundherum. Ziehen genügt, die Daten laufen mit.</p>
+      <p class="lede">Wählen Sie eine Klasse: Das Fahrzeug dreht sich einmal im Licht, die Daten laufen mit. Ein Klick aufs Fahrzeug zeigt die Runde noch einmal.</p>
     </div>
     <div class="stage" id="stage">
-      <div class="stage-view" id="stage-view" tabindex="0" role="group" aria-roledescription="360-Grad-Ansicht" aria-label="Fahrzeug in 360 Grad. Ziehen oder Pfeiltasten drehen das Fahrzeug." data-cursor="Drehen">
-        <canvas class="stage-gl" id="stage-gl" aria-hidden="true"></canvas>
-        <div class="stage-load" id="stage-load" aria-live="polite"><span class="sl-ring" aria-hidden="true"></span><span id="stage-load-txt">Fahrzeug wird geladen</span></div>
-        <p class="stage-hint" id="stage-hint" aria-hidden="true"><svg viewBox="0 0 48 20" width="44" height="18" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"><path d="M6 10c0-3.3 8-6 18-6s18 2.7 18 6-8 6-18 6c-4 0-7.6-.4-10.6-1.2"/><path d="M15 12l-2 2.8 3.2 1"/></svg>Ziehen zum Drehen</p>
-        <div class="stage-hud">
-          <div class="views" role="group" aria-label="Kameraperspektive">
-            <button class="view-btn" type="button" data-view="front">Front</button>
-            <button class="view-btn" type="button" data-view="q" aria-pressed="true">¾</button>
-            <button class="view-btn" type="button" data-view="side">Seite</button>
-            <button class="view-btn" type="button" data-view="rear">Heck</button>
-          </div>
-        </div>
+      <div class="stage-view" id="stage-view" tabindex="0" role="button" aria-label="360-Grad-Ansicht des Fahrzeugs abspielen" data-cursor="Abspielen">
+        <div class="stage-videos" id="stage-videos"></div>
+        <button class="stage-again" id="stage-again" type="button" tabindex="-1" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>Erneut ansehen</button>
       </div>
       <div class="stage-fallback" aria-hidden="true">
         <div class="sf-beam"></div>
@@ -1529,7 +1511,7 @@ function setShow(i, animate = true) {
   showIndex = i; const v = SHOW[i];
   tabs.forEach((t, j) => { t.setAttribute('aria-selected', String(j === i)); t.tabIndex = j === i ? 0 : -1; });
   updateReadout(v, animate);
-  if (stage3D) stage3D.swap(i);
+  if (stage3D) stage3D.swap(i, animate);
   else {
     const car = $('#sf-car');
     const put = () => { const u = carTexURL(v); $('#sf-img').src = u; $('#sf-refl').src = u; $('#sf-img').alt = `${v.name} auf der Showroom-Bühne`; car.style.opacity = 1; };
@@ -1666,164 +1648,56 @@ function initRing() {
   visibility(el, s); scenes.push(s); return s;
 }
 
-/* ================= Showroom: 360°-Drehteller aus Einzelbildern =================
-   Pro Fahrzeug eine Bildsequenz (eine volle Umdrehung). Ziehen spult durch die Bilder,
-   die Sequenz lädt grob → fein, damit sofort gedreht werden kann. */
-function initSpin() {
-  const el = $('#stage-gl'), view = $('#stage-view'), ctx = el.getContext('2d');
-  if (!ctx) throw new Error('kein 2D-Kontext');
+/* ================= Showroom: 360°-Video je Fahrzeug =================
+   Drei Videos liegen übereinander und werden vorgeladen, sobald die Bühne naht.
+   Bühne erreicht: erstes Video läuft. Klassenwechsel: Überblendung, neues Video startet sofort.
+   Klick aufs Fahrzeug: noch einmal abspielen. Bewusst ohne asynchrone Wechselketten. */
+function initVideoStage() {
+  const view = $('#stage-view'), host = $('#stage-videos'), again = $('#stage-again');
+  // H.264 (MP4) bevorzugt, sonst VP9 (WebM)
+  const probe = document.createElement('video');
+  const can = t => !!(probe.canPlayType && probe.canPlayType(t));
+  const EXT = can('video/mp4; codecs="avc1.640028"') ? 'mp4' : can('video/webm; codecs="vp9"') ? 'webm' : null;
+  if (!EXT) throw new Error('kein unterstütztes Videoformat');
   const BASE = '/beispiele/autovermietung/360/';
-  // Quellbilder 1280×720, eine volle Umdrehung je Fahrzeug, auf gleichmäßige Bewegung umgetaktet
-  const CARS = {
-    'v8coupe':   { dir: '911',     n: 119, front: 30, rear: 90 },
-    'limo-lang': { dir: 'maybach', n: 110, front: 37, rear: 89 },
-    'suv-lux':   { dir: 'rr',      n: 107, front: 33, rear: 74 }
-  };
-  const SW = 1280, SH = 720;
-  const sets = {};
-  function frames(id) {
-    if (sets[id]) return sets[id];
-    const c = CARS[id], s = { c, imgs: new Array(c.n), ready: 0 };
-    const order = [], seen = new Set();
-    for (const st of [16, 8, 4, 2, 1]) for (let i = 0; i < c.n; i += st) if (!seen.has(i)) { seen.add(i); order.push(i); }
-    s.coarse = Math.ceil(c.n / 16);
-    let q = 0, active = 0;
-    const pump = () => {
-      while (active < 6 && q < order.length) {
-        const i = order[q++]; active++;
-        const im = new Image(); im.decoding = 'async';
-        const done = bmp => { s.imgs[i] = bmp; s.ready++; active--; dirty = true; if (s.onprogress) s.onprogress(); pump(); };
-        // vorab dekodieren, damit beim Drehen nichts nachgeladen/dekodiert werden muss
-        im.onload = () => { if (window.createImageBitmap) createImageBitmap(im).then(done, () => done(im)); else done(im); };
-        im.onerror = () => { active--; s.failed = (s.failed || 0) + 1; if (s.onprogress) s.onprogress(); pump(); };
-        im.src = BASE + c.dir + '/' + String(i).padStart(3, '0') + '.webp';
-      }
-    };
-    pump(); sets[id] = s; return s;
-  }
-  const whenReady = s => new Promise((res, rej) => {
-    const chk = () => { if (s.ready >= s.coarse) { s.onprogress = null; res(s); } else if (s.failed > s.coarse) { s.onprogress = null; rej(new Error('Bilder fehlen')); } else if (want != null && SHOW[want] && sets[SHOW[want].id] === s) loadTxt.textContent = `Fahrzeug wird geladen · ${Math.round(s.ready / s.coarse * 100)} %`; };
-    s.onprogress = chk; chk();
+  const FILES = { 'v8coupe': '911', 'limo-lang': 'maybach', 'suv-lux': 'rr' };
+  const vids = SHOW.map((v, j) => {
+    const el = document.createElement('video');
+    el.className = 'stage-video' + (j === 0 ? ' is-on' : '');
+    el.muted = true; el.defaultMuted = true; el.playsInline = true;
+    el.setAttribute('muted', ''); el.setAttribute('playsinline', ''); el.setAttribute('aria-hidden', 'true');
+    el.preload = j === 0 ? 'metadata' : 'none';
+    el.poster = BASE + 'poster-' + FILES[v.id] + '.jpg';
+    el.src = BASE + 'car-' + FILES[v.id] + '.' + EXT;
+    el.addEventListener('ended', () => { if (vids[cur] === el) view.classList.add('is-ended'); });
+    el.addEventListener('playing', () => { if (vids[cur] === el) view.classList.remove('is-ended'); });
+    host.appendChild(el);
+    return el;
   });
-  const pick = (s, i) => { const n = s.c.n; for (let d = 0; d < n; d++) { const a = s.imgs[(i + d) % n]; if (a) return a; const b = s.imgs[(i - d + n) % n]; if (b) return b; } return null; };
-
-  const loadEl = $('#stage-load'), loadTxt = $('#stage-load-txt'), hint = $('#stage-hint');
-  if (hint && !fine) hint.lastChild.textContent = 'Wischen zum Drehen';
-  let cur = null, want = 0;
-  const st = { pos: 0, vel: 0, zoom: 1, zoomT: 1, a: 0, last: performance.now(), tween: null, ox: 0 };
-  let dirty = true, lastKey = '';
-  const touched = () => { st.last = performance.now(); if (hint) hint.classList.add('is-gone'); };
-  const viewFrame = (name, c) => ({ side: 0, q: Math.round(c.front * .5), front: c.front, rear: c.rear })[name];
-  let viewName = 'q';
-  const markView = n => { viewName = n; $$('.view-btn').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.view === n))); };
-  function goView(n) {
-    if (!cur) return; touched(); markView(n);
-    const N = cur.c.n, tgt = viewFrame(n, cur.c);
-    let d = ((tgt - st.pos) % N + N) % N; if (d > N / 2) d -= N;
-    if (st.tween) st.tween.kill(); st.vel = 0;
-    st.tween = gsap.to(st, { pos: st.pos + d, duration: reduce ? 0 : Math.min(1.6, .5 + Math.abs(d) / N * 2.4), ease: 'power3.inOut', onComplete: () => { st.tween = null; } });
+  let cur = 0, seen = false, loaded = false;
+  const play = el => { try { el.currentTime = 0; } catch (e) {} const p = el.play(); if (p && p.catch) p.catch(() => { if (el.paused && vids[cur] === el) view.classList.add('is-ended'); }); };
+  function show(i, autoplay) {
+    cur = i;
+    vids.forEach((el, j) => { el.classList.toggle('is-on', j === i); if (j !== i && !el.paused) el.pause(); });
+    if (autoplay) play(vids[i]); else if (seen) view.classList.add('is-ended');
   }
-  $$('.view-btn').forEach(b => b.addEventListener('click', () => goView(b.dataset.view)));
-  markView('q');
-
-  // Ziehen / Wischen
-  const ptrs = new Map(); let drag = null;
-  view.addEventListener('pointerdown', e => {
-    if ((e.button && e.button !== 0) || e.target.closest('.stage-hud')) return;
-    ptrs.set(e.pointerId, { x: e.clientX, y: e.clientY });
-    if (ptrs.size === 1) { drag = { x: e.clientX, t: performance.now(), moved: 0 }; try { view.setPointerCapture(e.pointerId); } catch (er) {} }
-    if (st.tween) { st.tween.kill(); st.tween = null; }
-    view.classList.add('is-drag'); touched();
-  });
-  view.addEventListener('pointermove', e => {
-    if (!ptrs.has(e.pointerId)) return;
-    ptrs.set(e.pointerId, { x: e.clientX, y: e.clientY });
-    if (ptrs.size > 1 || !drag || !cur) return;
-    const now = performance.now(), dx = e.clientX - drag.x, dt = Math.max(1, now - drag.t) / 1000;
-    const k = cur.c.n / Math.max(560, view.clientWidth * 1.15);   // eine Bühnenbreite ≈ knapp eine Umdrehung
-    st.pos -= dx * k; st.vel = st.vel * .4 + (-dx * k / dt) * .6;
-    drag.x = e.clientX; drag.t = now; drag.moved += Math.abs(dx);
-    if (viewName && drag.moved > 6) markView(null);
-    touched();
-  });
-  const up = e => { ptrs.delete(e.pointerId); if (!ptrs.size) { if (drag && performance.now() - drag.t > 90) st.vel = 0; drag = null; view.classList.remove('is-drag'); } };
-  view.addEventListener('pointerup', up); view.addEventListener('pointercancel', up); view.addEventListener('lostpointercapture', up);
-  view.addEventListener('keydown', e => {
-    if (!cur) return;
-    const step = { ArrowLeft: 1, ArrowRight: -1 }[e.key];
-    if (step != null) { e.preventDefault(); touched(); markView(null); if (st.tween) st.tween.kill(); st.vel = 0; st.tween = gsap.to(st, { pos: Math.round(st.pos + step * cur.c.n / 12), duration: reduce ? 0 : .5, ease: 'power2.out' }); return; }
-  });
-
-  // Zeichnen
-  let W = 0, H = 0, dpr = 1;
-  const resize = () => { dpr = Math.min(window.devicePixelRatio || 1, 2); W = el.clientWidth; H = el.clientHeight; if (!W || !H) return; el.width = Math.round(W * dpr); el.height = Math.round(H * dpr); const asp = W / H; st.ox = asp > 1.45 ? -Math.min(.08, (asp - 1.3) * .06) * W : 0; dirty = true; };
-  resize(); new ResizeObserver(resize).observe(el);
-  function draw() {
-    ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, el.width, el.height);
-    if (!cur || st.a <= 0.001) return;
-    // zwischen zwei Nachbarbildern überblenden: flüssige Drehung auch bei langsamer Geschwindigkeit
-    const N = cur.c.n, fl = Math.floor(st.pos), f = st.pos - fl, i = ((fl % N) + N) % N, img = pick(cur, i); if (!img) return;
-    const img2 = f > .02 ? cur.imgs[(i + 1) % N] : null;
-    // Fahrzeugbox (Quelle) möglichst groß in die Bühne einpassen
-    // Fahrzeug ≈ 1000 × 380 px in der Quelle; nie über die native Auflösung hinaus vergrößern (sonst unscharf)
-    const fit = Math.min(W * (W < 700 ? .92 : .46) / 1000, H * .64 / 380, 1.1 / dpr) * st.zoom;
-    const cx = W / 2 + st.ox, cy = H * .52;
-    ctx.setTransform(dpr * fit, 0, 0, dpr * fit, dpr * (cx - 640 * fit), dpr * (cy - 410 * fit));
-    ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high';
-    ctx.globalAlpha = st.a;
-    ctx.drawImage(img, 0, 0, SW, SH);
-    // kurze Überblendung in der Mitte: Einzelbild bleibt lange scharf, Übergang trotzdem stufenlos
-    const k = Math.min(1, Math.max(0, (f - .3) / .4)), kk = k * k * (3 - 2 * k);
-    if (img2 && kk > .01) { ctx.globalAlpha = st.a * kk; ctx.drawImage(img2, 0, 0, SW, SH); }
-    ctx.globalAlpha = 1;
-    // weiche Bildkanten sind in die Einzelbilder eingerechnet (keine Maskenoperation pro Bild)
-  }
-  const s = { active: false, render(dt) {
-    if (cur && !drag && !st.tween) {
-      st.pos += st.vel * dt; st.vel *= Math.exp(-dt * 2.8);
-      const idle = (performance.now() - st.last) / 1000;
-      if (!reduce && idle > 3.5) { const auto = cur.c.n / 18; st.vel += (auto - st.vel) * Math.min(1, dt * .8); }
-      // im Stillstand sauber auf ein ganzes Bild einrasten (keine Überblendung im Standbild)
-      else if (Math.abs(st.vel) < .6) st.pos += (Math.round(st.pos) - st.pos) * Math.min(1, dt * 8);
-    }
-    st.zoom += (st.zoomT - st.zoom) * Math.min(1, dt * 5);
-    // nur neu zeichnen, wenn sich Bild, Deckkraft oder Größe geändert haben
-    const key = (cur ? st.pos.toFixed(2) : -1) + '|' + st.a.toFixed(3) + '|' + st.zoom.toFixed(4) + '|' + W + 'x' + H;
-    if (key !== lastKey || dirty) { lastKey = key; dirty = false; draw(); }
-  } };
-
-  // Fahrzeugwechsel: ausblenden, neue Sequenz dreht sich ins Licht
-  let busy = false;
-  async function swap(i) {
-    want = i; if (busy) return; busy = true;
-    try {
-      while (!cur || cur !== sets[SHOW[want].id]) {
-        const target = want, set = frames(SHOW[target].id);
-        if (cur) await gsap.to(st, { a: 0, zoomT: .96, duration: reduce ? 0 : .4, ease: 'power2.in' }).then();
-        if (set.ready < set.coarse) { loadEl.classList.add('is-on'); loadTxt.textContent = 'Fahrzeug wird geladen'; }
-        try { await whenReady(set); } catch (err) { console.warn(err); loadTxt.textContent = 'Die Fahrzeugansicht konnte nicht geladen werden.'; return; }
-        loadEl.classList.remove('is-on');
-        if (target !== want) continue;
-        cur = set; markView('q');
-        const N = set.c.n, land = viewFrame('q', set.c);
-        if (st.tween) st.tween.kill();
-        st.vel = 0; st.zoom = st.zoomT = .96;
-        st.pos = land - N * .35;
-        st.tween = gsap.timeline({ onComplete: () => { st.tween = null; } })
-          .to(st, { pos: land, duration: reduce ? 0 : 1.7, ease: 'expo.out' }, 0)
-          .to(st, { a: 1, duration: reduce ? 0 : .7, ease: 'power2.out' }, 0)
-          .add(() => { st.zoomT = 1; }, 0);
-        await st.tween.then();
-        st.last = performance.now();
-        // übrige Fahrzeuge im Hintergrund vorladen
-        SHOW.forEach(v => frames(v.id));
-      }
-    } finally { busy = false; }
-  }
-  if ('IntersectionObserver' in window) { const io = new IntersectionObserver(([en]) => { if (en.isIntersecting) { io.disconnect(); swap(want); } }, { rootMargin: '900px 0px' }); io.observe(view); } else swap(want);
-  s.swap = i => { want = i; if (cur) swap(i); };
-  s.current = 0;
-  visibility(el, s); scenes.push(s); return s;
+  // vorladen, ohne das gerade laufende Video anzufassen (load() würde dessen Wiedergabe abbrechen)
+  const preloadAll = () => { if (loaded) return; loaded = true; vids.forEach((el, j) => { el.preload = 'auto'; if (j !== cur && el.readyState === 0 && el.paused) { try { el.load(); } catch (e) {} } }); };
+  const replay = () => { seen = true; preloadAll(); play(vids[cur]); };
+  view.addEventListener('click', e => { if (!e.target.closest('.stage-again')) replay(); });
+  again.addEventListener('click', replay);
+  view.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); replay(); } });
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(([en]) => { if (en.isIntersecting) preloadAll(); }, { rootMargin: '800px 0px' }).observe(view);
+    const io = new IntersectionObserver(([en]) => {
+      if (!en.isIntersecting) { if (!vids[cur].paused) vids[cur].pause(); return; }
+      if (!seen) { seen = true; show(cur, !reduce); }
+      io.disconnect();
+    }, { threshold: .45 });
+    io.observe(view);
+  } else { preloadAll(); seen = true; show(cur, !reduce); }
+  // animate=false: Ersteinrichtung beim Seitenaufbau, nichts laden oder abspielen
+  return { swap: (i, animate = true) => { if (!animate) { cur = i; return; } if (i === cur && !vids[i].paused) return; preloadAll(); seen = true; show(i, true); }, current: 0 };
 }
 
 let tunnel = null, ring = null;
@@ -1833,7 +1707,7 @@ if (use3D && hasGSAP) {
   if (!tunnel) root.classList.replace('gl', 'no-gl');
 } else if (use3D) root.classList.replace('gl', 'no-gl');
 if (!ring) { const rf = $('.ring-fallback'); if (rf) rf.style.display = 'block'; }
-if (hasGSAP) { try { stage3D = initSpin(); } catch (e) { console.warn(e); stage3D = null; } }
+try { stage3D = initVideoStage(); } catch (e) { console.warn(e); stage3D = null; }
 if (!stage3D) root.classList.add('no-spin');
 // Static hero poster: always generated (fallback and first frame)
 (() => { const W = Math.min(1920, Math.round(innerWidth * Math.min(DPR, 1.5))), H = Math.round(W * Math.max(innerHeight, 640) / innerWidth); $('#hero-poster').src = renderTunnelPoster(W, H); })();

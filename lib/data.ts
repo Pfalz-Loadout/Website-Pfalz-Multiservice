@@ -293,7 +293,7 @@ export const EXAMPLES: Example[] = tidyDeep([
     slug: "autovermietung",
     name: "Rheinfront Drive",
     branch: "Premium-Autovermietung · Worms",
-    text: "Showroom bei Nacht: fotorealistische 360°-Fahrzeuge zum Drehen, Flotte mit Filter, Anlässe, Ablauf und transparente Mietpreise.",
+    text: "Showroom bei Nacht: Fahrzeuge drehen sich als flüssiges 360°-Video ins Licht, Flotte mit Filter, Anlässe, Ablauf und transparente Mietpreise.",
     tags: ["360°-Ansicht", "Fahrzeugfilter", "Dark Design"],
   },
   {
