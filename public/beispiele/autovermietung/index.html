@@ -217,7 +217,7 @@ html.dlg-open .cursor{display:none!important}
 @keyframes hintsway{0%,100%{transform:translateX(-6px)}50%{transform:translateX(6px)}}
 .stage-hint.is-gone{opacity:0;transform:translate(-50%,-8px)}
 .stage-hud{position:absolute;left:50%;bottom:1.6rem;transform:translateX(-50%);display:flex;align-items:center;gap:.6rem;z-index:3}
-.views{display:flex;gap:2px;padding:4px;border-radius:999px;background:var(--glass);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line)}
+.views{display:flex;gap:2px;padding:4px;border-radius:999px;background:rgba(15,17,20,.92);border:1px solid var(--line)}
 .view-btn{min-height:40px;padding:0 1rem;border-radius:999px;border:0;background:transparent;color:var(--muted);font:inherit;font-size:.84rem;letter-spacing:.02em;cursor:pointer;transition:background .4s var(--ease),color .4s var(--ease)}
 .view-btn:hover{color:var(--white)}
 .view-btn[aria-pressed="true"]{background:var(--champagne);color:var(--night)}
@@ -239,6 +239,8 @@ html.dlg-open .cursor{display:none!important}
 .class-tab[aria-selected="true"]{color:var(--white);font-weight:400;transform:translateX(6px)}
 .class-tab[aria-selected="true"]::before{opacity:1;transform:scale(1);background:var(--champagne)}
 .readout{align-self:flex-end;width:min(380px,100%);background:var(--glass);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:24px;padding:1.5rem 1.6rem 1.6rem;display:grid;gap:1.2rem}
+/* über der laufenden Drehung kein Live-Blur: der würde jedes Bild neu berechnet */
+.stage .readout{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(13,15,18,.94)}
 .readout-top{display:flex;align-items:center;gap:1.2rem}
 .gauge{width:118px;height:118px;flex:none;position:relative}
 .gauge svg{width:100%;height:100%;overflow:visible}
@@ -1671,11 +1673,11 @@ function initSpin() {
   const el = $('#stage-gl'), view = $('#stage-view'), ctx = el.getContext('2d');
   if (!ctx) throw new Error('kein 2D-Kontext');
   const BASE = '/beispiele/autovermietung/360/';
-  // Quellbilder 1280×720, eine volle Umdrehung je Fahrzeug
+  // Quellbilder 1280×720, eine volle Umdrehung je Fahrzeug, auf gleichmäßige Bewegung umgetaktet
   const CARS = {
-    'v8coupe':   { dir: '911',     n: 198, front: 46, rear: 146 },
-    'limo-lang': { dir: 'maybach', n: 121, front: 43, rear: 99 },
-    'suv-lux':   { dir: 'rr',      n: 121, front: 40, rear: 81 }
+    'v8coupe':   { dir: '911',     n: 119, front: 30, rear: 90 },
+    'limo-lang': { dir: 'maybach', n: 110, front: 37, rear: 89 },
+    'suv-lux':   { dir: 'rr',      n: 107, front: 33, rear: 74 }
   };
   const SW = 1280, SH = 720;
   const sets = {};
@@ -1759,7 +1761,9 @@ function initSpin() {
   function draw() {
     ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, el.width, el.height);
     if (!cur || st.a <= 0.001) return;
-    const N = cur.c.n, i = ((Math.round(st.pos) % N) + N) % N, img = pick(cur, i); if (!img) return;
+    // zwischen zwei Nachbarbildern überblenden: flüssige Drehung auch bei langsamer Geschwindigkeit
+    const N = cur.c.n, fl = Math.floor(st.pos), f = st.pos - fl, i = ((fl % N) + N) % N, img = pick(cur, i); if (!img) return;
+    const img2 = f > .02 ? cur.imgs[(i + 1) % N] : null;
     // Fahrzeugbox (Quelle) möglichst groß in die Bühne einpassen
     // Fahrzeug ≈ 1000 × 380 px in der Quelle; nie über die native Auflösung hinaus vergrößern (sonst unscharf)
     const fit = Math.min(W * (W < 700 ? .92 : .46) / 1000, H * .64 / 380, 1.1 / dpr) * st.zoom;
@@ -1768,24 +1772,23 @@ function initSpin() {
     ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high';
     ctx.globalAlpha = st.a;
     ctx.drawImage(img, 0, 0, SW, SH);
+    // kurze Überblendung in der Mitte: Einzelbild bleibt lange scharf, Übergang trotzdem stufenlos
+    const k = Math.min(1, Math.max(0, (f - .3) / .4)), kk = k * k * (3 - 2 * k);
+    if (img2 && kk > .01) { ctx.globalAlpha = st.a * kk; ctx.drawImage(img2, 0, 0, SW, SH); }
     ctx.globalAlpha = 1;
-    // Bildkanten weich in den Seitenhintergrund auslaufen lassen
-    ctx.globalCompositeOperation = 'destination-in';
-    const gx = ctx.createLinearGradient(0, 0, SW, 0); gx.addColorStop(0, 'rgba(0,0,0,0)'); gx.addColorStop(.12, '#000'); gx.addColorStop(.88, '#000'); gx.addColorStop(1, 'rgba(0,0,0,0)');
-    ctx.fillStyle = gx; ctx.fillRect(0, 0, SW, SH);
-    const gy = ctx.createLinearGradient(0, 0, 0, SH); gy.addColorStop(0, 'rgba(0,0,0,0)'); gy.addColorStop(.14, '#000'); gy.addColorStop(.86, '#000'); gy.addColorStop(1, 'rgba(0,0,0,0)');
-    ctx.fillStyle = gy; ctx.fillRect(0, 0, SW, SH);
-    ctx.globalCompositeOperation = 'source-over';
+    // weiche Bildkanten sind in die Einzelbilder eingerechnet (keine Maskenoperation pro Bild)
   }
   const s = { active: false, render(dt) {
     if (cur && !drag && !st.tween) {
       st.pos += st.vel * dt; st.vel *= Math.exp(-dt * 2.8);
       const idle = (performance.now() - st.last) / 1000;
-      if (!reduce && idle > 3.5 && st.zoomT < 1.2) { const auto = cur.c.n / 16; st.vel += (auto - st.vel) * Math.min(1, dt * .8); }
+      if (!reduce && idle > 3.5) { const auto = cur.c.n / 18; st.vel += (auto - st.vel) * Math.min(1, dt * .8); }
+      // im Stillstand sauber auf ein ganzes Bild einrasten (keine Überblendung im Standbild)
+      else if (Math.abs(st.vel) < .6) st.pos += (Math.round(st.pos) - st.pos) * Math.min(1, dt * 8);
     }
     st.zoom += (st.zoomT - st.zoom) * Math.min(1, dt * 5);
     // nur neu zeichnen, wenn sich Bild, Deckkraft oder Größe geändert haben
-    const key = (cur ? ((Math.round(st.pos) % cur.c.n) + cur.c.n) % cur.c.n : -1) + '|' + st.a.toFixed(3) + '|' + st.zoom.toFixed(4) + '|' + W + 'x' + H;
+    const key = (cur ? st.pos.toFixed(2) : -1) + '|' + st.a.toFixed(3) + '|' + st.zoom.toFixed(4) + '|' + W + 'x' + H;
     if (key !== lastKey || dirty) { lastKey = key; dirty = false; draw(); }
   } };
 
