@@ -67,10 +67,8 @@ export function WebExamples() {
   return (
     <section className="section section--alt" id="beispiele">
       <div className="container">
-        <SectionHeading eyebrow="Musterdesigns" title="Unsere" highlight="Beispiele"
-          intro={`${TOTAL} Websites für erfundene Betriebe aus der Region.\nKlassisch mit Menü oder als One-Pager mit Animationen. Öffnen Sie die Beispiele live und klicken Sie sich durch.`} />
-
-        <p className="shopf-pointer pm-reveal" data-reveal="up"><Icon name="sparkles" size={18} /> Neu dabei: unser Erlebnis-Shop <a href="#shop-design">KIRA KIRA</a> mit Filtern, Warenkorb und 3D-Effekten.</p>
+        <SectionHeading eyebrow="Designs" title="Unsere" highlight="Beispiele"
+          intro="Klassisch mit Menü oder als One-Pager mit Animation." />
 
         <div className="sc-group">
           <h3 className="sc-group__title">Klassische Websites <span>mit Menü und Unterseiten</span></h3>

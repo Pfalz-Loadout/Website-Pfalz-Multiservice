@@ -115,7 +115,6 @@ export function ShopShowcase() {
                 <span className="btn__fill" aria-hidden="true" />
                 <span className="btn__label">Shop live ansehen <Icon name="external-link" size={18} className="btn__icon btn__icon--right" /></span>
               </a>
-              <Button variant="outline-light" size="lg" icon="arrow-right" href="/kontakt?leistung=web">Eigenen Shop anfragen</Button>
             </div>
           </div>
         </div>
@@ -151,7 +150,6 @@ export function ShopShowcase() {
           <p><strong>Sie verkaufen etwas Besonderes?</strong> Wir bauen Ihren Shop genauso individuell: vom ruhigen Manufaktur-Shop bis zum Erlebnis-Shop. Paket „Shop / Premium“, Preis nach Angebot.</p>
           <Button variant="accent" icon="arrow-right" href="/kontakt?leistung=web">Kostenloses Angebot</Button>
         </div>
-        <p className="showcase-note" style={{ marginTop: 20 }}>KIRA KIRA ist ein fiktiver Shop. Produkte, Preise und Events sind erfunden, Marken- und Spielnamen stehen nur als Text.</p>
       </div>
     </section>
   );
