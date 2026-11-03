@@ -1,21 +1,13 @@
-<!doctype html><html><head><meta name="robots" content="noindex, follow"><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Elektro Kaiser</title>
-<!-- Link-Vorschau (WhatsApp, Facebook, LinkedIn) -->
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Pfalz Multiservice">
-<meta property="og:locale" content="de_DE">
-<meta property="og:url" content="https://www.pfalz-multiservice.de/beispiele/elektriker">
-<meta property="og:title" content="Elektro Kaiser (Musterdesign)">
-<meta property="og:description" content="Musterdesign von Pfalz Multiservice für einen fiktiven Elektrobetrieb: 3D-Energiefluss, PV-Rechner und Smart-Home-Szenen.">
-<meta property="og:image" content="https://www.pfalz-multiservice.de/og/bsp-elektriker.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Elektro Kaiser (Musterdesign)">
-<meta name="twitter:card" content="summary_large_image">
-
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Musterdesign: One-Page-Website für den fiktiven Elektrofachbetrieb Elektro Kaiser aus Worms – Photovoltaik, Smart Home, Wallbox.">
-<link rel="stylesheet" href="/beispiele/_assets/fonts/ibm-plex-mono.css"><link rel="stylesheet" href="/beispiele/_assets/fonts/space-grotesk.css">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap">
 <script>document.documentElement.lang='de'</script>
 <style>
 /* Layout: Schaltplan-Raster – 12 Spalten auf 8px-Grundraster. Jede Sektion ist ein Stromkreis (−F1 …) an einer Sammelschiene im linken Rand. */
@@ -197,6 +189,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .hero-meta a{text-decoration:none;display:inline-flex;gap:10px;align-items:center;color:var(--on-dark-2)}
 .hero-meta a svg{width:14px;height:14px;animation:nudge 2.4s var(--ease) infinite}
 @keyframes nudge{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+.intro-pending #hero-h,.intro-pending .hero .reveal,.intro-pending .hero-eyebrow{visibility:hidden}
 .wire-intro{position:fixed;inset:0;z-index:65;pointer-events:none}
 .wire-intro path{fill:none;stroke:var(--volt);stroke-width:1.5;filter:drop-shadow(0 0 6px rgba(255,210,26,.9))}
 @media (max-width:899px){
@@ -684,6 +677,8 @@ input[type=text],input[type=email],input[type=tel],textarea{cursor:text}
 }
 
 </style>
+</head>
+<body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
     <symbol id="i-arr" viewBox="0 0 16 16"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
@@ -1281,10 +1276,10 @@ input[type=text],input[type=email],input[type=tel],textarea{cursor:text}
 
 <div class="callbar"><a class="btn btn-volt" href="tel:0000000000">Jetzt anrufen <span class="mono">0000 000000</span><span class="arr"><svg aria-hidden="true"><use href="#i-phone"/></svg></span></a></div>
 
-<script src="/beispiele/_assets/js/three-r128/three.min.js"></script>
-<script src="/beispiele/_assets/js/gsap-3.12.5/gsap.min.js"></script>
-<script src="/beispiele/_assets/js/gsap-3.12.5/ScrollTrigger.min.js"></script>
-<script src="/beispiele/_assets/js/lenis-1.1.13/lenis.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
 <script>
 /* Gemeinsame Maße des Musterhauses – genutzt von der 3D-Szene und der statischen SVG-Illustration */
 window.EKModel = (function () {
@@ -1682,6 +1677,19 @@ window.EK3D = (function () {
 
   function applyState(H, t) {
     var s = H.state, I = H.intro, dark = H.tone === 'dark';
+    // Solange das Haus noch nicht ausgefahren wird, bleiben alle Körper (LEDs, Kabel, Sprites ...) ausgeblendet;
+    // nur die Kontur-Linien werden gezeichnet. Verhindert verstreute Fragmente vor dem Aufbau.
+    if (I.solid <= 0.001) {
+      if (!H._held) {
+        H._held = [];
+        H.root.traverse(function (o) {
+          if ((o.isMesh || o.isSprite || o.isPoints || (o.isLine && H.edges.indexOf(o) < 0)) && o.visible) { H._held.push(o); o.visible = false; }
+        });
+      }
+    } else if (H._held) {
+      H._held.forEach(function (o) { o.visible = true; });
+      H._held = null;
+    }
     // Intro: Linien zeichnen, Volumen ausfahren, Module setzen
     var ne = H.edges.length;
     for (var i = 0; i < ne; i++) {
@@ -1712,7 +1720,6 @@ window.EK3D = (function () {
     for (var w = 0; w < H.windows.length; w++) {
       var W = H.windows[w], ws = s.win[W.id];
       var lvl = ws.l * lit;
-      if (lit > 0 && lit < 1) lvl *= (Math.sin(t * 60 + w * 7) > 0.2 ? 1 : 0.15);
       W.glass.emissiveIntensity = lvl * 1.3;
       var cl = ws.c;
       W.shutter.visible = cl > 0.004; W.shutter.scale.y = Math.max(0.001, cl);
@@ -1751,6 +1758,8 @@ window.EK3D = (function () {
   function makeView(el, name, tone, opt) {
     var scene = new T.Scene();
     var H = buildHouse(tone, opt);
+    // Hero startet komplett leer: das Haus baut sich erst nach dem gelben Faden auf (Intro in app.js)
+    if (name === 'hero') { H.intro.edge = 0; H.intro.solid = 0; H.intro.pv = 0; H.intro.lit = 0; H.intro.flow = 0; }
     scene.add(H.root); scene.add(H.lights.hemi); scene.add(H.lights.dir); scene.add(H.lights.amb); scene.add(H.lights.tgt);
     var cam = new T.OrthographicCamera(-10, 10, 10, -10, 0.1, 300);
     var target = new T.Vector3(0, opt.ty == null ? 1.2 : opt.ty, -0.6);
@@ -1935,6 +1944,15 @@ window.EK3D = (function () {
       return true;
     },
     tick: tick,
+    // Bildschirmposition (Client-Pixel) eines Punktes im Haus der Ansicht
+    project: function (name, x, y, z) {
+      var v = api.views[name]; if (!v || !canvas) return null;
+      sizeTo(v);
+      v.H.root.updateMatrixWorld();
+      var p = new T.Vector3(x, y, z).applyMatrix4(v.H.root.matrixWorld).project(v.cam);
+      var r = v.gl.getBoundingClientRect();
+      return { x: r.left + (p.x + 1) / 2 * v.w, y: r.top + (1 - p.y) / 2 * v.h };
+    },
     setPV: function (tt, row) { if (api.views.pv) setPV(api.views.pv, tt, row); },
     getActive: function () { return active && active.name; }
   };
@@ -2172,6 +2190,8 @@ window.EKFallback = (function () {
   var E3 = window.EK3D, has3D = false;
   if (!RM && E3 && E3.ok) has3D = E3.init();
   if (!has3D) root.classList.add('no3d');
+  // Hero-Text bleibt bis zum Intro unsichtbar (kein Aufblitzen vor dem Start); Sicherheitsnetz nach 4 s
+  if (!RM && window.gsap) { root.classList.add('intro-pending'); setTimeout(function () { root.classList.remove('intro-pending'); }, 4000); }
   var FB = {};
   if (!has3D && window.EKFallback) {
     $$('.gl-view').forEach(function (v) {
@@ -2319,35 +2339,66 @@ window.EKFallback = (function () {
   function runIntro() {
     var logo = $('.site-header .logo'), h1 = $('#hero-h');
     heroState();
-    if (!hasG || RM) { logo.classList.add('is-live'); var tg = $('.hero .tags'); if (tg) tg.classList.add('is-on'); return; }
+    if (!hasG || RM) {
+      logo.classList.add('is-live'); var tg = $('.hero .tags'); if (tg) tg.classList.add('is-on');
+      if (has3D) { var J = V.hero.H.intro; J.edge = J.solid = J.pv = J.lit = J.flow = 1; }
+      return;
+    }
     var inners = splitLines(h1);
-    var tl = G.timeline({ delay: 0.1 });
-    tl.from(inners, { yPercent: 115, duration: 1.3, ease: 'expo.out', stagger: 0.1 }, 0.25);
-    tl.from($$('.hero .reveal, .hero-eyebrow'), { y: 22, opacity: 0, duration: 0.9, ease: 'power3.out', stagger: 0.08 }, 0.55);
-    // Leitung verdrahtet sich zum Logo
+    var tl = G.timeline({ delay: 0.15 });
+    root.classList.remove('intro-pending');
+
+    /* Schritt 1: nur der gelbe Faden. Er startet am Blitz im Logo und läuft zur Stelle, an der das Haus entsteht. */
     var wire = $('.wire-intro'), path = wire.querySelector('path');
+    var NS = 'http://www.w3.org/2000/svg';
+    var head = document.createElementNS(NS, 'circle'), ring = document.createElementNS(NS, 'circle');
+    head.setAttribute('r', 4.5); head.setAttribute('fill', '#fff'); head.style.filter = 'drop-shadow(0 0 7px #FFD21A) drop-shadow(0 0 2px #FFD21A)';
+    ring.setAttribute('r', 4); ring.setAttribute('fill', 'none'); ring.setAttribute('stroke', '#FFD21A'); ring.setAttribute('stroke-width', 1.5);
+    ring.style.opacity = 0;
+    wire.appendChild(ring); wire.appendChild(head);
     var lm = logo.querySelector('.logo-mark').getBoundingClientRect();
     var stage = $('.hero-stage').getBoundingClientRect();
     var sx = Math.round(stage.left + stage.width * 0.42), sy = Math.round(Math.min(window.innerHeight - 40, stage.top + stage.height * 0.62));
+    if (has3D && E3.project) {
+      // Mitte der Bodenplatte des Hauses in Bildschirmkoordinaten
+      var hp = E3.project('hero', -3.1, 0.6, -0.7);
+      if (hp && isFinite(hp.x) && isFinite(hp.y)) { sx = Math.round(hp.x); sy = Math.round(Math.min(window.innerHeight - 40, hp.y)); }
+    }
     var lx = Math.round(lm.left + lm.width / 2), ly = Math.round(lm.bottom + 2);
     var midY = Math.round(lm.bottom + 26);
-    var d = 'M' + sx + ' ' + sy + ' V' + midY + ' H' + lx + ' V' + ly;
     wire.setAttribute('width', window.innerWidth); wire.setAttribute('height', window.innerHeight);
-    path.setAttribute('d', d);
+    path.setAttribute('d', 'M' + lx + ' ' + ly + ' V' + midY + ' H' + sx + ' V' + sy);
     var len = path.getTotalLength();
     path.style.strokeDasharray = len; path.style.strokeDashoffset = len;
-    tl.to(path, { strokeDashoffset: 0, duration: 1.0, ease: 'power2.inOut' }, 0);
-    tl.add(function () { logo.classList.add('is-live'); }, 1.0);
-    tl.to(wire, { opacity: 0, duration: 0.5 }, 1.25);
+    head.setAttribute('cx', lx); head.setAttribute('cy', ly);
+    var P = { p: 0 };
+    tl.add(function () { logo.classList.add('is-live'); }, 0);
+    tl.to(P, {
+      p: 1, duration: 1.35, ease: 'power2.inOut', onUpdate: function () {
+        path.style.strokeDashoffset = len * (1 - P.p);
+        var pt = path.getPointAtLength(len * P.p);
+        head.setAttribute('cx', pt.x); head.setAttribute('cy', pt.y);
+      }
+    }, 0);
+    // Ankunft: kurzer Impuls an der Hausposition
+    tl.set(ring, { attr: { cx: sx, cy: sy }, opacity: 0.9 }, 1.35);
+    tl.to(ring, { attr: { r: 46 }, opacity: 0, duration: 0.7, ease: 'power2.out' }, 1.35);
+    tl.to(head, { opacity: 0, duration: 0.3 }, 1.45);
+    tl.to(path, { opacity: 0, duration: 0.7, ease: 'power1.out' }, 1.75);
+
+    /* Schritt 2: Haus baut sich an dieser Stelle auf, danach Text und Details */
+    tl.from(inners, { yPercent: 115, duration: 1.3, ease: 'expo.out', stagger: 0.1 }, 1.45);
+    tl.from($$('.hero .reveal, .hero-eyebrow'), { y: 22, opacity: 0, duration: 0.9, ease: 'power3.out', stagger: 0.08 }, 1.75);
     if (has3D) {
       var I = V.hero.H.intro;
-      I.edge = 0; I.solid = 0; I.pv = 0; I.lit = 0; I.flow = 0;
-      tl.to(I, { edge: 1, duration: 1.5, ease: 'power2.inOut' }, 0.35);
-      tl.to(I, { solid: 1, duration: 1.1, ease: 'power2.out' }, 1.35);
-      tl.to(I, { pv: 1, duration: 0.9, ease: 'none' }, 1.95);
-      tl.to(I, { lit: 1, duration: 0.45, ease: 'none' }, 2.6);
-      tl.to(I, { flow: 1, duration: 0.9, ease: 'power1.out' }, 2.75);
-      tl.add(function () { $('.hero .tags').classList.add('is-on'); }, 3.1);
+      tl.to(I, { edge: 1, duration: 1.5, ease: 'power2.inOut' }, 1.4);
+      tl.to(I, { solid: 1, duration: 1.1, ease: 'power2.out' }, 2.4);
+      tl.to(I, { pv: 1, duration: 0.9, ease: 'none' }, 3.0);
+      tl.to(I, { lit: 1, duration: 0.6, ease: 'power1.inOut' }, 3.65);
+      tl.to(I, { flow: 1, duration: 0.9, ease: 'power1.out' }, 3.8);
+      tl.add(function () { $('.hero .tags').classList.add('is-on'); }, 4.2);
+    } else {
+      tl.add(function () { var tg2 = $('.hero .tags'); if (tg2) tg2.classList.add('is-on'); }, 3.0);
     }
     tl.add(function () { wire.style.display = 'none'; });
   }
@@ -2873,5 +2924,5 @@ window.EKFallback = (function () {
 })();
 
 </script>
-
-</body></html>
+</body>
+</html>
