@@ -516,8 +516,6 @@ a .contact-row__value { color: var(--brand-accent); }
 .sc-group--later { margin-top: clamp(72px, 9vw, 112px); }
 .sc-group__title { margin: 0; font: 800 clamp(1.25rem, 2vw, 1.6rem)/1.2 var(--font-display); text-transform: uppercase; letter-spacing: .01em; color: var(--text-strong); }
 .sc-group__title span { display: block; margin-top: 6px; font: 500 14px/1.4 var(--font-body); text-transform: none; letter-spacing: 0; color: var(--text-subtle); }
-.sc-group__count { font: 800 clamp(40px, 5vw, 64px)/.8 var(--font-display); color: rgba(255,255,255,.1); letter-spacing: -.03em; }
-.sc-group__count::before { content: attr(data-n); }
 .sc-group + .showcase { margin-top: clamp(48px, 6vw, 72px); }
 
 .cl-stage { position: relative; min-width: 0; }
