@@ -1302,6 +1302,7 @@ a .contact-row__value { color: var(--brand-accent); }
   .lay-head .sh__intro { display: none; }
   .lay-head .sh__title { font-size: clamp(1.5rem, 6.4vw, 2.2rem); }
   .lay-stage { max-width: 560px; justify-self: center; }
+  .lay-step__more { display: none; }
   .lay-step__title { font-size: 1.25rem; } .lay-step__text { font-size: 14.5px; }
   .lay-card { padding: 7px 9px; gap: 8px; border-radius: 8px; }
   .lay-swatch { padding: 8px 10px; gap: 6px; } .lay-swatch__row { gap: 9px; } .sw__slot { width: 22px; height: 22px; border-radius: 6px; } .sw small { display: none; }
