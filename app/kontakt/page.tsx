@@ -57,7 +57,7 @@ export default async function KontaktPage({ searchParams }: { searchParams: Prom
           <ContactForm initial={initial} />
         </div>
         <div className="container" style={{ marginTop: 48 }}>
-          <BriefingStrip title="Noch keine Website?" text="Für eine neue Website gibt es unser Website-Briefing: Schritt für Schritt ausfüllen, Logo und Fotos hochladen und ein unverbindliches Festpreis-Angebot erhalten." />
+          <BriefingStrip title="Noch keine Website? Oder sollen WIR alles neu gestalten?" text="Dann ist das Website-Briefing der richtige Einstieg: Schritt für Schritt ausfüllen, Logo und Fotos hochladen und ein unverbindliches Festpreis-Angebot erhalten." />
         </div>
       </section>
     </>
