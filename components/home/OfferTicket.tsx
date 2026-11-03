@@ -38,7 +38,7 @@ export function OfferTicket() {
       <span className="tk__cutter" aria-hidden="true">
         <span className="tk__line" />
         <span className="tk__track">
-          <svg className="tk__sc" viewBox="0 0 40 64" width="40" height="64">
+          <svg className="tk__sc" viewBox="0 0 40 64" width="62" height="99">
             <defs>
               <linearGradient id="tk-steel" x1="0" y1="0" x2="1" y2="0">
                 <stop offset="0" stopColor="#8d8d8d" /><stop offset=".5" stopColor="#ffffff" /><stop offset="1" stopColor="#a9a9a9" />

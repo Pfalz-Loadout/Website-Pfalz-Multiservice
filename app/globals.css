@@ -1357,9 +1357,9 @@ a .contact-row__value { color: var(--brand-accent); }
   background: linear-gradient(105deg, #0000 35%, rgba(255,240,200,.16) 48%, rgba(255,255,255,.28) 50%, rgba(255,240,200,.16) 52%, #0000 65%); }
 /* Schere + Schnittlinie: außerhalb des maskierten Rahmens, damit die Schere oben herausragen darf */
 .tk__cutter { position: absolute; top: 0; bottom: 0; left: calc(var(--tk-cut) + var(--tk-pad) + var(--tk-fs) * .6); width: 0; pointer-events: none; display: none; }
-.tk__line { position: absolute; top: 0; bottom: 0; left: -1px; width: 2px; background: linear-gradient(#fff, var(--pm-gold-300)); box-shadow: 0 0 10px 1px rgba(255,230,160,.8); transform-origin: 50% 0; transform: scaleY(0); }
+.tk__line { position: absolute; top: 0; bottom: 0; left: -1px; width: 2px; background: linear-gradient(#fff, var(--pm-gold-300)); box-shadow: 0 0 14px 3px rgba(255,220,130,.75), 0 0 3px 1px #fff; transform-origin: 50% 0; transform: scaleY(0); }
 .tk__track { position: absolute; top: 0; left: 0; height: 100%; width: 0; }
-.tk__sc { position: absolute; bottom: -18px; left: -20px; overflow: visible; filter: drop-shadow(0 4px 6px rgba(0,0,0,.6)); }
+.tk__sc { position: absolute; bottom: -28px; left: -31px; overflow: visible; filter: drop-shadow(0 4px 6px rgba(0,0,0,.6)); }
 .tk__blade { transform-box: view-box; transform-origin: 20px 30px; }
 .tk:focus-visible { outline-offset: 4px; }
 @media (hover: hover) and (pointer: fine) {
@@ -1422,4 +1422,5 @@ html.pm-motion .tk__sparks i:nth-child(3) { animation-delay: calc(var(--tk-d) + 
   .tk__main { padding: 14px 4px 14px var(--tk-pad); gap: 5px; }
   .tk__title { font-size: 15px; } .tk__eyebrow { font-size: 10px; letter-spacing: .14em; } .tk__was { font-size: 12px; }
   .tk__go { width: 40px; }
+  .tk__sc { width: 48px; height: 77px; bottom: -22px; left: -24px; }
 }
