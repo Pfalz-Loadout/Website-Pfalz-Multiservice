@@ -191,7 +191,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 @keyframes nudge{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
 .intro-pending .hero-copy,.intro-pending .hero-meta,.intro-pending .hero-stage .tags{visibility:hidden}
 .wire-intro{position:fixed;inset:0;z-index:65;pointer-events:none}
-.wire-intro path{fill:none;stroke:var(--volt);stroke-width:1.5;filter:drop-shadow(0 0 6px rgba(255,210,26,.9))}
+.wire-intro{will-change:transform}.wire-intro path{fill:none;stroke:var(--volt);stroke-width:1.6;stroke-linecap:round}.wire-intro path.glow{stroke-width:7;stroke-opacity:.22}
 @media (max-width:899px){
   .hero-inner{display:flex;flex-direction:column;align-items:stretch;min-height:0;padding-block:40px 64px}
   .hero-copy{gap:22px}
@@ -1750,6 +1750,8 @@ window.EK3D = (function () {
     // Umgebung
     H.lights.hemi.intensity = s.env.hemi;
     H.lights.dir.intensity = s.env.dir;
+    // Vor dem Aufbau: Teile, die oben je Frame wieder eingeschaltet werden (Lade-LED, Rollläden ...), erneut verstecken
+    if (H._held) for (var hh = 0; hh < H._held.length; hh++) H._held[hh].visible = false;
   }
   var ledOn = new T.MeshBasicMaterial({ color: 0xFFD21A });
   var ledOffShared = new T.MeshBasicMaterial({ color: 0x3A4658 });
@@ -1930,6 +1932,12 @@ window.EK3D = (function () {
       if (hero) api.views.hero = makeView(hero, 'hero', 'dark', { shadows: true, size: 15.2, fitW: 22.5, offX: 0.02, offY: 0.02, mSize: 14, mFitW: 21.5, ty: 1.4 });
       if (pv) api.views.pv = makeView(pv, 'pv', 'light', { shadows: true, shadowSize: 2048, size: 20, fitW: 30, offX: -0.13, offY: -0.05, mSize: 13, mFitW: 21.5, mOffY: 0.07, rotAmp: 0.08, ty: 1.2 });
       if (sm) api.views.smart = makeView(sm, 'smart', 'dark', { shadows: true, size: 14.6, fitW: 21.5, offY: 0.0, mFitW: 21, ty: 1.6 });
+      // Shader-Aufwärmen: jede Ansicht einmal unsichtbar rendern (Canvas hängt noch nirgends).
+      // Sonst kompiliert der Browser die Shader genau in dem Moment, in dem das Haus erscheint -> Ruckler.
+      try {
+        renderer.setSize(64, 64, false);
+        Object.keys(api.views).forEach(function (k) { var vv = api.views[k]; renderer.compile(vv.scene, vv.cam); renderer.render(vv.scene, vv.cam); });
+      } catch (e) {}
       if (api.views.pv) {
         var pvv = api.views.pv;
         pvv.H.state.env.spill = 0.15;
@@ -2347,16 +2355,21 @@ window.EKFallback = (function () {
       return;
     }
     var inners = splitLines(h1);
-    var tl = G.timeline({ delay: 0.15 });
+    var tl = G.timeline({ delay: 0.35 });
+    introTL = tl;
 
     /* Schritt 1: nur der gelbe Faden. Er startet am Blitz im Logo und läuft zur Stelle, an der das Haus entsteht. */
     var wire = $('.wire-intro'), path = wire.querySelector('path');
     var NS = 'http://www.w3.org/2000/svg';
     var head = document.createElementNS(NS, 'circle'), ring = document.createElementNS(NS, 'circle');
-    head.setAttribute('r', 4.5); head.setAttribute('fill', '#fff'); head.style.filter = 'drop-shadow(0 0 7px #FFD21A) drop-shadow(0 0 2px #FFD21A)';
+    // Kein CSS-Filter (drop-shadow) mehr: der wurde jedes Bild über die ganze Fläche neu berechnet. Glow = zweite, breite Linie + Halo.
+    var halo = document.createElementNS(NS, 'circle');
+    halo.setAttribute('r', 11); halo.setAttribute('fill', '#FFD21A'); halo.setAttribute('fill-opacity', 0.22);
+    head.setAttribute('r', 4); head.setAttribute('fill', '#FFF6C8');
+    var glow = path.cloneNode(); glow.setAttribute('class', 'glow'); wire.insertBefore(glow, path);
     ring.setAttribute('r', 4); ring.setAttribute('fill', 'none'); ring.setAttribute('stroke', '#FFD21A'); ring.setAttribute('stroke-width', 1.5);
     ring.style.opacity = 0;
-    wire.appendChild(ring); wire.appendChild(head);
+    wire.appendChild(ring); wire.appendChild(halo); wire.appendChild(head);
     var lm = logo.querySelector('.logo-mark').getBoundingClientRect();
     var stage = $('.hero-stage').getBoundingClientRect();
     var sx = Math.round(stage.left + stage.width * 0.42), sy = Math.round(Math.min(window.innerHeight - 40, stage.top + stage.height * 0.62));
@@ -2368,42 +2381,45 @@ window.EKFallback = (function () {
     var lx = Math.round(lm.left + lm.width / 2), ly = Math.round(lm.bottom + 2);
     var midY = Math.round(lm.bottom + 26);
     wire.setAttribute('width', window.innerWidth); wire.setAttribute('height', window.innerHeight);
-    path.setAttribute('d', 'M' + lx + ' ' + ly + ' V' + midY + ' H' + sx + ' V' + sy);
+    var dPath = 'M' + lx + ' ' + ly + ' V' + midY + ' H' + sx + ' V' + sy;
+    path.setAttribute('d', dPath); glow.setAttribute('d', dPath);
     var len = path.getTotalLength();
-    path.style.strokeDasharray = len; path.style.strokeDashoffset = len;
-    head.setAttribute('cx', lx); head.setAttribute('cy', ly);
+    path.style.strokeDasharray = glow.style.strokeDasharray = len;
+    path.style.strokeDashoffset = glow.style.strokeDashoffset = len;
+    head.setAttribute('cx', lx); head.setAttribute('cy', ly); halo.setAttribute('cx', lx); halo.setAttribute('cy', ly);
     var P = { p: 0 };
     tl.add(function () { logo.classList.add('is-live'); }, 0);
     tl.to(P, {
-      p: 1, duration: 1.35, ease: 'power2.inOut', onUpdate: function () {
-        path.style.strokeDashoffset = len * (1 - P.p);
+      p: 1, duration: 1.5, ease: 'sine.inOut', onUpdate: function () {
+        path.style.strokeDashoffset = glow.style.strokeDashoffset = len * (1 - P.p);
         var pt = path.getPointAtLength(len * P.p);
         head.setAttribute('cx', pt.x); head.setAttribute('cy', pt.y);
+        halo.setAttribute('cx', pt.x); halo.setAttribute('cy', pt.y);
       }
     }, 0);
     // Ankunft: kurzer Impuls an der Hausposition
-    tl.set(ring, { attr: { cx: sx, cy: sy }, opacity: 0.9 }, 1.35);
-    tl.to(ring, { attr: { r: 46 }, opacity: 0, duration: 0.7, ease: 'power2.out' }, 1.35);
-    tl.to(head, { opacity: 0, duration: 0.3 }, 1.45);
-    tl.to(path, { opacity: 0, duration: 0.7, ease: 'power1.out' }, 1.75);
+    tl.set(ring, { attr: { cx: sx, cy: sy }, opacity: 0.9 }, 1.5);
+    tl.to(ring, { attr: { r: 46 }, opacity: 0, duration: 0.9, ease: 'power2.out' }, 1.5);
+    tl.to([head, halo], { opacity: 0, duration: 0.45, ease: 'sine.out' }, 1.55);
+    tl.to([path, glow], { opacity: 0, duration: 0.9, ease: 'sine.inOut' }, 1.9);
 
     /* Schritt 2: Haus baut sich an dieser Stelle auf, danach Text und Details */
     // Text erst, wenn das Haus im Aufbau ist; Starthaltung sofort setzen, Sichtbarkeit erst dann freigeben
-    tl.from(inners, { yPercent: 115, duration: 1.3, ease: 'expo.out', stagger: 0.1 }, 3.0);
-    tl.from($$('.hero .reveal, .hero-eyebrow, .hero-meta'), { y: 22, opacity: 0, duration: 0.9, ease: 'power3.out', stagger: 0.08 }, 3.3);
-    tl.add(function () { root.classList.remove('intro-pending'); }, 2.95);
+    tl.from(inners, { yPercent: 115, duration: 1.4, ease: 'expo.out', stagger: 0.1 }, 3.1);
+    tl.from($$('.hero .reveal, .hero-eyebrow, .hero-meta'), { y: 22, opacity: 0, duration: 1.0, ease: 'power3.out', stagger: 0.08 }, 3.4);
+    tl.add(function () { root.classList.remove('intro-pending'); }, 3.05);
     if (has3D) {
       var I = V.hero.H.intro;
-      tl.to(I, { edge: 1, duration: 1.5, ease: 'power2.inOut' }, 1.4);
-      tl.to(I, { solid: 1, duration: 1.1, ease: 'power2.out' }, 2.4);
-      tl.to(I, { pv: 1, duration: 0.9, ease: 'none' }, 3.0);
-      tl.to(I, { lit: 1, duration: 0.6, ease: 'power1.inOut' }, 3.65);
-      tl.to(I, { flow: 1, duration: 0.9, ease: 'power1.out' }, 3.8);
-      tl.add(function () { $('.hero .tags').classList.add('is-on'); }, 4.2);
+      tl.to(I, { edge: 1, duration: 1.6, ease: 'sine.inOut' }, 1.5);
+      tl.to(I, { solid: 1, duration: 1.3, ease: 'sine.inOut' }, 2.5);
+      tl.to(I, { pv: 1, duration: 1.0, ease: 'sine.inOut' }, 3.1);
+      tl.to(I, { lit: 1, duration: 0.9, ease: 'sine.inOut' }, 3.7);
+      tl.to(I, { flow: 1, duration: 1.0, ease: 'sine.out' }, 3.9);
+      tl.add(function () { $('.hero .tags').classList.add('is-on'); }, 4.4);
     } else {
       tl.add(function () { var tg2 = $('.hero .tags'); if (tg2) tg2.classList.add('is-on'); }, 3.0);
     }
-    tl.add(function () { wire.style.display = 'none'; });
+    tl.add(function () { wire.style.display = 'none'; introTL = null; flushRefresh(); });
   }
   setInterval(function () {
     heroLive.pv = clamp(heroLive.pv + (Math.random() - 0.5) * 0.3, 7.2, 8.2);
@@ -2904,6 +2920,10 @@ window.EKFallback = (function () {
   function cursorTick() {}
 
   /* ---------- Start ---------- */
+  // ScrollTrigger.refresh() blockiert kurz (Pins neu messen). Während des Intros wird es aufgeschoben, sonst ruckelt die Animation.
+  var introTL = null, refreshPending = false;
+  function refreshSoon() { if (introTL) { refreshPending = true; return; } if (hasG) ST.refresh(); else layoutTraces(); }
+  function flushRefresh() { if (refreshPending) { refreshPending = false; refreshSoon(); } }
   function start() {
     setupReveals();
     setupStory();
@@ -2914,14 +2934,15 @@ window.EKFallback = (function () {
       applyScene('morgen');
       if (hasG && !RM) ST.create({ trigger: '#smarthome', start: 'top 70%', once: true, onEnter: function () { applyScene('morgen', true); } });
     }
-    runIntro();
     if (hasG) {
       ST.addEventListener('refresh', layoutTraces);
       ST.refresh();
     } else layoutTraces();
     layoutTraces();
-    if (doc.fonts && doc.fonts.ready) doc.fonts.ready.then(function () { if (hasG) ST.refresh(); else layoutTraces(); });
-    window.addEventListener('load', function () { if (hasG) ST.refresh(); else layoutTraces(); });
+    // Intro erst nach dem schweren Layout-Durchlauf, auf einem frischen Frame
+    requestAnimationFrame(function () { requestAnimationFrame(runIntro); });
+    if (doc.fonts && doc.fonts.ready) doc.fonts.ready.then(refreshSoon);
+    window.addEventListener('load', refreshSoon);
   }
   if (doc.readyState === 'loading') doc.addEventListener('DOMContentLoaded', start); else start();
 })();
