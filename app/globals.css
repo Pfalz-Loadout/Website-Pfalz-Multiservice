@@ -1345,8 +1345,6 @@ a .contact-row__value { color: var(--brand-accent); }
 /* Designer-Cursor */
 .lay-cursor { position: absolute; z-index: 9; left: 0; top: 0; display: none; pointer-events: none; opacity: 0; transform-origin: 2px 2px; }
 .lay-cursor svg { display: block; filter: drop-shadow(0 3px 5px rgba(0,0,0,.55)); }
-.lay-cursor__tag { position: absolute; left: 16px; top: 20px; padding: 4px 9px; border-radius: 3px 99px 99px 99px; white-space: nowrap;
-  font: 600 10.5px/1 var(--font-body); letter-spacing: .02em; color: #000; background: var(--brand-accent); box-shadow: 0 6px 16px -6px rgba(0,0,0,.7); }
 .lay-cursor__ring { position: absolute; left: -12px; top: -12px; width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--brand-accent); opacity: 0; }
 
 /* ---------- Mit Bewegung steuert die GSAP-Zeitleiste: keine CSS-Übergänge, die gegen den Scroll arbeiten ---------- */
@@ -1378,7 +1376,7 @@ a .contact-row__value { color: var(--brand-accent); }
   .lay-type__aa { font-size: 22px; } .lay-type b { font-size: 11px; } .lay-type small { font-size: 9.5px; }
   .lay-toast { padding: 5px 9px 5px 5px; gap: 6px; right: 10%; top: 3%; } .lay-toast__icon { width: 22px; height: 22px; } .lay-toast b { font-size: 10.5px; } .lay-toast small { font-size: 9px; }
   .lay-stage { padding-bottom: 34px; } .lay-paths { bottom: -30px; } .lay-paths li { padding: 4px 8px; font-size: 10px; gap: 4px; }
-  .lay-cursor svg { width: 15px; height: 17px; } .lay-cursor__tag { left: 12px; top: 15px; padding: 3px 7px; font-size: 8.5px; }
+  .lay-cursor svg { width: 15px; height: 17px; }
 }
 @media (max-width: 1080px) and (max-height: 700px) { .lay-head { display: none; } }
 

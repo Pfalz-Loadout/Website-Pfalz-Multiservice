@@ -215,7 +215,6 @@ export function LayerBuild() {
                   <svg viewBox="0 0 20 22" width="20" height="22" aria-hidden="true">
                     <path d="M2 1.5 L2 18.5 L6.6 14.4 L9.6 21 L12.6 19.6 L9.7 13.1 L16 12.6 Z" fill="#fff" stroke="#000" strokeWidth="1.4" strokeLinejoin="round" />
                   </svg>
-                  <span className="lay-cursor__tag">Pfalz Multiservice</span>
                   <i className="lay-cursor__ring" />
                 </div>
 
