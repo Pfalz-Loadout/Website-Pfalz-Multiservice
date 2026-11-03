@@ -77,7 +77,7 @@ export function LayerBuild() {
               <ol className="lay-steps">
                 {STEPS.map((s, i) => (
                   <li key={s.tag} className={`lay-step ${i + 1 === step ? "is-on" : ""} ${i + 1 < step ? "is-done" : ""}`} aria-current={i + 1 === step ? "step" : undefined}>
-                    <span className="lay-step__n">{nn(i + 1)} / {nn(N)} · {s.tag}</span>
+                    <span className="lay-step__n">{s.tag}</span>
                     <h4 className="lay-step__title">{tidy(s.title)}</h4>
                     <p className="lay-step__text">{tidy(s.text)}</p>
                     {i === N - 1 && (
@@ -152,21 +152,11 @@ export function LayerBuild() {
   );
 }
 
-/** Smartphone im Stil eines aktuellen iPhones: Titanrahmen, Tasten, Dynamic Island, Statusleiste, Spiegelung */
+/** Smartphone wie bei den Musterbeispielen: maximales Display, schmaler Rand */
 function Phone() {
   return (
     <div className="lay-phone">
-      <i className="ph-btn ph-btn--a" /><i className="ph-btn ph-btn--b" /><i className="ph-btn ph-btn--c" /><i className="ph-btn ph-btn--p" />
-      <div className="lay-phone__screen">
-        <div className="ph-status">
-          <span className="ph-time">9:41</span>
-          <span className="ph-icons"><i className="ph-sig"><b /><b /><b /><b /></i><i className="ph-bat" /></span>
-        </div>
-        <i className="ph-island" />
-        <div className="ph-view"><Image src="/images/beispiele/beratungsbuero-mobile.png" alt="" fill sizes="170px" /></div>
-        <i className="ph-home" />
-        <i className="ph-glare" />
-      </div>
+      <Image src="/images/beispiele/beratungsbuero-mobile.png" alt="" fill sizes="170px" />
     </div>
   );
 }
