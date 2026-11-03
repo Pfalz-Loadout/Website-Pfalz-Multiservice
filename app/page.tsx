@@ -21,7 +21,7 @@ export default function HomePage() {
       <Faq items={HOME_FAQ} alt />
       <CtaBand
         image={IMG + "lagerraum-hoch.png"}
-        intro={<>Schildern Sie uns kurz Ihr Anliegen.<br />Wir melden uns zeitnah mit einem passenden Lösungsvorschlag.</>}
+        intro={<>Schildern Sie uns kurz Ihr Anliegen.<br />Wir antworten innerhalb von 24 Stunden (werktags) mit einem passenden Lösungsvorschlag.</>}
       />
     </>
   );

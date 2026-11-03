@@ -61,5 +61,18 @@ export async function POST(req: Request) {
     console.error("[contact] Versand fehlgeschlagen:", err instanceof Error ? err.message : err);
     return NextResponse.json({ error: "Versand fehlgeschlagen" }, { status: 502 });
   }
+  // Meldeverfahren (Art. 16 DSA): Eingangsbestätigung an den Meldenden
+  if (data.report === "1") {
+    try {
+      await transporter.sendMail({
+        from: `"Pfalz Multiservice" <${user}>`,
+        to: email,
+        subject: "Eingangsbestätigung Ihrer Meldung",
+        text: `Guten Tag ${name},\n\nwir bestätigen den Eingang Ihrer Meldung. Wir prüfen sie sorgfältig und teilen Ihnen unsere Entscheidung mit Begründung und den möglichen Rechtsbehelfen mit.\n\nPfalz Multiservice`,
+      });
+    } catch (err) {
+      console.error("[contact] Eingangsbestätigung fehlgeschlagen:", err instanceof Error ? err.message : err);
+    }
+  }
   return NextResponse.json({ ok: true });
 }

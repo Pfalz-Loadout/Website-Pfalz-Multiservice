@@ -13,9 +13,9 @@ import type { IconName } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Kontakt in Worms",
-  description: "Kontakt zu Pfalz Multiservice in Worms: Anfrage per Formular, Telefon oder WhatsApp. Wir melden uns zeitnah mit einem Lösungsvorschlag.",
+  description: "Kontakt zu Pfalz Multiservice in Worms: Anfrage per Formular, Telefon oder WhatsApp. Antwort innerhalb von 24 Stunden (werktags).",
   alternates: { canonical: "/kontakt" },
-  ...social({ path: "/kontakt", title: "Kontakt in Worms · Pfalz Multiservice", description: "Kontakt zu Pfalz Multiservice in Worms: Anfrage per Formular, Telefon oder WhatsApp. Wir melden uns zeitnah mit einem Lösungsvorschlag.", image: "/og/kontakt.jpg" }),
+  ...social({ path: "/kontakt", title: "Kontakt in Worms · Pfalz Multiservice", description: "Kontakt zu Pfalz Multiservice in Worms: Anfrage per Formular, Telefon oder WhatsApp. Antwort innerhalb von 24 Stunden (werktags).", image: "/og/kontakt.jpg" }),
 };
 
 function Row({ icon, label, value, href }: { icon: IconName; label: string; value: string; href?: string }) {

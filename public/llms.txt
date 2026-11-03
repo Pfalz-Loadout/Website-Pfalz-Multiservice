@@ -2,7 +2,7 @@
 
 > Inhabergeführtes Dienstleistungsunternehmen aus Worms (Rheinland-Pfalz), gegründet 2021 von Jasmin Beer. Schwerpunkte: Web Maintenance & Management (Webdesign und Website-Betreuung), Reselling & Asset Recovery und E-Commerce. Dazu Lagerfläche, Räumungen, Solutions & Support sowie Änderungen an bestehenden KNX-Anlagen, alles mit einem Ansprechpartner – für Unternehmen und Privatkunden in Worms und Umgebung (Frankenthal, Ludwigshafen, Mannheim, Alzey, Grünstadt, Bensheim).
 
-Kontakt: Telefon und WhatsApp +49 160 5086983, E-Mail kontakt@pfalz-multiservice.de. Termine nach Vereinbarung. Angebote sind verbindlich und werden vor Beginn festgelegt.
+Kontakt: Telefon und WhatsApp +49 160 5086983, E-Mail kontakt@pfalz-multiservice.de. Antwort auf Anfragen innerhalb von 24 Stunden (werktags). Termine nach Vereinbarung. Angebote sind verbindlich und werden vor Beginn festgelegt.
 
 ## Leistungen
 
@@ -19,3 +19,4 @@ Kontakt: Telefon und WhatsApp +49 160 5086983, E-Mail kontakt@pfalz-multiservice
 - [Kontakt](https://www.pfalz-multiservice.de/kontakt)
 - [Impressum](https://www.pfalz-multiservice.de/impressum)
 - [Datenschutz](https://www.pfalz-multiservice.de/datenschutz)
+- [Ratgeber](https://www.pfalz-multiservice.de/ratgeber): kurze Artikel zu Website neu oder überarbeiten, Wartung, Domain und Hosting

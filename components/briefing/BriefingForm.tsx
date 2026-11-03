@@ -39,6 +39,7 @@ export function BriefingForm() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [restored, setRestored] = useState(false);
   const [ok, setOk] = useState(false);
+  const [biz, setBiz] = useState(false);
   const [notice, setNotice] = useState("");
   const startedAt = useRef(Date.now());
   const sid = useRef("");
@@ -122,6 +123,7 @@ export function BriefingForm() {
     if (phase.kind === "sending") return;
     if (!checkContact()) { goto(0); return; }
     if (!ok) { setNotice("Bitte bestätigen Sie noch die Datenschutzerklärung."); return; }
+    if (!biz) { setNotice("Bitte bestätigen Sie, dass Sie als Unternehmer anfragen."); return; }
     const honey = (e.currentTarget as HTMLFormElement).querySelector<HTMLInputElement>('input[name="website"]')?.value || "";
     setNotice("");
 
@@ -175,7 +177,7 @@ export function BriefingForm() {
         <div className="bf__card bf__done" role="status">
           <span className="success__badge"><Icon name="check" size={28} /></span>
           <h2 className="bf__title">Vielen Dank!</h2>
-          <p className="bf__note">Ihr Website-Briefing ist bei uns eingegangen. Wir melden uns innerhalb kürzester Zeit mit einem unverbindlichen Vorschlag und Festpreis bei Ihnen.
+          <p className="bf__note">Ihr Website-Briefing ist bei uns eingegangen. Wir melden uns innerhalb von 24 Stunden (werktags) mit einem unverbindlichen Vorschlag und Festpreis bei Ihnen.
             {str("email") ? " Eine Kopie Ihrer Angaben haben wir Ihnen per E-Mail geschickt." : ""}</p>
           {phase.rejected.length > 0 && (
             <p className="bf__warn"><Icon name="file-check" size={18} />Diese Dateien haben wir aus Sicherheitsgründen nicht angenommen: {phase.rejected.map((r) => `${r.name} (${r.reason})`).join(", ")}. Schicken Sie sie gern per WhatsApp oder E-Mail.</p>
@@ -241,7 +243,7 @@ export function BriefingForm() {
             </div>
           </fieldset>
         ) : (
-          <Summary values={values} files={files} onEdit={goto} ok={ok} setOk={setOk} />
+          <Summary values={values} files={files} onEdit={goto} ok={ok} setOk={setOk} biz={biz} setBiz={setBiz} />
         )}
 
         {notice && <p className="bf__notice" role="alert">{notice}</p>}
@@ -259,7 +261,7 @@ export function BriefingForm() {
           ) : <span />}
           {step < LAST
             ? <Button type="button" icon="arrow-right" onClick={next}>{step === LAST - 1 ? "Zur Zusammenfassung" : "Weiter"}</Button>
-            : <Button type="submit" icon="arrow-right" disabled={!ok || phase.kind === "sending"}>{phase.kind === "sending" ? "Wird gesendet …" : "Briefing absenden"}</Button>}
+            : <Button type="submit" icon="arrow-right" disabled={!ok || !biz || phase.kind === "sending"}>{phase.kind === "sending" ? "Wird gesendet …" : "Briefing absenden"}</Button>}
         </div>
       </form>
 
@@ -359,8 +361,8 @@ function FileDrop({ id, label, files, error, onFiles, onRemove }: {
   );
 }
 
-function Summary({ values, files, onEdit, ok, setOk }: {
-  values: Values; files: Files; onEdit: (n: number) => void; ok: boolean; setOk: (b: boolean) => void;
+function Summary({ values, files, onEdit, ok, setOk, biz, setBiz }: {
+  values: Values; files: Files; onEdit: (n: number) => void; ok: boolean; setOk: (b: boolean) => void; biz: boolean; setBiz: (b: boolean) => void;
 }) {
   const show = (f: BriefingField) => {
     if (f.kind === "files") return (files[f.id] || []).map((x) => x.name).join(", ");
@@ -390,6 +392,11 @@ function Summary({ values, files, onEdit, ok, setOk }: {
         <input type="checkbox" checked={ok} onChange={(e) => setOk(e.target.checked)} />
         <span className="consent__box">{ok && <Icon name="check" size={14} />}</span>
         <span>Ich habe die <Link href="/datenschutz">Datenschutzerklärung</Link> gelesen und bin einverstanden, dass meine Angaben zur Bearbeitung meiner Anfrage verwendet werden. *</span>
+      </label>
+      <label className="consent bf__consent">
+        <input type="checkbox" checked={biz} onChange={(e) => setBiz(e.target.checked)} />
+        <span className="consent__box">{biz && <Icon name="check" size={14} />}</span>
+        <span>Ich frage als Unternehmer (§ 14 BGB) an, also gewerblich oder selbstständig, nicht als Verbraucher. *</span>
       </label>
       <p className="bf__note">Mit dem Absenden entsteht noch kein Auftrag – Sie erhalten zuerst ein unverbindliches Angebot.</p>
     </div>
