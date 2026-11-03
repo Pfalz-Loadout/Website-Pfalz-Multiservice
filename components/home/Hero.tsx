@@ -80,8 +80,8 @@ export function Hero() {
             <Button variant="accent" size="lg" href="/kontakt">Unverbindlich anfragen</Button>
             <Button variant="outline-light" size="lg" iconLeft="message-circle" href={CONTACT.whatsapp}>Per WhatsApp schreiben</Button>
           </div>
-          <OfferTicket />
         </div>
+        <OfferTicket />
       </div>
       <a href="#leistungen" className="hero__scroll pm-intro" aria-label="Zu den Leistungen scrollen">
         <span className="hero__scroll-track"><span className="hero__scroll-dot" /></span>
