@@ -54,7 +54,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .demo-strip i{width:5px;height:5px;background:var(--volt);display:inline-block;border-radius:1px}
 
 /* ---------- Header ---------- */
-.site-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:60;height:var(--header-h);color:var(--on-dark);background:rgba(10,23,41,.93);-webkit-backdrop-filter:blur(14px) saturate(1.2);backdrop-filter:blur(14px) saturate(1.2);border-bottom:1px solid rgba(238,242,247,.08);transition:background-color .45s var(--ease),color .45s var(--ease),border-color .45s}
+.site-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:60;height:var(--header-h);color:var(--on-dark);background:rgba(10,23,41,.97);border-bottom:1px solid rgba(238,242,247,.08);transition:background-color .45s var(--ease),color .45s var(--ease),border-color .45s}
 .site-header.is-light{color:var(--ink);background:rgba(241,242,238,.86);border-bottom-color:var(--rule)}
 .hdr{height:100%;display:flex;align-items:center;gap:28px}
 .logo{display:flex;align-items:center;gap:12px;text-decoration:none;flex:none}
@@ -181,7 +181,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .tags.is-on .tag3d{opacity:1}
 .tag3d .pin{width:9px;height:9px;border-radius:50%;background:var(--volt);box-shadow:0 0 0 4px rgba(255,210,26,.18),0 0 14px rgba(255,210,26,.8);flex:none}
 .tag3d .leader{width:22px;height:1px;background:rgba(255,210,26,.6)}
-.tag3d .box{background:rgba(8,18,33,.82);border:1px solid rgba(255,210,26,.32);border-radius:3px;padding:7px 9px;display:flex;gap:8px;align-items:baseline;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.tag3d .box{background:rgba(8,18,33,.94);border:1px solid rgba(255,210,26,.32);border-radius:3px;padding:7px 9px;display:flex;gap:8px;align-items:baseline;}
 .tag3d .box b{font-weight:500;color:var(--on-dark-2);text-transform:uppercase;letter-spacing:.12em;font-size:.6rem}
 .tag3d .box em{font-style:normal;color:var(--volt);font-size:.82rem;font-variant-numeric:tabular-nums}
 .tag3d.left{flex-direction:row-reverse}
@@ -268,7 +268,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .caption p{position:absolute;left:0;bottom:0;margin:0;font-size:clamp(1.05rem,1rem + .35vw,1.3rem);line-height:1.42;font-weight:500;letter-spacing:-.01em;opacity:0;transform:translateY(10px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
 .caption p b{display:block;font:600 .66rem/1 var(--f-mono);letter-spacing:.16em;text-transform:uppercase;margin-bottom:10px;opacity:.65}
 .caption p.is-on{opacity:1;transform:none}
-.readout{grid-column:2;grid-row:1/span 3;align-self:center;background:rgba(10,23,41,.92);color:var(--on-dark);border-radius:10px;padding:20px 20px 18px;display:flex;flex-direction:column;gap:14px;box-shadow:0 30px 60px -30px rgba(10,23,41,.6);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.readout{grid-column:2;grid-row:1/span 3;align-self:center;background:rgba(10,23,41,.96);color:var(--on-dark);border-radius:10px;padding:20px 20px 18px;display:flex;flex-direction:column;gap:14px;box-shadow:0 30px 60px -30px rgba(10,23,41,.6);}
 .ro-head{display:flex;justify-content:space-between;font:500 .62rem/1 var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--on-dark-2);padding-bottom:12px;border-bottom:1px solid rgba(238,242,247,.12)}
 .ro-head i{font-style:normal;color:var(--volt)}
 .ro-row{display:grid;grid-template-columns:1fr auto;align-items:baseline;gap:4px 10px}
@@ -451,7 +451,7 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:5px;bac
 .chg-top i{font-style:normal;color:var(--volt)}
 .chg svg.cable{width:100%;height:auto;overflow:visible}
 .chg .ln{fill:none;stroke:rgba(238,242,247,.55);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
-.chg .flow{fill:none;stroke:var(--volt);stroke-width:2.2;stroke-linecap:round;stroke-dasharray:6 18;filter:drop-shadow(0 0 4px rgba(255,210,26,.8))}
+.chg .flow{fill:none;stroke:var(--volt);stroke-width:2.2;stroke-linecap:round;stroke-dasharray:6 18}
 .chg.is-charging .flow{animation:dash 1s linear infinite}
 @keyframes dash{to{stroke-dashoffset:-24}}
 .chg .led{fill:var(--volt)}
@@ -657,12 +657,12 @@ main{position:relative}
 /* ---------- Leiterbahnen ---------- */
 .traces{position:absolute;left:0;top:0;width:100%;pointer-events:none;z-index:3;overflow:visible}
 .traces .base{fill:none;stroke:rgba(120,135,155,.32);stroke-width:1;stroke-dasharray:2 5}
-.traces .live{fill:none;stroke:var(--volt);stroke-width:1.6;filter:drop-shadow(0 0 3px rgba(255,210,26,.85))}
+.traces .live{fill:none;stroke:var(--volt);stroke-width:1.8;stroke-linecap:round}
 .traces .stub{fill:none;stroke:rgba(120,135,155,.35);stroke-width:1;transition:stroke .4s}
 .traces .stub.on{stroke:var(--volt)}
 .traces .term{fill:var(--paper);stroke:rgba(120,135,155,.6);stroke-width:1.2;transition:fill .4s,stroke .4s}
 .traces .term.on{fill:var(--volt);stroke:var(--volt)}
-.traces .spark{fill:#fff;filter:drop-shadow(0 0 6px rgba(255,210,26,1)) drop-shadow(0 0 2px #FFD21A)}
+.traces .spark{fill:#FFF6C8;stroke:rgba(255,210,26,.35);stroke-width:7;paint-order:stroke}
 @media (max-width:759px){.traces{display:none}}
 
 /* ---------- Cursor: Standard-Mauszeiger, Textcursor nur in Eingabefeldern ---------- */
@@ -1358,7 +1358,8 @@ window.EK3D = (function () {
   if (!T || !M) return { ok: false };
 
   var LOW = window.matchMedia('(max-width: 759px)').matches || (navigator.hardwareConcurrency || 8) <= 4;
-  var DPR = Math.min(window.devicePixelRatio || 1, LOW ? 1.5 : 1.75);
+  // Pixeldichte begrenzt: 1,75 -> 1,5 spart ~27 % Pixel, auf Mobil 1,25; wird bei langsamen Geräten weiter gesenkt (adapt)
+  var DPR = Math.min(window.devicePixelRatio || 1, LOW ? 1.25 : 1.5), DPR_MIN = 1;
   var renderer = null, canvas = null, views = [], active = null, clock = 0;
   var ptr = { x: 0, y: 0, sx: 0, sy: 0, moved: false };
 
@@ -1774,6 +1775,7 @@ window.EK3D = (function () {
     v.tags.forEach(function (tg) { tg._a = M.anchors[tg.getAttribute('data-anchor')]; tg._left = tg.classList.contains('left'); });
     views.push(v);
     if (el.hasAttribute('data-drag')) bindDrag(v);
+    watch(v);
     return v;
   }
 
@@ -1827,15 +1829,45 @@ window.EK3D = (function () {
     }
   }
 
+  // Sichtbarkeit kommt vom IntersectionObserver (kein getBoundingClientRect je Frame). Fallback: einmal je 10 Frames messen.
+  var io = null, pickN = 0;
+  function watch(v) {
+    if (!('IntersectionObserver' in window)) return;
+    if (!io) {
+      var th = []; for (var i = 0; i <= 20; i++) th.push(i / 20);
+      io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { var vv = e.target._ekView; if (vv) vv.area = e.isIntersecting ? e.intersectionRect.width * e.intersectionRect.height : 0; });
+      }, { threshold: th });
+    }
+    v.el._ekView = v; v.area = 0; io.observe(v.el);
+  }
   function pick() {
-    var best = null, ba = 0, vh = window.innerHeight;
+    if (!io && (pickN++ % 10) === 0) {
+      var vh = window.innerHeight;
+      for (var j = 0; j < views.length; j++) {
+        var r = views[j].el.getBoundingClientRect();
+        views[j].area = Math.max(0, Math.min(r.bottom, vh) - Math.max(r.top, 0)) * Math.max(0, Math.min(r.right, window.innerWidth) - Math.max(r.left, 0));
+      }
+    }
+    var best = null, ba = 0;
     for (var i = 0; i < views.length; i++) {
-      var r = views[i].el.getBoundingClientRect();
-      var vis = Math.max(0, Math.min(r.bottom, vh) - Math.max(r.top, 0)) * Math.max(0, Math.min(r.right, window.innerWidth) - Math.max(r.left, 0));
-      views[i].visible = vis > 0;
-      if (vis > ba) { ba = vis; best = views[i]; }
+      views[i].visible = views[i].area > 0;
+      if (views[i].area > ba) { ba = views[i].area; best = views[i]; }
     }
     return best;
+  }
+
+  // Adaptive Qualität: liegt die Bildzeit dauerhaft über ~20 ms, Pixeldichte schrittweise senken (bis 1), danach Schatten aus.
+  var perf = { acc: 0, n: 0, shadowsOff: false };
+  function adapt(dt) {
+    if (dt <= 0 || dt > 0.25 || clock < 3) return; // Ladephase nicht mitzählen
+    perf.acc += dt; perf.n++;
+    if (perf.n < 90) return;
+    var avg = perf.acc / perf.n; perf.acc = 0; perf.n = 0;
+    if (avg > 0.021) {
+      if (DPR > DPR_MIN + 0.01) { DPR = Math.max(DPR_MIN, DPR - 0.25); renderer.setPixelRatio(DPR); views.forEach(function (v) { v.w = 0; }); }
+      else if (!perf.shadowsOff) { perf.shadowsOff = true; renderer.shadowMap.enabled = false; views.forEach(function (v) { v.scene.traverse(function (o) { if (o.material) { (Array.isArray(o.material) ? o.material : [o.material]).forEach(function (m) { m.needsUpdate = true; }); } }); }); }
+    }
   }
 
   function tick(dt) {
@@ -1844,6 +1876,7 @@ window.EK3D = (function () {
     ptr.sy += (ptr.y - ptr.sy) * Math.min(1, dt * 3.2);
     var v = pick();
     if (!v) return;
+    adapt(dt);
     if (v !== active) { active = v; if (api.onActive) api.onActive(v.name); }
     sizeTo(v);
     var rx = ptr.moved ? ptr.sx : Math.sin(clock * 0.25) * 0.5;
@@ -1923,14 +1956,14 @@ window.EK3D = (function () {
         renderer.setPixelRatio(DPR);
         renderer.setClearColor(0x000000, 0);
         renderer.shadowMap.enabled = !LOW;
-        renderer.shadowMap.type = T.PCFSoftShadowMap;
+        renderer.shadowMap.type = T.PCFShadowMap;
         canvas.addEventListener('webglcontextlost', function (e) { e.preventDefault(); api.lost = true; });
       } catch (e) { return false; }
       var hero = document.querySelector('[data-view=hero]');
       var pv = document.querySelector('[data-view=pv]');
       var sm = document.querySelector('[data-view=smart]');
       if (hero) api.views.hero = makeView(hero, 'hero', 'dark', { shadows: true, size: 15.2, fitW: 22.5, offX: 0.02, offY: 0.02, mSize: 14, mFitW: 21.5, ty: 1.4 });
-      if (pv) api.views.pv = makeView(pv, 'pv', 'light', { shadows: true, shadowSize: 2048, size: 20, fitW: 30, offX: -0.13, offY: -0.05, mSize: 13, mFitW: 21.5, mOffY: 0.07, rotAmp: 0.08, ty: 1.2 });
+      if (pv) api.views.pv = makeView(pv, 'pv', 'light', { shadows: true, shadowSize: 1024, size: 20, fitW: 30, offX: -0.13, offY: -0.05, mSize: 13, mFitW: 21.5, mOffY: 0.07, rotAmp: 0.08, ty: 1.2 });
       if (sm) api.views.smart = makeView(sm, 'smart', 'dark', { shadows: true, size: 14.6, fitW: 21.5, offY: 0.0, mFitW: 21, ty: 1.6 });
       // Shader-Aufwärmen: jede Ansicht einmal unsichtbar rendern (Canvas hängt noch nirgends).
       // Sonst kompiliert der Browser die Shader genau in dem Moment, in dem das Haus erscheint -> Ruckler.
@@ -2262,24 +2295,38 @@ window.EKFallback = (function () {
   var header = $('.site-header'), charge = $('.charge'), chargeLabel = $('.charge b');
   var toneEls = $$('[data-tone]'), navLinks = $$('.nav a'), navTargets = navLinks.map(function (a) { return doc.getElementById(a.getAttribute('data-nav')); });
   var lastP = -1, scrollTimer = 0;
-  var toneFrame = 0;
+  // Geometrie wird nur bei Resize/Refresh gemessen, nicht pro Frame (sonst erzwungenes Layout bei jedem Bild)
+  var GEO = { max: 1, hb: 0, tones: [], navs: [] }, lastTone = null, lastY = -1;
+  function docRect(el) {
+    var box = el.parentElement && el.parentElement.classList.contains('pin-spacer') ? el.parentElement : el;
+    var r = box.getBoundingClientRect(), y = window.scrollY;
+    return { top: r.top + y, bottom: r.bottom + y };
+  }
+  function measureGeo() {
+    GEO.max = Math.max(1, doc.documentElement.scrollHeight - window.innerHeight);
+    GEO.hb = header.getBoundingClientRect().bottom;
+    GEO.tones = toneEls.map(function (el) { var r = docRect(el); return { top: r.top, bottom: r.bottom, light: el.getAttribute('data-tone') === 'light' }; });
+    GEO.navs = navTargets.map(function (t) { return t ? docRect(t).top : Infinity; });
+    lastY = -1;
+  }
+  window.addEventListener('resize', function () { measureGeo(); });
   function headerTick() {
-    if ((toneFrame++ & 3) === 0) {
-      var hb = header.getBoundingClientRect().bottom;
-      for (var i = 0; i < toneEls.length; i++) {
-        var r = toneEls[i].getBoundingClientRect();
-        if (r.top <= hb && r.bottom > hb) { header.classList.toggle('is-light', toneEls[i].getAttribute('data-tone') === 'light'); break; }
-      }
+    var y = window.scrollY;
+    if (y === lastY) return;
+    lastY = y;
+    var line = y + GEO.hb;
+    for (var i = 0; i < GEO.tones.length; i++) {
+      var tn = GEO.tones[i];
+      if (tn.top <= line && tn.bottom > line) { if (lastTone !== tn.light) { header.classList.toggle('is-light', tn.light); lastTone = tn.light; } break; }
     }
-    var y = window.scrollY, max = doc.documentElement.scrollHeight - window.innerHeight;
-    var p = max > 0 ? clamp(y / max, 0, 1) : 0;
+    var p = clamp(y / GEO.max, 0, 1);
     if (Math.abs(p - lastP) > 0.0005) {
       charge.style.setProperty('--p', p.toFixed(4));
       chargeLabel.textContent = 'Ladestand ' + Math.round(p * 100) + ' %';
       if (lastP >= 0) { header.classList.add('is-scrolling'); clearTimeout(scrollTimer); scrollTimer = setTimeout(function () { header.classList.remove('is-scrolling'); }, 900); }
       lastP = p;
       var act = -1;
-      for (var j = 0; j < navTargets.length; j++) { var t = navTargets[j]; if (t && t.getBoundingClientRect().top < window.innerHeight * 0.45) act = j; }
+      for (var j = 0; j < GEO.navs.length; j++) { if (GEO.navs[j] - y < window.innerHeight * 0.45) act = j; }
       navLinks.forEach(function (a, k) { a.classList.toggle('is-active', k === act); });
     }
   }
@@ -2866,6 +2913,7 @@ window.EKFallback = (function () {
   /* ---------- Leiterbahnen durch die Seite ---------- */
   var TR = { svg: $('.traces'), ok: false };
   function layoutTraces() {
+    measureGeo();
     var svg = TR.svg, main = $('#main'); if (!svg || !main) return;
     var mr = main.getBoundingClientRect(), mt = mr.top + window.scrollY;
     var w = main.clientWidth, h = main.scrollHeight;
@@ -2888,7 +2936,8 @@ window.EKFallback = (function () {
     html += '<path class="live" d="M' + x + ' ' + y0 + ' V' + y0 + '"/><circle class="spark" r="2.6" cx="' + x + '" cy="' + y0 + '"/>';
     svg.innerHTML = html;
     void NS;
-    TR = { svg: svg, ok: true, x: x, y0: y0, yEnd: yEnd, ys: ys, mt: mt, live: svg.querySelector('.live'), spark: svg.querySelector('.spark'), stubs: $$('.stub', svg), terms: $$('.term', svg), last: -1 };
+    TR = { svg: svg, ok: true, x: x, y0: y0, yEnd: yEnd, ys: ys, mt: mt, live: svg.querySelector('.live'), spark: svg.querySelector('.spark'), stubs: $$('.stub', svg), terms: $$('.term', svg), last: -1, on: [], stubBy: [] };
+    TR.stubs.forEach(function (st) { TR.stubBy[+st.getAttribute('data-i')] = st; });
   }
   function traceTick() {
     if (!TR.ok) return;
@@ -2900,7 +2949,8 @@ window.EKFallback = (function () {
     TR.spark.style.opacity = y > TR.y0 + 2 && y < TR.yEnd - 1 ? 1 : 0;
     TR.ys.forEach(function (ny, i) {
       var on = y >= ny - 1;
-      var st = TR.stubs.filter(function (s) { return +s.getAttribute('data-i') === i; })[0];
+      if (TR.on[i] === on) return; TR.on[i] = on;
+      var st = TR.stubBy[i];
       if (st) st.classList.toggle('on', on);
       TR.terms[i].classList.toggle('on', on);
     });
