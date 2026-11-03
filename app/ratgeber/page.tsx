@@ -24,11 +24,12 @@ export default function RatgeberPage() {
         <div className="legal">
           <SectionHeading level={1} size="h1" eyebrow="Wissen" title="" highlight="Ratgeber" />
           {tidyNode(<div className="legal__stack stack" style={{ gap: 36 }}>
-            {GUIDES.map((g) => (
+            {[...GUIDES].sort((a, b) => b.date.localeCompare(a.date)).map((g) => (
               <div key={g.slug} className="legal__block">
                 <h2><Link href={guideHref(g.slug)}>{g.title}</Link></h2>
                 <span className="legal__date"><time dateTime={g.date}>{g.dateLabel}</time></span>
                 <p>{g.teaser}</p>
+                <p><Link href={guideHref(g.slug)} aria-label={`Artikel lesen: ${g.title}`}>Artikel lesen →</Link></p>
               </div>
             ))}
           </div>)}
