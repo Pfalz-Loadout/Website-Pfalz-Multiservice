@@ -8,7 +8,7 @@
 <meta name="description" content="Musterdesign: One-Page-Website für den fiktiven Elektrofachbetrieb Elektro Kaiser aus Worms – Photovoltaik, Smart Home, Wallbox.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap">
-<script>document.documentElement.lang='de'</script>
+<script>document.documentElement.lang='de';if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('intro-pending')</script>
 <style>
 /* Layout: Schaltplan-Raster – 12 Spalten auf 8px-Grundraster. Jede Sektion ist ein Stromkreis (−F1 …) an einer Sammelschiene im linken Rand. */
 :root{
@@ -189,7 +189,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .hero-meta a{text-decoration:none;display:inline-flex;gap:10px;align-items:center;color:var(--on-dark-2)}
 .hero-meta a svg{width:14px;height:14px;animation:nudge 2.4s var(--ease) infinite}
 @keyframes nudge{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
-.intro-pending #hero-h,.intro-pending .hero .reveal,.intro-pending .hero-eyebrow{visibility:hidden}
+.intro-pending .hero-copy,.intro-pending .hero-meta,.intro-pending .hero-stage .tags{visibility:hidden}
 .wire-intro{position:fixed;inset:0;z-index:65;pointer-events:none}
 .wire-intro path{fill:none;stroke:var(--volt);stroke-width:1.5;filter:drop-shadow(0 0 6px rgba(255,210,26,.9))}
 @media (max-width:899px){
@@ -2190,8 +2190,10 @@ window.EKFallback = (function () {
   var E3 = window.EK3D, has3D = false;
   if (!RM && E3 && E3.ok) has3D = E3.init();
   if (!has3D) root.classList.add('no3d');
-  // Hero-Text bleibt bis zum Intro unsichtbar (kein Aufblitzen vor dem Start); Sicherheitsnetz nach 4 s
-  if (!RM && window.gsap) { root.classList.add('intro-pending'); setTimeout(function () { root.classList.remove('intro-pending'); }, 4000); }
+  // Beim Laden sieht man nur Menü und Raster. Hero-Inhalt bleibt bis nach dem gelben Faden unsichtbar (Klasse kommt aus dem <head>);
+  // Sicherheitsnetz: ohne GSAP sofort, sonst nach 6 s freigeben.
+  if (RM || !window.gsap) root.classList.remove('intro-pending');
+  else setTimeout(function () { root.classList.remove('intro-pending'); }, 6000);
   var FB = {};
   if (!has3D && window.EKFallback) {
     $$('.gl-view').forEach(function (v) {
@@ -2346,7 +2348,6 @@ window.EKFallback = (function () {
     }
     var inners = splitLines(h1);
     var tl = G.timeline({ delay: 0.15 });
-    root.classList.remove('intro-pending');
 
     /* Schritt 1: nur der gelbe Faden. Er startet am Blitz im Logo und läuft zur Stelle, an der das Haus entsteht. */
     var wire = $('.wire-intro'), path = wire.querySelector('path');
@@ -2387,8 +2388,10 @@ window.EKFallback = (function () {
     tl.to(path, { opacity: 0, duration: 0.7, ease: 'power1.out' }, 1.75);
 
     /* Schritt 2: Haus baut sich an dieser Stelle auf, danach Text und Details */
-    tl.from(inners, { yPercent: 115, duration: 1.3, ease: 'expo.out', stagger: 0.1 }, 1.45);
-    tl.from($$('.hero .reveal, .hero-eyebrow'), { y: 22, opacity: 0, duration: 0.9, ease: 'power3.out', stagger: 0.08 }, 1.75);
+    // Text erst, wenn das Haus im Aufbau ist; Starthaltung sofort setzen, Sichtbarkeit erst dann freigeben
+    tl.from(inners, { yPercent: 115, duration: 1.3, ease: 'expo.out', stagger: 0.1 }, 3.0);
+    tl.from($$('.hero .reveal, .hero-eyebrow, .hero-meta'), { y: 22, opacity: 0, duration: 0.9, ease: 'power3.out', stagger: 0.08 }, 3.3);
+    tl.add(function () { root.classList.remove('intro-pending'); }, 2.95);
     if (has3D) {
       var I = V.hero.H.intro;
       tl.to(I, { edge: 1, duration: 1.5, ease: 'power2.inOut' }, 1.4);
