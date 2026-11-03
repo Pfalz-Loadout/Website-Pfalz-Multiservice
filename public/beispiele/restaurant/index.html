@@ -156,8 +156,12 @@ section:focus, main:focus, [tabindex="-1"]:focus{outline:none}
 
 /* ---------- Intro (Kreidetafel) ---------- */
 .intro{display:none;position:fixed;inset:0;z-index:200;place-items:center;color:var(--chalk);
-  background:radial-gradient(70% 60% at 50% 46%, #33261D 0%, #21170F 60%, #170F0A 100%);clip-path:inset(0 0 0 0)}
-.intro__inner{position:relative;width:min(86vw,560px);height:min(76vh,640px);display:grid;place-items:end center}
+  background:radial-gradient(70% 60% at 50% 46%, #33261D 0%, #21170F 60%, #170F0A 100%);will-change:transform;backface-visibility:hidden}
+.intro__arch, .intro__text{visibility:hidden}
+.intro.is-running .intro__arch, .intro.is-running .intro__text{visibility:visible}
+.intro__glow{position:absolute;left:50%;top:18%;width:min(70vw,520px);aspect-ratio:1;margin-left:calc(min(70vw,520px) / -2);border-radius:50%;pointer-events:none;
+  background:radial-gradient(closest-side, rgba(226,169,91,.16), rgba(226,169,91,.05) 55%, rgba(226,169,91,0));opacity:0;will-change:transform,opacity}
+.intro__inner{position:relative;will-change:transform;width:min(86vw,560px);height:min(76vh,640px);display:grid;place-items:end center}
 .intro__arch{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
 .intro__arch .ia{fill:none;stroke:rgba(241,235,221,.55);stroke-width:.6;stroke-linecap:round}
 .intro__arch .ia--in{stroke:rgba(241,235,221,.22)}
@@ -169,10 +173,11 @@ section:focus, main:focus, [tabindex="-1"]:focus{outline:none}
 .intro__sub{margin:0;max-width:none;font-size:.74rem;letter-spacing:.34em;text-transform:uppercase;color:rgba(241,235,221,.68)}
 .intro-on .intro{display:grid}
 .intro-on body{overflow:hidden}
+html.intro-on:not(.intro-live), .intro-on:not(.intro-live) body{background-color:#1C140F}
 .intro__skip{position:absolute;right:max(20px, env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));background:none;border:1px solid rgba(241,235,221,.3);color:var(--chalk);border-radius:999px;padding:.55rem 1rem;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;cursor:pointer}
 
 /* Vor dem Hero-Einlauf kurz verborgen (nur mit Bewegung; Sicherheitsnetz per .failsafe) */
-.motion:not(.failsafe):not(.hero-ready) .hero [data-hero]{opacity:0}
+.motion:not(.failsafe):not(.hero-ready) .hero [data-hero], .motion:not(.failsafe):not(.hero-ready) .hero [data-hero-title]{opacity:0}
 
 /* ---------- Hero ---------- */
 .hero{position:relative;padding-block:clamp(1.4rem,3.4vw,3.2rem) clamp(3rem,6vw,5.5rem);overflow:clip}
@@ -697,6 +702,7 @@ section:focus, main:focus, [tabindex="-1"]:focus{outline:none}
 
 <!-- ================= Intro: Wortmarke wie mit Kreide geschrieben ================= -->
 <div class="intro" id="intro" aria-hidden="true">
+  <div class="intro__glow"></div>
   <div class="intro__inner">
     <svg class="intro__arch" viewBox="0 0 240 300" preserveAspectRatio="xMidYMid meet" role="presentation">
       <path class="ia ia--out" d="M14 300V128A106 106 0 0 1 120 22"/>
@@ -1545,40 +1551,57 @@ section:focus, main:focus, [tabindex="-1"]:focus{outline:none}
   }
 
   /* ---------- Intro & Hero-Einlauf ---------- */
-  function heroStart() {
-    if (R.heroStarted) return; R.heroStarted = true;
-    html.classList.add('hero-ready');
-    window.dispatchEvent(new Event('rebstock:herostart'));
-    if (!hasGSAP || reduced) return;
+  /* Hero-Einlauf wird vorbereitet, solange das Intro noch davor liegt – so entsteht beim Übergang keine Rechenlast */
+  var heroTl = null;
+  function heroPrep() {
+    if (heroTl || !hasGSAP || reduced) return;
     var title = $('[data-hero-title]'), items = $$('.hero [data-hero]');
-    var tl = G.timeline({ defaults: { ease: 'expo.out' } });
-    if (SPLIT) { var sp = SPLIT.create(title, { type: 'lines', mask: 'lines', linesClass: 'ln' }); tl.from(sp.lines, { yPercent: 118, duration: 1.35, stagger: .12 }, 0); }
-    else tl.from(title, { y: 40, opacity: 0, duration: 1.2 }, 0);
-    tl.from(items, { y: 26, opacity: 0, duration: 1.1, stagger: .08, clearProps: 'transform' }, .25);
+    heroTl = G.timeline({ paused: true, defaults: { ease: 'expo.out' } });
+    if (SPLIT) { var sp = SPLIT.create(title, { type: 'lines', mask: 'lines', linesClass: 'ln' }); heroTl.from(sp.lines, { yPercent: 118, duration: 1.4, stagger: .12 }, 0); }
+    else heroTl.from(title, { y: 40, opacity: 0, duration: 1.2 }, 0);
+    heroTl.from(items, { y: 26, opacity: 0, duration: 1.2, stagger: .08, clearProps: 'transform' }, .2);
     var inner = $('.hero__media .media-inner');
     if (inner) {
-      tl.fromTo(inner, { clipPath: 'inset(100% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.7, ease: 'expo.inOut' }, .05);
-      tl.from(inner.children, { scale: 1.3, duration: 2.4, ease: 'expo.out' }, .2);
+      heroTl.fromTo(inner, { clipPath: 'inset(100% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.6, ease: 'expo.inOut' }, .05);
+      heroTl.from(inner.children, { scale: 1.25, duration: 2.4, ease: 'expo.out' }, .15);
     }
+    html.classList.add('hero-ready');
+  }
+  function heroStart() {
+    if (R.heroStarted) return; R.heroStarted = true;
+    heroPrep();
+    html.classList.add('hero-ready');
+    window.dispatchEvent(new Event('rebstock:herostart'));
+    if (heroTl) heroTl.play();
   }
   function runIntro() {
     var intro = $('#intro');
     if (!intro || !html.classList.contains('intro-on') || !hasGSAP || reduced) { html.classList.remove('intro-on'); if (lenis) lenis.start(); heroStart(); return; }
     try { sessionStorage.setItem('rebstock-intro', '1'); } catch (e) {}
-    var arcs = $$('.ia', intro), key = $('.ia-key', intro), leaf = $$('.ia-leaf path', intro), mark = $('.intro__mark', intro), rule = $('.intro__rule', intro), sub = $('.intro__sub', intro);
+    var inner = $('.intro__inner', intro), glow = $('.intro__glow', intro), arcs = $$('.ia', intro), key = $('.ia-key', intro), leaf = $$('.ia-leaf path', intro),
+      mark = $('.intro__mark', intro), rule = $('.intro__rule', intro), sub = $('.intro__sub', intro);
+    /* Alle Startzustände setzen, bevor irgendetwas sichtbar wird */
     arcs.concat(leaf).forEach(function (p) { var L = p.getTotalLength(); p.style.strokeDasharray = L; p.style.strokeDashoffset = L; });
+    var chars = SPLIT ? SPLIT.create(mark, { type: 'chars', mask: 'chars' }).chars : [mark];
+    G.set(chars, SPLIT ? { yPercent: 112 } : { opacity: 0, y: 20 });
+    G.set(key, { scale: 0, opacity: 0, svgOrigin: '120 22' });
+    G.set(rule, { scaleX: 0 }); G.set(sub, { opacity: 0, y: 10 }); G.set(glow, { opacity: 0, scale: .7 });
+    heroPrep();
+    intro.classList.add('is-running'); html.classList.add('intro-live');
     var done = false;
     function finish() { if (done) return; done = true; heroStart(); if (lenis) lenis.start(); }
     var tl = G.timeline({ onComplete: function () { html.classList.remove('intro-on'); intro.style.display = 'none'; } });
-    tl.to(arcs, { strokeDashoffset: 0, duration: 1.5, ease: 'power3.inOut', stagger: .06 }, .1)
-      .from(key, { scale: 0, opacity: 0, svgOrigin: '120 22', duration: .5, ease: 'back.out(2.5)' }, 1.35)
-      .to(leaf, { strokeDashoffset: 0, duration: 1, ease: 'power2.inOut', stagger: .1 }, .9);
-    if (SPLIT) { var sp = SPLIT.create(mark, { type: 'chars', mask: 'chars' }); tl.from(sp.chars, { yPercent: 115, duration: 1, ease: 'expo.out', stagger: .035 }, .75); }
-    else tl.from(mark, { opacity: 0, y: 20, duration: .9, ease: 'power3.out' }, .75);
-    tl.from(rule, { scaleX: 0, duration: .8, ease: 'power3.inOut' }, 1.35)
-      .from(sub, { opacity: 0, y: 8, duration: .7, ease: 'power2.out' }, 1.5)
-      .add(finish, 2.55)
-      .to(intro, { clipPath: 'inset(0% 0% 100% 0%)', duration: 1.15, ease: 'expo.inOut' }, 2.45);
+    tl.fromTo(inner, { scale: 1.04 }, { scale: 1, duration: 3.6, ease: 'power2.out' }, 0)
+      .to(glow, { opacity: 1, scale: 1, duration: 2.6, ease: 'power2.out' }, .1)
+      .to(arcs, { strokeDashoffset: 0, duration: 1.9, ease: 'power3.inOut', stagger: .09 }, .15)
+      .to(key, { scale: 1, opacity: 1, duration: .8, ease: 'back.out(1.8)' }, 1.6)
+      .to(leaf, { strokeDashoffset: 0, duration: 1.3, ease: 'power2.inOut', stagger: .14 }, 1.0)
+      .to(chars, SPLIT ? { yPercent: 0, duration: 1.3, ease: 'expo.out', stagger: .045 } : { opacity: 1, y: 0, duration: 1 }, 1.1)
+      .to(rule, { scaleX: 1, duration: 1, ease: 'power3.inOut' }, 1.75)
+      .to(sub, { opacity: 1, y: 0, duration: 1, ease: 'power2.out' }, 1.9)
+      .to([inner, glow], { yPercent: -10, opacity: 0, duration: .9, ease: 'power2.in' }, 2.85)
+      .to(intro, { yPercent: -100, duration: 1.3, ease: 'expo.inOut' }, 3.0)
+      .add(finish, 3.05);
     var skip = function () { tl.progress(1); finish(); };
     $('.intro__skip', intro).addEventListener('click', skip);
     intro.addEventListener('click', skip);
@@ -2029,7 +2052,7 @@ section:focus, main:focus, [tabindex="-1"]:focus{outline:none}
     function resize() { var w = Math.max(2, Math.round(canvas.clientWidth * scale)), h = Math.max(2, Math.round(canvas.clientHeight * scale)); canvas.width = w; canvas.height = h; gl.viewport(0, 0, w, h); gl.uniform2f(uR, w, h); }
     resize(); if ('ResizeObserver' in window) new ResizeObserver(resize).observe(canvas);
     var vis = false, raf = 0, t0 = performance.now();
-    function frame(now) { if (!vis) { raf = 0; return; } gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT); gl.uniform1f(uT, (now - t0) / 1000); gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4); raf = requestAnimationFrame(frame); }
+    function frame(now) { if (!vis) { raf = 0; return; } if (html.classList.contains('intro-on')) { raf = requestAnimationFrame(frame); return; } gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT); gl.uniform1f(uT, (now - t0) / 1000); gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4); raf = requestAnimationFrame(frame); }
     new IntersectionObserver(function (e) { vis = e[0].isIntersecting; if (vis && !raf) raf = requestAnimationFrame(frame); }).observe(canvas);
   }
 
