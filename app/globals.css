@@ -1132,7 +1132,7 @@ a .contact-row__value { color: var(--brand-accent); }
 /* Ebenen */
 .pl { position: absolute; inset: 0; border-radius: calc(var(--u) * .6); font-family: 'Inter Tight', system-ui, sans-serif; color: var(--um-ink);
   opacity: 0; transform: translateZ(calc(var(--z) * var(--gap) + var(--gap) * 2.6));
-  transition: transform 1s var(--lay-ease), opacity .4s var(--ease-out), border-color .4s; backface-visibility: hidden;
+  transition: transform 1s var(--lay-ease), opacity .4s var(--ease-out), border-color .4s; backface-visibility: hidden; transform-style: preserve-3d;
   border: 1px solid rgba(255,255,255,.35); }
 .pl > div, .pl > em { position: absolute; }
 .lay-stage.s1 .pl--grid, .lay-stage.s2 .pl--wire, .lay-stage.s3 .pl--brand, .lay-stage.s4 .pl--text {
@@ -1306,6 +1306,9 @@ a .contact-row__value { color: var(--brand-accent); }
   font: 400 calc(var(--u) * 1.6)/1 'Lay Mono', ui-monospace, monospace; letter-spacing: .02em; color: var(--text-subtle); transition: color .4s, border-color .4s; }
 .lay-stage[data-step="1"] .pl--grid .pl-chip small, .lay-stage[data-step="2"] .pl--wire .pl-chip small, .lay-stage[data-step="3"] .pl--brand .pl-chip small, .lay-stage[data-step="4"] .pl--text .pl-chip small {
   color: rgba(0,0,0,.62); border-color: rgba(0,0,0,.25); }
+/* Beschriftungen stehen als Fähnchen aufrecht im Raum: Drehung des Stapels wird aufgehoben, so bleiben sie lesbar */
+.pl-chip { transform-origin: 0 100%; transform: rotateZ(calc(var(--rz) * -1)) rotateX(calc(var(--rx) * -1)) translateZ(1px); }
+.pl-dim b { transform: rotateZ(calc(var(--rz) * -1)) rotateX(calc(var(--rx) * -1)); }
 /* Schnittmarken an allen vier Ecken (ein Element, acht Verläufe) */
 .pl-marks { position: absolute; inset: calc(var(--u) * -1.4); pointer-events: none; --mk: rgba(255,255,255,.5); --ml: calc(var(--u) * 2.4);
   background:
@@ -1318,7 +1321,7 @@ a .contact-row__value { color: var(--brand-accent); }
 .pl-glow { position: absolute; inset: -1px; border-radius: inherit; pointer-events: none; opacity: 0;
   border: 1px solid var(--brand-accent); box-shadow: 0 0 0 1px rgba(221,187,77,.35), 0 0 2.6cqw rgba(221,187,77,.3), inset 0 0 1.6cqw rgba(221,187,77,.12); }
 /* Maßlinie unter dem Raster */
-.pl-dim { position: absolute; left: 8.33%; right: 8.33%; top: calc(100% + var(--u) * 2.2); height: 1px; background: var(--brand-accent); transform-origin: 50% 50%; }
+.pl-dim { position: absolute; left: 8.33%; right: 8.33%; top: calc(100% + var(--u) * 2.2); height: 1px; background: var(--brand-accent); transform-origin: 50% 50%; transform-style: preserve-3d; }
 .pl-dim::before, .pl-dim::after { content: ""; position: absolute; top: calc(var(--u) * -.8); width: 1px; height: calc(var(--u) * 1.6); background: var(--brand-accent); }
 .pl-dim::before { left: 0; } .pl-dim::after { right: 0; }
 .pl-dim b { position: absolute; left: 50%; top: 0; translate: -50% -50%; padding: calc(var(--u) * .3) calc(var(--u) * .9); border-radius: 99px; background: #111;
