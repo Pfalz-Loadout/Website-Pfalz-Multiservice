@@ -44,8 +44,6 @@ export function LayerBuild() {
       // Stapel dreht sich beim Scrollen langsam weiter
       gsap.fromTo(scene, { "--rz": -38 }, { "--rz": -26, ease: "none",
         scrollTrigger: { trigger: root.querySelector(".lay-steps"), start: "top 70%", end: "bottom 40%", scrub: 0.8 } });
-      gsap.to(root.querySelector(".lay-rail__fill"), { scaleY: 1, ease: "none",
-        scrollTrigger: { trigger: root.querySelector(".lay-steps"), start: "top 60%", end: "bottom 60%", scrub: 0.4 } });
     });
     mm.add(`${MOTION_OK} and (pointer: fine)`, () => {
       // Leichte Neigung zur Maus
@@ -125,7 +123,6 @@ export function LayerBuild() {
           </div>
 
           <ol className="lay-steps">
-            <span className="lay-rail" aria-hidden="true"><span className="lay-rail__fill" /></span>
             {STEPS.map((s, i) => (
               <li key={s.tag} className={`lay-step ${i + 1 === step ? "is-on" : ""} ${i + 1 < step ? "is-done" : ""}`}>
                 <span className="lay-step__n">{nn(i + 1)} · {s.tag}</span>
