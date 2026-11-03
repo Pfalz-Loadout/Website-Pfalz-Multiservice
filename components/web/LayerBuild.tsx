@@ -28,27 +28,25 @@ const v = (o: Record<string, string | number>) => o as CSSProperties;
 
 const LINKS: [string, number][] = [["Start", 3.1], ["Leistungen", 5.7], ["Projekte", 4.5], ["Ablauf", 3.7], ["Über uns", 4.6], ["Kontakt", 4.3]];
 
-/** „Schicht für Schicht“: vier Ebenen schweben in 3D übereinander und klappen am Ende zur fertigen Website (Musterdesign Umraum) zusammen */
+/** „Schicht für Schicht“: Titel und Bühne bleiben stehen, beim Scrollen wechseln die Schritte; vier Ebenen in 3D klappen am Ende zur fertigen Website (Musterdesign Umraum) zusammen */
 export function LayerBuild() {
   const ref = useRef<HTMLElement>(null);
   const [step, setStep] = useState(1);
 
   useGSAP(() => {
     const root = ref.current!;
+    const tilt = root.querySelector<HTMLElement>(".l3-tilt")!;
     const scene = root.querySelector<HTMLElement>(".l3-scene")!;
-    gsap.utils.toArray<HTMLElement>(".lay-step", root).forEach((el, i) => {
-      ScrollTrigger.create({ trigger: el, start: "top 60%", end: "bottom 60%", onToggle: (s) => { if (s.isActive) setStep(i + 1); } });
+    // Ein einziger Trigger über die ganze Strecke: Schritt aus dem Fortschritt (auch bei schnellem Scrollen stabil)
+    const st = ScrollTrigger.create({
+      trigger: root.querySelector(".lay-track"), start: "top top", end: "bottom bottom",
+      onUpdate: (self) => setStep(Math.min(N, Math.floor(self.progress * N) + 1)),
     });
     const mm = gsap.matchMedia();
-    mm.add(MOTION_OK, () => {
-      // Stapel dreht sich beim Scrollen langsam weiter
-      gsap.fromTo(scene, { "--rz": -38 }, { "--rz": -26, ease: "none",
-        scrollTrigger: { trigger: root.querySelector(".lay-steps"), start: "top 70%", end: "bottom 40%", scrub: 0.8 } });
-    });
     mm.add(`${MOTION_OK} and (pointer: fine)`, () => {
-      // Leichte Neigung zur Maus
-      const rx = gsap.quickTo(scene, "--mx", { duration: 0.8, ease: "power3.out" });
-      const ry = gsap.quickTo(scene, "--my", { duration: 0.8, ease: "power3.out" });
+      // Leichte Neigung zur Maus, direkt auf dem Transform (kein Neuberechnen der ganzen Szene)
+      const rx = gsap.quickTo(tilt, "rotationY", { duration: 0.8, ease: "power3.out" });
+      const ry = gsap.quickTo(tilt, "rotationX", { duration: 0.8, ease: "power3.out" });
       const move = (e: PointerEvent) => {
         const r = scene.getBoundingClientRect();
         rx(((e.clientX - r.left) / r.width - 0.5) * 8);
@@ -59,21 +57,44 @@ export function LayerBuild() {
       scene.addEventListener("pointerleave", leave);
       return () => { scene.removeEventListener("pointermove", move); scene.removeEventListener("pointerleave", leave); };
     });
-    return () => mm.revert();
+    return () => { st.kill(); mm.revert(); };
   }, { scope: ref });
 
   const cls = Array.from({ length: step }, (_, i) => `s${i + 1}`).join(" ");
 
   return (
-    <section ref={ref} className="section lay" id="schicht-fuer-schicht" aria-labelledby="lay-title">
-      <div className="lay__glow" aria-hidden="true" />
-      <div className="container">
-        <SectionHeading eyebrow="Schicht für Schicht" title="So entsteht Ihre" highlight="neue Website"
-          intro="Geplant wie ein Haus: erst das Fundament, dann die Räume, dann die Einrichtung." />
-        <h3 className="sr-only" id="lay-title">Die fünf Schichten einer Website</h3>
+    <section ref={ref} className="lay" id="schicht-fuer-schicht" aria-labelledby="lay-title" style={v({ "--steps": N })}>
+      <div className="lay-track">
+        <div className="lay-pin">
+          <div className="lay__glow" aria-hidden="true" />
+          <div className="container lay-grid">
+            <div className="lay-left">
+              <div className="lay-head">
+                <SectionHeading eyebrow="Schicht für Schicht" title="So entsteht Ihre" highlight="neue Website"
+                  intro="Geplant wie ein Haus: erst das Fundament, dann die Räume, dann die Einrichtung." />
+              </div>
+              <h3 className="sr-only" id="lay-title">Die fünf Schichten einer Website</h3>
+              <ol className="lay-steps">
+                {STEPS.map((s, i) => (
+                  <li key={s.tag} className={`lay-step ${i + 1 === step ? "is-on" : ""} ${i + 1 < step ? "is-done" : ""}`} aria-current={i + 1 === step ? "step" : undefined}>
+                    <span className="lay-step__n">{nn(i + 1)} / {nn(N)} · {s.tag}</span>
+                    <h4 className="lay-step__title">{tidy(s.title)}</h4>
+                    <p className="lay-step__text">{tidy(s.text)}</p>
+                    {i === N - 1 && (
+                      <div className="lay-step__actions">
+                        <a className="btn" href={LIVE} target="_blank" rel="noopener" data-cursor tabIndex={i + 1 === step ? 0 : -1}>
+                          <span className="btn__fill" aria-hidden="true" />
+                          <span className="btn__label">Umraum live ansehen <Icon name="external-link" size={16} className="btn__icon btn__icon--right" /></span>
+                        </a>
+                        <a className="lay-step__more" href="#beispiele" data-cursor tabIndex={i + 1 === step ? 0 : -1}>Alle Beispiele <Icon name="arrow-right" size={14} /></a>
+                        <small className="lay-step__note">Umraum ist ein fiktiver Betrieb, ein Musterdesign von Pfalz Multiservice.</small>
+                      </div>
+                    )}
+                  </li>
+                ))}
+              </ol>
+            </div>
 
-        <div className="lay-body">
-          <div className="lay-stage-wrap">
             <div className={`lay-stage ${cls}`} data-step={step} aria-hidden="true">
               <div className="lay-hud">
                 <span key={step} className="lay-hud__n">{nn(step)} / {nn(N)}</span>
@@ -97,9 +118,15 @@ export function LayerBuild() {
                 </div>
 
                 <div className="lay-card lay-swatch">
-                  {[["#2F4A3E", "Tannengrün"], ["#23262A", "Anthrazit"], ["#DCD8CF", "Kalkstein"], ["#F7F6F2", "Papier"]].map(([c, n], i) => (
-                    <span key={c} style={v({ "--c": c, "--i": i })}><i />{n}</span>
-                  ))}
+                  <span className="lay-swatch__title">Farbpalette</span>
+                  <div className="lay-swatch__row">
+                    {[["#2F4A3E", "Tannengrün"], ["#23262A", "Anthrazit"], ["#DCD8CF", "Kalkstein"], ["#F7F6F2", "Papier"]].map(([c, n], i) => (
+                      <span key={c} className="sw" style={v({ "--c": c, "--i": i })}>
+                        <span className="sw__slot"><i className="sw__chip" /><b className="sw__tick"><Icon name="check" size={9} /></b></span>
+                        <small>{n}</small>
+                      </span>
+                    ))}
+                  </div>
                 </div>
                 <div className="lay-card lay-type">
                   <span className="lay-type__aa">Aa</span>
@@ -121,26 +148,6 @@ export function LayerBuild() {
               </div>
             </div>
           </div>
-
-          <ol className="lay-steps">
-            {STEPS.map((s, i) => (
-              <li key={s.tag} className={`lay-step ${i + 1 === step ? "is-on" : ""} ${i + 1 < step ? "is-done" : ""}`}>
-                <span className="lay-step__n">{nn(i + 1)} · {s.tag}</span>
-                <h4 className="lay-step__title">{tidy(s.title)}</h4>
-                <p className="lay-step__text">{tidy(s.text)}</p>
-                {i === N - 1 && (
-                  <div className="lay-step__actions">
-                    <a className="btn" href={LIVE} target="_blank" rel="noopener" data-cursor>
-                      <span className="btn__fill" aria-hidden="true" />
-                      <span className="btn__label">Umraum live ansehen <Icon name="external-link" size={16} className="btn__icon btn__icon--right" /></span>
-                    </a>
-                    <a className="lay-step__more" href="#beispiele" data-cursor>Alle Beispiele <Icon name="arrow-right" size={14} /></a>
-                    <small className="lay-step__note">Umraum ist ein fiktiver Betrieb, ein Musterdesign von Pfalz Multiservice.</small>
-                  </div>
-                )}
-              </li>
-            ))}
-          </ol>
         </div>
       </div>
     </section>
