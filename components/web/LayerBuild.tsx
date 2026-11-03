@@ -8,7 +8,6 @@ import { tidy } from "@/lib/typo";
 import { SectionHeading } from "../SectionHeading";
 import { Icon } from "../Icon";
 
-const LIVE = "/beispiele/beratungsbuero";
 
 const STEPS: { tag: string; stage: string; title: string; text: string }[] = [
   { tag: "Struktur", stage: "Raster", title: "Erst das Raster, dann das Design.",
@@ -82,10 +81,6 @@ export function LayerBuild() {
                     <p className="lay-step__text">{tidy(s.text)}</p>
                     {i === N - 1 && (
                       <div className="lay-step__actions">
-                        <a className="btn" href={LIVE} target="_blank" rel="noopener" data-cursor tabIndex={i + 1 === step ? 0 : -1}>
-                          <span className="btn__fill" aria-hidden="true" />
-                          <span className="btn__label">Umraum live ansehen <Icon name="external-link" size={16} className="btn__icon btn__icon--right" /></span>
-                        </a>
                         <a className="lay-step__more" href="#beispiele" data-cursor tabIndex={i + 1 === step ? 0 : -1}>Alle Beispiele <Icon name="arrow-right" size={14} /></a>
                         <small className="lay-step__note">Umraum ist ein fiktiver Betrieb, ein Musterdesign von Pfalz Multiservice.</small>
                       </div>
