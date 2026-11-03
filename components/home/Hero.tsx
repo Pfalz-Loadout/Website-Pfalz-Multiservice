@@ -5,6 +5,7 @@ import { CONTACT, IMG } from "@/lib/data";
 import { BgImage } from "../BgImage";
 import { SectionHeading } from "../SectionHeading";
 import { Button } from "../Button";
+import { OfferTicket } from "./OfferTicket";
 
 export function Hero() {
   const ref = useRef<HTMLElement>(null);
@@ -80,6 +81,7 @@ export function Hero() {
             <Button variant="outline-light" size="lg" iconLeft="message-circle" href={CONTACT.whatsapp}>Per WhatsApp schreiben</Button>
           </div>
         </div>
+        <OfferTicket />
       </div>
       <a href="#leistungen" className="hero__scroll pm-intro" aria-label="Zu den Leistungen scrollen">
         <span className="hero__scroll-track"><span className="hero__scroll-dot" /></span>

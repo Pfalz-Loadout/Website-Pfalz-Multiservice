@@ -1315,3 +1315,158 @@ a .contact-row__value { color: var(--brand-accent); }
 @media (prefers-reduced-motion: reduce) {
   .lay *, .lay *::before, .lay *::after { transition-duration: .01ms !important; transition-delay: 0s !important; animation: none !important; }
 }
+
+/* ---------- Aktions-Ticket im Hero (Paket Start −50 %) ----------
+   Ablauf: Ein einteilig wirkendes Ticket zeigt „199 €" → der linke Abschnitt mit der „1"
+   spannt sich und reißt von oben ab wie die Lasche einer Verpackung → „99 €" wird gold,
+   ein „50 % Rabatt"-Stempel knallt mit Lichtausbruch auf → das Ticket schwebt weiter und
+   schimmert wie eine Hologrammkarte.
+   Vor dem Riss ist keine Naht sichtbar: gleiche Papierfarbe, durchgehender Rand, eine
+   Unterlage deckt die Kante; Lichtrand und Hologramm starten erst nach dem Riss.
+   Grundzustand ist das Endbild (ohne Abschnitt), animiert wird nur unter html.pm-motion.
+   Nur transform/opacity (plus einmal color/filter), kein JS, kein Bild. */
+.tk { --tk-d: 2.5s; --tk-fs: 54px; --tk-strip: 96px; --tk-pad: 6px; --tk-paper: #201a0e; --tk-edge: rgba(221,187,77,.5);
+  position: relative; display: block; width: min(100%, 430px); margin-top: 36px; color: #fff; text-decoration: none;
+  translate: 0 0; transition: translate var(--dur-base) var(--ease-out); }
+@media (min-width: 1280px) {
+  .tk { position: absolute; right: var(--gutter); top: calc(100% - 70px); margin: 0; rotate: -7deg; }
+}
+.tk__card { position: relative; display: block; }
+/* Schlagschatten als Verlauf (kein filter, damit nichts pro Frame neu gerechnet wird) */
+.tk__card::before { content: ""; position: absolute; z-index: -1; inset: 18px -18px -30px -10px; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(closest-side, rgba(0,0,0,.85), rgba(0,0,0,.45) 55%, #0000); }
+.tk__under { position: absolute; z-index: -1; top: 1px; bottom: 1px; left: calc(-1 * var(--tk-strip) + 1px); right: 1px; background: var(--tk-paper); display: none; }
+.tk__frame { position: relative; display: block; padding: 1px 1px 1px 0; overflow: hidden; isolation: isolate; border-radius: 0 6px 6px 0; background: var(--tk-edge); }
+.tk__ring { position: absolute; z-index: -1; left: 50%; top: 50%; width: 200%; aspect-ratio: 1; translate: -50% -50%;
+  background: conic-gradient(from 0deg, #0000 0 62%, rgba(221,187,77,.6) 76%, #FFF6D6 88%, var(--pm-gold-500) 93%, #0000 100%); }
+.tk__body { position: relative; display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: center; overflow: hidden;
+  border-radius: 0 5px 5px 0; background: var(--tk-paper); }
+.tk__main { display: flex; flex-direction: column; justify-content: center; gap: 6px; min-width: 0; white-space: nowrap; padding: 18px 6px 18px calc(var(--tk-pad) + 6px); }
+.tk__eyebrow { display: inline-flex; align-items: center; gap: 8px; font: 600 11px/1 var(--font-display); letter-spacing: .18em; text-transform: uppercase; color: var(--brand-accent); }
+.tk__dot { position: relative; width: 6px; height: 6px; border-radius: 50%; background: var(--brand-accent); }
+.tk__dot::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: var(--brand-accent); opacity: 0; }
+.tk__title { font: 700 18px/1.2 var(--font-display); letter-spacing: -.01em; text-transform: uppercase; color: #fff; }
+.tk__price { display: flex; align-items: baseline; gap: 10px; margin: 2px 0; font: 800 var(--tk-fs)/1 var(--font-display); letter-spacing: -.03em; }
+.tk__new { font: inherit; color: var(--brand-accent); }
+.tk__unit { font: 400 14px/1 var(--font-body); letter-spacing: 0; color: var(--text-subtle); }
+.tk__was { font: 500 13px/1.3 var(--font-body); color: var(--text-subtle); }
+.tk__was s { color: var(--text-body); text-decoration-color: var(--brand-accent); text-decoration-thickness: 1.5px; }
+/* Rabatt-Stempel: Goldfeld, das nach dem Riss aufknallt */
+.tk__badge { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 3px; margin-right: 22px; padding: 12px 14px 10px; overflow: hidden;
+  border-radius: 8px; color: #000; rotate: 8deg; background: linear-gradient(145deg, var(--pm-gold-300) 0%, var(--pm-gold-500) 45%, var(--pm-gold-700) 100%);
+  box-shadow: 0 10px 22px -8px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.55); }
+.tk__badge b { display: flex; align-items: flex-start; font: 800 36px/1 var(--font-display); letter-spacing: -.04em; }
+.tk__badge b small { margin: 3px 0 0 2px; font-size: .5em; letter-spacing: 0; }
+.tk__badge > span:not([class]) { font: 700 11px/1 var(--font-display); letter-spacing: .22em; text-transform: uppercase; margin-right: -.22em; }
+.tk__flash { position: absolute; inset: 0; z-index: 2; background: radial-gradient(circle, #fff 0, rgba(255,250,230,.8) 45%, rgba(255,240,200,0) 80%); opacity: 0; }
+.tk__sparks i { position: absolute; bottom: 8px; width: 3px; height: 3px; border-radius: 50%; background: #fff; opacity: 0; }
+.tk__sparks i:nth-child(1) { left: 20%; } .tk__sparks i:nth-child(2) { left: 50%; } .tk__sparks i:nth-child(3) { left: 78%; }
+.tk__go { position: absolute; right: 12px; bottom: 10px; z-index: 2; display: grid; color: var(--brand-accent); }
+.tk__go svg { transition: transform var(--dur-base) var(--ease-out); }
+/* Hologramm: Regenbogen-Verlauf mit feinen Linien, wird nur verschoben, nie neu gemalt */
+.tk__holo { position: absolute; z-index: 3; top: 0; bottom: 0; left: -100%; width: 300%; pointer-events: none; mix-blend-mode: screen; opacity: .3;
+  background:
+    repeating-linear-gradient(115deg, rgba(255,255,255,.06) 0 1px, #0000 1px 5px),
+    linear-gradient(115deg, #0000 26%, rgba(255,46,147,.5) 36%, rgba(255,214,90,.5) 43%, rgba(0,229,255,.5) 50%, rgba(157,77,255,.5) 57%, #0000 67%); }
+.tk__sheen { position: absolute; z-index: 4; inset: 0; pointer-events: none; transform: translateX(-110%);
+  background: linear-gradient(105deg, #0000 35%, rgba(255,240,200,.16) 48%, rgba(255,255,255,.3) 50%, rgba(255,240,200,.16) 52%, #0000 65%); }
+/* Linker Abschnitt: greift mit seiner Zackenkante unsichtbar in das Ticket */
+.tk__strip { position: absolute; top: 0; bottom: 0; left: calc(-1 * var(--tk-strip)); width: calc(var(--tk-strip) + 6px); display: flex; overflow: hidden; visibility: hidden;
+  border: 1px solid var(--tk-edge); border-right: 0; border-radius: 6px 0 0 6px; background: var(--tk-paper); transform-origin: 100% 100%; }
+.tk__code { position: absolute; left: 14px; top: 16px; bottom: 16px; width: 14px; opacity: .6;
+  background: repeating-linear-gradient(180deg, var(--brand-accent) 0 2px, #0000 2px 4px, var(--brand-accent) 4px 5px, #0000 5px 8px, var(--brand-accent) 8px 11px, #0000 11px 13px); }
+.tk__serial { position: absolute; left: 33px; top: 50%; writing-mode: vertical-rl; transform: translateY(-50%) rotate(180deg);
+  font: 600 9px/1 var(--font-display); letter-spacing: .24em; text-transform: uppercase; color: rgba(221,187,77,.6); }
+.tk__main--strip { flex: 1; align-items: flex-end; padding: 18px 6px 18px 0; }
+.tk__main--strip .tk__eyebrow, .tk__main--strip .tk__title, .tk__main--strip .tk__was { visibility: hidden; }
+.tk__one { color: #fff; }
+.tk__rip { position: absolute; top: 0; bottom: 0; left: -2px; width: 10px; pointer-events: none; opacity: 0;
+  background: linear-gradient(#fff, var(--pm-gold-300) 50%, #fff); box-shadow: 0 0 18px 6px rgba(255,225,150,.7); border-radius: 4px; }
+.tk__burst { position: absolute; z-index: 5; top: 50%; right: calc(var(--tk-badge-c, 66px) - 130px); width: 260px; height: 260px; margin-top: -130px; border-radius: 50%; pointer-events: none; opacity: 0; mix-blend-mode: screen;
+  background: radial-gradient(circle, rgba(255,250,228,1) 0, rgba(239,217,148,.75) 22%, rgba(221,187,77,.28) 45%, #0000 68%); }
+.tk:focus-visible { outline-offset: 4px; }
+@media (hover: hover) and (pointer: fine) {
+  .tk:hover { translate: 0 -4px; }
+  .tk:hover .tk__go svg { transform: translateX(4px); }
+}
+
+/* --- Animation (Zeiten relativ zu --tk-d, dem Ende des Hero-Intros) --- */
+html.pm-motion .tk { animation: tk-in 1s cubic-bezier(.16,1,.3,1) var(--tk-d) both; }
+html.pm-motion .tk__under { display: block; animation: tk-hide 0s calc(var(--tk-d) + 1s) both; }
+html.pm-motion .tk__strip { visibility: visible; animation: tk-tear 1.6s linear calc(var(--tk-d) + 1s) both; }
+html.pm-motion .tk__frame { animation: tk-tug .5s ease-in-out calc(var(--tk-d) + 1.1s); }
+html.pm-motion .tk__rip { animation: tk-ripflash .7s ease-out calc(var(--tk-d) + 1.62s) both; }
+html.pm-motion .tk__card { animation: tk-jolt .8s cubic-bezier(.3,1.6,.5,1) calc(var(--tk-d) + 1.65s) both, tk-float 8s ease-in-out calc(var(--tk-d) + 3s) infinite; }
+html.pm-motion .tk__new { animation: tk-gold .45s ease calc(var(--tk-d) + 2s) both, tk-pricepop .6s cubic-bezier(.34,1.56,.64,1) calc(var(--tk-d) + 2s); }
+html.pm-motion .tk__badge { animation: tk-stamp .7s cubic-bezier(.2,.9,.3,1.2) calc(var(--tk-d) + 2.05s) both, tk-bright 1s ease-out calc(var(--tk-d) + 2.4s); }
+html.pm-motion .tk__flash { animation: tk-flash 1s ease-out calc(var(--tk-d) + 2.4s) both; }
+html.pm-motion .tk__burst { animation: tk-burst 1.2s cubic-bezier(.2,.7,.3,1) calc(var(--tk-d) + 2.4s) both; }
+html.pm-motion .tk__body .tk__was, html.pm-motion .tk__go { animation: tk-fade .6s ease calc(var(--tk-d) + 2.5s) both; }
+html.pm-motion .tk__ring { animation: tk-show .8s ease calc(var(--tk-d) + 2.6s) both, tk-spin 5.5s linear calc(var(--tk-d) + 2.6s) infinite; }
+html.pm-motion .tk__holo { animation: tk-holo-in 1s ease calc(var(--tk-d) + 2.6s) both, tk-holo 8s ease-in-out calc(var(--tk-d) + 3s) infinite; }
+html.pm-motion .tk__sheen { animation: tk-sheen 6s cubic-bezier(.45,0,.2,1) calc(var(--tk-d) + 3.8s) infinite; }
+html.pm-motion .tk__dot::after { animation: tk-ping 2s cubic-bezier(0,0,.2,1) var(--tk-d) infinite; }
+html.pm-motion .tk__sparks i { animation: tk-spark 2.6s ease-out calc(var(--tk-d) + 2.6s) infinite; }
+html.pm-motion .tk__sparks i:nth-child(2) { animation-delay: calc(var(--tk-d) + 3.4s); }
+html.pm-motion .tk__sparks i:nth-child(3) { animation-delay: calc(var(--tk-d) + 3s); }
+/* Unter 1280 px steht das Ticket im Fluss: Platz für den Abschnitt, nach dem Riss rückt es nach */
+@media (max-width: 1279px) {
+  html.pm-motion .tk { margin-left: var(--tk-strip); width: min(100% - var(--tk-strip), 430px); }
+  html.pm-motion .tk__card { animation: tk-jolt .8s cubic-bezier(.3,1.6,.5,1) calc(var(--tk-d) + 1.65s) both, tk-settle .7s cubic-bezier(.34,1.3,.64,1) calc(var(--tk-d) + 2.1s) both, tk-float 8s ease-in-out calc(var(--tk-d) + 3s) infinite; }
+}
+
+@keyframes tk-in { from { opacity: 0; transform: translateY(26px) scale(.96); } to { opacity: 1; transform: none; } }
+@keyframes tk-hide { to { opacity: 0; } }
+@keyframes tk-show { from { opacity: 0; } to { opacity: 1; } }
+/* Abschnitt: zittert unter Spannung, reißt von oben her ab, fällt weg */
+@keyframes tk-tear {
+  0% { transform: none; opacity: 1; }
+  10% { transform: translate(-1px, 0) rotate(-1.5deg); }
+  16% { transform: translate(0, 0) rotate(.8deg); }
+  22% { transform: translate(-2px, 0) rotate(-2.5deg); }
+  28% { transform: translate(0, 0) rotate(-.8deg); }
+  34% { transform: translate(-3px, -1px) rotate(-4deg); animation-timing-function: cubic-bezier(.2,.8,.3,1); }
+  42% { transform: translate(-14px, -10px) rotate(-22deg); animation-timing-function: ease-out; }
+  50% { transform: translate(-24px, -12px) rotate(-30deg); opacity: 1; animation-timing-function: cubic-bezier(.55,0,.9,.45); }
+  100% { transform: translate(-90px, 380px) rotate(-100deg); opacity: 0; }
+}
+@keyframes tk-tug { 0%, 100% { translate: 0 0; } 25% { translate: -2px 0; } 50% { translate: 1px 0; } 75% { translate: -3px 0; } }
+@keyframes tk-ripflash { 0% { opacity: 0; transform: scaleY(.2); } 15% { opacity: 1; transform: scaleY(1); } 100% { opacity: 0; transform: scaleY(1); } }
+@keyframes tk-jolt { 0% { rotate: 0deg; } 25% { rotate: 3deg; } 55% { rotate: -1.4deg; } 80% { rotate: .5deg; } 100% { rotate: 0deg; } }
+@keyframes tk-settle { from { translate: 0 0; } to { translate: calc(-1 * var(--tk-strip)) 0; } }
+/* Stempel: fliegt groß ein und schlägt auf */
+@keyframes tk-stamp {
+  0% { opacity: 0; transform: scale(2.8) rotate(-14deg); }
+  50% { opacity: 1; transform: scale(.88) rotate(3deg); }
+  72% { transform: scale(1.08) rotate(-1deg); }
+  100% { opacity: 1; transform: none; }
+}
+/* Schweben: leichtes 3D-Kippen, Hologramm läuft synchron mit */
+@keyframes tk-float {
+  0%, 100% { transform: none; }
+  25% { transform: perspective(900px) rotateY(-10deg) rotateX(4deg) translateY(-4px); }
+  75% { transform: perspective(900px) rotateY(10deg) rotateX(-3deg) translateY(-7px); }
+}
+@keyframes tk-holo { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-24%); } 75% { transform: translateX(24%); } }
+@keyframes tk-holo-in { from { opacity: 0; } to { opacity: .6; } }
+@keyframes tk-bright { 0%, 100% { filter: none; } 15% { filter: brightness(1.8) saturate(1.3); } }
+@keyframes tk-flash { 0% { opacity: 0; } 12% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes tk-burst { 0% { opacity: 0; transform: scale(.2); } 15% { opacity: 1; } 100% { opacity: 0; transform: scale(2.4); } }
+@keyframes tk-gold { from { color: #fff; } to { color: var(--brand-accent); } }
+@keyframes tk-pricepop { 40% { transform: scale(1.12); } }
+@keyframes tk-fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@keyframes tk-spin { to { transform: rotate(1turn); } }
+@keyframes tk-sheen { 0% { transform: translateX(-110%); } 22%, 100% { transform: translateX(110%); } }
+@keyframes tk-ping { 0% { opacity: .7; transform: scale(1); } 75%, 100% { opacity: 0; transform: scale(3); } }
+@keyframes tk-spark { 0% { opacity: 0; transform: translateY(0) scale(.6); } 25% { opacity: .95; } 100% { opacity: 0; transform: translateY(-40px) scale(1.2); } }
+
+@media (max-width: 900px) { .tk { --tk-d: 1.6s; } }
+@media (max-width: 480px) {
+  .tk { --tk-fs: 42px; --tk-strip: 72px; --tk-pad: 3px; --tk-badge-c: 50px; }
+  .tk__main { padding-top: 14px; padding-bottom: 14px; gap: 5px; }
+  .tk__main--strip { padding-top: 14px; padding-bottom: 14px; padding-right: 6px; }
+  .tk__code { left: 10px; width: 11px; } .tk__serial { left: 25px; font-size: 8px; }
+  .tk__title { font-size: 15px; } .tk__eyebrow { font-size: 10px; letter-spacing: .14em; } .tk__was { font-size: 12px; }
+  .tk__unit, .tk__b2b { display: none; }
+  .tk__badge { margin-right: 14px; padding: 9px 10px 8px; } .tk__badge b { font-size: 27px; } .tk__badge > span:not([class]) { font-size: 9px; }
+}
