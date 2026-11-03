@@ -64,6 +64,9 @@ export function LayerBuild() {
       const ring = root.querySelector<HTMLElement>(".lay-cursor__ring")!;
       const px = (f: number) => () => W() * f;
       const py = (f: number) => () => H() * f;
+      // Grundhaltung des Stapels: auf Tablet und Handy flacher, weniger gedreht und kleiner, damit nichts über den Text ragt
+      const mob = () => window.matchMedia("(max-width: 1080px)").matches;
+      const pose = () => (mob() ? { ty: "1%", rx: 36, rz: [-24, -21, -18, -16], s: 0.8 } : { ty: "4%", rx: 52, rz: [-38, -34, -30, -27], s: 0.92 });
 
       // Während des Scrollens als eigene GPU-Ebene, danach frei → Chrome rastert die Ebenen wieder gestochen scharf
       let idle = 0;
@@ -83,7 +86,8 @@ export function LayerBuild() {
           .fromTo(ring, { scale: 0.3, opacity: 0.9 }, { scale: 1.8, opacity: 0, duration: 0.35, ease: "power2.out", immediateRender: false }, at + 0.04);
       };
 
-      gsap.set(stack, { "--tx": "0%", "--ty": "4%", "--ry": "0deg", "--rx": "52deg", "--rz": "-38deg", "--s": 0.92 });
+      const p0 = pose();
+      gsap.set(stack, { "--tx": "0%", "--ty": p0.ty, "--ry": "0deg", "--rx": `${p0.rx}deg`, "--rz": `${p0.rz[0]}deg`, "--s": p0.s });
       tl.fromTo(root.querySelector(".lay-hud__bar i"), { scaleX: 0 }, { scaleX: 1, duration: 5, ease: "none" }, 0);
 
       // 1–4: Ebenen fallen nacheinander auf den Stapel, die aktive leuchtet
@@ -94,8 +98,8 @@ export function LayerBuild() {
         if (i < 3) tl.to(glows[i], { opacity: 0, duration: 0.3, ease: "none" }, i + 1.05);
         if (i > 0) tl.fromTo(q(`.l3-pin[data-z="${i}"] i`), { scaleY: 0 }, { scaleY: 1, duration: 0.35, stagger: 0.04, immediateRender: true }, i + 0.55);
       });
-      ([[1, -38, -34], [2, -34, -30], [3, -30, -27]] as const).forEach(([at, from, to]) =>
-        tl.fromTo(stack, { "--rz": `${from}deg` }, { "--rz": `${to}deg`, duration: 0.9, ease: "power2.inOut", immediateRender: false }, at));
+      [1, 2, 3].forEach((at) =>
+        tl.fromTo(stack, { "--rz": () => `${pose().rz[at - 1]}deg` }, { "--rz": () => `${pose().rz[at]}deg`, duration: 0.9, ease: "power2.inOut", immediateRender: false }, at));
 
       // Raster: Spalten wachsen, Maßlinie spannt sich auf; ab Schritt 3 tritt es zurück
       tl.fromTo(q(".pl-cols i"), { scaleY: 0 }, { scaleY: 1, duration: 0.5, stagger: 0.025, immediateRender: true }, 0.25)
@@ -112,7 +116,7 @@ export function LayerBuild() {
       tl.to(q(".l3-pin, .pl-chip, .pl-dim, .pl-marks"), { opacity: 0, duration: 0.2, ease: "none" }, 4)
         .to(glows[3], { opacity: 0, duration: 0.2, ease: "none" }, 4)
         .fromTo(q(".l3-floor, .l3-ground"), { opacity: 1 }, { opacity: 0, duration: 0.4, ease: "none" }, 4)
-        .fromTo(stack, { "--tx": "0%", "--ty": "4%", "--ry": "0deg", "--rx": "52deg", "--rz": "-27deg", "--s": 0.92 },
+        .fromTo(stack, { "--tx": "0%", "--ty": () => pose().ty, "--ry": "0deg", "--rx": () => `${pose().rx}deg`, "--rz": () => `${pose().rz[3]}deg`, "--s": () => pose().s },
           { "--tx": "-5%", "--ty": "-1%", "--ry": "14deg", "--rx": "4deg", "--rz": "0deg", "--s": 0.94, duration: 1, ease: "power3.inOut", immediateRender: false }, 4)
         .fromTo(q(".l3-bezel, .l3-base, .l3-cam"), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "none" }, 4.45)
         .fromTo(q(".pl--final"), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "none" }, 4.55)
