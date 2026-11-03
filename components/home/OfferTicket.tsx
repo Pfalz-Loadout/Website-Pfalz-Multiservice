@@ -32,8 +32,8 @@ export function OfferTicket() {
   );
 
   return (
-    <Link href="/webdesign#pakete" className="tk"
-      aria-label={`Aktion: Website-Paket ${p.name} für ${p.price} statt ${p.regular}, 50 Prozent Rabatt. Zu den Paketen`}>
+    <Link href="/webdesign" className="tk"
+      aria-label={`Aktion: Website-Paket ${p.name} für ${p.price} statt ${p.regular}, 50 Prozent Rabatt. Zur Webdesign-Seite`}>
       <span className="tk__card" aria-hidden="true">
         <span className="tk__under" />
         <span className="tk__strip" style={{ clipPath: STRIP_CLIP }}>
