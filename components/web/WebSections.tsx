@@ -285,7 +285,7 @@ export function WebFaqCheck() {
         </aside>
       </div>
       <div className="container" style={{ marginTop: 40 }}>
-        <BriefingStrip title="Noch keine Website oder lieber neu starten?" />
+        <BriefingStrip title="Noch keine Website? Oder sollen WIR alles neu gestalten?" text="Dann ist das Website-Briefing der richtige Einstieg: in 15 bis 20 Minuten ausfüllen, Logo und Fotos hochladen, danach erhalten Sie ein unverbindliches Festpreis-Angebot." />
       </div>
     </section>
   );
