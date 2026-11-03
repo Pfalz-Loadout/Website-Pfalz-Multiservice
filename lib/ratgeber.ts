@@ -17,8 +17,8 @@ export const GUIDES: Guide[] = [
     slug: "website-neu-oder-ueberarbeiten",
     title: "Website neu bauen oder überarbeiten: Woran Sie erkennen, was Ihr Betrieb braucht",
     teaser: "Fünf Minuten genügen, um einzuschätzen, ob eine Auffrischung reicht oder ein Neustart sinnvoller ist.",
-    date: "2026-11-03",
-    dateLabel: "3. November 2026",
+    date: "2026-10-27",
+    dateLabel: "27. Oktober 2026",
     sections: [
       {
         h: "Kurz gesagt",
@@ -66,8 +66,8 @@ export const GUIDES: Guide[] = [
     slug: "website-wartung-was-gehoert-dazu",
     title: "Website-Wartung: Was dazugehört und was nicht",
     teaser: "Worauf es bei einer Betreuung nach dem Livegang ankommt und welche Fragen Sie vor dem Vertrag stellen sollten.",
-    date: "2026-11-03",
-    dateLabel: "3. November 2026",
+    date: "2026-10-06",
+    dateLabel: "6. Oktober 2026",
     sections: [
       {
         h: "Warum eine Website Pflege braucht",
@@ -110,8 +110,8 @@ export const GUIDES: Guide[] = [
     slug: "domain-hosting-zugangsdaten",
     title: "Domain, Hosting, Zugangsdaten: Was Ihnen nach dem Livegang gehören sollte",
     teaser: "Eine kurze Checkliste, damit Sie von Ihrem Webdesigner nicht abhängig werden.",
-    date: "2026-11-03",
-    dateLabel: "3. November 2026",
+    date: "2026-09-08",
+    dateLabel: "8. September 2026",
     sections: [
       {
         h: "Domain und Hosting auseinanderhalten",
@@ -145,6 +145,174 @@ export const GUIDES: Guide[] = [
     faq: [
       ["Muss ich mich selbst um Domain und Hosting kümmern?", "Nein. Auf Wunsch begleiten wir Sie durch Domain, Hosting und E-Mail-Postfach. Der Vertrag läuft trotzdem auf Ihren Namen."],
       ["Kann ich meinen Anbieter später wechseln?", "Ja. Weil Domain, Zugänge und Dateien Ihnen gehören, können Sie jederzeit wechseln oder die Seite von jemand anderem betreuen lassen."],
+    ],
+  },
+  {
+    slug: "html-wordpress-node-unterschiede",
+    title: "HTML, WordPress oder Node.js: Die drei Wege zur eigenen Website im Überblick",
+    teaser: "Was hinter den drei Techniken steckt, wo ihre Stärken liegen und wie Sie die passende für Ihren Betrieb finden.",
+    date: "2026-06-16",
+    dateLabel: "16. Juni 2026",
+    sections: [
+      {
+        h: "Kurz gesagt",
+        p: ["Es gibt nicht die beste Technik, sondern die passende. Entscheidend ist, wie oft Sie Inhalte selbst ändern möchten und ob Ihre Website mehr können soll als Texte und Bilder zeigen."],
+      },
+      {
+        h: "HTML: fertige Seiten ohne Datenbank",
+        p: ["Eine HTML-Website besteht aus fertigen Seiten, die der Server unverändert ausliefert. Es gibt keine Datenbank und kein Redaktionssystem. Das macht sie sehr schnell, wartungsarm und schwer angreifbar. Änderungen nimmt in der Regel der Ersteller vor."],
+      },
+      {
+        h: "WordPress: Redaktionssystem mit Datenbank",
+        p: ["WordPress ist ein Redaktionssystem. Inhalte lassen sich im Browser selbst bearbeiten, und Erweiterungen, sogenannte Plugins, liefern zusätzliche Funktionen. Dafür braucht es laufende Updates für das System, das Design und alle Erweiterungen."],
+      },
+      {
+        h: "Node.js: Technik für individuelle Funktionen",
+        p: ["Node.js führt JavaScript auf dem Server aus. Darauf bauen moderne Frameworks Websites, die mehr können: Rechner, Filter, Formulare mit Prüfung, Animationen oder die Anbindung anderer Systeme. Das ist flexibel, aber aufwendiger in Entwicklung und Pflege."],
+      },
+      {
+        h: "So entscheiden Sie",
+        l: [
+          "Wie oft ändern Sie Inhalte selbst? Häufig spricht für ein Redaktionssystem, selten für HTML.",
+          "Soll die Seite mehr können als informieren? Dann kommt Node.js infrage.",
+          "Wer kümmert sich um die Technik? Je mehr Technik, desto mehr Pflege.",
+          "Wie wichtig sind Ladezeit und Sicherheit? Hier punkten schlanke Lösungen.",
+        ],
+      },
+      {
+        h: "Bei uns",
+        p: ["Wir bauen Websites ohne Baukasten als schlanke HTML-Seite oder mit Node.js, wenn interaktive Funktionen gefragt sind. WordPress bauen wir nicht. Wenn für Ihr Vorhaben ein Redaktionssystem die bessere Wahl wäre, sagen wir Ihnen das ehrlich."],
+      },
+    ],
+    faq: [
+      ["Kann ich später die Technik wechseln?", "Ja, Inhalte und Design lassen sich übernehmen. Je nach Ausgangslage ist dafür ein Neuaufbau nötig."],
+      ["Welche Technik ist am günstigsten im Betrieb?", "Meist die schlankeste: Eine HTML-Website braucht kaum Pflege und läuft auf einfachem Hosting."],
+    ],
+  },
+  {
+    slug: "html-website-vorteile-grenzen",
+    title: "HTML-Website: schnell, sicher, wartungsarm – und wo die Grenzen liegen",
+    teaser: "Für wen sich eine Website aus fertigen Seiten lohnt und wann eine andere Technik besser passt.",
+    date: "2026-07-07",
+    dateLabel: "7. Juli 2026",
+    sections: [
+      {
+        h: "Was eine HTML-Website ist",
+        p: ["HTML ist die Grundsprache jeder Website. Bei einer HTML-Website liegen die fertigen Seiten als Dateien auf dem Server und werden unverändert an den Besucher ausgeliefert. Es gibt keine Datenbank, die erst Inhalte zusammensetzen muss."],
+      },
+      {
+        h: "Das spricht für HTML",
+        l: [
+          "Kurze Ladezeiten, weil nichts berechnet werden muss.",
+          "Wenig Angriffsfläche, weil es kein Redaktionssystem und keine Erweiterungen gibt, die sich einschleichen können.",
+          "Günstiges Hosting: Ein einfacher Webspace genügt.",
+          "Kaum Pflege: Es gibt keine Updates, die nachgezogen werden müssen.",
+          "Volle Gestaltungsfreiheit, ohne Vorlage von der Stange.",
+        ],
+      },
+      {
+        h: "Hier stößt HTML an Grenzen",
+        l: [
+          "Sie ändern Inhalte nicht selbst per Eingabemaske, sondern über den Ersteller.",
+          "Für Online-Shops mit Warenkorb, Mitgliederbereiche oder Konten ist HTML allein nicht gedacht.",
+          "Sehr viele Seiten mit ständig wechselnden Inhalten sind mit einem Redaktionssystem bequemer.",
+        ],
+      },
+      {
+        h: "Für wen sich HTML lohnt",
+        p: ["Für Betriebe mit einer klaren Leistungsübersicht, Kontakt und Anfahrt, deren Inhalte sich nur gelegentlich ändern: Handwerk, Beratung, Gastronomie oder Dienstleistung. Gelegentliche Änderungen lassen sich mit einer Betreuung zuverlässig erledigen."],
+      },
+    ],
+    faq: [
+      ["Ist HTML veraltet?", "Nein. HTML ist die Grundlage jeder Website. Moderne HTML-Seiten sind schnell, sauber und für Smartphones gemacht."],
+      ["Kann eine HTML-Website später wachsen?", "Ja. Weitere Seiten, ein Kontaktformular oder Terminbuchung lassen sich ergänzen. Für größere Funktionen wechseln wir bei Bedarf auf Node.js."],
+    ],
+  },
+  {
+    slug: "wordpress-vorteile-und-pflegeaufwand",
+    title: "WordPress im Überblick: Vorteile, Pflegeaufwand und für wen es passt",
+    teaser: "Ein ehrlicher Blick auf das bekannteste Redaktionssystem, auch wenn wir selbst nicht damit bauen.",
+    date: "2026-07-28",
+    dateLabel: "28. Juli 2026",
+    sections: [
+      {
+        h: "Was WordPress ist",
+        p: ["WordPress ist ein Redaktionssystem, auf Englisch Content-Management-System. Texte, Bilder und Seiten pflegen Sie in einer Eingabemaske im Browser. Das Aussehen bestimmt ein Design, zusätzliche Funktionen kommen über Erweiterungen, die Plugins heißen."],
+      },
+      {
+        h: "Das spricht für WordPress",
+        l: [
+          "Sie ändern Inhalte selbst, ohne Programmierkenntnisse.",
+          "Es ist weit verbreitet, deshalb gibt es viele Dienstleister und Anleitungen.",
+          "Blog, Seiten und viele Zusatzfunktionen lassen sich mit Erweiterungen ergänzen.",
+          "Bei vielen Seiten und häufigen Änderungen ist es bequem.",
+        ],
+      },
+      {
+        h: "Das sollten Sie bedenken",
+        l: [
+          "Das System, das Design und jede Erweiterung brauchen laufend Updates. Werden sie vergessen, entstehen Sicherheitslücken.",
+          "Erweiterungen stammen oft von Drittanbietern. Manche sind kostenpflichtig oder werden nicht mehr gepflegt.",
+          "Viele Erweiterungen und ein überladenes Design können die Ladezeit verschlechtern.",
+          "Datenschutz: Manche Erweiterungen laden Inhalte von fremden Servern nach. Das muss man prüfen.",
+        ],
+      },
+      {
+        h: "Für wen WordPress passt",
+        p: ["Für Betriebe, die ihre Inhalte häufig selbst ändern möchten, einen Blog betreiben oder viele Seiten pflegen. Wer wenig ändert und Wert auf Tempo und Ruhe legt, ist mit einer schlanken Lösung oft besser bedient."],
+      },
+      {
+        h: "Unsere Haltung",
+        p: ["Wir bauen keine WordPress-Websites, sondern HTML- oder Node.js-Seiten ohne Baukasten. Eine bestehende WordPress-Seite schauen wir uns im Einzelfall an und sagen Ihnen ehrlich, ob und wie wir sie betreuen können."],
+      },
+    ],
+    faq: [
+      ["Ist WordPress unsicher?", "Nicht von Haus aus. Das Risiko entsteht meist durch veraltete Versionen und nicht gepflegte Erweiterungen. Regelmäßige Wartung ist deshalb wichtig."],
+      ["Muss ich WordPress selbst pflegen?", "Sie können Inhalte selbst ändern. Die technischen Updates übernimmt idealerweise jemand, der sich damit auskennt, zum Beispiel im Rahmen einer Wartung."],
+    ],
+  },
+  {
+    slug: "node-js-website-wann-sinnvoll",
+    title: "Node.js-Website: Wann sich eine individuelle Lösung lohnt",
+    teaser: "Was Node.js bei einer Website leistet, welchen Aufwand es bedeutet und für welche Vorhaben es sich eignet.",
+    date: "2026-08-18",
+    dateLabel: "18. August 2026",
+    sections: [
+      {
+        h: "Was Node.js ist",
+        p: ["Node.js ist eine Laufzeitumgebung, die JavaScript auf dem Server ausführt. Frameworks wie Next.js bauen darauf moderne Websites. Seiten lassen sich vorab erzeugen und dadurch schnell ausliefern, und bei Bedarf läuft zusätzliche Logik im Hintergrund."],
+      },
+      {
+        h: "Das spricht für Node.js",
+        l: [
+          "Interaktive Funktionen wie Rechner, Filter, Konfiguratoren oder Formulare mit Prüfung.",
+          "Animationen und besondere Effekte, die über Standardlösungen hinausgehen.",
+          "Anbindung anderer Systeme, zum Beispiel eines Terminkalenders oder einer Warenwirtschaft.",
+          "Eigene, ungebundene Gestaltung ohne Baukasten.",
+          "Kontaktformulare, die ohne Drittanbieter direkt in Ihr Postfach senden.",
+        ],
+      },
+      {
+        h: "Das bedeutet es an Aufwand",
+        l: [
+          "Mehr Entwicklungsaufwand als bei einer einfachen HTML-Seite.",
+          "Das Hosting muss die Technik unterstützen. Welches passt, hängt von den Funktionen ab.",
+          "Änderungen laufen in der Regel über den Entwickler, am besten im Rahmen einer Wartung.",
+          "Die verwendeten Bausteine müssen aktuell gehalten werden.",
+        ],
+      },
+      {
+        h: "Wann sich Node.js lohnt",
+        p: ["Wenn Ihre Website mehr leisten soll als informieren, zum Beispiel Besucher durch einen Ablauf führen, Angebote berechnen oder Daten verarbeiten. Für eine reine Visitenkarte ist es nicht nötig und eine HTML-Seite meist die schlankere Lösung."],
+      },
+      {
+        h: "Bei uns",
+        p: ["Wir setzen Node.js ein, wenn interaktive Funktionen gefragt sind, und sonst auf schlankes HTML. Das klären wir im Gespräch, bevor Sie ein Angebot erhalten. Domain und Zugangsdaten gehören immer Ihnen."],
+      },
+    ],
+    faq: [
+      ["Ist Node.js für kleine Betriebe zu aufwendig?", "Nicht, wenn Sie die Funktionen wirklich brauchen. Für eine einfache Visitenkarte empfehlen wir stattdessen HTML."],
+      ["Kann ich später von HTML auf Node.js wechseln?", "Ja. Design und Inhalte lassen sich übernehmen, die Funktionen kommen schrittweise dazu."],
     ],
   },
 ];
