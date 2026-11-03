@@ -106,7 +106,7 @@ export function LayerBuild() {
                 <div className="l3-floor" />
                 <div className="l3-tilt">
                   <div className="l3-stack">
-                    <div className="l3-bezel" /><div className="l3-base" />
+                    <div className="l3-bezel" /><i className="l3-cam" /><div className="l3-base"><i className="l3-notch" /></div>
                     <GridPlane />
                     <WirePlane />
                     <BrandPlane />
@@ -115,6 +115,7 @@ export function LayerBuild() {
                       <Image src="/images/beispiele/beratungsbuero-start.png" alt="" fill sizes="(max-width: 1080px) 92vw, 640px" />
                     </div>
                   </div>
+                  <Phone />
                 </div>
 
                 <div className="lay-card lay-swatch">
@@ -133,9 +134,6 @@ export function LayerBuild() {
                   <span><b>Inter Tight</b><small>IBM Plex Mono</small></span>
                 </div>
 
-                <div className="lay-phone">
-                  <div className="lay-phone__screen"><Image src="/images/beispiele/beratungsbuero-mobile.png" alt="" fill sizes="160px" /></div>
-                </div>
                 <div className="lay-toast">
                   <span className="lay-toast__icon"><Icon name="mail" size={14} /></span>
                   <span><b>Neue Anfrage</b><small>Erstgespräch · gerade eben</small></span>
@@ -151,6 +149,25 @@ export function LayerBuild() {
         </div>
       </div>
     </section>
+  );
+}
+
+/** Smartphone im Stil eines aktuellen iPhones: Titanrahmen, Tasten, Dynamic Island, Statusleiste, Spiegelung */
+function Phone() {
+  return (
+    <div className="lay-phone">
+      <i className="ph-btn ph-btn--a" /><i className="ph-btn ph-btn--b" /><i className="ph-btn ph-btn--c" /><i className="ph-btn ph-btn--p" />
+      <div className="lay-phone__screen">
+        <div className="ph-status">
+          <span className="ph-time">9:41</span>
+          <span className="ph-icons"><i className="ph-sig"><b /><b /><b /><b /></i><i className="ph-bat" /></span>
+        </div>
+        <i className="ph-island" />
+        <div className="ph-view"><Image src="/images/beispiele/beratungsbuero-mobile.png" alt="" fill sizes="170px" /></div>
+        <i className="ph-home" />
+        <i className="ph-glare" />
+      </div>
+    </div>
   );
 }
 
