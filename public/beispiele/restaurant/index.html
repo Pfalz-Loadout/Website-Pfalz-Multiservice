@@ -156,13 +156,19 @@ section:focus, main:focus, [tabindex="-1"]:focus{outline:none}
 
 /* ---------- Intro (Kreidetafel) ---------- */
 .intro{display:none;position:fixed;inset:0;z-index:200;place-items:center;color:var(--chalk);
-  background:radial-gradient(120% 90% at 50% 40%, #2C231C 0%, #1C1511 70%, #140F0B 100%);clip-path:inset(0 0 0 0)}
+  background:radial-gradient(70% 60% at 50% 46%, #33261D 0%, #21170F 60%, #170F0A 100%);clip-path:inset(0 0 0 0)}
+.intro__inner{position:relative;width:min(86vw,560px);height:min(76vh,640px);display:grid;place-items:end center}
+.intro__arch{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.intro__arch .ia{fill:none;stroke:rgba(241,235,221,.55);stroke-width:.6;stroke-linecap:round}
+.intro__arch .ia--in{stroke:rgba(241,235,221,.22)}
+.intro__arch .ia-key{fill:#1D140E;stroke:rgba(241,235,221,.6);stroke-width:.6}
+.intro__arch .ia-leaf path{fill:none;stroke:var(--amber);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.intro__text{position:relative;text-align:center;padding-bottom:16%;display:grid;justify-items:center;gap:1.1rem}
+.intro__mark{margin:0;max-width:none;font-family:var(--f-display);font-style:italic;font-weight:380;font-size:clamp(2.3rem,8.4vw,5.6rem);line-height:1;letter-spacing:-.035em;color:var(--chalk);font-variation-settings:"SOFT" 100,"WONK" 1;white-space:nowrap}
+.intro__rule{display:block;width:72px;height:1px;background:var(--amber)}
+.intro__sub{margin:0;max-width:none;font-size:.74rem;letter-spacing:.34em;text-transform:uppercase;color:rgba(241,235,221,.68)}
 .intro-on .intro{display:grid}
 .intro-on body{overflow:hidden}
-.intro::before{content:"";position:absolute;inset:0;opacity:.35;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='c'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.012 .04' numOctaves='3' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .96 0 0 0 0 .9 0 0 0 .16 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23c)'/%3E%3C/svg%3E")}
-.intro__inner{position:relative;width:min(88vw,980px);text-align:center}
-.intro svg{width:100%;height:auto;overflow:visible}
-.intro__sub{margin-top:.6rem;font-size:.78rem;letter-spacing:.32em;text-transform:uppercase;color:rgba(241,235,221,.7)}
 .intro__skip{position:absolute;right:max(20px, env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));background:none;border:1px solid rgba(241,235,221,.3);color:var(--chalk);border-radius:999px;padding:.55rem 1rem;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;cursor:pointer}
 
 /* Vor dem Hero-Einlauf kurz verborgen (nur mit Bewegung; Sicherheitsnetz per .failsafe) */
@@ -692,26 +698,22 @@ section:focus, main:focus, [tabindex="-1"]:focus{outline:none}
 <!-- ================= Intro: Wortmarke wie mit Kreide geschrieben ================= -->
 <div class="intro" id="intro" aria-hidden="true">
   <div class="intro__inner">
-    <svg viewBox="0 0 1000 240" role="presentation">
-      <defs>
-        <filter id="chalk" x="-5%" y="-20%" width="110%" height="140%">
-          <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="7" result="n"/>
-          <feDisplacementMap in="SourceGraphic" in2="n" scale="3.2" xChannelSelector="R" yChannelSelector="G" result="d"/>
-          <feTurbulence type="fractalNoise" baseFrequency="1.6" numOctaves="1" seed="2" result="n2"/>
-          <feColorMatrix in="n2" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 -2 1.8" result="holes"/>
-          <feComposite in="d" in2="holes" operator="in"/>
-        </filter>
-        <clipPath id="introClip"><rect x="0" y="0" width="1000" height="240"/></clipPath>
-      </defs>
-      <g filter="url(#chalk)" clip-path="url(#introClip)">
-        <text class="intro__stroke" x="500" y="168" text-anchor="middle" fill="none" stroke="#F1EBDD" stroke-width="1.6" stroke-dasharray="1100" stroke-dashoffset="1100"
-          style="font-family:var(--f-display);font-style:italic;font-weight:420;font-size:156px;letter-spacing:-3px;font-variation-settings:'SOFT' 100,'WONK' 1">Zum Rebstock</text>
-        <text class="intro__fill" x="500" y="168" text-anchor="middle" fill="#F1EBDD" opacity="0"
-          style="font-family:var(--f-display);font-style:italic;font-weight:420;font-size:156px;letter-spacing:-3px;font-variation-settings:'SOFT' 100,'WONK' 1">Zum Rebstock</text>
-        <path class="intro__flourish" d="M290 206C380 196 470 214 560 202S700 192 720 200" fill="none" stroke="#E2A95B" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="460" stroke-dashoffset="460"/>
+    <svg class="intro__arch" viewBox="0 0 240 300" preserveAspectRatio="xMidYMid meet" role="presentation">
+      <path class="ia ia--out" d="M14 300V128A106 106 0 0 1 120 22"/>
+      <path class="ia ia--out" d="M226 300V128A106 106 0 0 0 120 22"/>
+      <path class="ia ia--in" d="M26 300V128A94 94 0 0 1 120 34"/>
+      <path class="ia ia--in" d="M214 300V128A94 94 0 0 0 120 34"/>
+      <rect class="ia-key" x="114" y="16" width="12" height="12" transform="rotate(45 120 22)"/>
+      <g class="ia-leaf" transform="translate(96 62) scale(.4)">
+        <path d="M52 84C44 90 32 92 24 88C28 80 32 72 38 64C28 60 16 52 12 40C24 40 36 38 44 34C44 24 50 14 60 8C70 14 76 24 76 34C84 38 96 40 108 40C104 52 92 60 82 64C88 72 92 80 96 88C88 92 76 90 68 84C64 86 56 86 52 84Z"/>
+        <path d="M60 86V22M60 62L24 46M60 62L96 46M60 74L32 84M60 74L88 84M60 86C60 96 58 104 55 112"/>
       </g>
     </svg>
-    <p class="intro__sub">Gasthaus · Deidesheim · Pfalz</p>
+    <div class="intro__text">
+      <p class="intro__mark">Zum Rebstock</p>
+      <span class="intro__rule"></span>
+      <p class="intro__sub">Gasthaus · Deidesheim · seit 1891</p>
+    </div>
   </div>
   <button class="intro__skip" type="button" tabindex="-1">Überspringen</button>
 </div>
@@ -1563,19 +1565,20 @@ section:focus, main:focus, [tabindex="-1"]:focus{outline:none}
     var intro = $('#intro');
     if (!intro || !html.classList.contains('intro-on') || !hasGSAP || reduced) { html.classList.remove('intro-on'); if (lenis) lenis.start(); heroStart(); return; }
     try { sessionStorage.setItem('rebstock-intro', '1'); } catch (e) {}
-    var rect = $('#introClip rect'), stroke = $('.intro__stroke', intro), fill = $('.intro__fill', intro), flo = $('.intro__flourish', intro), sub = $('.intro__sub', intro);
-    G.set(rect, { attr: { width: 0 } });
+    var arcs = $$('.ia', intro), key = $('.ia-key', intro), leaf = $$('.ia-leaf path', intro), mark = $('.intro__mark', intro), rule = $('.intro__rule', intro), sub = $('.intro__sub', intro);
+    arcs.concat(leaf).forEach(function (p) { var L = p.getTotalLength(); p.style.strokeDasharray = L; p.style.strokeDashoffset = L; });
     var done = false;
     function finish() { if (done) return; done = true; heroStart(); if (lenis) lenis.start(); }
     var tl = G.timeline({ onComplete: function () { html.classList.remove('intro-on'); intro.style.display = 'none'; } });
-    tl.to(rect, { attr: { width: 1000 }, duration: 1.7, ease: 'power1.inOut' }, .15)
-      .to(stroke, { strokeDashoffset: 0, duration: 1.9, ease: 'power2.inOut' }, .15)
-      .to(fill, { opacity: 1, duration: .8, ease: 'power2.out' }, 1.25)
-      .to(stroke, { opacity: 0, duration: .6 }, 1.7)
-      .to(flo, { strokeDashoffset: 0, duration: .7, ease: 'power2.out' }, 1.45)
-      .from(sub, { opacity: 0, y: 10, duration: .7, ease: 'power2.out' }, 1.6)
-      .add(finish, 2.45)
-      .to(intro, { clipPath: 'inset(0% 0% 100% 0%)', duration: 1.15, ease: 'expo.inOut' }, 2.35);
+    tl.to(arcs, { strokeDashoffset: 0, duration: 1.5, ease: 'power3.inOut', stagger: .06 }, .1)
+      .from(key, { scale: 0, opacity: 0, svgOrigin: '120 22', duration: .5, ease: 'back.out(2.5)' }, 1.35)
+      .to(leaf, { strokeDashoffset: 0, duration: 1, ease: 'power2.inOut', stagger: .1 }, .9);
+    if (SPLIT) { var sp = SPLIT.create(mark, { type: 'chars', mask: 'chars' }); tl.from(sp.chars, { yPercent: 115, duration: 1, ease: 'expo.out', stagger: .035 }, .75); }
+    else tl.from(mark, { opacity: 0, y: 20, duration: .9, ease: 'power3.out' }, .75);
+    tl.from(rule, { scaleX: 0, duration: .8, ease: 'power3.inOut' }, 1.35)
+      .from(sub, { opacity: 0, y: 8, duration: .7, ease: 'power2.out' }, 1.5)
+      .add(finish, 2.55)
+      .to(intro, { clipPath: 'inset(0% 0% 100% 0%)', duration: 1.15, ease: 'expo.inOut' }, 2.45);
     var skip = function () { tl.progress(1); finish(); };
     $('.intro__skip', intro).addEventListener('click', skip);
     intro.addEventListener('click', skip);
