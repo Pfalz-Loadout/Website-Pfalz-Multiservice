@@ -64,7 +64,10 @@
   color-scheme: light;
 }
 
-*,*::before,*::after{box-sizing:border-box}
+*,*::before,*::after{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:focus:not(:focus-visible){outline:none}
+.panel:focus, .wine-stage:focus{outline:none}
+a, button, [role="tab"]{touch-action:manipulation}
 [hidden]{display:none !important}
 html{background:var(--bg);-webkit-text-size-adjust:100%;scroll-padding-top:calc(var(--header-h) + 12px)}
 html.lenis, html.lenis body{height:auto}
@@ -1604,7 +1607,6 @@ html.intro-on:not(.intro-live), .intro-on:not(.intro-live) body{background-color
       .add(finish, 3.05);
     var skip = function () { tl.progress(1); finish(); };
     $('.intro__skip', intro).addEventListener('click', skip);
-    intro.addEventListener('click', skip);
     window.addEventListener('keydown', function k(e) { if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') { skip(); window.removeEventListener('keydown', k); } });
   }
 
@@ -1932,13 +1934,24 @@ html.intro-on:not(.intro-live), .intro-on:not(.intro-live) body{background-color
       });
       host.addEventListener('pointerleave', function () { G.to(card, { rotateY: 0, rotateX: 0, duration: 1.1, ease: 'elastic.out(1,.5)' }); });
     }
-    var hint = $('#wine-hint'); if (!fine && hint) hint.textContent = 'Zum Einschenken antippen';
+    var hint = $('#wine-hint'); if (!fine && hint) hint.hidden = true;
     var pouring = false;
     function pour(on) { pouring = on; stage.classList.toggle('is-pouring', on); stage.setAttribute('aria-pressed', String(on)); if (GlassAPI) GlassAPI.pour(on); }
     stage.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') pour(true); });
     stage.addEventListener('pointerleave', function (e) { if (e.pointerType === 'mouse') pour(false); });
-    stage.addEventListener('click', function (e) { if (e.pointerType === 'mouse' && fine) return; pour(!pouring); });
-    stage.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pour(!pouring); } });
+    if (fine) {
+      stage.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pour(!pouring); } });
+    } else {
+      /* Touch: keine Steuerung – das Glas schenkt einmal von selbst ein, sobald es ins Bild kommt */
+      stage.removeAttribute('role'); stage.removeAttribute('tabindex'); stage.removeAttribute('aria-pressed'); stage.removeAttribute('aria-label'); stage.style.cursor = 'default';
+      if ('IntersectionObserver' in window) {
+        var poured = false, io = new IntersectionObserver(function (es) {
+          if (poured || !es[0].isIntersecting) return; poured = true; io.disconnect();
+          setTimeout(function () { pour(true); setTimeout(function () { pour(false); }, 2600); }, 500);
+        }, { threshold: .6 });
+        io.observe(stage);
+      }
+    }
   }
 
   /* ---------- Weinglas als Vektorzeichnung, das einschenkt ---------- */
