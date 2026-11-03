@@ -27,21 +27,113 @@ const v = (o: Record<string, string | number>) => o as CSSProperties;
 
 const LINKS: [string, number][] = [["Start", 3.1], ["Leistungen", 5.7], ["Projekte", 4.5], ["Ablauf", 3.7], ["Über uns", 4.6], ["Kontakt", 4.3]];
 
-/** „Schicht für Schicht“: Titel und Bühne bleiben stehen, beim Scrollen wechseln die Schritte; vier Ebenen in 3D klappen am Ende zur fertigen Website (Musterdesign Umraum) zusammen */
+/** Ebenen mit Tiefenlinien zur darunterliegenden Ebene (Raster hat keine) */
+const PIN_CORNERS: [string, string][] = [["0%", "0%"], ["100%", "0%"], ["0%", "100%"], ["100%", "100%"]];
+
+/**
+ * „Schicht für Schicht“: Titel und Bühne bleiben stehen, beim Scrollen wechseln die Schritte; vier Ebenen in 3D klappen
+ * am Ende zur fertigen Website (Musterdesign Umraum) zusammen. Die Choreografie läuft als eine einzige, an den Scroll
+ * gekoppelte GSAP-Zeitleiste (weich in beide Richtungen); ohne Bewegung greifen die CSS-Zustände je Schritt.
+ */
 export function LayerBuild() {
   const ref = useRef<HTMLElement>(null);
   const [step, setStep] = useState(1);
 
   useGSAP(() => {
     const root = ref.current!;
+    const track = root.querySelector<HTMLElement>(".lay-track")!;
     const tilt = root.querySelector<HTMLElement>(".l3-tilt")!;
     const scene = root.querySelector<HTMLElement>(".l3-scene")!;
+    const stack = root.querySelector<HTMLElement>(".l3-stack")!;
     // Ein einziger Trigger über die ganze Strecke: Schritt aus dem Fortschritt (auch bei schnellem Scrollen stabil)
     const st = ScrollTrigger.create({
-      trigger: root.querySelector(".lay-track"), start: "top top", end: "bottom bottom",
+      trigger: track, start: "top top", end: "bottom bottom",
       onUpdate: (self) => setStep(Math.min(N, Math.floor(self.progress * N) + 1)),
     });
     const mm = gsap.matchMedia();
+
+    mm.add(MOTION_OK, () => {
+      root.classList.add("lay--gsap");
+      const q = (s: string) => Array.from(root.querySelectorAll<HTMLElement>(s));
+      const W = () => scene.offsetWidth;
+      const H = () => scene.offsetHeight;
+      const G = () => W() * 0.054; // Ebenenabstand = --gap (5.4cqw)
+      const planes = [".pl--grid", ".pl--wire", ".pl--brand", ".pl--text"].map((s) => root.querySelector<HTMLElement>(s)!);
+      const glows = planes.map((p) => p.querySelector<HTMLElement>(".pl-glow")!);
+      const cursor = root.querySelector<HTMLElement>(".lay-cursor")!;
+      const ring = root.querySelector<HTMLElement>(".lay-cursor__ring")!;
+      const px = (f: number) => () => W() * f;
+      const py = (f: number) => () => H() * f;
+
+      // Während des Scrollens als eigene GPU-Ebene, danach frei → Chrome rastert die Ebenen wieder gestochen scharf
+      let idle = 0;
+      const moving = () => {
+        stack.classList.add("is-moving");
+        window.clearTimeout(idle);
+        idle = window.setTimeout(() => stack.classList.remove("is-moving"), 220);
+      };
+
+      const tl = gsap.timeline({
+        defaults: { ease: "power3.out", duration: 0.6 },
+        scrollTrigger: { trigger: track, start: "top top", end: "bottom bottom", scrub: 0.8, invalidateOnRefresh: true, onUpdate: moving },
+      });
+      const click = (at: number) => {
+        tl.to(cursor, { scale: 0.86, duration: 0.06, ease: "power2.in" }, at)
+          .to(cursor, { scale: 1, duration: 0.14, ease: "back.out(3)" }, at + 0.06)
+          .fromTo(ring, { scale: 0.3, opacity: 0.9 }, { scale: 1.8, opacity: 0, duration: 0.35, ease: "power2.out", immediateRender: false }, at + 0.04);
+      };
+
+      gsap.set(stack, { "--tx": "0%", "--ty": "4%", "--ry": "0deg", "--rx": "52deg", "--rz": "-38deg", "--s": 0.92 });
+      tl.fromTo(root.querySelector(".lay-hud__bar i"), { scaleX: 0 }, { scaleX: 1, duration: 5, ease: "none" }, 0);
+
+      // 1–4: Ebenen fallen nacheinander auf den Stapel, die aktive leuchtet
+      planes.forEach((p, i) => {
+        tl.fromTo(p, { z: () => (i + 2.6) * G() }, { z: () => i * G(), duration: 0.75, immediateRender: true }, i + 0.05)
+          .fromTo(p, { opacity: 0 }, { opacity: 1, duration: 0.22, ease: "none", immediateRender: true }, i + 0.05)
+          .fromTo(glows[i], { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "none", immediateRender: true }, i + 0.3);
+        if (i < 3) tl.to(glows[i], { opacity: 0, duration: 0.3, ease: "none" }, i + 1.05);
+        if (i > 0) tl.fromTo(q(`.l3-pin[data-z="${i}"] i`), { scaleY: 0 }, { scaleY: 1, duration: 0.35, stagger: 0.04, immediateRender: true }, i + 0.55);
+      });
+      ([[1, -38, -34], [2, -34, -30], [3, -30, -27]] as const).forEach(([at, from, to]) =>
+        tl.fromTo(stack, { "--rz": `${from}deg` }, { "--rz": `${to}deg`, duration: 0.9, ease: "power2.inOut", immediateRender: false }, at));
+
+      // Raster: Spalten wachsen, Maßlinie spannt sich auf; ab Schritt 3 tritt es zurück
+      tl.fromTo(q(".pl-cols i"), { scaleY: 0 }, { scaleY: 1, duration: 0.5, stagger: 0.025, immediateRender: true }, 0.25)
+        .fromTo(q(".pl-dim"), { scaleX: 0, opacity: 0 }, { scaleX: 1, opacity: 1, duration: 0.5, immediateRender: true }, 0.55)
+        .fromTo(q(".pl-cols"), { opacity: 1 }, { opacity: 0.45, duration: 0.3, ease: "none" }, 2.1);
+      // Marke: Foto fährt von unten auf
+      tl.fromTo(q(".b-shutter"), { yPercent: 0 }, { yPercent: -101, duration: 0.6, ease: "power2.inOut", immediateRender: true }, 2.35)
+        .fromTo(q(".b-photo img"), { scale: 1.3 }, { scale: 1, duration: 0.9, immediateRender: true }, 2.35);
+      // Typografie: Headline steigt zeilenweise aus der Maske
+      tl.fromTo(q(".t-line > span"), { yPercent: 105 }, { yPercent: 0, duration: 0.6, stagger: 0.1, immediateRender: true }, 3.35);
+
+      // 5: Stapel klappt zusammen und wird zum Laptop, dann Handy, Anfrage und Kontaktwege
+      planes.forEach((p, i) => tl.to(p, { z: i * 0.5, duration: 0.8, ease: "power3.inOut" }, 4));
+      tl.to(q(".l3-pin, .pl-chip, .pl-dim, .pl-marks"), { opacity: 0, duration: 0.2, ease: "none" }, 4)
+        .to(glows[3], { opacity: 0, duration: 0.2, ease: "none" }, 4)
+        .fromTo(q(".l3-floor, .l3-ground"), { opacity: 1 }, { opacity: 0, duration: 0.4, ease: "none" }, 4)
+        .fromTo(stack, { "--tx": "0%", "--ty": "4%", "--ry": "0deg", "--rx": "52deg", "--rz": "-27deg", "--s": 0.92 },
+          { "--tx": "-5%", "--ty": "-1%", "--ry": "14deg", "--rx": "4deg", "--rz": "0deg", "--s": 0.94, duration: 1, ease: "power3.inOut", immediateRender: false }, 4)
+        .fromTo(q(".l3-bezel, .l3-base, .l3-cam"), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "none" }, 4.45)
+        .fromTo(q(".pl--final"), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "none" }, 4.55)
+        .fromTo(q(".l3-glare"), { xPercent: -130 }, { xPercent: 130, duration: 0.55, ease: "power2.inOut" }, 4.7)
+        .fromTo(q(".lay-phone"), { opacity: 0, "--px": "40%", "--py": "10%", "--pz": "0px", "--pry": "-35deg", "--pr": "6deg" },
+          { opacity: 1, "--px": "0%", "--py": "0%", "--pz": () => `${W() * 0.06}px`, "--pry": "-12deg", "--pr": "0deg", duration: 0.7 }, 4.4)
+        .fromTo(q(".lay-toast"), { opacity: 0, y: -12, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "back.out(1.7)" }, 4.75)
+        .fromTo(q(".lay-paths li"), { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.35, stagger: 0.06 }, 4.8);
+
+      // Designer-Cursor: begleitet jeden Schritt und löst am Ende die Anfrage aus
+      tl.fromTo(cursor, { x: px(0.74), y: py(0.18), opacity: 0 }, { x: px(0.5), y: py(0.5), opacity: 1, duration: 0.7, ease: "power2.inOut", immediateRender: true }, 0.1)
+        .to(cursor, { x: px(0.6), y: py(0.4), duration: 0.7, ease: "power2.inOut" }, 1.2)
+        .to(cursor, { x: px(0.67), y: py(0.33), duration: 0.6, ease: "power2.inOut" }, 2.05)
+        .to(cursor, { x: px(0.4), y: py(0.44), duration: 0.7, ease: "power2.inOut" }, 3.0)
+        .to(cursor, { x: px(0.31), y: py(0.68), duration: 0.55, ease: "power2.inOut" }, 4.1)
+        .to(cursor, { opacity: 0, duration: 0.15, ease: "none" }, 4.85);
+      click(1.85); click(2.3); click(3.3); click(4.68);
+
+      return () => { root.classList.remove("lay--gsap"); window.clearTimeout(idle); };
+    });
+
     mm.add(`${MOTION_OK} and (pointer: fine)`, () => {
       // Leichte Neigung zur Maus, direkt auf dem Transform (kein Neuberechnen der ganzen Szene)
       const rx = gsap.quickTo(tilt, "rotationY", { duration: 0.8, ease: "power3.out" });
@@ -95,22 +187,35 @@ export function LayerBuild() {
                 <span key={step} className="lay-hud__n">{nn(step)} / {nn(N)}</span>
                 <span key={"t" + step} className="lay-hud__t">{STEPS[step - 1].stage}</span>
                 <span className="lay-hud__dots">{STEPS.map((_, i) => <i key={i} className={i < step ? "on" : ""} />)}</span>
+                <span className="lay-hud__bar"><i /></span>
               </div>
 
               <div className="l3-scene">
                 <div className="l3-floor" />
                 <div className="l3-tilt">
                   <div className="l3-stack">
+                    <i className="l3-ground" />
                     <div className="l3-bezel" /><i className="l3-cam" /><div className="l3-base"><i className="l3-notch" /></div>
                     <GridPlane />
                     <WirePlane />
                     <BrandPlane />
                     <TextPlane />
+                    {[1, 2, 3].flatMap((z) => PIN_CORNERS.map(([l, t]) => (
+                      <span key={`${z}${l}${t}`} className="l3-pin" data-z={z} style={v({ "--z": z, left: l, top: t })}><i /></span>
+                    )))}
                     <div className="pl pl--final" style={v({ "--z": 4 })}>
-                      <Image src="/images/beispiele/beratungsbuero-start.png" alt="" fill sizes="(max-width: 1080px) 92vw, 640px" />
+                      <Image src="/images/beispiele/beratungsbuero-start.png" alt="" fill sizes="(max-width: 1080px) 92vw, 720px" />
+                      <i className="l3-glare" />
                     </div>
                   </div>
                   <Phone />
+                </div>
+
+                <div className="lay-cursor">
+                  <svg viewBox="0 0 20 22" width="20" height="22" aria-hidden="true">
+                    <path d="M2 1.5 L2 18.5 L6.6 14.4 L9.6 21 L12.6 19.6 L9.7 13.1 L16 12.6 Z" fill="#fff" stroke="#000" strokeWidth="1.4" strokeLinejoin="round" />
+                  </svg>
+                  <i className="lay-cursor__ring" />
                 </div>
 
                 <div className="lay-card lay-swatch">
@@ -156,16 +261,24 @@ function Phone() {
   );
 }
 
-function Chip({ n, t }: { n: number; t: string }) {
-  return <span className="pl-chip"><b>{nn(n)}</b>{t}</span>;
+/** Beschriftung einer Ebene: Nummer, Name, technische Angabe; dazu Schnittmarken und Leuchtkante */
+function Chip({ n, t, spec }: { n: number; t: string; spec: string }) {
+  return (
+    <>
+      <span className="pl-chip"><b>{nn(n)}</b>{t}<small>{spec}</small></span>
+      <span className="pl-marks" />
+      <span className="pl-glow" />
+    </>
+  );
 }
 
 /** Ebene 1: Fundament mit 12-Spalten-Raster */
 function GridPlane() {
   return (
     <div className="pl pl--grid" style={v({ "--z": 0, "--n": 1 })}>
-      <Chip n={1} t="Raster" />
+      <Chip n={1} t="Raster" spec="12 Spalten · 24 px Abstand" />
       <div className="pl-cols">{Array.from({ length: 12 }, (_, i) => <i key={i} style={v({ "--i": i })} />)}</div>
+      <span className="pl-dim"><b>1200 px</b></span>
     </div>
   );
 }
@@ -174,7 +287,7 @@ function GridPlane() {
 function WirePlane() {
   return (
     <div className="pl pl--wire" style={v({ "--z": 1, "--n": 2 })}>
-      <Chip n={2} t="Wireframe" />
+      <Chip n={2} t="Wireframe" spec="Navigation → Botschaft → Anfrage" />
       <div className="p-nav">
         <span className="p-logo"><i className="w" /></span>
         <span className="p-links">{LINKS.map(([l, w]) => <span key={l} style={v({ "--w": w })}><i className="w w--thin" /></span>)}</span>
@@ -198,7 +311,7 @@ function WirePlane() {
 function BrandPlane() {
   return (
     <div className="pl pl--brand" style={v({ "--z": 2, "--n": 3 })}>
-      <Chip n={3} t="Bild & Farbe" />
+      <Chip n={3} t="Bild & Farbe" spec="4 Farben · 1 Hauptmotiv" />
       <div className="p-strip" />
       <div className="p-nav p-nav--line">
         <span className="p-logo"><span className="p-mark" /></span>
@@ -207,7 +320,7 @@ function BrandPlane() {
       </div>
       <div className="p-ctas"><span className="p-btn p-btn--a b-solid" /><span className="p-btn p-btn--b b-ghost" /></div>
       <div className="p-trust p-trust--line" />
-      <div className="p-img b-photo"><Image src="/images/schichten/umraum-haus.jpg" alt="" fill sizes="(max-width: 1080px) 32vw, 220px" /></div>
+      <div className="p-img b-photo"><Image src="/images/schichten/umraum-haus.jpg" alt="" fill sizes="(max-width: 1080px) 32vw, 260px" /><i className="b-shutter" /></div>
     </div>
   );
 }
@@ -216,7 +329,7 @@ function BrandPlane() {
 function TextPlane() {
   return (
     <div className="pl pl--text" style={v({ "--z": 3, "--n": 4 })}>
-      <Chip n={4} t="Typografie" />
+      <Chip n={4} t="Typografie" spec="Inter Tight · 72 / 18 / 13 px" />
       <div className="p-strip t-mono t-center">Musterdesign · Fiktives Unternehmen</div>
       <div className="p-nav">
         <span className="p-logo t-logo">Umraum</span>
