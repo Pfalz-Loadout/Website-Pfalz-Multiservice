@@ -4,25 +4,23 @@ import { useRef } from "react";
 import { gsap, ScrollTrigger, useGSAP, MOTION_OK } from "@/lib/gsap";
 import { EXAMPLES, type Example } from "@/lib/data";
 import { SITE } from "@/lib/site";
-import { Icon } from "./Icon";
 
 const HOST = SITE.replace(/^https?:\/\//, "").replace(/^www\./, "");
 
 /** Webdesign-Musterdesigns: Browser- und Smartphone-Mockup, Scroll-Vorschau, 3D-Tilt */
-export function ShowcaseList({ offset = 0, total = EXAMPLES.length, grid = false }: { offset?: number; total?: number; grid?: boolean }) {
+export function ShowcaseList({ offset = 0, grid = false }: { offset?: number; grid?: boolean }) {
   return (
     <div className={`showcase${grid ? " showcase--grid" : ""}`}>
       {EXAMPLES.map((e, i) => (
-        <ShowcaseItem key={e.slug} ex={e} index={i + offset} total={total} />
+        <ShowcaseItem key={e.slug} ex={e} index={i + offset} />
       ))}
     </div>
   );
 }
 
-function ShowcaseItem({ ex, index, total }: { ex: Example; index: number; total: number }) {
+function ShowcaseItem({ ex, index }: { ex: Example; index: number }) {
   const ref = useRef<HTMLElement>(null);
   const href = `/beispiele/${ex.slug}`;
-  const nr = String(index + 1).padStart(2, "0");
 
   useGSAP(() => {
     const root = ref.current!;
@@ -40,12 +38,27 @@ function ShowcaseItem({ ex, index, total }: { ex: Example; index: number; total:
       // Statisch: kein Einflug, keine Parallaxe (wirkte schräg und ruckelte)
     });
 
-    // Desktop: Maus über dem Browser scrollt durch die ganze Seite, dazu 3D-Tilt
+    // Desktop: Seite läuft beim Erreichen selbstständig durch, Hover startet sie danach neu, dazu 3D-Tilt
     mm.add("(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)", () => {
       gsap.set(stage, { transformPerspective: 1600 });
       const rx = gsap.quickTo(stage, "rotationX", { duration: 0.8, ease: "power3.out" });
       const ry = gsap.quickTo(stage, "rotationY", { duration: 0.8, ease: "power3.out" });
       let scrollTween: gsap.core.Tween | null = null;
+      let running = false;
+      let played = false;
+
+      // Ganze Seite einmal von oben nach unten durchlaufen lassen
+      const play = () => {
+        const d = maxScroll();
+        if (d <= 0) return;
+        scrollTween?.kill();
+        gsap.set(shot, { y: 0 });
+        running = true;
+        scrollTween = gsap.to(shot, {
+          y: -d, duration: Math.max(6, d / 320), ease: "power1.inOut",
+          onComplete: () => { running = false; played = true; },
+        });
+      };
 
       const move = (e: PointerEvent) => {
         const r = stage.getBoundingClientRect();
@@ -56,16 +69,16 @@ function ShowcaseItem({ ex, index, total }: { ex: Example; index: number; total:
         ry((px - 0.5) * 6);
         rx((0.5 - py) * 5);
       };
-      const enter = () => {
-        const d = maxScroll();
-        scrollTween?.kill();
-        scrollTween = gsap.to(shot, { y: -d, duration: Math.max(4, d / 420), ease: "power1.inOut" });
-      };
-      const leave = () => {
-        rx(0); ry(0);
-        scrollTween?.kill();
-        scrollTween = gsap.to(shot, { y: 0, duration: 1.4, ease: "expo.out" });
-      };
+      // Nach dem Durchlauf startet ein erneutes Darüberfahren die Vorschau von vorn
+      const enter = () => { if (played && !running) { played = false; play(); } };
+      const leave = () => { rx(0); ry(0); };
+
+      // Läuft selbstständig los, sobald der Abschnitt erreicht ist (einmal)
+      const st = ScrollTrigger.create({
+        trigger: stage, start: "top 65%", once: true,
+        onEnter: play,
+      });
+
       stage.addEventListener("pointermove", move);
       stage.addEventListener("pointerenter", enter);
       stage.addEventListener("pointerleave", leave);
@@ -73,6 +86,7 @@ function ShowcaseItem({ ex, index, total }: { ex: Example; index: number; total:
         stage.removeEventListener("pointermove", move);
         stage.removeEventListener("pointerenter", enter);
         stage.removeEventListener("pointerleave", leave);
+        st.kill();
         scrollTween?.kill();
       };
     });
@@ -104,7 +118,6 @@ function ShowcaseItem({ ex, index, total }: { ex: Example; index: number; total:
           <div className="sc-browser__view">
             <Image className="sc-browser__shot" src={`/images/beispiele/${ex.slug}-scroll.png`} alt={`Vorschau der Website ${ex.name}`}
               width={1000} height={3750} sizes="(max-width: 900px) 100vw, 800px" />
-            <span className="sc-browser__hint" aria-hidden="true">Maus drauf, Seite scrollt</span>
           </div>
           <div className="sc-spot" aria-hidden="true" />
         </div>
@@ -114,19 +127,12 @@ function ShowcaseItem({ ex, index, total }: { ex: Example; index: number; total:
       </a>
 
       <div className="sc-copy">
-        <span className="sc-index pm-reveal">{nr}<span> / {String(total).padStart(2, "0")}</span></span>
         <span className="sc-branch pm-reveal">{ex.branch}</span>
         <h3 className="sc-title pm-reveal">{ex.name}</h3>
         <p className="sc-text pm-reveal">{ex.text}</p>
         <ul className="sc-tags pm-reveal">
           {ex.tags.map((t) => <li key={t} className="chip">{t}</li>)}
         </ul>
-        <div className="pm-reveal">
-          <a className="btn btn--outline" href={href} target="_blank" rel="noopener" data-cursor>
-            <span className="btn__fill" aria-hidden="true" />
-            <span className="btn__label">Live ansehen <Icon name="external-link" size={17} className="btn__icon btn__icon--right" /></span>
-          </a>
-        </div>
       </div>
     </article>
   );

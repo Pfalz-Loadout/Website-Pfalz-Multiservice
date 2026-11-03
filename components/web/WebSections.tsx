@@ -11,7 +11,6 @@ import { Icon } from "../Icon";
 import { ClassicList } from "../ClassicShowcase";
 import { ShowcaseList } from "../Showcase";
 
-const TOTAL = CLASSIC_EXAMPLES.length + EXAMPLES.length;
 const CHECK_TEXT = "Hallo, bitte prüfen Sie kostenlos meine Website: ";
 export const WHATSAPP_CHECK = `${CONTACT.whatsapp}?text=${encodeURIComponent(CHECK_TEXT)}`;
 
@@ -74,13 +73,13 @@ export function WebExamples() {
           <h3 className="sc-group__title">Klassische Websites <span>mit Menü und Unterseiten</span></h3>
           <span className="sc-group__count" aria-hidden="true" data-n={String(CLASSIC_EXAMPLES.length).padStart(2, "0")} />
         </div>
-        <ClassicList total={TOTAL} grid />
+        <ClassicList grid />
 
         <div className="sc-group sc-group--later">
           <h3 className="sc-group__title">One-Pager <span>alles auf einer Seite, mit Animationen</span></h3>
           <span className="sc-group__count" aria-hidden="true" data-n={String(EXAMPLES.length).padStart(2, "0")} />
         </div>
-        <ShowcaseList offset={CLASSIC_EXAMPLES.length} total={TOTAL} grid />
+        <ShowcaseList offset={CLASSIC_EXAMPLES.length} grid />
 
         {tidyNode(<p className="showcase-note" style={{ margin: "72px auto 0", textAlign: "center" }}>
           <span className="line">Alle gezeigten Betriebe, Personen und Angebote sind frei erfunden.</span>
