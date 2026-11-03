@@ -67,7 +67,7 @@ export function ContactForm({ initial }: { initial?: string }) {
         <div className="success" role="status">
           <span className="success__badge"><Icon name="check" size={28} /></span>
           <h3 className="success__title">Vielen <strong>Dank</strong></h3>
-          <p style={{ margin: 0, font: "var(--type-body)", color: "var(--text-muted)" }}>Ihre Anfrage ist bei uns eingegangen. Wir melden uns zeitnah mit einem passenden Lösungsvorschlag.</p>
+          <p style={{ margin: 0, font: "var(--type-body)", color: "var(--text-muted)" }}>Ihre Anfrage ist bei uns eingegangen. Wir antworten innerhalb von 24 Stunden (werktags) mit einem passenden Lösungsvorschlag.</p>
           <Button variant="outline" href="/">Zur Startseite</Button>
         </div>
       ) : state === "mailto" ? (

@@ -269,7 +269,7 @@ export const FOOTER_TEXT = tidyDeep(
 export const CTA = tidyDeep({
   title: "Lassen Sie uns über Ihr",
   highlight: "Vorhaben sprechen",
-  intro: "Schildern Sie uns kurz Ihr Anliegen. Wir melden uns zeitnah mit einem passenden Lösungsvorschlag.",
+  intro: "Schildern Sie uns kurz Ihr Anliegen. Wir antworten innerhalb von 24 Stunden (werktags) mit einem passenden Lösungsvorschlag.",
 });
 
 /** Webdesign-Musterdesigns (statische Seiten unter public/beispiele/<slug>) */
@@ -500,7 +500,7 @@ export const WEB_ADDONS: { icon: IconName; title: string; text: string }[] = tid
 ]);
 
 export const WEB_STEPS: [string, string, string][] = tidyDeep([
-  ["01", "Anfrage", "Sie schildern kurz Ihr Vorhaben, per Formular, Telefon oder WhatsApp. Kostenlos."],
+  ["01", "Anfrage", "Sie schildern kurz Ihr Vorhaben, per Formular, Telefon oder WhatsApp. Kostenlos, Antwort innerhalb von 24 Std. (werktags)."],
   ["02", "Gespräch", "Wir klären gemeinsam, was Sie wirklich brauchen, und was nicht."],
   ["03", "Angebot", "Sie erhalten einen Festpreis mit klarem Leistungsumfang."],
   ["04", "Entwurf & Freigabe", "Sie sehen alles vorab. Nichts geht ohne Ihr OK online."],
@@ -519,9 +519,11 @@ export const WEB_FAQ: [string, string][] = tidyDeep([
   ["Muss ich mich selbst um Domain, Hosting und E-Mail kümmern?", "Nein. Auf Wunsch begleiten wir Sie durch den kompletten Ablauf: Domain sichern, Hosting und E-Mail-Postfach einrichten, Kontaktformular anbinden, Website veröffentlichen und das Google-Unternehmensprofil anlegen. Die Einrichtung von Domain, E-Mail und Hosting ist in Wartung Pro und Premium enthalten."],
   ["Gehört mir die Website am Ende?", "Ja, vollständig, und das in jedem Paket. Nach vollständiger Bezahlung erhalten Sie alle Nutzungsrechte und Zugangsdaten. Domain und Hosting laufen auf Ihren Namen, alle Zugangsdaten gehören Ihnen und Sie erhalten den Quellcode als ZIP oder Git-Repository. Texte und Bilder, die wir erstellen, dürfen Sie unbefristet nutzen. Dazu bekommen Sie ein Übergabeblatt, eine SEO- und KI-Dokumentation als PDF und eine PageSpeed-Messung zum Livegang. Kleine Korrekturen in den ersten 30 Tagen nach dem Livegang sind kostenlos."],
   ["Gibt es ein Abo oder eine Vertragsbindung?", "Nein. Kein Abo, kein Zwang. Die Website kostet einmalig und gehört Ihnen. Wartung können Sie auf Wunsch ab 19 € im Monat dazubuchen, monatlich kündbar, müssen es aber nicht."],
+  ["Wie schnell antworten Sie auf meine Anfrage?", "Innerhalb von 24 Stunden an Werktagen, ob per Formular, Briefing, E-Mail oder WhatsApp. Bei Wartung Premium gilt dieselbe Reaktionszeit von 24 Stunden für Ihre Änderungswünsche."],
   ["Wie lange dauert es, bis meine Website online ist?", "Das hängt vom Umfang ab. Den Zeitplan legen wir vorab gemeinsam fest, damit Sie vor dem Start wissen, wann Ihre Seite online geht."],
   ["Was brauchen Sie von mir?", "Ihr Logo, ein paar Fotos und Stichpunkte zu Ihren Leistungen reichen für den Anfang. Texte erstellen wir auf Wunsch, eine kuratierte Bildauswahl ist inklusive. Alles Weitere besprechen wir im Gespräch."],
-  ["Kümmern Sie sich auch nach dem Livegang um die Website?", "Ja, wenn Sie möchten. Sie melden Ihre Änderungen, wir setzen sie um: mit Wartung (19 € im Monat, bis 1 Std.), Wartung Pro (29 € im Monat, bis 2 Std.) oder Wartung Premium (69 € im Monat, bis 6 Std.), jeweils monatlich kündbar. Einzelne Änderungen ohne Paket kosten 29 € pro Stunde. Die laufenden Kosten für Hosting und Domain zahlen Sie direkt beim Anbieter Ihrer Wahl."],
+  ["Kümmern Sie sich auch nach dem Livegang um die Website?", "Ja, wenn Sie möchten. Sie melden Ihre Änderungen, wir setzen sie um: mit Wartung (19 € im Monat, bis 1 Std.), Wartung Pro (29 € im Monat, bis 2 Std.) oder Wartung Premium (99 € im Monat, bis 6 Std.), jeweils monatlich kündbar. Einzelne Änderungen ohne Paket kosten 29 € pro Stunde. Die laufenden Kosten für Hosting und Domain zahlen Sie direkt beim Anbieter Ihrer Wahl."],
   ["Ich habe schon eine Website. Können Sie die übernehmen?", "Ja. Wir überarbeiten auch bestehende Websites und übernehmen alte Inhalte. Schicken Sie uns zuerst den Link für den kostenlosen Website-Check."],
+  ["Für wen ist das Angebot?", "Unser Webdesign- und Wartungsangebot richtet sich ausschließlich an Unternehmer im Sinne von § 14 BGB, also Gewerbetreibende, Selbstständige und Betriebe. Verträge mit Verbrauchern schließen wir hierüber nicht."],
   ["Sind die Beispiele echte Kunden?", "Nein. Die Beispiele sind Musterdesigns für erfundene Betriebe. Sie zeigen, was möglich ist. Ihre Website gestalten wir individuell für Ihren Betrieb."],
 ]);

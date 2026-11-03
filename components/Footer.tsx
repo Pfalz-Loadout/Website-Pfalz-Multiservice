@@ -57,6 +57,10 @@ export function Footer() {
               <Link href="/impressum">Impressum</Link>
               <span>|</span>
               <Link href="/datenschutz">Datenschutz</Link>
+              <span>|</span>
+              <Link href="/ratgeber">Ratgeber</Link>
+              <span>|</span>
+              <Link href="/inhalte-melden">Inhalte melden</Link>
             </span>
             <span className="footer__legal">Zuletzt aktualisiert: <time dateTime={UPDATED_ISO}>{UPDATED}</time></span>
           </div>

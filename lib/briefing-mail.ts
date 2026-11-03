@@ -61,7 +61,7 @@ export function customerMail({ person, firma, stamp, sections, site, logoSrc }: 
 <table role="presentation" width="640" cellspacing="0" cellpadding="0" border="0" style="width:640px;max-width:100%;background:#ffffff;font-family:Arial,Helvetica,sans-serif;color:${TEXT};font-size:15px;line-height:1.6;">
 <tr><td style="padding:32px 36px 8px;">
 <p style="margin:0 0 16px;">Guten Tag ${esc(person)},</p>
-<p style="margin:0 0 16px;">vielen Dank für Ihr Website-Briefing${firma ? ` für <b>${esc(firma)}</b>` : ""}! Wir haben Ihre Angaben erhalten und melden uns innerhalb kürzester Zeit bei Ihnen.</p>
+<p style="margin:0 0 16px;">vielen Dank für Ihr Website-Briefing${firma ? ` für <b>${esc(firma)}</b>` : ""}! Wir haben Ihre Angaben erhalten und melden uns innerhalb von 24 Stunden (werktags) bei Ihnen.</p>
 <p style="margin:0 0 8px;font-size:11px;font-weight:bold;letter-spacing:1.6px;color:${GOLD};">SO GEHT ES WEITER</p>
 <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="margin:0 0 20px;">
 ${steps.map(([n, t]) => `<tr><td valign="top" style="padding:4px 12px 4px 0;font-weight:bold;color:${GOLD};">${n}</td><td style="padding:4px 0;">${t}</td></tr>`).join("")}
@@ -87,7 +87,7 @@ ${s.rows.map(([q, a]) => `<tr><td valign="top" style="padding:3px 14px 3px 0;col
 
   const text = `Guten Tag ${person},
 
-vielen Dank für Ihr Website-Briefing${firma ? ` für ${firma}` : ""}! Wir haben Ihre Angaben erhalten und melden uns innerhalb kürzester Zeit bei Ihnen.
+vielen Dank für Ihr Website-Briefing${firma ? ` für ${firma}` : ""}! Wir haben Ihre Angaben erhalten und melden uns innerhalb von 24 Stunden (werktags) bei Ihnen.
 
 So geht es weiter:
 ${steps.map(([n, t]) => `${n}  ${t}`).join("\n")}
