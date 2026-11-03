@@ -1372,7 +1372,7 @@ a .contact-row__value { color: var(--brand-accent); }
   /* Flachere Grundhaltung (gleiche Werte wie in der Zeitleiste) */
   .l3-stack { --ty: 1%; --rx: 36deg; --rz: -24deg; --s: .8; }
   .lay-stage[data-step="2"] .l3-stack { --rz: -21deg; } .lay-stage[data-step="3"] .l3-stack { --rz: -18deg; } .lay-stage[data-step="4"] .l3-stack { --rz: -16deg; }
-  .lay-step__more { display: none; }
+  .lay-step__more, .lay-step__note { display: none; }
   .lay-step__title { font-size: 1.25rem; } .lay-step__text { font-size: 14.5px; }
   .lay-card { padding: 7px 9px; gap: 8px; border-radius: 8px; }
   .lay-swatch { padding: 8px 10px; gap: 6px; } .lay-swatch__row { gap: 9px; } .sw__slot { width: 22px; height: 22px; border-radius: 6px; } .sw small { display: none; }
