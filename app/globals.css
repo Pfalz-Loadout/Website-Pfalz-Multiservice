@@ -1477,10 +1477,10 @@ html.pm-motion .tk__dot::after { animation: tk-ping 2s cubic-bezier(0,0,.2,1) va
 html.pm-motion .tk__sparks i { animation: tk-spark 2.6s ease-out calc(var(--tk-d) + 2.6s) infinite; }
 html.pm-motion .tk__sparks i:nth-child(2) { animation-delay: calc(var(--tk-d) + 3.4s); }
 html.pm-motion .tk__sparks i:nth-child(3) { animation-delay: calc(var(--tk-d) + 3s); }
-/* Unter 1280 px steht das Ticket im Fluss: Platz für den Abschnitt, nach dem Riss rückt es nach */
+/* Unter 1280 px steht das Ticket mittig im Fluss und bleibt nach dem Riss an seinem Platz.
+   Breite so, dass der Abschnitt links höchstens bis 16 px in den Seitenrand ragt. */
 @media (max-width: 1279px) {
-  html.pm-motion .tk { margin-left: var(--tk-strip); width: min(100% - var(--tk-strip), 430px); }
-  html.pm-motion .tk__card { animation: tk-jolt .8s cubic-bezier(.3,1.6,.5,1) calc(var(--tk-d) + 1.65s) both, tk-settle .7s cubic-bezier(.34,1.3,.64,1) calc(var(--tk-d) + 2.1s) both, tk-float 8s ease-in-out calc(var(--tk-d) + 3s) infinite; }
+  .tk { margin-left: auto; margin-right: auto; width: min(100% - 2 * (var(--tk-strip) - 16px), 430px); }
 }
 
 @keyframes tk-in { from { opacity: 0; transform: translateY(26px) scale(.96); } to { opacity: 1; transform: none; } }
@@ -1501,7 +1501,6 @@ html.pm-motion .tk__sparks i:nth-child(3) { animation-delay: calc(var(--tk-d) + 
 @keyframes tk-tug { 0%, 100% { translate: 0 0; } 25% { translate: -2px 0; } 50% { translate: 1px 0; } 75% { translate: -3px 0; } }
 @keyframes tk-ripflash { 0% { opacity: 0; transform: scaleY(.2); } 15% { opacity: 1; transform: scaleY(1); } 100% { opacity: 0; transform: scaleY(1); } }
 @keyframes tk-jolt { 0% { rotate: 0deg; } 25% { rotate: 3deg; } 55% { rotate: -1.4deg; } 80% { rotate: .5deg; } 100% { rotate: 0deg; } }
-@keyframes tk-settle { from { translate: 0 0; } to { translate: calc(-1 * var(--tk-strip)) 0; } }
 /* Stempel: fliegt groß ein und schlägt auf */
 @keyframes tk-stamp {
   0% { opacity: 0; transform: scale(2.8) rotate(-14deg); }
@@ -1530,7 +1529,7 @@ html.pm-motion .tk__sparks i:nth-child(3) { animation-delay: calc(var(--tk-d) + 
 
 @media (max-width: 900px) { .tk { --tk-d: 1.6s; } }
 @media (max-width: 480px) {
-  .tk { --tk-fs: 42px; --tk-strip: 72px; --tk-pad: 3px; --tk-badge-c: 50px; }
+  .tk { --tk-fs: 42px; --tk-strip: 64px; --tk-pad: 3px; --tk-badge-c: 50px; }
   .tk__main { padding-top: 14px; padding-bottom: 14px; gap: 5px; }
   .tk__main--strip { padding-top: 14px; padding-bottom: 14px; padding-right: 6px; }
   .tk__code { left: 10px; width: 11px; } .tk__serial { left: 25px; font-size: 8px; }
