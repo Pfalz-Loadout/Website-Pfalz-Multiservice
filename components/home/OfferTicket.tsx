@@ -11,8 +11,8 @@ const BODY_CLIP = `polygon(100% 0, 100% 100%, ${[...edge].reverse().map((p) => `
 const STRIP_CLIP = `polygon(0 0, ${edge.map((p) => `calc(var(--tk-strip) + ${p.x}px) ${p.y}`).join(", ")}, 0 100%)`;
 
 /**
- * Aktions-Ticket im Hero: Der Streifen mit der „1" von „199 €" reißt ab wie die Lasche
- * einer Verpackung, übrig bleiben „99 €" auf einem schwebenden Hologramm-Ticket.
+ * Aktions-Ticket im Hero: Der linke Abschnitt mit der „1" von „199 €" reißt ab wie die Lasche
+ * einer Verpackung, übrig bleiben „99 €" und ein „50 % Rabatt"-Stempel auf einem schwebenden Hologramm-Ticket.
  * Reines CSS, kein Client-JS, keine Bilder.
  */
 export function OfferTicket() {
@@ -35,19 +35,22 @@ export function OfferTicket() {
     <Link href="/webdesign#pakete" className="tk"
       aria-label={`Aktion: Website-Paket ${p.name} für ${p.price} statt ${p.regular}, 50 Prozent Rabatt. Zu den Paketen`}>
       <span className="tk__card" aria-hidden="true">
+        <span className="tk__under" />
         <span className="tk__strip" style={{ clipPath: STRIP_CLIP }}>
+          <span className="tk__code" />
+          <span className="tk__serial">Sonderaktion</span>
           <span className="tk__main tk__main--strip">{rows(<span className="tk__one">{drop}</span>)}</span>
         </span>
         <span className="tk__frame" style={{ clipPath: BODY_CLIP }}>
           <span className="tk__ring" />
           <span className="tk__body">
             <span className="tk__main">{rows(<><b className="tk__new">{p.price}</b><span className="tk__unit">{p.unit}</span></>)}</span>
-            <span className="tk__go"><Icon name="arrow-right" size={22} /></span>
-            <span className="tk__stub">
-              <span className="tk__pct">−50<small>%</small></span>
+            <span className="tk__badge">
+              <b>50<small>%</small></b><span>Rabatt</span>
               <span className="tk__flash" />
               <span className="tk__sparks"><i /><i /><i /></span>
             </span>
+            <span className="tk__go"><Icon name="arrow-right" size={18} /></span>
             <span className="tk__holo" />
             <span className="tk__sheen" />
           </span>
