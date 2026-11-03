@@ -4,30 +4,28 @@ import { useEffect, useRef, useState } from "react";
 import { gsap, ScrollTrigger, useGSAP, MOTION_OK } from "@/lib/gsap";
 import { CLASSIC_EXAMPLES, type ClassicExample } from "@/lib/data";
 import { SITE } from "@/lib/site";
-import { Icon } from "./Icon";
 
 const HOST = SITE.replace(/^https?:\/\//, "").replace(/^www\./, "");
 const AUTOPLAY_MS = 3800;
 
 /** Klassische Websites mit Menü: Browser-Mockup mit Seiten-Umschalter */
-export function ClassicList({ total, grid = false }: { total: number; grid?: boolean }) {
+export function ClassicList({ grid = false }: { grid?: boolean }) {
   return (
     <div className={`showcase${grid ? " showcase--grid" : ""}`}>
       {CLASSIC_EXAMPLES.map((e, i) => (
-        <ClassicItem key={e.slug} ex={e} index={i} total={total} />
+        <ClassicItem key={e.slug} ex={e} index={i} />
       ))}
     </div>
   );
 }
 
-function ClassicItem({ ex, index, total }: { ex: ClassicExample; index: number; total: number }) {
+function ClassicItem({ ex, index }: { ex: ClassicExample; index: number }) {
   const ref = useRef<HTMLElement>(null);
   const [cur, setCur] = useState(0);
   const [auto, setAuto] = useState(false);
   const [visible, setVisible] = useState(false);
   const page = ex.pages[cur];
   const href = `/beispiele/${ex.slug}${page.path}`;
-  const nr = String(index + 1).padStart(2, "0");
   const playing = auto && visible;
 
   // Automatisch durch die Unterseiten blättern, solange sichtbar und noch nicht angeklickt.
@@ -83,19 +81,12 @@ function ClassicItem({ ex, index, total }: { ex: ClassicExample; index: number; 
       </div>
 
       <div className="sc-copy">
-        <span className="sc-index pm-reveal">{nr}<span> / {String(total).padStart(2, "0")}</span></span>
         <span className="sc-branch pm-reveal">{ex.branch}</span>
         <h3 className="sc-title pm-reveal">{ex.name}</h3>
         <p className="sc-text pm-reveal">{ex.text}</p>
         <ul className="sc-tags pm-reveal">
           {ex.tags.map((t) => <li key={t} className="chip">{t}</li>)}
         </ul>
-        <div className="pm-reveal">
-          <a className="btn btn--outline" href={href} target="_blank" rel="noopener" data-cursor>
-            <span className="btn__fill" aria-hidden="true" />
-            <span className="btn__label">Live ansehen <Icon name="external-link" size={17} className="btn__icon btn__icon--right" /></span>
-          </a>
-        </div>
       </div>
     </article>
   );
