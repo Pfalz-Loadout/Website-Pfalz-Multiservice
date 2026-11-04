@@ -60,7 +60,7 @@ export function Footer() {
               <span>|</span>
               <Link href="/ratgeber">Ratgeber</Link>
               <span>|</span>
-              <Link href="/partner/verve-apartments">Partner</Link>
+              <Link href="/partner">Partner</Link>
               <span>|</span>
               <Link href="/inhalte-melden">Inhalte melden</Link>
             </span>

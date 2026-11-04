@@ -12,7 +12,6 @@ import { CtaBand } from "@/components/home/HomeSections";
 import { WebBriefingTeaser, WebExamples, WebFaqCheck, WebPackages, WebProblem, WebTrust } from "@/components/web/WebSections";
 import { ShopShowcase } from "@/components/web/ShopShowcase";
 import { LayerBuild } from "@/components/web/LayerBuild";
-import { VerveFeature } from "@/components/partner/Verve";
 
 const description =
   "Website erstellen lassen in Worms und der Pfalz: individuelles Webdesign zum Festpreis ab 99 €, ohne Abo. Beispiele ansehen, kostenloser Website-Check.";
@@ -66,8 +65,6 @@ export default function WebdesignPage() {
       <WebProblem />
       <LayerBuild />
       <ShopShowcase />
-      <VerveFeature alt eyebrow="Kundenprojekt" title="Echte Website," highlight="echter Partner"
-        intro="Für Verve Apartments aus Worms haben wir verveapartments.de gestaltet: mit Direktbuchung, die günstiger ist als jedes Buchungsportal." />
       <WebExamples />
       <WebPackages />
       <WebBriefingTeaser />

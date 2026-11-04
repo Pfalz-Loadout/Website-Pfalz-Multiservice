@@ -1579,45 +1579,65 @@ html.pm-motion .tk__sparks i:nth-child(3) { animation-delay: calc(var(--tk-d) + 
 }
 
 /* ==========================================================================
-   Partner: Verve Apartments (echtes Kundenprojekt)
+   Partner aus der Region: Kacheln (Startseite), Abschnitte (Partnerseite), Tipp (Leistungsseiten)
    ========================================================================== */
-.vv-logo { display: inline-flex; align-items: center; padding: 12px 16px; background: #fff; border-radius: var(--radius-sm); }
-.vv-logo img { display: block; height: auto; }
-.vv-browser { box-shadow: 0 0 60px -20px rgba(221,187,77,.4); }
-.vv-feature { margin-bottom: 0; border-color: rgba(221,187,77,.35);
-  background: radial-gradient(60% 90% at 0% 0%, rgba(221,187,77,.10), transparent 70%), radial-gradient(50% 80% at 100% 100%, rgba(255,140,0,.06), transparent 70%), var(--surface-card); }
-.vv-direct .chip { text-decoration: none; color: var(--text-body); }
-.vv-badge { background: var(--brand-accent); }
-.vv-awards { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
-.vv-awards li { display: inline-flex; align-items: center; gap: 6px; padding: 7px 10px; border: 1px solid var(--border-strong); font: 500 13px/1.2 var(--font-body); color: var(--text-body); }
-.vv-awards svg { color: var(--brand-accent); fill: var(--brand-accent); }
-.vv-awards--lg li { font-size: 14px; padding: 9px 12px; }
-.vv-facts { margin: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2px; background: var(--border-subtle); border: 1px solid var(--border-subtle); }
-.vv-facts > div { background: var(--surface-card); padding: 24px 18px; }
-.vv-facts dt { font: 800 clamp(1.9rem, 3.4vw, 2.75rem)/1 var(--font-display); color: var(--brand-accent); letter-spacing: var(--ls-display); }
-.vv-facts dd { margin: 10px 0 0; font: 500 14px/1.4 var(--font-body); color: var(--text-body); }
-.vv-list { list-style: none; margin: 4px 0; padding: 0; display: grid; gap: 10px; }
-.vv-list li { display: flex; gap: 10px; align-items: flex-start; font: var(--type-body); color: var(--text-body); }
-.vv-list svg { color: var(--brand-accent); flex: none; margin-top: 5px; }
-.vv-photos { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-bottom: clamp(40px, 5vw, 64px); }
-.vv-photos__item { position: relative; display: block; aspect-ratio: 4/3; overflow: hidden; border: 1px solid var(--border-subtle); }
-.vv-photos__item img { object-fit: cover; transition: transform .8s var(--ease-out); }
-.vv-photos__item:hover img { transform: scale(1.05); }
-.vv-direct__box { display: flex; flex-direction: column; gap: 24px; align-items: flex-start; }
-.vv-direct .chip svg { order: 2; }
-.vv-tip-wrap { padding-top: 0; }
-.vv-tip { display: grid; grid-template-columns: minmax(0, 360px) minmax(0, 1fr); background: var(--surface-card); border: 1px solid var(--border-subtle); border-left: 3px solid var(--brand-accent); }
-.vv-tip__img { position: relative; min-height: 240px; }
-.vv-tip__img img { object-fit: cover; }
-.vv-tip__copy { padding: clamp(24px, 3vw, 40px); display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
-.vv-tip__eyebrow { font: 600 var(--fs-eyebrow) var(--font-display); letter-spacing: var(--ls-eyebrow); text-transform: uppercase; color: var(--brand-accent); }
-.vv-tip__title { margin: 0; font: 800 clamp(1.4rem, 2.4vw, 1.9rem)/1.15 var(--font-display); text-transform: uppercase; letter-spacing: var(--ls-display); color: var(--text-strong); }
-.vv-tip__copy p { margin: 0; font: var(--type-body); color: var(--text-body); max-width: 620px; }
+.pt-logo { display: inline-flex; align-items: center; padding: 10px 14px; background: #fff; border-radius: var(--radius-sm); }
+.pt-logo img { display: block; height: auto; }
+.pt-tiles-wrap { padding-top: 0; }
+.pt-tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.pt-tile { display: flex; flex-direction: column; text-decoration: none; background: var(--surface-card); border: 1px solid var(--border-subtle); transition: border-color .3s, transform .5s var(--ease-out); }
+.pt-tile:hover { border-color: rgba(221,187,77,.45); transform: translateY(-4px); }
+.pt-tile__img { position: relative; aspect-ratio: 16/10; overflow: hidden; }
+.pt-tile__img img { object-fit: cover; transition: transform .8s var(--ease-out); }
+.pt-tile:hover .pt-tile__img img { transform: scale(1.05); }
+.pt-tile__body { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding: 20px 22px 22px; margin-top: -30px; position: relative; }
+.pt-tile__name { font: 700 1.2rem/1.2 var(--font-display); color: var(--text-strong); margin-top: 6px; }
+.pt-tile__branch { font: 600 var(--fs-eyebrow)/1.3 var(--font-display); letter-spacing: var(--ls-eyebrow); text-transform: uppercase; color: var(--text-subtle); }
+.pt-tile__more { display: inline-flex; align-items: center; gap: 6px; margin-top: 6px; font: 600 14px var(--font-body); color: var(--brand-accent); }
+.pt-sec { max-width: 1040px; }
+.pt-row { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: clamp(32px, 5vw, 64px); align-items: center; }
+.pt-row--rev .pt-copy { order: 2; }
+.pt-copy { display: flex; flex-direction: column; align-items: flex-start; gap: 24px; min-width: 0; }
+.pt-facts { margin: 0; width: 100%; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2px; background: var(--border-subtle); border: 1px solid var(--border-subtle); }
+.pt-facts > div { background: var(--surface-card); padding: 18px 14px; }
+.pt-facts dt { font: 800 clamp(1.6rem, 2.8vw, 2.3rem)/1 var(--font-display); color: var(--brand-accent); letter-spacing: var(--ls-display); }
+.pt-facts dd { margin: 8px 0 0; font: 500 13px/1.4 var(--font-body); color: var(--text-body); }
+.pt-awards { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.pt-awards li { display: inline-flex; align-items: center; gap: 6px; padding: 7px 10px; border: 1px solid var(--border-strong); font: 500 13px/1.2 var(--font-body); color: var(--text-body); }
+.pt-awards svg { color: var(--brand-accent); fill: var(--brand-accent); }
+.pt-photo { position: relative; display: block; aspect-ratio: 4/5; overflow: hidden; border: 1px solid var(--border-subtle); }
+.pt-photo img { object-fit: cover; transition: transform .9s var(--ease-out); }
+.pt-photo:hover img { transform: scale(1.04); }
+.pt-photo__cap { position: absolute; left: 0; right: 0; bottom: 0; padding: 48px 20px 18px; display: flex; flex-direction: column; gap: 4px;
+  background: linear-gradient(0deg, rgba(0,0,0,.85), rgba(0,0,0,0)); font: 400 14px/1.5 var(--font-body); color: var(--text-body); }
+.pt-photo__cap b { font: 700 1rem var(--font-display); color: var(--text-strong); }
+.pt-tip-wrap { padding-top: 0; }
+.pt-tip { display: grid; grid-template-columns: minmax(0, 360px) minmax(0, 1fr); background: var(--surface-card); border: 1px solid var(--border-subtle); border-left: 3px solid var(--brand-accent); }
+.pt-tip__img { position: relative; min-height: 240px; }
+.pt-tip__img img { object-fit: cover; }
+.pt-tip__copy { padding: clamp(24px, 3vw, 40px); display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+.pt-tip__eyebrow { font: 600 var(--fs-eyebrow) var(--font-display); letter-spacing: var(--ls-eyebrow); text-transform: uppercase; color: var(--brand-accent); }
+.pt-tip__title { margin: 0; font: 800 clamp(1.4rem, 2.4vw, 1.9rem)/1.15 var(--font-display); text-transform: uppercase; letter-spacing: var(--ls-display); color: var(--text-strong); }
+.pt-tip__copy p { margin: 0; font: var(--type-body); color: var(--text-body); max-width: 620px; }
+.pt-tip__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 6px; }
 @media (max-width: 900px) {
-  .vv-photos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .vv-tip { grid-template-columns: minmax(0, 1fr); }
-  .vv-tip__img { aspect-ratio: 16/9; min-height: 0; }
+  /* Handy: Partner immer gleich aufgebaut, nicht versetzt (Text, dann Bild) */
+  .pt-row, .pt-row--rev { grid-template-columns: minmax(0, 1fr); }
+  .pt-row--rev .pt-copy { order: 0; }
+  .pt-photo { aspect-ratio: 4/3; }
+  .pt-tip { grid-template-columns: minmax(0, 1fr); }
+  .pt-tip__img { aspect-ratio: 16/9; min-height: 0; }
+}
+@media (max-width: 640px) {
+  /* Handy: 2 × 2 Kacheln */
+  .pt-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .pt-tile__body { padding: 14px 12px 14px; margin-top: -22px; gap: 6px; }
+  .pt-tile__body .pt-logo { padding: 6px 8px; }
+  .pt-tile__body .pt-logo img { width: 92px; }
+  .pt-tile__name { font-size: 1rem; }
+  .pt-tile__branch { font-size: 10px; }
+  .pt-tip__actions, .pt-tip__actions .btn { width: 100%; }
 }
 @media (max-width: 520px) {
-  .vv-facts { grid-template-columns: minmax(0, 1fr); }
+  .pt-facts dd { font-size: 12px; }
 }
