@@ -43,44 +43,37 @@ export function PartnerTiles() {
 }
 
 /**
- * Partnerseite: eigener Abschnitt je Partner mit eigenem Kopfbild; der Inhalt liegt als Karte über dem Bildrand.
- * Am Desktop wechselt das Foto in der Karte von Partner zu Partner die Seite.
+ * Partnerseite: je Partner ein Kopfbild, der Inhalt steht direkt auf dem Bild (ohne Kasten).
+ * Am Desktop steht der Text von Partner zu Partner abwechselnd links und rechts, mobil immer gleich.
  */
 export function PartnerSection({ p, index }: { p: Partner; index: number }) {
   return (
-    <section className={`pt-block ${index === 0 ? "pt-block--first" : ""}`} id={p.slug} aria-labelledby={`${p.slug}-name`}>
-      <div className="pt-head">
-        <Image className="pt-head__img" src={p.header} alt="" fill sizes="100vw" priority={index === 0} />
-        <div className="pt-head__scrim" />
-        <div className="container pt-sec pt-head__in">
-          <span className="pt-head__eyebrow">{p.branch}</span>
-          <h2 className="pt-head__name" id={`${p.slug}-name`}>{p.name}</h2>
+    <section className={`pt-hero ${index === 0 ? "pt-hero--first" : ""} ${index % 2 ? "pt-hero--rev" : ""}`} id={p.slug} aria-labelledby={`${p.slug}-name`}>
+      <Image className="pt-hero__img" src={p.header} alt="" fill sizes="100vw" priority={index === 0} />
+      <div className="pt-hero__scrim" />
+      <div className="container pt-hero__in">
+        <div className="pt-hero__copy">
+          <div className="pm-reveal" data-reveal="up"><PartnerLogo p={p} width={200} /></div>
+          <span className="pt-hero__eyebrow pm-reveal" data-reveal="up">{p.branch} · {p.since}</span>
+          <h2 className="pt-hero__name pm-reveal" data-reveal="up" id={`${p.slug}-name`}>{p.name}</h2>
+          <p className="pt-hero__text pm-reveal" data-reveal="up">{tidy(p.text)}</p>
+          <dl className="pt-facts pm-reveal" data-reveal="stagger">
+            {p.facts.map(([v, k]) => <div key={k}><dt>{v}</dt><dd>{k}</dd></div>)}
+          </dl>
+          <ul className="pt-awards pm-reveal" data-reveal="pop">
+            {p.awards.map((a, i) => (
+              <li key={a} style={{ ["--i" as string]: i }}><span className="pt-star"><Icon name="star" size={15} /></span>{a}</li>
+            ))}
+          </ul>
+          <div className="pm-reveal" data-reveal="up">
+            <Button variant="accent" icon="external-link" href={p.url}>{p.host} besuchen</Button>
+          </div>
         </div>
       </div>
-      <div className="container pt-sec"><div className="pt-card">
-        <div className={`pt-row ${index % 2 ? "pt-row--rev" : ""}`}>
-          <div className="pt-copy">
-            <div className="pm-reveal" data-reveal="up"><PartnerLogo p={p} width={200} /></div>
-            <SectionHeading eyebrow={p.since} title="Eng" highlight="verbunden" intro={p.text} />
-            <dl className="pt-facts pm-reveal" data-reveal="cards">
-              {p.facts.map(([v, k]) => <div key={k} className="pm-card"><dt>{v}</dt><dd>{k}</dd></div>)}
-            </dl>
-            <ul className="pt-awards pm-reveal" data-reveal="up">
-              {p.awards.map((a) => <li key={a}><Icon name="star" size={14} />{a}</li>)}
-            </ul>
-            <div className="pm-reveal" data-reveal="up">
-              <Button variant="accent" icon="external-link" href={p.url}>{p.host} besuchen</Button>
-            </div>
-          </div>
-          <a className="pt-photo pm-reveal" data-reveal="up" href={p.url} target="_blank" rel="noopener" data-cursor aria-label={`${p.host} besuchen (öffnet in neuem Tab)`}>
-            <Image src={p.photo} alt={`${p.name}: ${p.branch}`} fill sizes="(max-width: 900px) 100vw, 440px" />
-            <span className="pt-photo__cap"><b>{p.name}</b>{tidy(p.short)}</span>
-          </a>
-        </div>
-      </div></div>
     </section>
   );
 }
+
 
 /** Empfehlung auf Leistungsseiten: Unterkunft für Teams, die in Worms im Einsatz sind */
 export function PartnerStayTip() {
