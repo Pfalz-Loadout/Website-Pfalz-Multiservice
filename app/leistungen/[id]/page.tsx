@@ -12,6 +12,7 @@ import { CtaBand } from "@/components/home/HomeSections";
 import { JsonLd, breadcrumb, faqPage } from "@/lib/schema";
 import { Faq } from "@/components/Faq";
 import { SITE } from "@/lib/site";
+import { VerveTip } from "@/components/partner/Verve";
 
 export function generateStaticParams() {
   return SERVICES.filter((s) => !s.href).map((s) => ({ id: s.id }));
@@ -84,6 +85,7 @@ export default async function ServicePage({ params }: { params: Promise<{ id: st
           )}
         </div>
       </section>
+      {["facility", "storage", "clearance"].includes(s.id) && <VerveTip />}
       {s.faq && <Faq items={s.faq} alt />}
       <section className="section">
         <div className="container">
