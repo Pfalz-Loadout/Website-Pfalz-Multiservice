@@ -1595,6 +1595,20 @@ html.pm-motion .tk__sparks i:nth-child(3) { animation-delay: calc(var(--tk-d) + 
 .pt-tile__branch { font: 600 var(--fs-eyebrow)/1.3 var(--font-display); letter-spacing: var(--ls-eyebrow); text-transform: uppercase; color: var(--text-subtle); }
 .pt-tile__more { display: inline-flex; align-items: center; gap: 6px; margin-top: 6px; font: 600 14px var(--font-body); color: var(--brand-accent); }
 .pt-sec { max-width: 1040px; }
+/* Partnerseite: eigenes Kopfbild je Partner, Inhalt liegt als Karte über dem unteren Bildrand */
+.pt-block { position: relative; background: var(--surface-page); padding-bottom: var(--section-y); }
+.pt-head { position: relative; height: clamp(300px, 36vw, 460px); overflow: hidden; display: flex; align-items: flex-end; background: #000; }
+.pt-block--first .pt-head { height: calc(clamp(300px, 36vw, 460px) + var(--header-h)); }
+.pt-head__img { object-fit: cover; }
+.pt-head__scrim { position: absolute; inset: 0; background: linear-gradient(0deg, var(--surface-page) 0%, rgba(0,0,0,.6) 38%, rgba(0,0,0,.3) 100%); }
+.pt-head__in { position: relative; width: 100%; padding-bottom: 150px; display: flex; flex-direction: column; gap: 10px; }
+.pt-head__eyebrow { font: 600 var(--fs-eyebrow) var(--font-display); letter-spacing: var(--ls-eyebrow); text-transform: uppercase; color: var(--brand-accent); }
+.pt-head__name { margin: 0; font: 800 clamp(2rem, 5vw, 3.75rem)/1.02 var(--font-display); text-transform: uppercase; letter-spacing: var(--ls-display); color: var(--text-strong); }
+.pt-card { position: relative; margin-top: -110px; padding: clamp(22px, 4vw, 48px); background: var(--surface-card); border: 1px solid var(--border-subtle); border-top: 3px solid var(--brand-accent); box-shadow: 0 30px 60px -30px rgba(0,0,0,.8); }
+@media (max-width: 900px) {
+  .pt-head__in { padding-bottom: 110px; }
+  .pt-card { margin-top: -80px; }
+}
 .pt-row { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: clamp(32px, 5vw, 64px); align-items: center; }
 .pt-row--rev .pt-copy { order: 2; }
 .pt-copy { display: flex; flex-direction: column; align-items: flex-start; gap: 24px; min-width: 0; }
