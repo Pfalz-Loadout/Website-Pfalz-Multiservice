@@ -551,11 +551,6 @@ export const PARTNER_VERVE = tidyDeep({
     ["4,8", "Sterne aus 200 Bewertungen"],
   ] as [string, string][],
   awards: ["Airbnb Superhost seit 2024", "Booking.com Traveller Review Award", "Vrbo Premium-Gastgeber"],
-  work: [
-    { icon: "layout-template", title: "Webdesign", text: "Die Website verveapartments.de mit Direktbuchung, Unterkunftsseiten und eigenen Bereichen für Familien, Gruppen, Geschäftsreisende und Projektteams." },
-    { icon: "key-round", title: "Rund um die Immobilien", text: "Wir unterstützen bei Aufgaben rund um die Wohnungen, zuverlässig und kurzfristig." },
-    { icon: "lightbulb", title: "Solutions & Support", text: "Ein Problem, egal welcher Art: Verve meldet sich, wir kümmern uns um eine Lösung." },
-  ] as { icon: IconName; title: string; text: string }[],
   audiences: [
     { label: "Projektteams", href: verveLink("/de/projektteams") },
     { label: "Geschäftsreisende", href: verveLink("/de/geschaeftsreisende") },
