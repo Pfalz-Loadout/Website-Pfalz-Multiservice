@@ -281,7 +281,22 @@ export type Example = {
   tags: string[];
 };
 
+// Reihenfolge = Raster auf /webdesign: oben links, oben rechts, unten links, unten rechts
 export const EXAMPLES: Example[] = tidyDeep([
+  {
+    slug: "fliesenleger",
+    name: "Fliesen Reuter",
+    branch: "Fliesenlegermeister · Frankenthal",
+    text: "Die ganze Seite liegt auf einem Fugenraster: Fliesen klappen im Hero vom Rohbau zum fertigen Bad, dazu Fliesen-Konfigurator, Flächenrechner und Vorher-Nachher.",
+    tags: ["Fliesen-Konfigurator", "Flächenrechner", "Vorher-Nachher"],
+  },
+  {
+    slug: "elektriker",
+    name: "Elektro Kaiser",
+    branch: "Elektro · Photovoltaik · Smart Home",
+    text: "Interaktives 3D-Haus mit Energiefluss, PV-Rechner, Tagesverlauf der Anlage und Smart-Home-Szenen.",
+    tags: ["3D-Energiefluss", "PV-Rechner", "Smart Home"],
+  },
   {
     slug: "weingut",
     name: "Weingut Hollerbach",
@@ -290,25 +305,11 @@ export const EXAMPLES: Example[] = tidyDeep([
     tags: ["Editorial Design", "Weinkarte", "Weinprobe buchen"],
   },
   {
-    slug: "autovermietung",
-    name: "Rheinfront Drive",
-    branch: "Premium-Autovermietung · Worms",
-    text: "Showroom bei Nacht: Fahrzeuge drehen sich als flüssiges 360°-Video ins Licht, Flotte mit Filter, Anlässe, Ablauf und transparente Mietpreise.",
-    tags: ["360°-Ansicht", "Fahrzeugfilter", "Dark Design"],
-  },
-  {
     slug: "restaurant",
     name: "Gasthaus Zum Rebstock",
     branch: "Gehobene Pfälzer Küche · Deidesheim",
     text: "Warme Gasthaus-Atmosphäre mit Live-Öffnungsstatus, Speisekarte, Karte der Partnerhöfe und Raumplan für Feiern.",
     tags: ["Live-Öffnungszeiten", "Speisekarte", "Tischreservierung"],
-  },
-  {
-    slug: "elektriker",
-    name: "Elektro Kaiser",
-    branch: "Elektro · Photovoltaik · Smart Home",
-    text: "Interaktives 3D-Haus mit Energiefluss, PV-Rechner, Tagesverlauf der Anlage und Smart-Home-Szenen.",
-    tags: ["3D-Energiefluss", "PV-Rechner", "Smart Home"],
   },
 ]);
 

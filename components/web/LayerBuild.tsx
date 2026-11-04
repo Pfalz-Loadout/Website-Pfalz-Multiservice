@@ -19,20 +19,20 @@ const STEPS: { tag: string; stage: string; title: string; text: string }[] = [
   { tag: "Texte", stage: "Typografie", title: "Überschriften, die auf den Punkt kommen.",
     text: "Texte, die die Fragen Ihrer Kunden beantworten: kurz, konkret, mit Fakten statt Floskeln." },
   { tag: "Ergebnis", stage: "Fertig", title: "Alles zusammen: eine Website, die Anfragen bringt.",
-    text: "Unser Musterdesign „Umraum“ auf Laptop und Handy. Anruf, Formular und Termin sind von überall erreichbar." },
+    text: "Unser Musterdesign „Fliesen Reuter“ auf Laptop und Handy. Anruf, Anfrage und Aufmaßtermin sind von überall erreichbar." },
 ];
 const N = STEPS.length;
 const nn = (i: number) => String(i).padStart(2, "0");
 const v = (o: Record<string, string | number>) => o as CSSProperties;
 
-const LINKS: [string, number][] = [["Start", 3.1], ["Leistungen", 5.7], ["Projekte", 4.5], ["Ablauf", 3.7], ["Über uns", 4.6], ["Kontakt", 4.3]];
+const LINKS: [string, number][] = [["Leistungen", 5.4], ["Konfigurator", 6.2], ["Referenzen", 5.6], ["Ablauf", 3.4], ["Kontakt", 4]];
 
 /** Ebenen mit Tiefenlinien zur darunterliegenden Ebene (Raster hat keine) */
 const PIN_CORNERS: [string, string][] = [["0%", "0%"], ["100%", "0%"], ["0%", "100%"], ["100%", "100%"]];
 
 /**
  * „Schicht für Schicht“: Titel und Bühne bleiben stehen, beim Scrollen wechseln die Schritte; vier Ebenen in 3D klappen
- * am Ende zur fertigen Website (Musterdesign Umraum) zusammen. Die Choreografie läuft als eine einzige, an den Scroll
+ * am Ende zur fertigen Website (Musterdesign Fliesen Reuter) zusammen. Die Choreografie läuft als eine einzige, an den Scroll
  * gekoppelte GSAP-Zeitleiste (weich in beide Richtungen); ohne Bewegung greifen die CSS-Zustände je Schritt.
  */
 export function LayerBuild() {
@@ -139,7 +139,7 @@ export function LayerBuild() {
   const cls = Array.from({ length: step }, (_, i) => `s${i + 1}`).join(" ");
 
   return (
-    <section ref={ref} className="lay" id="schicht-fuer-schicht" aria-labelledby="lay-title" style={v({ "--steps": N })}>
+    <section ref={ref} className="lay lay--fr" id="schicht-fuer-schicht" aria-labelledby="lay-title" style={v({ "--steps": N })}>
       <div className="lay-track">
         <div className="lay-pin">
           <div className="lay__glow" aria-hidden="true" />
@@ -159,7 +159,7 @@ export function LayerBuild() {
                     {i === N - 1 && (
                       <div className="lay-step__actions">
                         <a className="lay-step__more" href="#beispiele" data-cursor tabIndex={i + 1 === step ? 0 : -1}>Alle Beispiele <Icon name="arrow-right" size={14} /></a>
-                        <small className="lay-step__note">Umraum ist ein fiktiver Betrieb, ein Musterdesign von Pfalz Multiservice.</small>
+                        <small className="lay-step__note">Fliesen Reuter ist ein fiktiver Betrieb, ein Musterdesign von Pfalz Multiservice.</small>
                       </div>
                     )}
                   </li>
@@ -188,7 +188,7 @@ export function LayerBuild() {
                       <span key={`${z}${l}${t}`} className="l3-pin" data-z={z} style={v({ "--z": z, left: l, top: t })}><i /></span>
                     )))}
                     <div className="pl pl--final" style={v({ "--z": 4 })}>
-                      <Image src="/images/beispiele/beratungsbuero-start.png" alt="" fill sizes="(max-width: 1080px) 92vw, 720px" />
+                      <Image src="/images/beispiele/fliesenleger-start.png" alt="" fill sizes="(max-width: 1080px) 92vw, 720px" />
                       <i className="l3-glare" />
                     </div>
                   </div>
@@ -205,7 +205,7 @@ export function LayerBuild() {
                 <div className="lay-card lay-swatch">
                   <span className="lay-swatch__title">Farbpalette</span>
                   <div className="lay-swatch__row">
-                    {[["#2F4A3E", "Tannengrün"], ["#23262A", "Anthrazit"], ["#DCD8CF", "Kalkstein"], ["#F7F6F2", "Papier"]].map(([c, n], i) => (
+                    {[["#EEECE7", "Kalkweiß"], ["#A29D95", "Betongrau"], ["#232527", "Schiefer"], ["#B6935B", "Messing"]].map(([c, n], i) => (
                       <span key={c} className="sw" style={v({ "--c": c, "--i": i })}>
                         <span className="sw__slot"><i className="sw__chip" /><b className="sw__tick"><Icon name="check" size={9} /></b></span>
                         <small>{n}</small>
@@ -215,15 +215,15 @@ export function LayerBuild() {
                 </div>
                 <div className="lay-card lay-type">
                   <span className="lay-type__aa">Aa</span>
-                  <span><b>Inter Tight</b><small>IBM Plex Mono</small></span>
+                  <span><b>Archivo Expanded</b><small>JetBrains Mono</small></span>
                 </div>
 
                 <div className="lay-toast">
                   <span className="lay-toast__icon"><Icon name="mail" size={14} /></span>
-                  <span><b>Neue Anfrage</b><small>Erstgespräch · gerade eben</small></span>
+                  <span><b>Neue Anfrage</b><small>Aufmaß · gerade eben</small></span>
                 </div>
                 <ul className="lay-paths">
-                  {([["phone", "Anruf"], ["clipboard-list", "Formular"], ["calendar-days", "Termin"]] as const).map(([ic, t], i) => (
+                  {([["phone", "Anruf"], ["clipboard-list", "Anfrage"], ["calendar-days", "Aufmaß"]] as const).map(([ic, t], i) => (
                     <li key={t} style={v({ "--i": i })}><Icon name={ic} size={13} />{t}</li>
                   ))}
                 </ul>
@@ -240,7 +240,7 @@ export function LayerBuild() {
 function Phone() {
   return (
     <div className="lay-phone">
-      <Image src="/images/beispiele/beratungsbuero-mobile.png" alt="" fill sizes="170px" />
+      <Image src="/images/beispiele/fliesenleger-mobile.png" alt="" fill sizes="170px" />
     </div>
   );
 }
@@ -260,7 +260,7 @@ function Chip({ n, t, spec }: { n: number; t: string; spec: string }) {
 function GridPlane() {
   return (
     <div className="pl pl--grid" style={v({ "--z": 0, "--n": 1 })}>
-      <Chip n={1} t="Raster" spec="12 Spalten · 24 px Abstand" />
+      <Chip n={1} t="Raster" spec="12 Spalten · Fugenraster" />
       <div className="pl-cols">{Array.from({ length: 12 }, (_, i) => <i key={i} style={v({ "--i": i })} />)}</div>
       <span className="pl-dim"><b>1200 px</b></span>
     </div>
@@ -291,11 +291,12 @@ function WirePlane() {
   );
 }
 
-/** Ebene 3: Marke – Farben, Logo, Foto */
+/** Ebene 3: Marke – Farben, Logo, Foto (Hero-Foto von Fliesen Reuter, vollflächig) */
 function BrandPlane() {
   return (
     <div className="pl pl--brand" style={v({ "--z": 2, "--n": 3 })}>
       <Chip n={3} t="Bild & Farbe" spec="4 Farben · 1 Hauptmotiv" />
+      <div className="p-img b-photo"><Image src="/images/schichten/fliesen-bad.webp" alt="" fill sizes="(max-width: 1080px) 92vw, 720px" /><i className="b-shutter" /></div>
       <div className="p-strip" />
       <div className="p-nav p-nav--line">
         <span className="p-logo"><span className="p-mark" /></span>
@@ -304,7 +305,6 @@ function BrandPlane() {
       </div>
       <div className="p-ctas"><span className="p-btn p-btn--a b-solid" /><span className="p-btn p-btn--b b-ghost" /></div>
       <div className="p-trust p-trust--line" />
-      <div className="p-img b-photo"><Image src="/images/schichten/umraum-haus.jpg" alt="" fill sizes="(max-width: 1080px) 32vw, 260px" /><i className="b-shutter" /></div>
     </div>
   );
 }
@@ -313,19 +313,18 @@ function BrandPlane() {
 function TextPlane() {
   return (
     <div className="pl pl--text" style={v({ "--z": 3, "--n": 4 })}>
-      <Chip n={4} t="Typografie" spec="Inter Tight · 72 / 18 / 13 px" />
-      <div className="p-strip t-mono t-center">Musterdesign · Fiktives Unternehmen</div>
+      <Chip n={4} t="Typografie" spec="Archivo Expanded · 132 / 19 / 12 px" />
+      <div className="p-strip t-mono t-center">Musterdesign · Fiktiver Betrieb</div>
       <div className="p-nav">
-        <span className="p-logo t-logo">Umraum</span>
+        <span className="p-logo t-logo">Fliesen Reuter</span>
         <span className="p-links">{LINKS.map(([l, w]) => <span key={l} className="t-link" style={v({ "--w": w })}>{l}</span>)}</span>
-        <span className="p-btn p-btn--nav t-btn t-btn--light">Erstgespräch vereinbaren</span>
+        <span className="p-btn p-btn--nav t-btn t-btn--dark">Aufmaß anfragen</span>
       </div>
-      <div className="p-eyebrow t-mono">Beratung &amp; Projektierung · Pfalz und Rhein-Neckar</div>
-      <div className="p-h1 t-h1"><span className="t-line"><span>Aus Leerstand</span></span><span className="t-line"><span>wird Zuhause.</span></span></div>
-      <div className="p-lead t-lead">Wir prüfen, rechnen und planen die Umnutzung leerstehender Büroflächen zu Wohnungen. Von der ersten Machbarkeitsstudie bis zur Übergabe der Schlüssel.</div>
-      <div className="p-ctas"><span className="p-btn p-btn--a t-btn t-btn--light">Leistungen ansehen →</span><span className="p-btn p-btn--b t-btn">Erstgespräch vereinbaren</span></div>
-      <div className="p-trust t-mono">Für Eigentümer · Investoren · Kommunen</div>
-      <div className="p-cap t-mono">Bild 01 · Umgebautes Bürohaus mit neuen Balkonen</div>
+      <div className="p-h1 t-h1"><span className="t-line"><span>Fuge für</span></span><span className="t-line"><span>Fuge.</span></span><span className="t-line"><span className="t-brass">Perfekt.</span></span></div>
+      <div className="p-lead t-lead">Fliesenlegermeister in zweiter Generation aus Frankenthal. Wir messen auf, Sie bekommen einen Festpreis.</div>
+      <div className="p-ctas"><span className="p-btn p-btn--a t-btn t-btn--dark">Aufmaß anfragen →</span><span className="p-btn p-btn--b t-btn">Referenzen ansehen</span></div>
+      <div className="p-trust t-mono">Meisterbetrieb · Festpreis nach Aufmaß · 5 Jahre Gewährleistung</div>
+      <div className="p-cap t-mono">B01 · Feinsteinzeug 60 × 120 cm · Fuge 2 mm</div>
     </div>
   );
 }

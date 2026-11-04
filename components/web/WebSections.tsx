@@ -293,10 +293,14 @@ export function WebFaqCheck() {
 
 /** Kompakter Teaser für Startseite und Leistungsseite: Referenz-Wand mit allen Beispielen */
 export function WebTeaser({ alt = false }: { alt?: boolean }) {
-  const shots: { name: string; branch: string; href: string; img: string }[] = [
-    ...CLASSIC_EXAMPLES.map((e) => ({ name: e.name, branch: e.branch, href: `/beispiele/${e.slug}${e.pages[0].path}`, img: `/images/beispiele/${e.slug}-${e.pages[0].key}.png` })),
-    ...EXAMPLES.map((e) => ({ name: e.name, branch: e.branch, href: `/beispiele/${e.slug}`, img: `/images/beispiele/${e.slug}-scroll.png` })),
+  const all: { slug: string; name: string; branch: string; href: string; img: string }[] = [
+    ...CLASSIC_EXAMPLES.map((e) => ({ slug: e.slug, name: e.name, branch: e.branch, href: `/beispiele/${e.slug}${e.pages[0].path}`, img: `/images/beispiele/${e.slug}-${e.pages[0].key}.png` })),
+    ...EXAMPLES.map((e) => ({ slug: e.slug, name: e.name, branch: e.branch, href: `/beispiele/${e.slug}`, img: `/images/beispiele/${e.slug}-scroll.png` })),
   ];
+  // Feste Reihenfolge auf der Startseite: Fliesenleger, Elektriker, Weingut, Umraum, Restaurant, Honigstück
+  const order = ["fliesenleger", "elektriker", "weingut", "beratungsbuero", "restaurant", "seifenmanufaktur"];
+  const rank = (slug: string) => { const i = order.indexOf(slug); return i < 0 ? order.length : i; };
+  const shots = [...all].sort((a, b) => rank(a.slug) - rank(b.slug));
   return (
     <section className={`section ${alt ? "section--alt" : ""}`} id="webdesign">
       <div className="container">

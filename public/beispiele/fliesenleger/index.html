@@ -1,0 +1,1868 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fliesen Reuter</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Musterdesign: Fliesen Reuter, fiktiver Fliesenlegermeister aus Frankenthal (Pfalz). Komplettbad, bodengleiche Duschen, Großformat bis 120 × 280 cm.">
+<meta name="theme-color" content="#1C1D1F">
+<!--FONTS-->
+<link rel="preload" href="assets/fonts/archivo-wdth.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Archivo";src:url("assets/fonts/archivo-wdth.woff2") format("woff2");font-weight:100 900;font-stretch:62% 125%;font-display:swap}
+@font-face{font-family:"Inter";src:url("assets/fonts/inter.woff2") format("woff2");font-weight:100 900;font-display:swap}
+@font-face{font-family:"JetBrains Mono";src:url("assets/fonts/jetbrains-mono.woff2") format("woff2");font-weight:100 800;font-display:swap}
+</style>
+<!--/FONTS-->
+<style>
+/* Layout: 12-spaltiges Fugenraster; Modul = eine Spaltenbreite (--col), Fugen als sichtbare 1-px-Linien.
+   Helle Kalk-Sektionen wechseln mit dunklen Schiefer-Sektionen wie Wand und Boden. */
+:root{
+  --kalk:#EEECE7; --kalk-2:#E2DFD8; --beton:#A29D95; --beton-dk:#615D57;
+  --schiefer:#232527; --anthrazit:#1A1B1D; --messing:#B6935B; --messing-dk:#7A5F33; --messing-hi:#D9BF8C;
+  --ink:#1E1F21; --ink-2:#4A4743; --paper:#F6F5F2;
+  --fuge-l:rgba(35,37,39,.085); --fuge-d:rgba(238,236,231,.065);
+  --f-display:"Archivo","Arial Black","Helvetica Neue",Arial,sans-serif;
+  --f-text:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,"SFMono-Regular",Consolas,monospace;
+  --g:clamp(16px,3.4vw,48px); --col:110px; --gx:48px;
+  --ease:cubic-bezier(.2,.7,.1,1);
+  color-scheme:light;
+}
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%;scroll-behavior:auto}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+body{margin:0;background:var(--kalk);color:var(--ink);font-family:var(--f-text);font-size:17px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:clip;
+  user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent;cursor:default}
+input,textarea,select{user-select:text;-webkit-user-select:text;font:inherit;color:inherit}
+a,button,label[for],summary,[role="button"],[role="tab"],.clickable,select,input[type="radio"]+label,input[type="checkbox"]{cursor:pointer}
+img{max-width:100%;display:block}
+button{font:inherit;color:inherit;background:none;border:0;padding:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--messing);outline-offset:3px;border-radius:2px}
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.skip{position:fixed;left:16px;top:-60px;z-index:200;background:var(--messing);color:var(--anthrazit);padding:10px 16px;font-weight:600;transition:top .2s}
+.skip:focus{top:16px}
+
+/* ---------- Typo ---------- */
+.d{font-family:var(--f-display);font-stretch:125%;font-weight:800;letter-spacing:-.02em;line-height:.92;text-transform:uppercase;text-wrap:balance;margin:0}
+.d-xl{font-size:clamp(44px,9.2vw,152px)}
+.d-l{font-size:clamp(36px,6.2vw,96px)}
+.d-m{font-size:clamp(26px,3.4vw,48px);line-height:1}
+.d-s{font-size:clamp(18px,1.6vw,22px);line-height:1.1;letter-spacing:-.005em}
+.mono{font-family:var(--f-mono);font-size:12.5px;letter-spacing:.04em;font-feature-settings:"zero" 0;font-variant-numeric:tabular-nums}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;display:flex;align-items:center;gap:12px;color:var(--messing-dk);margin:0 0 20px}
+.dark .eyebrow{color:var(--messing)}
+.eyebrow::before{content:"";width:28px;height:1px;background:currentColor}
+.lead{font-size:clamp(17px,1.45vw,20px);line-height:1.55;max-width:56ch;color:var(--ink-2);margin:0}
+.dark .lead{color:#C9C5BE}
+.line{display:block;overflow:hidden;padding-bottom:.06em;margin-bottom:-.06em}
+.line>span{display:inline-block;will-change:transform}
+.brass{color:var(--messing-dk)} .dark .brass{color:var(--messing)}
+
+/* ---------- Raster & Sektionen ---------- */
+.wrap{max-width:1440px;margin-inline:auto;padding-left:max(var(--g),env(safe-area-inset-left,0px));padding-right:max(var(--g),env(safe-area-inset-right,0px));position:relative}
+.sec{position:relative;padding-block:calc(var(--col)*1.2) calc(var(--col)*1.2)}
+.sec.tiled::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(to right,var(--fuge) 1px,transparent 1px),linear-gradient(to bottom,var(--fuge) 1px,transparent 1px);
+  background-size:var(--col) var(--col);background-position:var(--gx) 0}
+.light{--fuge:var(--fuge-l);background:var(--kalk);color:var(--ink)}
+.dark{--fuge:var(--fuge-d);background:var(--schiefer);color:#EEECE7;color-scheme:dark}
+.grid12{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:0}
+.sec-head{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));align-items:end;margin-bottom:calc(var(--col)*.8);gap:24px 0}
+.sec-head>.h{grid-column:1/span 8}
+.sec-head>.lead{grid-column:9/span 4;padding-left:24px}
+@media (max-width:899px){
+  .sec-head{grid-template-columns:1fr}
+  .sec-head>.h,.sec-head>.lead{grid-column:1/-1;padding-left:0}
+}
+
+/* ---------- Buttons ---------- */
+.btn{--bg:var(--messing);--fg:var(--anthrazit);display:inline-flex;align-items:center;gap:12px;height:54px;padding:0 26px;
+  background:var(--bg);color:var(--fg);font-family:var(--f-display);font-stretch:112%;font-weight:700;font-size:14px;letter-spacing:.06em;text-transform:uppercase;
+  text-decoration:none;border:1px solid var(--bg);position:relative;overflow:hidden;transition:background .25s,color .25s,border-color .25s;will-change:transform}
+.btn::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.45) 50%,transparent 70%);transform:translateX(-120%);transition:transform .55s var(--ease)}
+.btn:hover::after{transform:translateX(120%)}
+.btn:hover{--bg:var(--messing-hi)}
+.btn .ar{width:14px;height:14px;flex:none}
+.btn-ghost{--bg:transparent;--fg:currentColor;border-color:currentColor}
+.btn-ghost:hover{--bg:rgba(238,236,231,.1)}
+.light .btn-ghost:hover{--bg:rgba(35,37,39,.06)}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+
+/* ---------- Musterleiste + Header ---------- */
+.hdr{position:fixed;inset:0 0 auto;z-index:60;transition:transform .35s var(--ease);color:#EEECE7}
+.hdr.hide{transform:translateY(-100%)}
+.musterleiste{background:var(--messing);color:var(--anthrazit);text-align:center;font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  padding:6px max(16px,env(safe-area-inset-right,0px)) 6px max(16px,env(safe-area-inset-left,0px));padding-top:calc(6px + env(safe-area-inset-top,0px))}
+.hdr-bar{background:rgba(26,27,29,.86);backdrop-filter:blur(14px) saturate(1.2);-webkit-backdrop-filter:blur(14px) saturate(1.2);border-bottom:1px solid rgba(238,236,231,.08)}
+.hdr-in{height:68px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.mark{display:flex;align-items:center;gap:12px;text-decoration:none}
+.mark-ico{width:26px;height:26px;display:grid;grid-template-columns:1fr 1fr;gap:2px;flex:none}
+.mark-ico i{background:#EEECE7}.mark-ico i:nth-child(2){background:var(--messing)}
+.mark-t{font-family:var(--f-display);font-stretch:125%;font-weight:800;font-size:17px;letter-spacing:.01em;text-transform:uppercase;line-height:1}
+.mark-t small{display:block;font-family:var(--f-mono);font-stretch:100%;font-weight:400;font-size:9.5px;letter-spacing:.16em;color:var(--beton);margin-top:4px}
+.nav{display:flex;align-items:center;gap:30px}
+.nav a{font-size:14px;text-decoration:none;color:#D8D4CD;position:relative;padding:6px 0}
+.nav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--messing);transform:scaleX(0);transform-origin:right;transition:transform .3s var(--ease)}
+.nav a:hover{color:#fff}.nav a:hover::after{transform:scaleX(1);transform-origin:left}
+.hdr .btn{height:44px;padding:0 18px;font-size:12.5px}
+.burger{display:none;width:44px;height:44px;position:relative}
+.burger i{position:absolute;left:11px;right:11px;height:1.5px;background:#EEECE7;transition:transform .3s var(--ease),opacity .2s}
+.burger i:nth-child(1){top:16px}.burger i:nth-child(2){top:22px}.burger i:nth-child(3){top:28px}
+.burger[aria-expanded="true"] i:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.burger[aria-expanded="true"] i:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] i:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.mnav{position:fixed;inset:0;z-index:55;background:var(--anthrazit);color:#EEECE7;display:grid;align-content:center;padding:120px max(24px,env(safe-area-inset-right,0px)) 40px max(24px,env(safe-area-inset-left,0px));
+  clip-path:inset(0 0 100% 0);transition:clip-path .45s var(--ease);visibility:hidden}
+.mnav.open{clip-path:inset(0 0 0 0);visibility:visible}
+.mnav a{display:block;font-family:var(--f-display);font-stretch:125%;font-weight:800;text-transform:uppercase;font-size:clamp(28px,8vw,44px);text-decoration:none;padding:10px 0;border-bottom:1px solid rgba(238,236,231,.1)}
+.mnav .btn{margin-top:28px;justify-content:center}
+@media (max-width:1079px){.nav{display:none}.burger{display:block}.hdr .btn{display:none}}
+
+/* ---------- Intro ---------- */
+.intro{position:fixed;inset:0;z-index:100;pointer-events:none;display:none}
+.js-motion .intro{display:block}
+.intro-half{position:absolute;left:0;right:0;background:var(--anthrazit);overflow:hidden}
+.intro-top{top:0;height:50%}.intro-bot{bottom:0;height:50%}
+.intro-line{position:absolute;left:0;right:0;top:50%;height:2px;margin-top:-1px;background:var(--messing);transform:scaleX(0);transform-origin:left;z-index:2}
+.intro-word{position:absolute;left:0;right:0;bottom:14px;text-align:center;color:#EEECE7}
+.intro-word .d{font-size:clamp(30px,7vw,104px)}
+.intro-sub{position:absolute;left:0;right:0;top:14px;text-align:center;color:var(--beton);font-family:var(--f-mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;height:100svh;min-height:600px;max-height:1100px;background:var(--anthrazit);color:#F4F2EE;overflow:hidden}
+.hero-media{position:absolute;inset:0}
+.hero-media img{width:100%;height:100%;object-fit:cover}
+.hero-media canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hero-scrim{position:absolute;inset:0;pointer-events:none;background:
+  linear-gradient(90deg,rgba(20,21,23,.86) 0%,rgba(20,21,23,.6) 34%,rgba(20,21,23,0) 62%),
+  linear-gradient(0deg,rgba(20,21,23,.78) 0%,rgba(20,21,23,0) 38%)}
+.hero-in{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:calc(var(--col)*.55 + 64px)}
+.hero h1{max-width:12ch}
+.hero h1 .brass{color:var(--messing)}
+.hero-sub{margin:28px 0 0;max-width:46ch;font-size:clamp(16px,1.35vw,19px);color:#D6D2CB;line-height:1.55}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.trust{position:absolute;left:0;right:0;bottom:0;border-top:1px solid rgba(238,236,231,.14);background:rgba(20,21,23,.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.trust ul{list-style:none;margin:0;padding:0;display:flex}
+.trust li{flex:1;display:flex;align-items:center;gap:12px;height:64px;font-family:var(--f-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#E6E2DB;border-right:1px solid rgba(238,236,231,.12);padding-left:20px}
+.trust li:first-child{padding-left:0}
+.trust li:last-child{border-right:0}
+.trust li b{width:8px;height:8px;background:var(--messing);flex:none}
+.hero-spec{position:absolute;right:max(var(--g),env(safe-area-inset-right,0px));bottom:calc(64px + 22px);text-align:left;color:#D6D2CB;line-height:1.7;background:rgba(20,21,23,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);padding:12px 16px;border-left:2px solid var(--messing)}
+.hero-spec b{display:block;color:var(--messing);font-weight:500}
+@media (max-width:899px){
+  .hero{min-height:640px}
+  .hero-scrim{background:linear-gradient(0deg,rgba(20,21,23,.9) 0%,rgba(20,21,23,.55) 55%,rgba(20,21,23,.25) 100%)}
+  .hero-in{padding-bottom:150px}
+  .trust li{height:auto;padding:12px 0 12px 12px;font-size:10px;letter-spacing:.06em;gap:8px}
+  .trust li:first-child{padding-left:0}
+  .hero-spec{display:none}
+}
+@media (max-width:420px){.hero-cta .btn{flex:1 1 100%;justify-content:center}}
+
+/* ---------- Laufband ---------- */
+.band{background:var(--messing);color:var(--anthrazit);overflow:hidden;border-block:1px solid rgba(0,0,0,.12)}
+.band-track{display:flex;width:max-content;will-change:transform}
+.band-item{display:flex;align-items:center;gap:36px;padding:22px 18px;font-family:var(--f-display);font-stretch:125%;font-weight:800;font-size:clamp(24px,3vw,40px);text-transform:uppercase;letter-spacing:-.01em;white-space:nowrap}
+.band-item i{width:16px;height:16px;display:grid;grid-template-columns:1fr 1fr;gap:2px;flex:none}
+.band-item i::before,.band-item i::after{content:"";background:var(--anthrazit)}
+.band-item i{background:linear-gradient(var(--anthrazit),var(--anthrazit)) 0 100%/7px 7px no-repeat,linear-gradient(var(--anthrazit),var(--anthrazit)) 100% 0/7px 7px no-repeat}
+.band-item i::before,.band-item i::after{display:none}
+
+/* ---------- Bilder: LQIP + Raster-Reveal ---------- */
+.ph{position:relative;overflow:hidden;background:var(--kalk-2) center/cover no-repeat}
+.dark .ph{background-color:#2C2E30}
+.ph img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .5s}
+.ph img.is-loaded{opacity:1}
+.ph .par{position:absolute;inset:-8% 0;height:116%}
+.rv-grid{position:absolute;inset:0;display:grid;pointer-events:none;z-index:2}
+.rv-grid i{background:var(--cell,var(--kalk));transform-origin:center}
+
+/* ---------- Leistungen ---------- */
+.lst{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-auto-rows:var(--col);gap:2px;background:var(--fuge-l);padding:2px;margin:-2px}
+.tile{position:relative;overflow:hidden;background:var(--kalk-2);isolation:isolate;transform-style:preserve-3d}
+.tile .ph{position:absolute;inset:0}
+.tile-a{grid-column:1/span 6;grid-row:span 7}
+.tile-b,.tile-c{grid-column:span 3;grid-row:span 4}
+.tile-d,.tile-e{grid-column:span 3;grid-row:span 3}
+.tile-f{grid-column:1/span 8;grid-row:span 3}
+.tile-g{grid-column:9/span 4;grid-row:span 3;background:var(--schiefer);color:#EEECE7}
+.tile .d-s{font-size:clamp(15px,1.25vw,19px);font-stretch:112%}
+.tile-g .d-m{font-size:clamp(22px,2.1vw,32px);hyphens:auto;-webkit-hyphens:auto}
+.tile-cap{position:absolute;left:0;right:0;bottom:0;z-index:3;padding:20px 22px;color:#F4F2EE;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:8px 16px;
+  background:linear-gradient(0deg,rgba(18,19,21,.78),rgba(18,19,21,0));pointer-events:none}
+.tile-cap .mono{color:var(--messing-hi);white-space:nowrap}
+.tile-cap>h3{flex:1 1 0;min-width:0}
+.tile-a .tile-cap,.tile-b .tile-cap,.tile-d .tile-cap,.tile-e .tile-cap{flex-wrap:nowrap}
+.tile-btn{position:absolute;inset:0;z-index:4;width:100%;text-align:left}
+.tile-more{width:34px;height:34px;border:1px solid rgba(244,242,238,.5);display:grid;place-items:center;flex:none;transition:transform .35s var(--ease),background .25s}
+.tile-more svg{width:12px;height:12px}
+.tile:hover .tile-more,.tile.open .tile-more{background:var(--messing);border-color:var(--messing);color:var(--anthrazit)}
+.tile.open .tile-more{transform:rotate(45deg)}
+.tile-ov{position:absolute;inset:0;z-index:3;background:rgba(26,27,29,.94);color:#EEECE7;padding:26px 24px;display:flex;flex-direction:column;justify-content:flex-end;gap:14px;
+  clip-path:inset(100% 0 0 0);transition:clip-path .5s var(--ease);pointer-events:none}
+.tile:hover .tile-ov,.tile.open .tile-ov,.tile-btn:focus-visible~.tile-ov{clip-path:inset(0 0 0 0)}
+.tile-ov p{margin:0;font-size:15px;line-height:1.55;color:#D2CEC7;max-width:44ch}
+.tile-ov ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.tile-ov li{font-family:var(--f-mono);font-size:12px;letter-spacing:.04em;color:#E9E5DE;display:flex;gap:10px}
+.tile-ov li::before{content:"";width:8px;height:1px;background:var(--messing);margin-top:9px;flex:none}
+.tile-g .tile-inner{position:absolute;inset:0;padding:26px 24px;display:flex;flex-direction:column;justify-content:space-between}
+.tile-g p{margin:0;color:#C9C5BE;font-size:15px}
+.sheen{position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.28) 48%,rgba(255,255,255,.05) 55%,transparent 64%);transform:translateX(-110%);transition:transform .9s var(--ease)}
+.tile:hover .sheen,.mat:hover .sheen{transform:translateX(110%)}
+@media (max-width:899px){
+  .lst{grid-template-columns:1fr;grid-auto-rows:auto}
+  .lst>.tile{grid-column:1/-1!important;grid-row:auto!important;aspect-ratio:4/5}
+  .lst>.tile-f{aspect-ratio:3/2}
+  .lst>.tile-g{aspect-ratio:auto;min-height:220px}
+  .tile-g .tile-inner{position:relative}
+}
+
+/* ---------- Konfigurator ---------- */
+.cfg{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:0;align-items:start}
+.cfg-ctrl{grid-column:1/span 4;padding-right:calc(var(--col)*.35);display:grid;gap:26px}
+.cfg-stage{grid-column:5/span 8;position:sticky;top:96px}
+.seg-tabs{display:grid;grid-template-columns:1fr 1fr;border:1px solid rgba(238,236,231,.18)}
+.seg-tabs button{height:50px;font-family:var(--f-display);font-stretch:112%;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#BDB8B0;transition:background .25s,color .25s}
+.seg-tabs button[aria-selected="true"]{background:#EEECE7;color:var(--anthrazit)}
+.fs{border:0;margin:0;padding:0;min-width:0}
+.fs legend{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--messing);padding:0;margin-bottom:10px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip input{position:absolute;opacity:0;pointer-events:none}
+.chip span{display:inline-flex;align-items:center;gap:8px;min-height:42px;padding:0 14px;border:1px solid rgba(238,236,231,.2);font-size:14px;color:#DAD6CF;transition:background .2s,border-color .2s,color .2s}
+.chip:hover span{border-color:rgba(238,236,231,.5)}
+.chip input:checked+span{background:#EEECE7;border-color:#EEECE7;color:var(--anthrazit)}
+.chip input:focus-visible+span{outline:2px solid var(--messing);outline-offset:2px}
+.chip input:disabled+span{opacity:.35;cursor:not-allowed;text-decoration:line-through}
+.chip .sw{width:14px;height:14px;border:1px solid rgba(0,0,0,.25);flex:none}
+.mats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.mat{position:relative;display:block}
+.mat input{position:absolute;opacity:0;pointer-events:none}
+.mat .mat-face{position:relative;display:block;aspect-ratio:1;overflow:hidden;border:1px solid rgba(238,236,231,.18);background:center/cover;transition:transform .3s var(--ease)}
+.mat .mat-face::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 0 var(--messing);transition:box-shadow .2s}
+.mat input:checked+.mat-face::after{box-shadow:inset 0 0 0 3px var(--messing)}
+.mat input:focus-visible+.mat-face{outline:2px solid var(--messing);outline-offset:2px}
+.mat:hover .mat-face{transform:translateY(-2px)}
+.mat .mat-l{display:block;font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;margin-top:6px;color:#CFCAC2;text-align:center}
+.cfg-hint{min-height:20px;font-family:var(--f-mono);font-size:11.5px;color:#A8A39B;margin:-12px 0 0}
+.room{position:relative;aspect-ratio:5/4;width:100%;overflow:hidden;background:#151617;perspective:none;border:1px solid rgba(238,236,231,.1)}
+.room-wall{position:absolute;left:0;right:0;top:0;height:62%;overflow:hidden}
+.room-wall canvas,.room-floor canvas{width:100%;height:100%;display:block}
+.room-floor-wrap{position:absolute;left:0;right:0;top:62%;bottom:0;overflow:hidden;perspective:520px;perspective-origin:50% 0%}
+.room-floor{position:absolute;left:-30%;right:-30%;top:0;height:190%;transform:rotateX(64deg);transform-origin:50% 0}
+.room-shade{position:absolute;inset:0;pointer-events:none;background:
+  linear-gradient(180deg,rgba(0,0,0,0) 54%,rgba(0,0,0,.28) 61.6%,rgba(0,0,0,.05) 62.4%,rgba(0,0,0,0) 72%),
+  radial-gradient(120% 90% at 20% 0%,rgba(255,250,240,.12),rgba(0,0,0,0) 60%),
+  linear-gradient(90deg,rgba(0,0,0,.18),rgba(0,0,0,0) 18%,rgba(0,0,0,0) 82%,rgba(0,0,0,.2))}
+.room-sill{position:absolute;left:0;right:0;top:calc(62% - 6px);height:6px;background:linear-gradient(#cfcac2,#9c978f);opacity:.0}
+.room-gloss{position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;opacity:.0;transition:opacity .3s;
+  background:radial-gradient(240px 180px at var(--mx,70%) var(--my,30%),rgba(255,252,245,.38),rgba(255,252,245,0) 70%)}
+.room:hover .room-gloss{opacity:1}
+.room-dim{position:absolute;left:0;right:0;top:12px;display:flex;align-items:center;gap:0;padding:0 14px;color:var(--messing-hi);font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;pointer-events:none}
+.room-dim span{background:rgba(20,21,23,.72);padding:4px 10px}
+.room-dim::before,.room-dim::after{content:"";flex:1;height:1px;background:currentColor;box-shadow:0 0 0 1px rgba(20,21,23,.35)}
+.room-tag{position:absolute;left:14px;bottom:12px;font-family:var(--f-mono);font-size:11px;color:#EEECE7;background:rgba(20,21,23,.6);padding:6px 10px;pointer-events:none}
+.room-tag2{left:auto;right:14px;bottom:auto;top:calc(62% - 34px)}
+.cfg-sum{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;margin-top:18px;padding-top:18px;border-top:1px solid rgba(238,236,231,.12)}
+.cfg-sum dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-family:var(--f-mono);font-size:12px;color:#CFCAC2}
+.cfg-sum dt{color:var(--messing)}.cfg-sum dd{margin:0}
+@media (max-width:899px){
+  .cfg{grid-template-columns:1fr}
+  .cfg-ctrl,.cfg-stage{grid-column:1/-1;padding-right:0;position:relative;top:auto}
+  .cfg-stage{display:contents}
+  .room{order:-1;position:sticky;top:8px;z-index:5;aspect-ratio:16/11;margin-bottom:24px;box-shadow:0 18px 30px rgba(0,0,0,.35)}
+  .cfg-sum{order:2;margin-top:28px}
+}
+
+/* ---------- Flächenrechner ---------- */
+.calc{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:0;border:1px solid var(--fuge-l);background:var(--paper)}
+.calc-in{grid-column:1/span 5;padding:clamp(22px,3vw,40px);display:grid;gap:22px;align-content:start;border-right:1px solid var(--fuge-l)}
+.calc-out{grid-column:6/span 7;padding:clamp(22px,3vw,40px);display:grid;grid-template-rows:auto 1fr auto;gap:24px}
+.fld{display:grid;gap:8px}
+.fld>label,.fld>.lbl{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
+.num{display:grid;grid-template-columns:48px 1fr 48px;border:1px solid #C9C5BD;background:#fff;height:52px}
+.num button{font-size:22px;line-height:1;color:var(--ink);transition:background .2s}
+.num button:hover{background:var(--kalk)}
+.num input{border:0;border-inline:1px solid #E1DED7;text-align:center;font-family:var(--f-mono);font-size:17px;background:transparent;min-width:0;-moz-appearance:textfield;appearance:textfield}
+.num input::-webkit-outer-spin-button,.num input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.unit{position:relative}
+.sel{height:52px;border:1px solid #C9C5BD;background:#fff;padding:0 40px 0 14px;appearance:none;-webkit-appearance:none;width:100%;font-size:15px;
+  background-image:linear-gradient(45deg,transparent 50%,var(--ink) 50%),linear-gradient(135deg,var(--ink) 50%,transparent 50%);background-position:calc(100% - 20px) 23px,calc(100% - 15px) 23px;background-size:5px 5px;background-repeat:no-repeat}
+.seg2{display:grid;grid-template-columns:1fr 1fr;border:1px solid #C9C5BD;background:#fff}
+.seg2 label{position:relative;display:block}
+.seg2 input{position:absolute;opacity:0}
+.seg2 span{display:grid;place-items:center;height:50px;font-size:14px;font-weight:600;transition:background .2s,color .2s}
+.seg2 input:checked+span{background:var(--schiefer);color:#EEECE7}
+.seg2 input:focus-visible+span{outline:2px solid var(--messing);outline-offset:-4px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.res{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--fuge-l);border-bottom:1px solid var(--fuge-l)}
+.res>div{padding:18px 16px 18px 0;border-right:1px solid var(--fuge-l)}
+.res>div+div{padding-left:16px}
+.res>div:last-child{border-right:0}
+.res .k{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
+.res .v{font-family:var(--f-display);font-stretch:125%;font-weight:800;font-size:clamp(28px,3.6vw,52px);line-height:1;margin-top:10px;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.res .v small{font-size:.38em;letter-spacing:0;margin-left:4px;font-weight:600}
+.res .s{font-family:var(--f-mono);font-size:11.5px;color:var(--ink-2);margin-top:8px}
+.plan{position:relative;min-height:200px}
+.plan svg{width:100%;height:100%;max-height:300px;display:block;overflow:visible}
+.calc-note{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
+.calc-note p{margin:0;font-size:13.5px;color:var(--ink-2);max-width:52ch}
+@media (max-width:899px){
+  .calc{grid-template-columns:1fr}
+  .calc-in,.calc-out{grid-column:1/-1;border-right:0}
+  .calc-in{border-bottom:1px solid var(--fuge-l)}
+  .res{grid-template-columns:1fr 1fr}
+  .res>div:nth-child(2){border-right:0}
+  .res>div:nth-child(3){grid-column:1/-1;border-top:1px solid var(--fuge-l);padding-left:0}
+}
+
+/* ---------- Referenzen ---------- */
+.refs{overflow:hidden}
+.refs-pin{position:relative}
+.refs-track{display:flex;gap:2px;width:max-content;padding-left:max(var(--g),env(safe-area-inset-left,0px));padding-right:max(var(--g),env(safe-area-inset-right,0px))}
+.ref{width:min(54vw,780px);flex:none;background:#1C1D1F;position:relative}
+.ref .ph{aspect-ratio:3/2}
+.ref .ph img{transition:transform .8s var(--ease),opacity .5s}
+.ref:hover .ph img{transform:scale(1.035)}
+.ref-meta{display:grid;grid-template-columns:auto 1fr;gap:18px 26px;padding:22px 24px 26px;align-items:start}
+.ref-no{font-family:var(--f-display);font-stretch:125%;font-weight:800;font-size:44px;line-height:.9;color:var(--messing)}
+.ref-meta h3{margin:0 0 12px}
+.ref-meta dl{margin:0;display:grid;grid-template-columns:repeat(3,auto);gap:4px 26px;justify-content:start;font-family:var(--f-mono);font-size:12px}
+.ref-meta dt{color:#9D988F;letter-spacing:.1em;text-transform:uppercase;font-size:10.5px}
+.ref-meta dd{margin:0;color:#E6E2DB;grid-row:2}
+.ref-meta p{margin:14px 0 0;color:#C9C5BE;font-size:15px;max-width:56ch}
+.refs-end{width:min(36vw,420px);flex:none;display:flex;flex-direction:column;justify-content:flex-end;padding:24px;gap:18px}
+.refs-end p{color:#C9C5BE;margin:0}
+@media (max-width:899px){
+  .refs-track{width:auto;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:6px;scrollbar-width:none}
+  .refs-track::-webkit-scrollbar{display:none}
+  .ref{width:84vw;scroll-snap-align:start}
+  .refs-end{width:70vw;scroll-snap-align:start}
+  .ref-meta{grid-template-columns:1fr;gap:10px}
+  .ref-meta dl{grid-template-columns:repeat(3,auto);gap:4px 16px}
+}
+.ba{margin-top:calc(var(--col)*1)}
+.ba-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:20px;margin-bottom:22px}
+.ba-tabs{display:flex;flex-wrap:wrap;gap:6px}
+.ba-tabs button{min-height:42px;padding:0 16px;border:1px solid rgba(238,236,231,.22);font-size:14px;color:#D8D4CD;transition:background .2s,color .2s}
+.ba-tabs button[aria-selected="true"]{background:#EEECE7;color:var(--anthrazit);border-color:#EEECE7}
+.ba-stage{position:relative;aspect-ratio:3/2;overflow:hidden;touch-action:pan-y;background:#1C1D1F;max-height:80vh;width:100%}
+.ba-stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.ba-before{clip-path:inset(0 calc(100% - var(--p,50%)) 0 0)}
+.ba-handle{position:absolute;top:0;bottom:0;left:var(--p,50%);width:2px;margin-left:-1px;background:var(--messing);pointer-events:none}
+.ba-knob{position:absolute;top:50%;left:50%;width:84px;height:30px;margin:-15px 0 0 -42px;background:var(--messing);color:var(--anthrazit);display:flex;align-items:center;justify-content:center;gap:6px;font-family:var(--f-mono);font-size:11px;letter-spacing:.06em}
+.ba-knob i{width:22px;height:10px;border:1.5px solid var(--anthrazit);border-radius:6px;position:relative}
+.ba-knob i::after{content:"";position:absolute;width:6px;height:4px;border-radius:3px;background:var(--anthrazit);left:50%;top:50%;transform:translate(-50%,-50%)}
+.ba-lab{position:absolute;top:16px;font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;background:rgba(20,21,23,.72);color:#EEECE7;padding:7px 10px;pointer-events:none}
+.ba-lab.l{left:16px}.ba-lab.r{right:16px;background:var(--messing);color:var(--anthrazit)}
+.ba-range{position:absolute;inset:auto 0 0 0;width:100%;opacity:0;height:1px}
+.ba-cap{display:flex;flex-wrap:wrap;gap:8px 26px;margin-top:14px;color:#BDB8B0}
+
+/* ---------- Ablauf ---------- */
+.steps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:2px;background:var(--fuge-l);padding:2px;perspective:1400px}
+.step{background:var(--paper);padding:26px 22px 28px;min-height:calc(var(--col)*3.2);display:flex;flex-direction:column;gap:14px;transform-origin:50% 100%;backface-visibility:hidden;position:relative}
+.step-n{font-family:var(--f-display);font-stretch:125%;font-weight:800;font-size:clamp(46px,4.6vw,72px);line-height:.85;color:var(--messing-dk)}
+.step h3{margin:0}
+.step p{margin:0;font-size:15px;color:var(--ink-2)}
+.step .mono{margin-top:auto;color:var(--ink);border-top:1px solid var(--fuge-l);padding-top:12px}
+.steps-rail{height:2px;background:var(--fuge-l);margin-top:22px;position:relative}
+.steps-rail i{position:absolute;inset:0;background:var(--messing);transform:scaleX(0);transform-origin:left}
+.herring{height:34px;background-color:var(--c2,#222426)}
+@media (max-width:899px){
+  .steps{grid-template-columns:1fr}
+  .step{min-height:0}
+  .steps-rail{display:none}
+}
+
+/* ---------- Warum wir ---------- */
+.why{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:0}
+.why-img{grid-column:1/span 5;grid-row:span 2;position:relative;min-height:calc(var(--col)*6)}
+.why-img .ph{position:absolute;inset:0}
+.prom{grid-column:6/span 7;display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--fuge-d);padding:2px;margin-left:24px}
+.pr{background:var(--schiefer);padding:26px 24px 28px;min-height:calc(var(--col)*2.2);display:flex;flex-direction:column;gap:12px;transition:background .3s;transform-style:preserve-3d;will-change:transform}
+.pr:hover{background:#2A2C2F}
+.pr svg{width:32px;height:32px;color:var(--messing)}
+.pr h3{margin:0}
+.pr p{margin:0;color:#C9C5BE;font-size:15px}
+.nums{grid-column:6/span 7;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin:24px 0 0 24px;border-top:1px solid rgba(238,236,231,.14)}
+.nums>div{padding:22px 16px 0 0}
+.nums .v{font-family:var(--f-display);font-stretch:125%;font-weight:800;font-size:clamp(34px,4.2vw,64px);line-height:1;color:#F4F2EE;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.nums .k{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--messing);margin-top:10px}
+@media (max-width:899px){
+  .why{grid-template-columns:1fr}
+  .why-img{grid-column:1/-1;min-height:0;aspect-ratio:4/5;margin-bottom:24px}
+  .prom,.nums{grid-column:1/-1;margin-left:0}
+  .prom{grid-template-columns:1fr}
+  .nums{grid-template-columns:1fr 1fr 1fr}
+  .nums>div{padding-right:8px}
+  .nums .k{font-size:10px;letter-spacing:.04em}
+}
+
+/* ---------- Stimmen ---------- */
+.quotes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px;background:var(--fuge-l);padding:2px}
+.q{background:var(--paper);padding:30px 28px 28px;display:flex;flex-direction:column;gap:22px;margin:0}
+.q-stars{display:flex;gap:4px}
+.q-stars i{width:12px;height:12px;background:var(--messing-dk)}
+.q blockquote{margin:0;font-family:var(--f-display);font-stretch:100%;font-weight:500;font-size:clamp(19px,1.6vw,23px);line-height:1.35;letter-spacing:-.01em;text-wrap:pretty}
+.q figcaption{margin-top:auto;display:grid;gap:4px;border-top:1px solid var(--fuge-l);padding-top:14px}
+.q figcaption b{font-weight:600;font-size:15px}
+.q figcaption .mono{color:var(--ink-2)}
+@media (max-width:899px){.quotes{grid-template-columns:1fr}}
+
+/* ---------- Einsatzgebiet ---------- */
+.area{display:grid;grid-template-columns:repeat(12,minmax(0,1fr))}
+.area-map{grid-column:1/span 7;position:relative;background:var(--paper);border:1px solid var(--fuge-l);align-self:start;overflow:hidden}
+.area-map svg{display:block;width:100%;height:auto}
+.area-list{grid-column:9/span 4;align-self:center}
+.area-list ul{list-style:none;margin:28px 0 0;padding:0;border-top:1px solid var(--fuge-l)}
+.area-list li{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 4px;border-bottom:1px solid var(--fuge-l);font-size:15.5px;transition:background .2s,padding .2s}
+.area-list li .mono{color:var(--ink-2)}
+.area-list li.on,.area-list li:hover{background:var(--kalk-2);padding-left:12px}
+.pin circle.dot{fill:var(--schiefer);transition:r .25s}
+.pin text{font-family:var(--f-mono);font-size:15px;fill:var(--ink);letter-spacing:.02em}
+.pin.on circle.dot{fill:var(--messing-dk)}
+.pin.on text{fill:var(--messing-dk);font-weight:600}
+@media (max-width:899px){
+  .area{grid-template-columns:1fr}
+  .area-map,.area-list{grid-column:1/-1}
+  .area-list{margin-top:24px}
+}
+
+/* ---------- FAQ ---------- */
+.faq{display:grid;grid-template-columns:repeat(12,minmax(0,1fr))}
+.faq-h{grid-column:1/span 4;padding-right:24px}
+.faq-l{grid-column:5/span 8;border-top:1px solid var(--fuge-l)}
+.fq{border-bottom:1px solid var(--fuge-l)}
+.fq h3{margin:0}
+.fq button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;text-align:left;padding:22px 0;font-family:var(--f-display);font-stretch:112%;font-weight:700;font-size:clamp(17px,1.5vw,21px);line-height:1.25;letter-spacing:-.005em}
+.fq button:hover{color:var(--messing-dk)}
+.fq .pm{width:36px;height:36px;border:1px solid #C9C5BD;flex:none;position:relative;transition:background .25s,border-color .25s}
+.fq .pm::before,.fq .pm::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:1.5px;background:currentColor;transform:translate(-50%,-50%);transition:transform .3s var(--ease)}
+.fq .pm::after{transform:translate(-50%,-50%) rotate(90deg)}
+.fq button[aria-expanded="true"] .pm{background:var(--schiefer);border-color:var(--schiefer);color:#EEECE7}
+.fq button[aria-expanded="true"] .pm::after{transform:translate(-50%,-50%) rotate(0)}
+.fq-a{overflow:hidden;height:0}
+.fq-a>div{padding:0 56px 26px 0;color:var(--ink-2);max-width:68ch}
+.fq-a p{margin:0 0 10px}
+.no-js .fq-a,.fq-a.open{height:auto}
+@media (max-width:899px){
+  .faq{grid-template-columns:1fr}
+  .faq-h,.faq-l{grid-column:1/-1;padding-right:0}
+  .faq-h{margin-bottom:24px}
+  .fq-a>div{padding-right:0}
+}
+
+/* ---------- Kontakt ---------- */
+.ct{display:grid;grid-template-columns:repeat(12,minmax(0,1fr))}
+.ct-info{grid-column:1/span 4;padding-right:32px;display:flex;flex-direction:column;gap:30px}
+.ct-info dl{margin:0;display:grid;gap:16px}
+.ct-info dt{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--messing)}
+.ct-info dd{margin:4px 0 0;color:#E6E2DB}
+.ct-form{grid-column:5/span 8;background:#1D1E20;border:1px solid rgba(238,236,231,.1);padding:clamp(20px,3vw,40px);position:relative}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.fgrid .full{grid-column:1/-1}
+.f{display:grid;gap:8px;min-width:0}
+.f>label,.f>.lbl{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#BDB8B0}
+.f input[type=text],.f input[type=email],.f input[type=tel],.f input[type=number],.f select,.f textarea{width:100%;background:#151617;border:1px solid rgba(238,236,231,.18);color:#F4F2EE;height:50px;padding:0 14px;border-radius:0;font-size:16px;transition:border-color .2s}
+.f select{appearance:none;-webkit-appearance:none;background-image:linear-gradient(45deg,transparent 50%,#EEECE7 50%),linear-gradient(135deg,#EEECE7 50%,transparent 50%);background-position:calc(100% - 20px) 22px,calc(100% - 15px) 22px;background-size:5px 5px;background-repeat:no-repeat}
+.f textarea{height:auto;min-height:120px;padding:12px 14px;resize:vertical}
+.f input:focus,.f select:focus,.f textarea:focus{outline:none;border-color:var(--messing)}
+.f input[aria-invalid="true"],.f select[aria-invalid="true"]{border-color:#E08B6E}
+.f .err{font-size:13px;color:#F0A58A;min-height:0}
+.ptypes{display:flex;flex-wrap:wrap;gap:6px}
+.drop{border:1px dashed rgba(238,236,231,.3);padding:22px;display:flex;flex-wrap:wrap;align-items:center;gap:16px;transition:border-color .2s,background .2s}
+.drop.over{border-color:var(--messing);background:rgba(182,147,91,.08)}
+.drop p{margin:0;font-size:14px;color:#BDB8B0;flex:1;min-width:180px}
+.thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:6px;margin-top:10px}
+.thumbs:empty{display:none}
+.thumb{position:relative;aspect-ratio:1;background:#151617 center/cover}
+.thumb button{position:absolute;top:4px;right:4px;width:26px;height:26px;background:rgba(20,21,23,.85);color:#EEECE7;font-size:16px;line-height:1}
+.cfg-pick{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;background:#151617;border:1px solid rgba(182,147,91,.4);padding:14px 16px}
+.cfg-pick p{margin:0;font-family:var(--f-mono);font-size:12px;color:#E6E2DB;line-height:1.7}
+.cfg-pick .x{font-size:13px;text-decoration:underline;color:#BDB8B0}
+.chk{display:flex;gap:12px;align-items:flex-start;font-size:14px;color:#C9C5BE}
+.chk input{width:20px;height:20px;accent-color:var(--messing);margin-top:2px;flex:none}
+.form-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;margin-top:6px}
+.form-foot .mono{color:#9D988F}
+.thanks{position:absolute;inset:0;background:#1D1E20;display:none;align-items:center;justify-content:center;padding:clamp(20px,4vw,56px);overflow:hidden}
+.thanks.show{display:flex}
+.thanks-grid{position:absolute;inset:0;display:grid;grid-template-columns:repeat(8,1fr);grid-auto-rows:1fr;gap:2px;opacity:.5;pointer-events:none}
+.thanks-grid i{background:#26282A}
+.thanks-in{position:relative;max-width:520px}
+.thanks-in p{color:#D2CEC7}
+@media (max-width:899px){
+  .ct{grid-template-columns:1fr}
+  .ct-info,.ct-form{grid-column:1/-1;padding-right:0}
+  .ct-info{margin-bottom:32px}
+  .fgrid{grid-template-columns:1fr}
+}
+
+/* ---------- Footer ---------- */
+.ftr{background:var(--anthrazit);color:#D8D4CD;position:relative;overflow:hidden}
+.ftr .herring{--c1:#2F3134;--c2:#212325}
+.ftr-word{font-family:var(--f-display);font-stretch:125%;font-weight:800;text-transform:uppercase;letter-spacing:-.035em;line-height:.82;font-size:clamp(28px,8.6vw,124px);color:#EEECE7;margin:calc(var(--col)*.7) 0 calc(var(--col)*.6);white-space:nowrap}
+.ftr-word span{color:var(--messing)}
+.ftr-cols{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:28px 0;padding-bottom:calc(var(--col)*.6)}
+.ftr-cols>div{grid-column:span 3;padding-right:20px}
+.ftr-cols h3{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--messing);font-weight:400;margin:0 0 14px}
+.ftr-cols p,.ftr-cols li{margin:0;font-size:15px;line-height:1.8}
+.ftr-cols ul{list-style:none;margin:0;padding:0}
+.ftr-cols a{text-decoration:none}.ftr-cols a:hover{color:#fff;text-decoration:underline;text-underline-offset:3px}
+.ftr-base{border-top:1px solid rgba(238,236,231,.1);padding-block:22px calc(22px + env(safe-area-inset-bottom,0px));display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between;font-family:var(--f-mono);font-size:11.5px;letter-spacing:.04em;color:#9D988F}
+.ftr-base a{color:var(--messing-hi)}
+@media (max-width:899px){.ftr-cols>div{grid-column:span 6}}
+@media (max-width:520px){.ftr-cols>div{grid-column:1/-1}}
+
+/* ---------- Wasserwaage ---------- */
+.level{position:fixed;z-index:50;right:max(18px,calc(env(safe-area-inset-right,0px) + 12px));bottom:max(18px,calc(env(safe-area-inset-bottom,0px) + 12px));width:176px;height:34px;
+  background:linear-gradient(180deg,#C9C4BB,#9E998F 48%,#8A857C 52%,#B3AEA5);border:1px solid rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;
+  box-shadow:0 8px 20px rgba(0,0,0,.25);pointer-events:none;transition:opacity .35s,transform .35s var(--ease)}
+.level.off{opacity:0;transform:translateY(12px)}
+.level::before,.level::after{content:"";position:absolute;top:6px;bottom:6px;width:8px;background:rgba(0,0,0,.12)}
+.level::before{left:8px}.level::after{right:8px}
+.vial{position:relative;width:104px;height:16px;border-radius:9px;background:linear-gradient(180deg,#E7F0C8,#C9DB8C 60%,#B9CC7A);box-shadow:inset 0 1px 3px rgba(0,0,0,.35);overflow:hidden}
+.vial .mk{position:absolute;top:0;bottom:0;width:1.5px;background:rgba(30,30,20,.7)}
+.vial .mk.a{left:calc(50% - 15px)}.vial .mk.b{left:calc(50% + 13.5px)}
+.bubble{position:absolute;top:3px;left:0;width:26px;height:10px;border-radius:6px;background:radial-gradient(60% 70% at 40% 35%,#fff,#F3F7DF 60%,rgba(240,246,220,.6));box-shadow:0 0 0 1px rgba(80,90,40,.25);transform:translateX(4px)}
+.level-p{position:absolute;right:calc(100% + 10px);top:50%;transform:translateY(-50%);font-family:var(--f-mono);font-size:11px;color:var(--ink);background:rgba(238,236,231,.92);padding:4px 7px;white-space:nowrap;letter-spacing:.04em}
+.level.plumb .level-p{background:var(--messing);color:var(--anthrazit)}
+@media (max-width:899px){.level{width:128px;height:28px}.vial{width:78px;height:13px}.bubble{width:20px;height:7px;top:3px}.vial .mk.a{left:calc(50% - 12px)}.vial .mk.b{left:calc(50% + 10.5px)}.level-p{display:none}}
+
+/* ---------- Reduzierte Bewegung / ohne JS ---------- */
+html:not(.js-motion) .refs-track{width:auto;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px}
+html:not(.js-motion) .ref,html:not(.js-motion) .refs-end{scroll-snap-align:start}
+html:not(.js-motion) .steps-rail i{transform:none}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}
+  .sheen,.btn::after{display:none}
+}
+</style>
+</head>
+<body class="no-js">
+<script>document.body.classList.remove('no-js');document.body.classList.add('js');try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&!/[?&]rm=1/.test(location.search))document.documentElement.classList.add('js-motion')}catch(e){}</script>
+<a class="skip" href="#main">Zum Inhalt springen</a>
+
+<!-- Intro: Fugenlinie → Wortmarke → Hero öffnet sich -->
+<div class="intro" aria-hidden="true">
+  <div class="intro-half intro-top"><div class="intro-word"><div class="d"><span class="line"><span>Fliesen Reuter</span></span></div></div></div>
+  <div class="intro-half intro-bot"><div class="intro-sub"><span class="line"><span>Fliesenlegermeister · Frankenthal (Pfalz)</span></span></div></div>
+  <div class="intro-line"></div>
+</div>
+
+<header class="hdr" id="hdr">
+  <div class="musterleiste">Musterdesign · fiktiver Betrieb</div>
+  <div class="hdr-bar">
+    <div class="wrap hdr-in">
+      <a class="mark" href="#top" aria-label="Fliesen Reuter, zum Seitenanfang">
+        <span class="mark-ico" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span class="mark-t">Fliesen Reuter<small>Meisterbetrieb · Frankenthal</small></span>
+      </a>
+      <nav class="nav" aria-label="Hauptnavigation">
+        <a href="#leistungen">Leistungen</a>
+        <a href="#konfigurator">Konfigurator</a>
+        <a href="#referenzen">Referenzen</a>
+        <a href="#ablauf">Ablauf</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
+      <a class="btn magnet" href="#kontakt">Aufmaß anfragen</a>
+      <button class="burger" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mnav"><i></i><i></i><i></i></button>
+    </div>
+  </div>
+</header>
+<nav class="mnav" id="mnav" aria-label="Mobile Navigation">
+  <a href="#leistungen">Leistungen</a>
+  <a href="#konfigurator">Konfigurator</a>
+  <a href="#referenzen">Referenzen</a>
+  <a href="#ablauf">Ablauf</a>
+  <a href="#kontakt">Kontakt</a>
+  <a class="btn" href="#kontakt">Aufmaß anfragen</a>
+</nav>
+
+<main id="main">
+<!-- ================= HERO ================= -->
+<section class="hero" id="top" aria-label="Einleitung">
+  <div class="hero-media">
+    <!-- B01 · Hero: fertiges Bad, Feinsteinzeug 60 × 120 cm -->
+    <img src="img/b01-hero-bad.webp" srcset="img/b01-hero-bad-1280.webp 1280w, img/b01-hero-bad.webp 2400w" sizes="100vw" width="2400" height="1357" alt="Fertig saniertes Bad mit großformatigen Fliesen in hellem Betongrau, bodengleicher Dusche mit Glaswand, Eichen-Waschtisch und Armaturen in gebürstetem Messing" fetchpriority="high" id="heroImg">
+  </div>
+  <div class="hero-scrim"></div>
+  <div class="wrap hero-in">
+    <h1 class="d d-xl"><span class="line"><span>Fuge für</span></span><span class="line"><span>Fuge.</span></span><span class="line"><span class="brass">Perfekt.</span></span></h1>
+    <p class="hero-sub">Fliesenlegermeister in zweiter Generation aus Frankenthal. Wir messen auf, Sie bekommen einen Festpreis. Und ein Bad, bei dem jede Fuge sitzt.</p>
+    <div class="hero-cta">
+      <a class="btn magnet" href="#kontakt">Aufmaß anfragen <svg class="ar" viewBox="0 0 14 14" aria-hidden="true"><path d="M1 7h11M8 3l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
+      <a class="btn btn-ghost magnet" href="#referenzen">Referenzen ansehen</a>
+    </div>
+  </div>
+  <div class="hero-spec mono" aria-hidden="true"><b>B01 · Bad Worms-Pfiffligheim</b>Feinsteinzeug 60 × 120 cm<br>Betonoptik hell · Fuge 2 mm<br>Bodengleich · Rinne 80 cm</div>
+  <div class="trust">
+    <ul class="wrap">
+      <li><b></b>Meisterbetrieb</li>
+      <li><b></b>Festpreis nach Aufmaß</li>
+      <li><b></b>5 Jahre Gewährleistung</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= LAUFBAND ================= -->
+<div class="band" aria-label="Materialien: Feinsteinzeug, Naturstein, Terrazzo, Mosaik, Zementfliese, Großformat">
+  <div class="band-track" aria-hidden="true">
+    <div class="band-item">Feinsteinzeug <i></i> Naturstein <i></i> Terrazzo <i></i> Mosaik <i></i> Zementfliese <i></i> Großformat <i></i></div>
+    <div class="band-item">Feinsteinzeug <i></i> Naturstein <i></i> Terrazzo <i></i> Mosaik <i></i> Zementfliese <i></i> Großformat <i></i></div>
+  </div>
+</div>
+
+<!-- ================= LEISTUNGEN ================= -->
+<section class="sec light tiled" id="leistungen" aria-labelledby="h-lst">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="h">
+        <p class="eyebrow">Leistungen · alles aus einer Hand</p>
+        <h2 class="d d-l" id="h-lst"><span class="line"><span>Vom Rohbau</span></span><span class="line"><span>bis zur letzten</span></span><span class="line"><span>Silikonfuge.</span></span></h2>
+      </div>
+      <p class="lead">Wir koordinieren Installateur, Elektriker und Trockenbau. Sie haben einen Ansprechpartner, von der ersten Besichtigung bis zur Abnahme.</p>
+    </div>
+
+    <div class="lst">
+      <article class="tile tile-a tilt">
+        <div class="ph rv" data-lqip="b02-komplettbad"><img class="par" src="img/b02-komplettbad.webp" width="900" height="1125" loading="lazy" decoding="async" alt="Komplettbad mit frei stehender Wanne vor einer Wand aus anthrazitfarbenen Großformatfliesen, Boden in hellem Beton"></div>
+        <div class="sheen"></div>
+        <button class="tile-btn" type="button" aria-expanded="false"><span class="sr-only">Details zu Komplettbad und Badsanierung</span></button>
+        <div class="tile-cap"><h3 class="d d-m">Komplettbad &amp; Badsanierung</h3><span class="tile-more" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 0v12M0 6h12" stroke="currentColor" stroke-width="1.5"/></svg></span></div>
+        <div class="tile-ov">
+          <span class="mono brass">Komplettbad · 8–12 m² · 10–15 Arbeitstage</span>
+          <p>Rückbau, Installation, Abdichtung, Fliesen und Montage aus einer Hand. Wir planen die Fugenbilder vorab, damit Ventile, Nischen und Kanten sauber im Raster sitzen.</p>
+          <ul><li>Rückbau und Entsorgung</li><li>Koordination aller Gewerke</li><li>Verlegeplan vor Baubeginn</li></ul>
+        </div>
+      </article>
+      <article class="tile tile-b tilt">
+        <div class="ph rv" data-lqip="b03-bodengleiche-dusche"><img class="par" src="img/b03-bodengleiche-dusche.webp" width="900" height="1125" loading="lazy" decoding="async" alt="Bodengleiche Dusche ohne Stufe mit Duschrinne, Haltegriff und Klappsitz"></div>
+        <div class="sheen"></div>
+        <button class="tile-btn" type="button" aria-expanded="false"><span class="sr-only">Details zu bodengleichen Duschen</span></button>
+        <div class="tile-cap"><h3 class="d d-s">Bodengleiche Duschen &amp; barrierefreie Bäder</h3><span class="tile-more" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 0v12M0 6h12" stroke="currentColor" stroke-width="1.5"/></svg></span></div>
+        <div class="tile-ov">
+          <span class="mono brass">ab 7 cm Aufbauhöhe</span>
+          <p>Gefälle im Estrich oder flaches Ablaufsystem, Rinne oder Punktablauf. Auf Wunsch nach DIN 18040-2 mit Haltegriffen und Bewegungsflächen.</p>
+        </div>
+      </article>
+      <article class="tile tile-c tilt">
+        <div class="ph rv" data-lqip="b04-grossformat"><img class="par" src="img/b04-grossformat.webp" width="900" height="1125" loading="lazy" decoding="async" alt="Raumhohe Großformatplatte in weißer Marmoroptik mit nur einer sichtbaren Fuge"></div>
+        <div class="sheen"></div>
+        <button class="tile-btn" type="button" aria-expanded="false"><span class="sr-only">Details zu Großformat</span></button>
+        <div class="tile-cap"><h3 class="d d-s">Großformat</h3><span class="mono">bis 120 × 280 cm</span></div>
+        <div class="tile-ov">
+          <span class="mono brass">120 × 280 cm · 6 mm</span>
+          <p>Platten bis 120 × 280 cm verlegen wir mit Vakuumhebern und Nivelliersystem. Weniger Fugen, ruhigere Flächen.</p>
+        </div>
+      </article>
+      <article class="tile tile-d tilt">
+        <div class="ph rv" data-lqip="b05-kuechenrueckwand"><img class="par" src="img/b05-kuechenrueckwand.webp" width="900" height="1125" loading="lazy" decoding="async" alt="Küchenrückwand aus schmalen, glasierten Fliesen im Fischgrätmuster über anthrazitfarbenen Fronten"></div>
+        <div class="sheen"></div>
+        <button class="tile-btn" type="button" aria-expanded="false"><span class="sr-only">Details zu Küchenrückwänden</span></button>
+        <div class="tile-cap"><h3 class="d d-s">Küchenrückwände</h3><span class="tile-more" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 0v12M0 6h12" stroke="currentColor" stroke-width="1.5"/></svg></span></div>
+        <div class="tile-ov"><span class="mono brass">meist an 1 Tag</span><p>Steckdosen, Fensterbänke und Arbeitsplatte bleiben, wo sie sind. Wir schneiden passgenau aus.</p></div>
+      </article>
+      <article class="tile tile-e tilt">
+        <div class="ph rv" data-lqip="b06-naturstein-terrazzo"><img class="par" src="img/b06-naturstein-terrazzo.webp" width="900" height="1125" loading="lazy" decoding="async" alt="Polierter Terrazzoboden, der in eine Treppe mit Kalksteinstufen übergeht"></div>
+        <div class="sheen"></div>
+        <button class="tile-btn" type="button" aria-expanded="false"><span class="sr-only">Details zu Naturstein und Terrazzo</span></button>
+        <div class="tile-cap"><h3 class="d d-s">Naturstein &amp; Terrazzo</h3><span class="tile-more" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 0v12M0 6h12" stroke="currentColor" stroke-width="1.5"/></svg></span></div>
+        <div class="tile-ov"><span class="mono brass">schleifen · ölen · imprägnieren</span><p>Kalkstein, Schiefer, Travertin und Terrazzo. Inklusive Pflegeplan für die ersten Jahre.</p></div>
+      </article>
+      <article class="tile tile-f tilt">
+        <div class="ph rv" data-lqip="b07-balkon-terrasse"><img class="par" src="img/b07-balkon-terrasse.webp" width="900" height="1125" loading="lazy" decoding="async" alt="Dachterrasse mit großformatigen Außenfliesen auf Stelzlagern, Blick in die Weinberge der Pfalz" style="object-position:50% 62%"></div>
+        <div class="sheen"></div>
+        <button class="tile-btn" type="button" aria-expanded="false"><span class="sr-only">Details zu Balkon und Terrasse</span></button>
+        <div class="tile-cap"><h3 class="d d-m">Balkon &amp; Terrasse inkl. Abdichtung</h3><span class="mono">2 cm Außenfliese</span></div>
+        <div class="tile-ov"><span class="mono brass">Abdichtung · Gefälle · Entwässerung</span><p>Sanierung von Grund auf: Altbelag runter, Gefälle prüfen, Verbundabdichtung, Rinne an der Fassade. Oder Platten auf Stelzlagern für schnelle Trocknung.</p></div>
+      </article>
+      <article class="tile tile-g">
+        <div class="ph" data-lqip="b08-fugensanierung" style="position:absolute;inset:0"><img src="img/b08-fugensanierung.webp" width="1100" height="1375" loading="lazy" decoding="async" alt="Nahaufnahme: Fugenbrett drückt frischen grauen Fugenmörtel in eine gerade Fuge zwischen zwei Fliesen" style="object-position:50% 40%"></div>
+        <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,27,29,.94) 0%,rgba(26,27,29,.82) 55%,rgba(26,27,29,.55) 100%)"></div>
+        <div class="tile-inner">
+          <span class="mono brass">Auch kleine Aufträge</span>
+          <div>
+            <h3 class="d d-m" style="margin-bottom:12px">Reparaturen &amp; Fugen&shy;sanierung</h3>
+            <p>Gerissene Fugen, eine gesprungene Fliese, undichte Silikonfugen: Wir kommen auch für einen halben Tag.</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= KONFIGURATOR ================= -->
+<section class="sec dark tiled" id="konfigurator" aria-labelledby="h-cfg">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="h">
+        <p class="eyebrow">Konfigurator · Wand und Boden</p>
+        <h2 class="d d-l" id="h-cfg"><span class="line"><span>Legen Sie</span></span><span class="line"><span class="brass">Probe.</span></span></h2>
+      </div>
+      <p class="lead">Format, Verlegemuster, Fugenfarbe und Oberfläche wählen. Wand und Boden legen sich live neu. Ihre Auswahl übernehmen wir direkt in die Anfrage.</p>
+    </div>
+
+    <div class="cfg">
+      <div class="cfg-ctrl">
+        <div class="seg-tabs" role="tablist" aria-label="Fläche wählen">
+          <button type="button" role="tab" id="tab-wand" aria-selected="true" aria-controls="cfg-panel">Wand</button>
+          <button type="button" role="tab" id="tab-boden" aria-selected="false" aria-controls="cfg-panel" tabindex="-1">Boden</button>
+        </div>
+        <div id="cfg-panel" role="tabpanel" aria-labelledby="tab-wand" style="display:grid;gap:26px">
+          <fieldset class="fs"><legend>Format</legend>
+            <div class="chips" id="c-format">
+              <label class="chip"><input type="radio" name="format" value="30x60" id="fm-3060"><span>30 × 60</span></label>
+              <label class="chip"><input type="radio" name="format" value="60x60" id="fm-6060"><span>60 × 60</span></label>
+              <label class="chip"><input type="radio" name="format" value="60x120" id="fm-60120"><span>60 × 120</span></label>
+              <label class="chip"><input type="radio" name="format" value="mosaik" id="fm-mos"><span>Mosaik 5 × 5</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="fs"><legend>Verlegemuster</legend>
+            <div class="chips" id="c-muster">
+              <label class="chip"><input type="radio" name="muster" value="kreuz" id="mu-kreuz"><span>Kreuzfuge</span></label>
+              <label class="chip"><input type="radio" name="muster" value="halb" id="mu-halb"><span>Halbverband</span></label>
+              <label class="chip"><input type="radio" name="muster" value="drittel" id="mu-drittel"><span>Drittelverband</span></label>
+              <label class="chip"><input type="radio" name="muster" value="fisch" id="mu-fisch"><span>Fischgrät</span></label>
+              <label class="chip"><input type="radio" name="muster" value="chevron" id="mu-chev"><span>Chevron</span></label>
+            </div>
+          </fieldset>
+          <p class="cfg-hint" id="cfg-hint" aria-live="polite"></p>
+          <fieldset class="fs"><legend>Fugenfarbe</legend>
+            <div class="chips" id="c-fuge">
+              <label class="chip"><input type="radio" name="fuge" value="weiss" id="fu-w"><span><i class="sw" style="background:#ECEAE5"></i>Weiß</span></label>
+              <label class="chip"><input type="radio" name="fuge" value="silber" id="fu-s"><span><i class="sw" style="background:#B9B6B0"></i>Silbergrau</span></label>
+              <label class="chip"><input type="radio" name="fuge" value="zement" id="fu-z"><span><i class="sw" style="background:#86837D"></i>Zementgrau</span></label>
+              <label class="chip"><input type="radio" name="fuge" value="anthrazit" id="fu-a"><span><i class="sw" style="background:#36383A"></i>Anthrazit</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="fs"><legend>Oberfläche</legend>
+            <div class="mats" id="c-ober">
+              <label class="mat"><input type="radio" name="ober" value="marmor" id="ob-m"><span class="mat-face" data-lqip="b17-tex-marmor" style="background-image:url(img/b17-tex-marmor.webp)"><span class="sheen"></span></span><span class="mat-l">Marmor</span></label>
+              <label class="mat"><input type="radio" name="ober" value="beton" id="ob-b"><span class="mat-face" style="background-image:url(img/b18-tex-beton.webp)"><span class="sheen"></span></span><span class="mat-l">Beton</span></label>
+              <label class="mat"><input type="radio" name="ober" value="holz" id="ob-h"><span class="mat-face" style="background-image:url(img/b19-tex-holz.webp)"><span class="sheen"></span></span><span class="mat-l">Holzoptik</span></label>
+              <label class="mat"><input type="radio" name="ober" value="terrazzo" id="ob-t"><span class="mat-face" style="background-image:url(img/b20-tex-terrazzo.webp)"><span class="sheen"></span></span><span class="mat-l">Terrazzo</span></label>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+
+      <div class="cfg-stage">
+        <div class="room" id="room" role="img" aria-label="Vorschau: Wand und Boden mit der gewählten Fliese">
+          <div class="room-wall"><canvas id="cv-wall"></canvas></div>
+          <div class="room-floor-wrap"><div class="room-floor"><canvas id="cv-floor"></canvas></div></div>
+          <div class="room-shade"></div>
+          <div class="room-gloss"></div>
+          <div class="room-dim"><span>Wandausschnitt 280 cm</span></div>
+          <div class="room-tag" id="tag-floor">Boden</div>
+          <div class="room-tag room-tag2" id="tag-wall">Wand</div>
+        </div>
+        <div class="cfg-sum">
+          <dl id="cfg-dl"></dl>
+          <button class="btn magnet" type="button" id="cfg-send">Dieses Muster anfragen</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FLÄCHENRECHNER ================= -->
+<section class="sec light tiled" id="rechner" aria-labelledby="h-calc">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="h">
+        <p class="eyebrow">Flächenrechner · Richtwert</p>
+        <h2 class="d d-l" id="h-calc"><span class="line"><span>Wie viel Fliese</span></span><span class="line"><span>braucht der Raum?</span></span></h2>
+      </div>
+      <p class="lead">Raummaße eingeben, Verlegemuster wählen. Der Rechner zeigt Fläche, Verschnitt und Pakete. Ohne Preise, die nennen wir erst nach dem Aufmaß.</p>
+    </div>
+
+    <form class="calc" id="calc" onsubmit="return false" novalidate>
+      <div class="calc-in">
+        <div class="fld"><span class="lbl" id="l-ctype">Fläche</span>
+          <div class="seg2" role="radiogroup" aria-labelledby="l-ctype">
+            <label><input type="radio" name="ctype" value="boden" id="ct-boden" checked><span>Boden</span></label>
+            <label><input type="radio" name="ctype" value="wand" id="ct-wand"><span>Wand</span></label>
+          </div>
+        </div>
+        <div class="two">
+          <div class="fld"><label for="c-len">Länge (m)</label>
+            <div class="num"><button type="button" data-step="-0.1" data-for="c-len" aria-label="Länge verringern">−</button><input id="c-len" inputmode="decimal" type="text" value="3,20"><button type="button" data-step="0.1" data-for="c-len" aria-label="Länge erhöhen">+</button></div></div>
+          <div class="fld"><label for="c-wid" id="l-wid">Breite (m)</label>
+            <div class="num"><button type="button" data-step="-0.1" data-for="c-wid" aria-label="Wert verringern">−</button><input id="c-wid" inputmode="decimal" type="text" value="2,40"><button type="button" data-step="0.1" data-for="c-wid" aria-label="Wert erhöhen">+</button></div></div>
+        </div>
+        <div class="fld" id="f-open" hidden><label for="c-open">Abzug Fenster und Türen (m²)</label>
+          <div class="num"><button type="button" data-step="-0.1" data-for="c-open" aria-label="Abzug verringern">−</button><input id="c-open" inputmode="decimal" type="text" value="1,60"><button type="button" data-step="0.1" data-for="c-open" aria-label="Abzug erhöhen">+</button></div></div>
+        <div class="two">
+          <div class="fld"><label for="c-fmt">Format</label>
+            <select class="sel" id="c-fmt">
+              <option value="30x60">30 × 60 cm</option>
+              <option value="60x60">60 × 60 cm</option>
+              <option value="60x120" selected>60 × 120 cm</option>
+              <option value="mosaik">Mosaik (Netz 30 × 30)</option>
+            </select></div>
+          <div class="fld"><label for="c-mus">Verlegemuster</label>
+            <select class="sel" id="c-mus">
+              <option value="kreuz">Kreuzfuge · 5 %</option>
+              <option value="halb">Halbverband · 8 %</option>
+              <option value="drittel">Drittelverband · 8 %</option>
+              <option value="fisch">Fischgrät · 15 %</option>
+              <option value="chevron">Chevron · 15 %</option>
+            </select></div>
+        </div>
+      </div>
+      <div class="calc-out" aria-live="polite">
+        <div class="res">
+          <div><div class="k">Fläche</div><div class="v" id="r-area">7,68<small>m²</small></div><div class="s" id="r-area-s">3,20 × 2,40 m</div></div>
+          <div><div class="k">mit Verschnitt</div><div class="v" id="r-total">8,06<small>m²</small></div><div class="s" id="r-waste">+ 5 % Kreuzfuge</div></div>
+          <div><div class="k">Pakete</div><div class="v" id="r-pack">6<small>Stk.</small></div><div class="s" id="r-pack-s">à 1,44 m² · 2 Fliesen</div></div>
+        </div>
+        <div class="plan" id="plan" aria-hidden="true"></div>
+        <div class="calc-note">
+          <p>Richtwert ohne Gewähr. Exakte Mengen ermitteln wir beim Aufmaß, inklusive Sockel, Laibungen und Bruchreserve.</p>
+          <button class="btn btn-ghost magnet" type="button" id="calc-send">Fläche in Anfrage übernehmen</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ================= REFERENZEN ================= -->
+<section class="sec dark refs" id="referenzen" aria-labelledby="h-ref">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="h">
+        <p class="eyebrow">Referenzen · 5 Projekte aus der Region</p>
+        <h2 class="d d-l" id="h-ref"><span class="line"><span>Gemessen,</span></span><span class="line"><span>gelegt, <span class="brass">übergeben.</span></span></span></h2>
+      </div>
+      <p class="lead">Fünf Projekte zwischen Worms und Mannheim. Fläche, Format und Besonderheit stehen bei jedem Bild.</p>
+    </div>
+  </div>
+  <div class="refs-pin">
+    <div class="refs-track" id="refs-track">
+      <article class="ref">
+        <div class="ph" data-lqip="b12-nachher-worms"><img class="rimg" src="img/b12-nachher-worms.webp" width="1400" height="941" loading="lazy" decoding="async" alt="Neues Bad in Worms: Großformatfliesen in Betongrau, bodengleiche Dusche, Waschtisch aus Eiche mit rundem Spiegel"></div>
+        <div class="ref-meta"><span class="ref-no">01</span><div>
+          <h3 class="d d-s">Komplettbad im Rohbau · Worms-Pfiffligheim</h3>
+          <dl><dt>Fläche</dt><dd>14 m²</dd><dt>Format</dt><dd>60 × 120 cm</dd><dt>Dauer</dt><dd>13 Tage</dd></dl>
+          <p>Bodengleiche Dusche mit 80-cm-Rinne. Fugenbild vorab geplant, damit Armaturen und Spiegel mittig im Raster sitzen.</p></div></div>
+      </article>
+      <article class="ref">
+        <div class="ph" data-lqip="b10-nachher-ludwigshafen"><img class="rimg" src="img/b10-nachher-ludwigshafen.webp" width="1400" height="941" loading="lazy" decoding="async" alt="Saniertes Bad in Ludwigshafen mit Fliesen in weißer Marmoroptik, Walk-in-Dusche und Messingarmaturen"></div>
+        <div class="ref-meta"><span class="ref-no">02</span><div>
+          <h3 class="d d-s">Badsanierung 90er-Bad · Ludwigshafen-Friesenheim</h3>
+          <dl><dt>Fläche</dt><dd>9,5 m²</dd><dt>Format</dt><dd>60 × 120 cm</dd><dt>Dauer</dt><dd>9 Tage</dd></dl>
+          <p>Duschtasse raus, Walk-in rein. Vorwandelement für das Hänge-WC, Marmoroptik mit durchlaufender Maserung.</p></div></div>
+      </article>
+      <article class="ref">
+        <div class="ph" data-lqip="b14-nachher-frankenthal"><img class="rimg" src="img/b14-nachher-frankenthal.webp" width="1400" height="941" loading="lazy" decoding="async" alt="Familienbad in Frankenthal mit anthrazitfarbenen Wandfliesen, Badewanne mit gefliester Schürze und Terrazzo-Boden"></div>
+        <div class="ref-meta"><span class="ref-no">03</span><div>
+          <h3 class="d d-s">Familienbad aus den 70ern · Frankenthal</h3>
+          <dl><dt>Fläche</dt><dd>11 m²</dd><dt>Format</dt><dd>60 × 120 · 60 × 60</dd><dt>Dauer</dt><dd>12 Tage</dd></dl>
+          <p>Schiefer-Optik an der Wand, Terrazzo-Optik am Boden. Wannenschürze fugenlos auf Gehrung geschnitten.</p></div></div>
+      </article>
+      <article class="ref">
+        <div class="ph" data-lqip="b15-gaestebad-mannheim"><img class="rimg" src="img/b15-gaestebad-mannheim.webp" width="1400" height="941" loading="lazy" decoding="async" alt="Gästebad in Mannheim mit dunkelgrünem Mosaik, Terrazzoboden und rundem Messingspiegel"></div>
+        <div class="ref-meta"><span class="ref-no">04</span><div>
+          <h3 class="d d-s">Gästebad · Mannheim-Lindenhof</h3>
+          <dl><dt>Fläche</dt><dd>4,2 m²</dd><dt>Format</dt><dd>Mosaik 2,5 × 2,5</dd><dt>Dauer</dt><dd>5 Tage</dd></dl>
+          <p>Mosaik bis auf zwei Drittel der Wandhöhe, Abschluss mit Messingschiene. Darüber Kalkputz.</p></div></div>
+      </article>
+      <article class="ref">
+        <div class="ph" data-lqip="b21-altbauflur-mannheim"><img class="rimg" src="img/b21-altbauflur-mannheim.webp" width="1400" height="941" loading="lazy" decoding="async" alt="Altbauflur in Mannheim mit neuen Zementfliesen im geometrischen Muster in Weiß, Schiefergrau und Ocker"></div>
+        <div class="ref-meta"><span class="ref-no">05</span><div>
+          <h3 class="d d-s">Altbauflur · Mannheim-Neckarstadt</h3>
+          <dl><dt>Fläche</dt><dd>18 m²</dd><dt>Format</dt><dd>Zementfliese 20 × 20</dd><dt>Dauer</dt><dd>6 Tage</dd></dl>
+          <p>Muster nach Befund aus dem Treppenhaus nachgelegt. Zementfliesen von Hand imprägniert.</p></div></div>
+      </article>
+      <div class="refs-end">
+        <span class="mono brass">Ihr Projekt als Nummer 06?</span>
+        <p>Wir kommen zum Aufmaß, kostenlos im Umkreis von 30 km um Frankenthal.</p>
+        <a class="btn magnet" href="#kontakt">Aufmaß anfragen</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap ba">
+    <div class="ba-head">
+      <div>
+        <p class="eyebrow">Vorher · Nachher</p>
+        <h3 class="d d-m">Gleicher Raum,<br>gleicher Blickwinkel.</h3>
+      </div>
+      <div class="ba-tabs" role="tablist" aria-label="Projekt wählen">
+        <button type="button" role="tab" aria-selected="true" data-ba="0">Worms</button>
+        <button type="button" role="tab" aria-selected="false" data-ba="1" tabindex="-1">Ludwigshafen</button>
+        <button type="button" role="tab" aria-selected="false" data-ba="2" tabindex="-1">Frankenthal</button>
+      </div>
+    </div>
+    <div class="ba-stage" id="ba" style="--p:50%">
+      <img id="ba-after" src="img/b12-nachher-worms.webp" width="1400" height="941" loading="lazy" decoding="async" alt="Nachher: fertiges Bad in Worms">
+      <img id="ba-before" class="ba-before" src="img/b11-vorher-worms.webp" width="1400" height="941" loading="lazy" decoding="async" alt="Vorher: Rohbau mit offenen Leitungen in Worms">
+      <span class="ba-lab l">Vorher</span><span class="ba-lab r">Nachher</span>
+      <div class="ba-handle"><div class="ba-knob"><i></i>ZIEHEN</div></div>
+      <label class="sr-only" for="ba-range">Vorher-Nachher-Vergleich verschieben</label>
+      <input class="ba-range" id="ba-range" type="range" min="0" max="100" value="50">
+    </div>
+    <div class="ba-cap mono" id="ba-cap"><span>Worms-Pfiffligheim</span><span>Rohbau → Komplettbad</span><span>14 m² · 60 × 120 cm</span></div>
+  </div>
+</section>
+
+<!-- ================= ABLAUF ================= -->
+<section class="sec light tiled" id="ablauf" aria-labelledby="h-abl">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="h">
+        <p class="eyebrow">Ablauf · in 5 Schritten zum neuen Bad</p>
+        <h2 class="d d-l" id="h-abl"><span class="line"><span>Erst messen,</span></span><span class="line"><span>dann legen.</span></span></h2>
+      </div>
+      <p class="lead">Jeder Schritt hat einen festen Termin. Sie wissen vorher, wann wir kommen, wie lange es dauert und was es kostet.</p>
+    </div>
+    <ol class="steps" id="steps" style="list-style:none;margin:0">
+      <li class="step"><span class="step-n">1</span><h3 class="d d-s">Anruf</h3><p>Kurzes Gespräch: Raum, Wünsche, Zeitrahmen. Gern mit Fotos vorab.</p><span class="mono">Tag 1</span></li>
+      <li class="step"><span class="step-n">2</span><h3 class="d d-s">Aufmaß vor Ort</h3><p>Wir messen mit Laser, prüfen Untergrund, Gefälle und Leitungen.</p><span class="mono">binnen 5 Werktagen</span></li>
+      <li class="step"><span class="step-n">3</span><h3 class="d d-s">Festpreis&shy;angebot</h3><p>Ein Preis, jede Position erklärt. Mit Verlegeplan und Terminvorschlag.</p><span class="mono">3 Tage nach Aufmaß</span></li>
+      <li class="step"><span class="step-n">4</span><h3 class="d d-s">Ausführung</h3><p>Staubschutz, tägliche Reinigung, fester Ansprechpartner auf der Baustelle.</p><span class="mono">10–15 Arbeitstage</span></li>
+      <li class="step"><span class="step-n">5</span><h3 class="d d-s">Abnahme</h3><p>Gemeinsamer Rundgang mit Protokoll. Ab hier laufen 5 Jahre Gewährleistung.</p><span class="mono">mit Pflegemappe</span></li>
+    </ol>
+    <div class="steps-rail" aria-hidden="true"><i id="rail"></i></div>
+  </div>
+</section>
+
+<!-- ================= WARUM WIR ================= -->
+<section class="sec dark tiled" id="warum" aria-labelledby="h-why">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="h">
+        <p class="eyebrow">Warum wir · vier Zusagen</p>
+        <h2 class="d d-l" id="h-why"><span class="line"><span>Was wir sagen,</span></span><span class="line"><span class="brass">steht im Vertrag.</span></span></h2>
+      </div>
+    </div>
+    <div class="why">
+      <div class="why-img"><div class="ph rv" data-lqip="b16-meister-verlegung" style="--cell:var(--schiefer)"><img class="par" src="img/b16-meister-verlegung.webp" width="1000" height="1250" loading="lazy" decoding="async" alt="Hände eines Fliesenlegers setzen eine Großformatfliese ins Kleberbett, daneben eine Wasserwaage mit mittiger Libelle"></div></div>
+      <div class="prom">
+        <div class="pr tilt"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="4" y="6" width="24" height="20"/><path d="M4 12h24M10 18h8M10 22h12"/></svg><h3 class="d d-s">Festpreis nach Aufmaß</h3><p>Der Preis im Angebot ist der Preis auf der Rechnung. Nachträge nur, wenn Sie etwas ändern.</p></div>
+        <div class="pr tilt"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 4v24M26 4v24M6 8h20M6 16h20M16 8v20"/></svg><h3 class="d d-s">Saubere Baustelle</h3><p>Staubschutzwand mit Reißverschluss, Bodenschutz bis zur Haustür, abends besenrein.</p></div>
+        <div class="pr tilt"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="16" cy="11" r="5"/><path d="M6 28c1.5-6 5.5-9 10-9s8.5 3 10 9"/></svg><h3 class="d d-s">Fester Ansprechpartner</h3><p>Ein Name, eine Nummer. Vom Aufmaß bis zur Abnahme spricht immer dieselbe Person mit Ihnen.</p></div>
+        <div class="pr tilt"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M16 3l11 4v8c0 7-5 12-11 14C10 27 5 22 5 15V7l11-4z"/><path d="M11 16l4 4 7-8"/></svg><h3 class="d d-s">5 Jahre Gewährleistung</h3><p>Auf Verlegung und Abdichtung. Schriftlich, nicht nur mündlich.</p></div>
+      </div>
+      <div class="nums">
+        <div><div class="v" data-count="1480">1.480</div><div class="k">Projekte</div></div>
+        <div><div class="v" data-count="38">38</div><div class="k">Jahre</div></div>
+        <div><div class="v" data-count="6200">6.200</div><div class="k">m² pro Jahr</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STIMMEN ================= -->
+<section class="sec light tiled" id="stimmen" aria-labelledby="h-st">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="h">
+        <p class="eyebrow">Stimmen · fiktive Bewertungen</p>
+        <h2 class="d d-l" id="h-st"><span class="line"><span>Was Kunden</span></span><span class="line"><span>nach der Abnahme sagen.</span></span></h2>
+      </div>
+    </div>
+    <div class="quotes">
+      <figure class="q tilt"><div class="q-stars" aria-label="5 von 5 Sternen"><i></i><i></i><i></i><i></i><i></i></div>
+        <blockquote>„Der Festpreis hat gehalten, auf den Euro. Und die Fugen in der Dusche laufen exakt auf die Rinne zu. Das sieht man erst, wenn man es einmal anders gesehen hat.“</blockquote>
+        <figcaption><b>Sabine K.</b><span class="mono">Worms · Komplettbad · März 2026</span></figcaption></figure>
+      <figure class="q tilt"><div class="q-stars" aria-label="5 von 5 Sternen"><i></i><i></i><i></i><i></i><i></i></div>
+        <blockquote>„Wir haben während der Sanierung im Haus gewohnt. Staubschutz und tägliches Saugen waren selbstverständlich. Nach neun Tagen konnten wir wieder duschen.“</blockquote>
+        <figcaption><b>Thomas und Elif B.</b><span class="mono">Ludwigshafen · Badsanierung · Juni 2026</span></figcaption></figure>
+      <figure class="q tilt"><div class="q-stars" aria-label="5 von 5 Sternen"><i></i><i></i><i></i><i></i><i></i></div>
+        <blockquote>„Ein Ansprechpartner für alles, auch für Installateur und Elektriker. Ich musste nichts koordinieren und hatte immer eine Antwort am selben Tag.“</blockquote>
+        <figcaption><b>Hans-Jürgen M.</b><span class="mono">Frankenthal · Familienbad · August 2026</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ================= EINSATZGEBIET ================= -->
+<section class="sec light" id="gebiet" aria-labelledby="h-geb" style="background:var(--kalk-2)">
+  <div class="wrap">
+    <div class="area">
+      <div class="area-map" id="map"></div>
+      <div class="area-list">
+        <p class="eyebrow">Einsatzgebiet</p>
+        <h2 class="d d-m" id="h-geb">Vorderpfalz und Rhein-Neckar.</h2>
+        <p class="lead" style="margin-top:16px">Von Frankenthal aus sind wir in einer halben Stunde bei Ihnen. Aufmaß im Umkreis von 30 km kostenlos.</p>
+        <ul id="places"></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="sec light tiled" id="faq" aria-labelledby="h-faq">
+  <div class="wrap">
+    <div class="faq">
+      <div class="faq-h">
+        <p class="eyebrow">Häufige Fragen</p>
+        <h2 class="d d-l" id="h-faq"><span class="line"><span>Kurz</span></span><span class="line"><span>gefragt.</span></span></h2>
+      </div>
+      <div class="faq-l" id="faq-l">
+        <div class="fq"><h3><button type="button" aria-expanded="false" aria-controls="fa1" id="fb1">Wie lange dauert eine Badsanierung?<span class="pm" aria-hidden="true"></span></button></h3>
+          <div class="fq-a" id="fa1" role="region" aria-labelledby="fb1"><div><p>Ein Komplettbad mit 8 bis 10 m² dauert in der Regel 10 bis 15 Arbeitstage, inklusive Installateur und Elektriker. Ein Gäste-WC schaffen wir oft in einer Woche.</p><p>Den genauen Bauzeitenplan bekommen Sie mit dem Angebot.</p></div></div></div>
+        <div class="fq"><h3><button type="button" aria-expanded="false" aria-controls="fa2" id="fb2">Wie viel Staub und Schmutz entsteht?<span class="pm" aria-hidden="true"></span></button></h3>
+          <div class="fq-a" id="fa2" role="region" aria-labelledby="fb2"><div><p>Weniger, als Sie befürchten. Wir stellen eine Staubschutzwand mit Reißverschlusstür, legen Bodenschutz bis zur Haustür und schneiden mit Absaugung. Abends ist die Baustelle besenrein.</p></div></div></div>
+        <div class="fq"><h3><button type="button" aria-expanded="false" aria-controls="fa3" id="fb3">Kann ich das Material selbst kaufen?<span class="pm" aria-hidden="true"></span></button></h3>
+          <div class="fq-a" id="fa3" role="region" aria-labelledby="fb3"><div><p>Ja. Wir prüfen vorab, ob Fliese, Kleber und Format zum Untergrund passen. Die Gewährleistung gilt dann für die Verlegung, nicht für das Material. Bestellen wir über unseren Fachhandel, haben Sie alles aus einer Hand.</p></div></div></div>
+        <div class="fq"><h3><button type="button" aria-expanded="false" aria-controls="fa4" id="fb4">Geht Fliese auf Fliese?<span class="pm" aria-hidden="true"></span></button></h3>
+          <div class="fq-a" id="fa4" role="region" aria-labelledby="fb4"><div><p>Oft ja, wenn der alte Belag fest, eben und tragfähig ist. Das prüfen wir beim Aufmaß mit der Klopfprobe. Bedenken Sie rund 1 cm mehr Aufbauhöhe an Türen, Steckdosen und bodengleichen Duschen.</p></div></div></div>
+        <div class="fq"><h3><button type="button" aria-expanded="false" aria-controls="fa5" id="fb5">Wie dichten Sie Dusche und Bad ab?<span class="pm" aria-hidden="true"></span></button></h3>
+          <div class="fq-a" id="fa5" role="region" aria-labelledby="fb5"><div><p>Mit Verbundabdichtung nach DIN 18534 in allen Nassbereichen. Ecken, Rohrdurchführungen und Rinnen bekommen Dichtbänder und Manschetten. Jede Lage dokumentieren wir mit Fotos, bevor die Fliese drauf kommt.</p></div></div></div>
+        <div class="fq"><h3><button type="button" aria-expanded="false" aria-controls="fa6" id="fb6">Ist eine bodengleiche Dusche im Altbau möglich?<span class="pm" aria-hidden="true"></span></button></h3>
+          <div class="fq-a" id="fa6" role="region" aria-labelledby="fb6"><div><p>Meistens. Flache Ablaufsysteme brauchen ab etwa 7 cm Aufbauhöhe. Reicht das nicht, planen wir ein flaches Podest mit einer kleinen Stufe. Das klären wir beim Aufmaß.</p></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= KONTAKT ================= -->
+<section class="sec dark tiled" id="kontakt" aria-labelledby="h-ct">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="h">
+        <p class="eyebrow">Kontakt · Aufmaß anfragen</p>
+        <h2 class="d d-l" id="h-ct"><span class="line"><span>Erzählen Sie uns</span></span><span class="line"><span>von Ihrem <span class="brass">Raum.</span></span></span></h2>
+      </div>
+    </div>
+    <div class="ct">
+      <div class="ct-info">
+        <p class="lead">Wir melden uns innerhalb von zwei Werktagen und schlagen einen Termin für das Aufmaß vor.</p>
+        <dl>
+          <div><dt>Adresse</dt><dd>[Straße und Hausnummer]<br>67227 Frankenthal (Pfalz)</dd></div>
+          <div><dt>Telefon</dt><dd>[Telefonnummer]</dd></div>
+          <div><dt>E-Mail</dt><dd>[E-Mail-Adresse]</dd></div>
+          <div><dt>Erreichbar</dt><dd>Mo–Fr 7:00–17:00 Uhr</dd></div>
+        </dl>
+        <div class="herring" style="--c1:#393B3F;--c2:#2A2C2F;height:68px" aria-hidden="true"></div>
+      </div>
+
+      <div class="ct-form">
+        <form id="form" novalidate>
+          <div class="fgrid">
+            <div class="f"><label for="k-name">Name *</label><input type="text" id="k-name" name="name" autocomplete="name" required><span class="err" id="e-name"></span></div>
+            <div class="f"><label for="k-mail">E-Mail *</label><input type="email" id="k-mail" name="email" autocomplete="email" required><span class="err" id="e-mail"></span></div>
+            <div class="f"><label for="k-tel">Telefon</label><input type="tel" id="k-tel" name="tel" autocomplete="tel"></div>
+            <div class="f"><label for="k-ort">PLZ und Ort</label><input type="text" id="k-ort" name="ort" autocomplete="postal-code"></div>
+            <div class="f full"><span class="lbl" id="l-ptype">Projektart *</span>
+              <div class="ptypes chips" role="radiogroup" aria-labelledby="l-ptype" id="ptypes">
+                <label class="chip"><input type="radio" name="projekt" value="Komplettbad" id="pt1"><span>Komplettbad</span></label>
+                <label class="chip"><input type="radio" name="projekt" value="Badsanierung" id="pt2"><span>Badsanierung</span></label>
+                <label class="chip"><input type="radio" name="projekt" value="Bodengleiche Dusche" id="pt3"><span>Bodengleiche Dusche</span></label>
+                <label class="chip"><input type="radio" name="projekt" value="Großformat" id="pt4"><span>Großformat</span></label>
+                <label class="chip"><input type="radio" name="projekt" value="Küchenrückwand" id="pt5"><span>Küchenrückwand</span></label>
+                <label class="chip"><input type="radio" name="projekt" value="Naturstein / Terrazzo" id="pt6"><span>Naturstein / Terrazzo</span></label>
+                <label class="chip"><input type="radio" name="projekt" value="Balkon / Terrasse" id="pt7"><span>Balkon / Terrasse</span></label>
+                <label class="chip"><input type="radio" name="projekt" value="Reparatur" id="pt8"><span>Reparatur</span></label>
+              </div><span class="err" id="e-ptype"></span></div>
+            <div class="f"><label for="k-qm">Fläche ca. (m²)</label><input type="number" id="k-qm" name="qm" min="0" step="0.1" inputmode="decimal"></div>
+            <div class="f"><label for="k-zeit">Wunschzeitraum</label>
+              <select id="k-zeit" name="zeitraum">
+                <option>So bald wie möglich</option>
+                <option>In 1 bis 3 Monaten</option>
+                <option>In 3 bis 6 Monaten</option>
+                <option>Später / flexibel</option>
+              </select></div>
+            <div class="f full" id="k-cfg-wrap" hidden><span class="lbl">Ihre Auswahl aus dem Konfigurator</span>
+              <div class="cfg-pick"><p id="k-cfg-text"></p><button type="button" class="x" id="k-cfg-x">Entfernen</button></div>
+              <input type="hidden" name="konfigurator" id="k-cfg"></div>
+            <div class="f full"><span class="lbl">Raumfotos (optional)</span>
+              <label class="drop" id="drop" for="k-files">
+                <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="6" width="22" height="16"/><circle cx="10" cy="12" r="2.5"/><path d="M3 20l7-6 5 4 4-3 6 5"/></svg>
+                <p>Fotos hierher ziehen oder <u>auswählen</u>. Bis zu 8 Bilder, je max. 10 MB.</p>
+              </label>
+              <input class="sr-only" type="file" id="k-files" name="fotos" accept="image/*" multiple>
+              <div class="thumbs" id="thumbs"></div><span class="err" id="e-files"></span></div>
+            <div class="f full"><label for="k-msg">Nachricht</label><textarea id="k-msg" name="nachricht" rows="4" placeholder="Zum Beispiel: Badewanne raus, bodengleiche Dusche rein."></textarea></div>
+            <div class="f full"><label class="chk" for="k-ds"><input type="checkbox" id="k-ds" required><span>Ich bin einverstanden, dass meine Angaben zur Bearbeitung der Anfrage gespeichert werden (siehe Datenschutz). *</span></label><span class="err" id="e-ds"></span></div>
+          </div>
+          <div class="form-foot">
+            <span class="mono">* Pflichtfeld</span>
+            <button class="btn magnet" type="submit">Anfrage senden <svg class="ar" viewBox="0 0 14 14" aria-hidden="true"><path d="M1 7h11M8 3l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
+          </div>
+        </form>
+        <div class="thanks" id="thanks" role="status" aria-live="polite">
+          <div class="thanks-grid" aria-hidden="true"></div>
+          <div class="thanks-in">
+            <p class="eyebrow">Anfrage eingegangen</p>
+            <h3 class="d d-l" id="thanks-h" tabindex="-1">Danke.</h3>
+            <p id="thanks-p">Wir melden uns innerhalb von zwei Werktagen für einen Aufmaßtermin.</p>
+            <p class="mono" style="color:#9D988F">Musterdesign: Es wurden keine Daten übertragen.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="ftr">
+  <div class="herring" aria-hidden="true"></div>
+  <div class="wrap">
+    <p class="ftr-word" aria-label="Fliesen Reuter">Fliesen<span>·</span>Reuter</p>
+    <div class="ftr-cols">
+      <div><h3>Betrieb</h3><p>Fliesen Reuter<br>Fliesenlegermeister<br>[Straße und Hausnummer]<br>67227 Frankenthal (Pfalz)</p></div>
+      <div><h3>Kontakt</h3><p>[Telefonnummer]<br>[E-Mail-Adresse]<br>Mo–Fr 7:00–17:00 Uhr</p></div>
+      <div><h3>Seite</h3><ul><li><a href="#leistungen">Leistungen</a></li><li><a href="#konfigurator">Konfigurator</a></li><li><a href="#referenzen">Referenzen</a></li><li><a href="#ablauf">Ablauf</a></li><li><a href="#faq">Häufige Fragen</a></li></ul></div>
+      <div><h3>Rechtliches</h3><ul><li><a href="#impressum" id="lnk-imp">Impressum</a></li><li><a href="#datenschutz" id="lnk-ds">Datenschutz</a></li></ul></div>
+    </div>
+  </div>
+  <div class="wrap ftr-base">
+    <span>© 2026 Fliesen Reuter · Fiktiver Betrieb · Musterdesign von <a href="https://www.pfalz-multiservice.de" target="_blank" rel="noopener">Pfalz Multiservice</a></span>
+    <span>Fuge für Fuge.</span>
+  </div>
+</footer>
+
+<div class="level off" id="level" aria-hidden="true">
+  <span class="level-p" id="level-p">0 %</span>
+  <div class="vial"><span class="mk a"></span><span class="mk b"></span><span class="bubble" id="bubble"></span></div>
+</div>
+
+<!--LIBS-->
+<script src="assets/js/lqip.js"></script>
+<script src="assets/js/gsap.min.js"></script>
+<script src="assets/js/ScrollTrigger.min.js"></script>
+<script src="assets/js/lenis.min.js"></script>
+<!--/LIBS-->
+<script>
+(function(){
+'use strict';
+var RM = false; try{RM = matchMedia('(prefers-reduced-motion: reduce)').matches || /[?&]rm=1/.test(location.search)}catch(e){} // ?rm=1: Test für reduzierte Bewegung
+var MOTION = !RM && !!window.gsap;
+var FINE = false; try{FINE = matchMedia('(hover:hover) and (pointer:fine)').matches}catch(e){}
+var $ = function(s,c){return (c||document).querySelector(s)}, $$ = function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
+var clamp = function(v,a,b){return Math.max(a,Math.min(b,v))};
+var fmt = function(n,d){return n.toLocaleString('de-DE',{minimumFractionDigits:d,maximumFractionDigits:d})};
+if (window.gsap && window.ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
+
+/* ---------- LQIP + Bild-Einblendung ---------- */
+var LQ = window.LQIP || {};
+$$('[data-lqip]').forEach(function(el){ var k = el.getAttribute('data-lqip'); if (LQ[k] && !el.classList.contains('mat-face')) el.style.backgroundImage = 'url("'+LQ[k]+'")'; });
+$$('.ph img').forEach(function(img){
+  if (img.complete && img.naturalWidth) img.classList.add('is-loaded');
+  else { img.addEventListener('load',function(){img.classList.add('is-loaded')}); img.addEventListener('error',function(){img.classList.add('is-loaded')}); }
+});
+
+/* ---------- Fischgrät-Band (Akzent) ---------- */
+$$('.herring').forEach(function(el){
+  var cs=getComputedStyle(el), c1=cs.getPropertyValue('--c1').trim()||'#2E3033', c2=cs.getPropertyValue('--c2').trim()||'#222426';
+  var W=8, L=16, r='';
+  for(var n=-3;n<=3;n++) for(var k=-6;k<=6;k++){ var bx=k*W+n*L, by=k*W-n*L; r+='<rect x="'+bx+'" y="'+by+'" width="'+L+'" height="'+W+'"/><rect x="'+bx+'" y="'+(by+W)+'" width="'+W+'" height="'+L+'"/>'; }
+  el.innerHTML='<svg width="100%" height="100%" aria-hidden="true" focusable="false" style="display:block"><defs><pattern id="hb'+Math.random().toString(36).slice(2,7)+'" width="32" height="32" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><g fill="'+c2+'" stroke="'+c1+'" stroke-width="1.4">'+r+'</g></pattern></defs><rect width="100%" height="100%"/></svg>';
+  var p=el.querySelector('pattern'); el.querySelector('svg>rect').setAttribute('fill','url(#'+p.id+')');
+});
+/* ---------- Footer-Wortmarke exakt auf Rasterbreite ---------- */
+function fitWord(){
+  var el=$('.ftr-word'); if(!el) return; var avail=el.parentNode.clientWidth-parseFloat(getComputedStyle(el.parentNode).paddingLeft)-parseFloat(getComputedStyle(el.parentNode).paddingRight);
+  el.style.fontSize='100px'; el.style.width='max-content'; var w=el.getBoundingClientRect().width; el.style.width='';
+  el.style.fontSize=(100*avail/w*.995).toFixed(2)+'px';
+}
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitWord); else fitWord();
+addEventListener('resize',fitWord);
+
+/* ---------- Fugenraster: Modul = Spaltenbreite ---------- */
+function setGrid(){
+  var w = $('.sec .wrap') || $('.wrap'); var cs = getComputedStyle(w);
+  var inner = w.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+  var cols = innerWidth < 900 ? 4 : 12;
+  var col = inner/cols; var gx = w.getBoundingClientRect().left + parseFloat(cs.paddingLeft);
+  document.documentElement.style.setProperty('--col', col.toFixed(3)+'px');
+  document.documentElement.style.setProperty('--gx', gx.toFixed(3)+'px');
+  return {col:col,gx:gx};
+}
+var GRID = setGrid();
+
+/* ---------- Smooth Scroll (Lenis) ---------- */
+var lenis = null;
+if (MOTION && window.Lenis){
+  lenis = new Lenis({lerp:.14, wheelMultiplier:1, smoothWheel:true, syncTouch:false});
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add(function(t){ lenis.raf(t*1000) });
+  gsap.ticker.lagSmoothing(0);
+  document.documentElement.classList.add('lenis');
+}
+function scrollToEl(el){
+  if (!el) return;
+  hdrLock = true; hdr.classList.add('hide');
+  var done = function(){ setTimeout(function(){hdrLock=false},120); var f = el.querySelector('h1,h2,h3[tabindex],[tabindex="-1"]'); };
+  if (lenis && lenis.isStopped) { lenis.start(); var it=$('.intro'); if(it) it.style.display='none'; }
+  if (lenis) lenis.scrollTo(el, {offset:0, duration:1.0, easing:function(t){return 1-Math.pow(1-t,4)}, onComplete:done});
+  else { el.scrollIntoView({behavior:RM?'auto':'smooth', block:'start'}); setTimeout(done,600); }
+}
+document.addEventListener('click', function(e){
+  var a = e.target.closest && e.target.closest('a[href^="#"]'); if (!a) return;
+  var id = a.getAttribute('href'); if (id.length < 2) return;
+  var el = document.getElementById(id.slice(1)); if (!el) return;
+  e.preventDefault(); closeMenu(); scrollToEl(el);
+});
+
+/* ---------- Header: aus beim Runterscrollen, ein beim Hochscrollen ---------- */
+var hdr = $('#hdr'), lastY = 0, hdrLock = false;
+function onScrollHdr(y){
+  if (hdrLock) { lastY = y; return; }
+  if (y > lastY + 4 && y > 120) hdr.classList.add('hide');
+  else if (y < lastY - 4 || y < 60) hdr.classList.remove('hide');
+  lastY = y;
+}
+var burger = $('.burger'), mnav = $('#mnav');
+function closeMenu(){ if (!mnav.classList.contains('open')) return; mnav.classList.remove('open'); burger.setAttribute('aria-expanded','false'); burger.setAttribute('aria-label','Menü öffnen'); if (lenis) lenis.start(); }
+burger.addEventListener('click', function(){
+  var o = !mnav.classList.contains('open'); mnav.classList.toggle('open', o);
+  burger.setAttribute('aria-expanded', String(o)); burger.setAttribute('aria-label', o?'Menü schließen':'Menü öffnen');
+  if (lenis) { o ? lenis.stop() : lenis.start(); }
+  if (o) { hdr.classList.remove('hide'); var f = mnav.querySelector('a'); f && f.focus(); }
+});
+document.addEventListener('keydown', function(e){ if (e.key === 'Escape') { closeMenu(); closeTiles(); } });
+
+/* ---------- Wasserwaage ---------- */
+var bubble = $('#bubble'), levelEl = $('#level'), levelP = $('#level-p'), bubX = 0, bubV = 0, bubTarget = 0;
+function levelTarget(p){ var vial = bubble.parentNode.clientWidth, bw = bubble.offsetWidth; var center = (vial - bw)/2; return 3 + (center-3) * p; }
+function onScrollLevel(y){
+  var max = document.documentElement.scrollHeight - innerHeight; var p = max > 0 ? clamp(y/max,0,1) : 0;
+  bubTarget = levelTarget(p >= .995 ? 1 : p);
+  levelP.textContent = p >= .995 ? 'im Lot' : Math.round(p*100) + ' %';
+  levelEl.classList.toggle('plumb', p >= .995);
+  levelEl.classList.toggle('off', y < innerHeight*.5);
+  if (!MOTION) { bubble.style.transform = 'translateX('+bubTarget.toFixed(2)+'px)'; }
+}
+if (MOTION) gsap.ticker.add(function(){
+  // Feder-Dämpfer: Libelle folgt zügig, rastet am Ende mittig ein
+  var k = .22, d = .62; bubV = bubV*d + (bubTarget-bubX)*k; bubX += bubV;
+  bubble.style.transform = 'translateX('+bubX.toFixed(2)+'px)';
+});
+
+var onScroll = function(){ var y = lenis ? lenis.scroll : scrollY; onScrollHdr(y); onScrollLevel(y); };
+if (lenis) lenis.on('scroll', onScroll); else addEventListener('scroll', onScroll, {passive:true});
+onScroll();
+
+/* ---------- Magnetische Buttons ---------- */
+if (MOTION && FINE) $$('.magnet').forEach(function(b){
+  var xTo = gsap.quickTo(b,'x',{duration:.35,ease:'power3'}), yTo = gsap.quickTo(b,'y',{duration:.35,ease:'power3'});
+  b.addEventListener('pointermove', function(e){ var r = b.getBoundingClientRect(); xTo((e.clientX-r.left-r.width/2)*.22); yTo((e.clientY-r.top-r.height/2)*.32); });
+  b.addEventListener('pointerleave', function(){ xTo(0); yTo(0); });
+});
+/* ---------- Hover-Tilt ---------- */
+if (MOTION && FINE) $$('.tilt').forEach(function(c){
+  var rx = gsap.quickTo(c,'rotationX',{duration:.4,ease:'power3'}), ry = gsap.quickTo(c,'rotationY',{duration:.4,ease:'power3'});
+  gsap.set(c,{transformPerspective:900});
+  c.addEventListener('pointermove', function(e){ var r = c.getBoundingClientRect(); ry(((e.clientX-r.left)/r.width-.5)*5); rx(-((e.clientY-r.top)/r.height-.5)*5); });
+  c.addEventListener('pointerleave', function(){ rx(0); ry(0); });
+});
+
+/* ---------- Leistungen: Detail-Overlay per Klick/Tastatur ---------- */
+function closeTiles(except){ $$('.tile.open').forEach(function(t){ if (t!==except){ t.classList.remove('open'); t.querySelector('.tile-btn').setAttribute('aria-expanded','false'); } }); }
+$$('.tile-btn').forEach(function(b){
+  b.addEventListener('click', function(){ var t = b.closest('.tile'); var o = !t.classList.contains('open'); closeTiles(t); t.classList.toggle('open',o); b.setAttribute('aria-expanded',String(o)); });
+});
+
+/* =========================================================
+   HERO: WebGL – Foto in Fliesen zerlegt, Welle Rohbau → fertig,
+   Specular-Highlight folgt der Maus, Fugen bleiben matt
+   ========================================================= */
+var hero = { t:0, out:0 };
+var heroGL = null;
+function initHeroGL(){
+  if (!MOTION) return null;
+  var host = $('.hero-media'), img = $('#heroImg');
+  var cv = document.createElement('canvas'); cv.setAttribute('aria-hidden','true');
+  var gl = cv.getContext('webgl',{antialias:false,premultipliedAlpha:false,alpha:false,powerPreference:'high-performance'});
+  if (!gl) return null;
+  var vs = 'attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
+  var fs = [
+  'precision highp float;',
+  'uniform sampler2D uTex;uniform vec2 uRes,uImg,uTile,uOff,uMouse,uN;uniform float uT,uOut,uGrout,uTime;',
+  'float h1(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}',
+  'vec2 cover(vec2 p){float rs=uRes.x/uRes.y,ri=uImg.x/uImg.y;vec2 s=rs>ri?vec2(1.,ri/rs):vec2(rs/ri,1.);vec2 uv=p/uRes;return (uv-.5)*s*(1.-uOut*.05)+.5;}',
+  'void main(){',
+  ' vec2 p=vec2(gl_FragCoord.x,uRes.y-gl_FragCoord.y);',
+  ' vec2 q=(p-uOff)/uTile;vec2 id=floor(q);vec2 f=fract(q);',
+  ' float j=h1(id);',
+  ' float d=clamp((id.x+(uN.y-1.-id.y)*1.3)/(uN.x+uN.y*1.3),0.,1.);',
+  ' float s0=d*.62+j*.1;float pin=smoothstep(s0,s0+.3,uT);',
+  ' float so=clamp(id.y/uN.y,0.,1.)*.55+j*.25;float po=smoothstep(so,so+.3,uOut);',
+  ' float a=(1.-pin)*3.14159265;float ca=cos(a);',
+  ' float hgt=abs(ca)*cos(po*1.5707963);',
+  ' float ly=(f.y-.5)/max(hgt,.0001)+.5;',
+  ' vec3 bg=vec3(.075,.078,.084);',
+  ' vec2 gp=vec2(uGrout)/uTile;',
+  ' bool grout=f.x<gp.x||f.y<gp.y;',
+  ' if(ly<0.||ly>1.){gl_FragColor=vec4(bg,1.);return;}',
+  ' vec2 pp=uOff+(id+vec2(f.x,ly))*uTile;',
+  ' vec3 c=texture2D(uTex,cover(pp)).rgb;',
+  ' float shade=.5+.5*hgt;',
+  ' if(ca<0.){',            // Rohbau-Seite: Betongrau mit Struktur
+  '  float l=dot(c,vec3(.299,.587,.114));',
+  '  float n=h1(floor(pp/2.5))*.06+h1(floor(pp/23.))*.05;',
+  '  c=vec3(.40,.39,.37)*(.72+.45*l)+n-.04;',
+  '  c*=shade*.9;',
+  ' }else{',
+  '  c*=shade;',
+  '  vec3 N=normalize(vec3((h1(id+1.7)-.5)*.05,(h1(id+4.1)-.5)*.05+sin(a)*.9,1.));',
+  '  vec3 L=normalize(vec3((uMouse-pp)/uRes.y,.6));',
+  '  vec3 H=normalize(L+vec3(0.,0.,1.));',
+  '  float nh=max(dot(N,H),0.);',
+  '  float sp=pow(nh,420.)*.55+pow(nh,60.)*.07;',
+  '  c+=sp*vec3(1.,.975,.93)*pin*(1.-po);',
+  ' }',
+  ' float settle=pin*(1.-po);',
+  ' if(grout){c=mix(c,vec3(.12,.12,.12),mix(1.,.38,settle));}',
+  ' gl_FragColor=vec4(c,1.);',
+  '}'].join('\n');
+  function sh(t,src){var s=gl.createShader(t);gl.shaderSource(s,src);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS)){console.warn(gl.getShaderInfoLog(s));return null}return s}
+  var v=sh(gl.VERTEX_SHADER,vs), f=sh(gl.FRAGMENT_SHADER,fs); if(!v||!f) return null;
+  var pr=gl.createProgram();gl.attachShader(pr,v);gl.attachShader(pr,f);gl.linkProgram(pr);
+  if(!gl.getProgramParameter(pr,gl.LINK_STATUS)) return null;
+  gl.useProgram(pr);
+  var b=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
+  var loc=gl.getAttribLocation(pr,'p');gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
+  var U={};['uTex','uRes','uImg','uTile','uOff','uMouse','uN','uT','uOut','uGrout','uTime'].forEach(function(n){U[n]=gl.getUniformLocation(pr,n)});
+  var tex=gl.createTexture();
+  var ready=false, imgW=2400, imgH=1357, dpr=1, W=0, H=0;
+  var mouse={x:0,y:0,tx:0,ty:0,act:false};
+  var src = new Image(); src.decoding='async';
+  src.onload=function(){
+    gl.bindTexture(gl.TEXTURE_2D,tex);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
+    gl.texImage2D(gl.TEXTURE_2D,0,gl.RGB,gl.RGB,gl.UNSIGNED_BYTE,src);
+    imgW=src.naturalWidth;imgH=src.naturalHeight;ready=true;host.appendChild(cv);resize();draw();
+  };
+  src.src = innerWidth < 900 ? 'img/b01-hero-bad-1280.webp' : 'img/b01-hero-bad.webp';
+  function resize(){
+    dpr=Math.min(devicePixelRatio||1,innerWidth<900?1.5:2);
+    W=host.clientWidth;H=host.clientHeight;cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);
+    gl.viewport(0,0,cv.width,cv.height);
+    if(!mouse.act){mouse.x=mouse.tx=W*.68;mouse.y=mouse.ty=H*.32;}
+  }
+  host.parentNode.addEventListener('pointermove',function(e){var r=host.getBoundingClientRect();mouse.tx=e.clientX-r.left;mouse.ty=e.clientY-r.top;mouse.act=true;});
+  host.parentNode.addEventListener('pointerleave',function(){mouse.act=false;});
+  var visible=true;
+  if('IntersectionObserver' in window) new IntersectionObserver(function(es){visible=es[0].isIntersecting}).observe(host);
+  var t0=performance.now();
+  function draw(){
+    if(!ready||!visible) return;
+    var time=(performance.now()-t0)/1000;
+    if(!mouse.act){mouse.tx=W*(.62+.12*Math.sin(time*.35));mouse.ty=H*(.34+.1*Math.cos(time*.27));}
+    mouse.x+=(mouse.tx-mouse.x)*.2;mouse.y+=(mouse.ty-mouse.y)*.2;
+    var col=GRID.col, tw=col*2, th=col; // Fliesenformat 60 × 120: zwei Module breit, eines hoch
+    var offX=((GRID.gx%tw)-tw)%tw, offY=0;
+    gl.uniform1i(U.uTex,0);
+    gl.uniform2f(U.uRes,cv.width,cv.height);gl.uniform2f(U.uImg,imgW,imgH);
+    gl.uniform2f(U.uTile,tw*dpr,th*dpr);gl.uniform2f(U.uOff,offX*dpr,offY*dpr);
+    gl.uniform2f(U.uMouse,mouse.x*dpr,mouse.y*dpr);
+    gl.uniform2f(U.uN,Math.ceil(W/tw)+1,Math.ceil(H/th)+1);
+    gl.uniform1f(U.uT,hero.t);gl.uniform1f(U.uOut,hero.out);gl.uniform1f(U.uGrout,Math.max(1,dpr*1.25));gl.uniform1f(U.uTime,time);
+    gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
+  }
+  gsap.ticker.add(draw);
+  addEventListener('resize',function(){resize();});
+  cv.addEventListener('webglcontextlost',function(e){e.preventDefault();cv.remove();});
+  return {resize:resize, isReady:function(){return ready}};
+}
+heroGL = initHeroGL();
+
+/* ---------- Intro + Hero-Einstieg ---------- */
+function runIntro(){
+  var intro = $('.intro');
+  var seen=false; try{seen=sessionStorage.getItem('fr-intro')==='1'}catch(e){}
+  var heroLines = $$('.hero h1 .line>span'), heroRest = [$('.hero-sub'),$('.hero-cta'),$('.trust'),$('.hero-spec')];
+  gsap.set(heroLines,{yPercent:110}); gsap.set(heroRest,{autoAlpha:0,y:16});
+  var tl = gsap.timeline({defaults:{ease:'power3.out'}});
+  if (!seen){
+    try{sessionStorage.setItem('fr-intro','1')}catch(e){}
+    if (!location.hash) { try{history.scrollRestoration='manual'}catch(e){} scrollTo(0,0); }
+    if (lenis) lenis.stop();
+    gsap.set('.intro .line>span',{yPercent:110});
+    tl.to('.intro-line',{scaleX:1,duration:.5,ease:'power2.inOut'})
+      .to('.intro-word .line>span',{yPercent:0,duration:.45},'-=.12')
+      .to('.intro-sub .line>span',{yPercent:0,duration:.4},'<.05')
+      .to({}, {duration:.25})
+      .to('.intro-word .line>span',{yPercent:-110,duration:.35,ease:'power2.in'})
+      .to('.intro-sub .line>span',{yPercent:110,duration:.35,ease:'power2.in'},'<')
+      .to('.intro-top',{yPercent:-100,duration:.6,ease:'power3.inOut'},'-=.05')
+      .to('.intro-bot',{yPercent:100,duration:.6,ease:'power3.inOut'},'<')
+      .to('.intro-line',{scaleX:0,transformOrigin:'right',duration:.4,ease:'power2.in'},'<')
+      .add(function(){ intro.style.display='none'; if (lenis) lenis.start(); });
+  } else { intro.style.display='none'; }
+  var at = seen ? 0 : '-=.55';
+  tl.to(hero,{t:1,duration:1.5,ease:'power1.inOut'},at)
+    .to(heroLines,{yPercent:0,duration:.75,stagger:.08,ease:'power4.out'},seen?.25:'-=1.05')
+    .to(heroRest,{autoAlpha:1,y:0,duration:.6,stagger:.07},'-=.45');
+}
+if (MOTION){
+  if (!heroGL) hero.t = 1;
+  var started=false, go=function(){ if(started) return; started=true; runIntro(); };
+  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(function(){
+    var wait=0, iv=setInterval(function(){ wait+=50; if(!heroGL||heroGL.isReady()||wait>2200){clearInterval(iv);go();} },50);
+  });
+  // Hero klappt beim Rausscrollen Fliese für Fliese weg
+  ScrollTrigger.create({trigger:'.hero',start:'top top',end:'bottom top',scrub:true,onUpdate:function(s){hero.out=s.progress}});
+  gsap.to('.hero-in',{yPercent:-18,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+}
+
+/* ---------- Laufband (Tempo reagiert aufs Scrollen) ---------- */
+(function(){
+  var tr = $('.band-track'); if (!tr) return;
+  if (!MOTION) return;
+  var x=0, w=0, vel=0;
+  function m(){ w = tr.children[0].offsetWidth; } m(); addEventListener('resize',m);
+  if (lenis) lenis.on('scroll',function(e){ vel = e.velocity || 0; });
+  gsap.ticker.add(function(t,dt){ var sp = .055 + Math.min(Math.abs(vel)*.02,.9); x -= sp*dt*(vel<0?-1:1); if (x<=-w) x+=w; if (x>0) x-=w; tr.style.transform='translate3d('+x.toFixed(2)+'px,0,0)'; vel*=.92; });
+})();
+
+/* ---------- Scroll-Reveals ---------- */
+if (MOTION){
+  $$('.sec .d .line>span').forEach(function(){});
+  $$('.sec h2.d').forEach(function(h){
+    var ls = h.querySelectorAll('.line>span'); if(!ls.length) return;
+    gsap.from(ls,{yPercent:112,duration:.8,stagger:.08,ease:'power4.out',scrollTrigger:{trigger:h,start:'top 86%'}});
+  });
+  $$('.sec .eyebrow, .sec .lead').forEach(function(el){
+    gsap.from(el,{autoAlpha:0,y:18,duration:.6,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 90%'}});
+  });
+  // Bilder öffnen sich Fliese für Fliese
+  $$('.rv').forEach(function(ph){
+    var r = ph.getBoundingClientRect(); var cols = innerWidth<900?4:Math.max(3,Math.round(r.width/(GRID.col*.75)));
+    var rows = Math.max(3,Math.round(cols*r.height/r.width));
+    var g = document.createElement('div'); g.className='rv-grid'; g.style.gridTemplateColumns='repeat('+cols+',1fr)'; g.style.gridTemplateRows='repeat('+rows+',1fr)';
+    var cell = getComputedStyle(ph).getPropertyValue('--cell').trim();
+    for (var i=0;i<cols*rows;i++){ var c=document.createElement('i'); if(cell) c.style.background=cell; g.appendChild(c); }
+    ph.appendChild(g);
+    gsap.to(g.children,{scaleY:0,duration:.5,ease:'power2.inOut',stagger:{grid:[rows,cols],from:'start',amount:.6},
+      scrollTrigger:{trigger:ph,start:'top 82%'},onComplete:function(){g.remove()}});
+    var par = ph.querySelector('.par');
+    if (par) gsap.fromTo(par,{yPercent:-5},{yPercent:5,ease:'none',scrollTrigger:{trigger:ph,start:'top bottom',end:'bottom top',scrub:true}});
+  });
+  gsap.from('.lst .tile-g',{autoAlpha:0,y:30,duration:.6,scrollTrigger:{trigger:'.lst .tile-g',start:'top 90%'}});
+  gsap.from('.quotes .q',{autoAlpha:0,y:40,duration:.7,stagger:.1,ease:'power3.out',scrollTrigger:{trigger:'.quotes',start:'top 82%'}});
+  gsap.from('.prom .pr',{rotationX:-80,transformOrigin:'50% 0',autoAlpha:0,duration:.7,stagger:.08,ease:'power3.out',scrollTrigger:{trigger:'.prom',start:'top 82%'}});
+  gsap.from('.calc',{autoAlpha:0,y:40,duration:.7,ease:'power3.out',scrollTrigger:{trigger:'.calc',start:'top 85%'}});
+  gsap.from('.room',{clipPath:'inset(0 0 100% 0)',duration:.9,ease:'power3.inOut',scrollTrigger:{trigger:'.room',start:'top 80%'}});
+  gsap.from('.fq',{autoAlpha:0,y:16,duration:.5,stagger:.05,scrollTrigger:{trigger:'.faq-l',start:'top 85%'}});
+}
+
+/* ---------- Zahlen zählen hoch ---------- */
+$$('[data-count]').forEach(function(el){
+  var n = +el.getAttribute('data-count');
+  if (!MOTION){ el.textContent = fmt(n,0); return; }
+  var o={v:0}; el.textContent='0';
+  ScrollTrigger.create({trigger:el,start:'top 90%',once:true,onEnter:function(){ gsap.to(o,{v:n,duration:1.3,ease:'power2.out',onUpdate:function(){el.textContent=fmt(Math.round(o.v),0)}}); }});
+});
+
+/* ---------- Ablauf: Zeitleiste verlegt sich beim Scrollen ---------- */
+if (MOTION){
+  var steps = $$('.step');
+  if (innerWidth >= 900){
+    gsap.set(steps,{rotationX:-92,transformPerspective:1200,transformOrigin:'50% 100%',autoAlpha:.0});
+    var tlS = gsap.timeline({scrollTrigger:{trigger:'#steps',start:'top 78%',end:'bottom 45%',scrub:.4}});
+    steps.forEach(function(s,i){ tlS.to(s,{rotationX:0,autoAlpha:1,duration:1,ease:'power2.out'},i*.55); });
+    tlS.to('#rail',{scaleX:1,duration:steps.length*.55+.45,ease:'none'},0);
+  } else {
+    steps.forEach(function(s){ gsap.from(s,{rotationX:-70,transformPerspective:900,transformOrigin:'50% 0',autoAlpha:0,duration:.6,ease:'power3.out',scrollTrigger:{trigger:s,start:'top 88%'}}); });
+  }
+}
+
+/* ---------- Referenzen: horizontal ---------- */
+(function(){
+  var track = $('#refs-track'); if (!track) return;
+  if (!MOTION || innerWidth < 900) return;
+  var dist = function(){ return Math.max(0, track.scrollWidth - innerWidth); };
+  var tw = gsap.to(track,{x:function(){return -dist()},ease:'none',scrollTrigger:{trigger:'.refs-pin',start:'center center',end:function(){return '+='+dist()},pin:true,scrub:.5,invalidateOnRefresh:true,anticipatePin:1}});
+  $$('.rimg',track).forEach(function(im){ gsap.fromTo(im,{xPercent:-4,scale:1.08},{xPercent:4,ease:'none',scrollTrigger:{trigger:im.parentNode,containerAnimation:tw,start:'left right',end:'right left',scrub:true}}); });
+})();
+
+/* ---------- Vorher / Nachher ---------- */
+(function(){
+  var st = $('#ba'), rg = $('#ba-range'), aft = $('#ba-after'), bef = $('#ba-before'), cap = $('#ba-cap');
+  var data = [
+    {a:'b12-nachher-worms',b:'b11-vorher-worms',aa:'Nachher: fertiges Bad in Worms',ba:'Vorher: Rohbau mit offenen Leitungen in Worms',c:['Worms-Pfiffligheim','Rohbau → Komplettbad','14 m² · 60 × 120 cm']},
+    {a:'b10-nachher-ludwigshafen',b:'b09-vorher-ludwigshafen',aa:'Nachher: Bad in Marmoroptik mit Walk-in-Dusche in Ludwigshafen',ba:'Vorher: Bad aus den 90ern mit beigen Fliesen und Duschtasse in Ludwigshafen',c:['Ludwigshafen-Friesenheim','90er-Bad → Walk-in','9,5 m² · 60 × 120 cm']},
+    {a:'b14-nachher-frankenthal',b:'b13-vorher-frankenthal',aa:'Nachher: Bad mit Schiefer-Optik und Terrazzo-Boden in Frankenthal',ba:'Vorher: Bad aus den 70ern mit braunen und olivgrünen Fliesen in Frankenthal',c:['Frankenthal','70er-Bad → Familienbad','11 m² · 60 × 120 / 60 × 60']}
+  ];
+  function setP(v){ v = clamp(v,0,100); st.style.setProperty('--p', v+'%'); rg.value = Math.round(v); }
+  var drag=false;
+  function fromEv(e){ var r=st.getBoundingClientRect(); setP((e.clientX-r.left)/r.width*100); }
+  st.addEventListener('pointerdown',function(e){ drag=true; st.setPointerCapture(e.pointerId); fromEv(e); });
+  st.addEventListener('pointermove',function(e){ if(drag) fromEv(e); });
+  st.addEventListener('pointerup',function(){ drag=false; }); st.addEventListener('pointercancel',function(){ drag=false; });
+  rg.addEventListener('input',function(){ setP(+rg.value); });
+  var tabs = $$('.ba-tabs button');
+  function sel(i){
+    tabs.forEach(function(t,k){ t.setAttribute('aria-selected',String(k===i)); t.tabIndex = k===i?0:-1; });
+    var d=data[i];
+    var swap=function(){ aft.src='img/'+d.a+'.webp'; aft.alt=d.aa; bef.src='img/'+d.b+'.webp'; bef.alt=d.ba; cap.innerHTML=d.c.map(function(s){return '<span>'+s+'</span>'}).join(''); };
+    if (MOTION){ gsap.to(st,{autoAlpha:.2,duration:.15,onComplete:function(){ swap(); gsap.to(st,{autoAlpha:1,duration:.3}); gsap.fromTo({v:15},{v:15},{v:50,duration:.9,ease:'power3.inOut',onUpdate:function(){setP(this.targets()[0].v)}}); }}); }
+    else { swap(); setP(50); }
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){ sel(i); });
+    t.addEventListener('keydown',function(e){ if(e.key==='ArrowRight'||e.key==='ArrowLeft'){ var n=(i+(e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length; tabs[n].focus(); sel(n); } });
+  });
+  if (MOTION) ScrollTrigger.create({trigger:st,start:'top 70%',once:true,onEnter:function(){ var o={v:85}; gsap.to(o,{v:50,duration:1.1,ease:'power3.inOut',onUpdate:function(){setP(o.v)}}); }});
+})();
+
+/* =========================================================
+   KONFIGURATOR – Canvas: Fliesen legen sich ins neue Muster
+   ========================================================= */
+var CFG = (function(){
+  var FORM = {'30x60':{L:60,W:30,label:'30 × 60 cm'},'60x60':{L:60,W:60,label:'60 × 60 cm'},'60x120':{L:120,W:60,label:'60 × 120 cm'},'mosaik':{L:30,W:30,mos:5,label:'Mosaik 5 × 5 cm'}};
+  var MUS = {kreuz:'Kreuzfuge',halb:'Halbverband',drittel:'Drittelverband',fisch:'Fischgrät',chevron:'Chevron'};
+  var ALLOW = {'30x60':['kreuz','halb','drittel','fisch','chevron'],'60x60':['kreuz','halb','drittel'],'60x120':['kreuz','halb','drittel','fisch','chevron'],'mosaik':['kreuz','halb']};
+  var FUGE = {weiss:['#E6E4DF','Weiß'],silber:['#B3B0AA','Silbergrau'],zement:['#807D77','Zementgrau'],anthrazit:['#323436','Anthrazit']};
+  var OBER = {marmor:['b17-tex-marmor','Marmor'],beton:['b18-tex-beton','Beton'],holz:['b19-tex-holz','Holzoptik'],terrazzo:['b20-tex-terrazzo','Terrazzo']};
+  var state = { wand:{format:'60x120',muster:'halb',fuge:'silber',ober:'marmor'}, boden:{format:'30x60',muster:'fisch',fuge:'zement',ober:'holz'} };
+  var active='wand';
+  var tex = {}; var texReady = 0;
+  Object.keys(OBER).forEach(function(k){ var im=new Image(); im.onload=function(){ texReady++; tex[k]=im; if(texReady===4) { render('wand',false); render('boden',false); } }; im.src='img/'+OBER[k][0]+'.webp'; });
+  var cvW=$('#cv-wall'), cvF=$('#cv-floor');
+  var AREA = {wand:{w:280,h:0}, boden:{w:560,h:0}};
+  var anim = {wand:null, boden:null};
+
+  function rnd(seed){ var x=Math.sin(seed*12.9898+78.233)*43758.5453; return x-Math.floor(x); }
+  function insetPoly(pts,d){
+    var n=pts.length, lines=[], out=[];
+    var cx=0,cy=0; pts.forEach(function(p){cx+=p[0];cy+=p[1]}); cx/=n; cy/=n;
+    for(var i=0;i<n;i++){ var a=pts[i], b=pts[(i+1)%n]; var dx=b[0]-a[0], dy=b[1]-a[1], len=Math.hypot(dx,dy)||1; var nx=-dy/len, ny=dx/len;
+      var mx=(a[0]+b[0])/2, my=(a[1]+b[1])/2; if((cx-mx)*nx+(cy-my)*ny<0){nx=-nx;ny=-ny;}
+      lines.push([a[0]+nx*d,a[1]+ny*d,dx,dy]); }
+    for(var k=0;k<n;k++){ var l1=lines[(k+n-1)%n], l2=lines[k]; var den=l1[2]*l2[3]-l1[3]*l2[2]; if(Math.abs(den)<1e-9){out.push([l2[0],l2[1]]);continue;}
+      var t=((l2[0]-l1[0])*l2[3]-(l2[1]-l1[1])*l2[2])/den; out.push([l1[0]+l1[2]*t,l1[1]+l1[3]*t]); }
+    return out;
+  }
+  function rectPoly(x,y,w,h){ return [[x,y],[x+w,y],[x+w,y+h],[x,y+h]]; }
+  // Kachelliste in cm: {poly,cx,cy,ang,L,W,order}
+  function layout(s,AW,AH){
+    var f=FORM[s.format], L=f.L, W=f.W, out=[], m=s.muster, g=0;
+    if (f.mos){ L=W=30; }
+    if (m==='kreuz'||m==='halb'||m==='drittel'){
+      var row=0;
+      for(var y=AH; y>-W; y-=W, row++){ // von unten nach oben, wie auf der Baustelle
+        var off = m==='halb' ? (row%2)*L/2 : m==='drittel' ? (row%3)*L/3 : 0;
+        for(var x=-off; x<AW; x+=L){ if(x+L<=0) continue; out.push({poly:rectPoly(x,y-W,L,W),cx:x+L/2,cy:y-W/2,ang:0,L:L,W:W,order:row*100+(x+off)/L}); }
+      }
+    } else if (m==='fisch'){
+      var a=Math.PI/4, ca=Math.cos(a), sa=Math.sin(a), ox=AW/2, oy=AH/2, D=Math.hypot(AW,AH);
+      var K=Math.ceil(D/W)+2, N=Math.ceil(D/L)+2;
+      function rot(u,v){ return [ox+u*ca-v*sa, oy+u*sa+v*ca]; }
+      for(var n=-N;n<=N;n++) for(var k=-K;k<=K;k++){
+        var bx=k*W+n*L, by=k*W-n*L;
+        [[bx,by,L,W],[bx,by+W,W,L]].forEach(function(r,ix){
+          var pts=[rot(r[0],r[1]),rot(r[0]+r[2],r[1]),rot(r[0]+r[2],r[1]+r[3]),rot(r[0],r[1]+r[3])];
+          var xs=pts.map(function(p){return p[0]}), ys=pts.map(function(p){return p[1]});
+          if(Math.max.apply(0,xs)<0||Math.min.apply(0,xs)>AW||Math.max.apply(0,ys)<0||Math.min.apply(0,ys)>AH) return;
+          var c=rot(r[0]+r[2]/2,r[1]+r[3]/2);
+          out.push({poly:pts,cx:c[0],cy:c[1],ang:a+(ix?Math.PI/2:0),L:L,W:W,order:(AH-c[1])*2+c[0]*.2});
+        });
+      }
+    } else if (m==='chevron'){
+      var c45=Math.SQRT1_2, cw=L*c45, step=W/c45;
+      var cols=Math.ceil(AW/cw)+1;
+      for(var j=0;j<cols;j++){
+        var x0=j*cw, sgn=(j%2===0)?1:-1, yo=(j%2)*cw;
+        for(var y0=-2*step-cw+yo; y0<AH+step; y0+=step){
+          var pts2 = sgn>0 ? [[x0,y0],[x0+cw,y0+cw],[x0+cw,y0+cw+step],[x0,y0+step]] : [[x0,y0],[x0+cw,y0-cw],[x0+cw,y0-cw+step],[x0,y0+step]];
+          var ys2=pts2.map(function(p){return p[1]}); if(Math.max.apply(0,ys2)<0||Math.min.apply(0,ys2)>AH) continue;
+          var cxx=x0+cw/2, cyy=(pts2[0][1]+pts2[2][1])/2;
+          out.push({poly:pts2,cx:cxx,cy:cyy,ang:sgn*Math.PI/4,L:L,W:W,order:(AH-cyy)*2+cxx*.2});
+        }
+      }
+    }
+    out.sort(function(a,b){return a.order-b.order});
+    out.forEach(function(t,i){ t.i=i; t.seed=rnd(i*7.3+(t.cx|0)); });
+    return out;
+  }
+  function size(cv){
+    var r=cv.getBoundingClientRect(), dpr=Math.min(devicePixelRatio||1,2);
+    var w=Math.round(cv.clientWidth*dpr), h=Math.round(cv.clientHeight*dpr);
+    if(cv.width!==w||cv.height!==h){cv.width=w;cv.height=h;}
+    return {w:w,h:h,dpr:dpr};
+  }
+  function render(which, animate){
+    var cv = which==='wand'?cvW:cvF; if(!cv) return;
+    var s = state[which], dim=size(cv); if(!dim.w) return;
+    var AW = AREA[which].w, scale = dim.w/AW, AH = dim.h/scale;
+    var tiles = layout(s,AW,AH);
+    var ctx = cv.getContext('2d');
+    var g = Math.max(.22, 1.1/scale); // Fuge in cm, mindestens ~1 px
+    var f=FORM[s.format];
+    var polys = tiles.map(function(t){ return insetPoly(t.poly,g/2); });
+    var tx = tex[s.ober];
+    var grout = FUGE[s.fuge][0];
+    var dur=.38, spread = animate ? Math.min(.75, .25 + tiles.length*.0009) : 0;
+    var start = performance.now();
+    if (anim[which]) cancelAnimationFrame(anim[which]);
+    var prev = cv._snap; // vorherigen Zustand weich ausblenden
+    function frame(now){
+      var T=(now-start)/1000, done=true;
+      ctx.setTransform(1,0,0,1,0,0);
+      ctx.fillStyle=grout; ctx.fillRect(0,0,dim.w,dim.h);
+      if (prev && animate){ ctx.globalAlpha=Math.max(0,1-T/(spread+dur)); ctx.drawImage(prev,0,0); ctx.globalAlpha=1; }
+      for(var i=0;i<tiles.length;i++){
+        var t=tiles[i], p=1;
+        if(animate){ var d=(t.i/Math.max(1,tiles.length-1))*spread + t.seed*.05; p=clamp((T-d)/dur,0,1); if(p<1) done=false; if(p<=0) continue; p=1-Math.pow(1-p,3); }
+        var poly=polys[i];
+        ctx.save();
+        ctx.setTransform(scale,0,0,scale,0,0);
+        if(animate&&p<1){ ctx.translate(t.cx,t.cy); var sc=.82+.18*p; ctx.rotate((1-p)*.12*(t.seed-.5)); ctx.scale(sc,sc); ctx.translate(-t.cx,-t.cy+(1-p)*-6); ctx.globalAlpha=p; }
+        ctx.beginPath(); ctx.moveTo(poly[0][0],poly[0][1]); for(var k=1;k<poly.length;k++) ctx.lineTo(poly[k][0],poly[k][1]); ctx.closePath();
+        ctx.fillStyle='#bbb'; ctx.fill(); ctx.clip();
+        if(tx){
+          ctx.translate(t.cx,t.cy); ctx.rotate(t.ang);
+          var iw=tx.naturalWidth, ih=tx.naturalHeight;
+          var cmPerTex = s.ober==='holz'?140:s.ober==='terrazzo'?70:120;
+          var ext = s.muster==='chevron' ? t.W*1.2 : 0; // Chevron: spitze Enden mit abdecken
+          var TL=t.L+ext*2, TW=t.W+ext;
+          var sw=Math.min(iw, iw*TL/cmPerTex), sh=Math.min(ih, sw*TW/TL);
+          var sx=(iw-sw)*t.seed, sy=(ih-sh)*rnd(t.seed*91.7);
+          if(s.ober==='holz'){ ctx.rotate(Math.PI/2); sh=Math.min(ih, ih*TL/cmPerTex); sw=Math.min(iw, sh*TW/TL); sx=(iw-sw)*t.seed; sy=(ih-sh)*rnd(t.seed*91.7); ctx.drawImage(tx,sx,sy,sw,sh,-TW/2-.5,-TL/2-.5,TW+1,TL+1); }
+          else ctx.drawImage(tx,sx,sy,sw,sh,-TL/2-.5,-TW/2-.5,TL+1,TW+1);
+        }
+        // leichte Tonabweichung je Fliese, Kantenlicht
+        ctx.setTransform(scale,0,0,scale,0,0);
+        if(animate&&p<1){ ctx.translate(t.cx,t.cy); var sc2=.82+.18*p; ctx.rotate((1-p)*.12*(t.seed-.5)); ctx.scale(sc2,sc2); ctx.translate(-t.cx,-t.cy+(1-p)*-6); }
+        ctx.fillStyle = t.seed>.5 ? 'rgba(255,255,255,'+((t.seed-.5)*.09).toFixed(3)+')' : 'rgba(0,0,0,'+((.5-t.seed)*.09).toFixed(3)+')';
+        ctx.fill();
+        if(f.mos){ // Mosaiknetz: 6 × 6 Steine je Matte
+          ctx.strokeStyle=grout; ctx.lineWidth=Math.max(g*.8,1/scale);
+          var mn=t.L/f.mos; ctx.beginPath();
+          for(var q=1;q<mn;q++){ var xx=t.poly[0][0]+q*f.mos, yy=t.poly[0][1]+q*f.mos; ctx.moveTo(xx,t.poly[0][1]); ctx.lineTo(xx,t.poly[0][1]+t.W); ctx.moveTo(t.poly[0][0],yy); ctx.lineTo(t.poly[0][0]+t.L,yy); }
+          ctx.stroke();
+        }
+        ctx.restore();
+      }
+      if(!done){ anim[which]=requestAnimationFrame(frame); }
+      else { anim[which]=null; var sn=document.createElement('canvas'); sn.width=dim.w; sn.height=dim.h; sn.getContext('2d').drawImage(cv,0,0); cv._snap=sn; }
+    }
+    anim[which]=requestAnimationFrame(frame);
+  }
+
+  var hint=$('#cfg-hint');
+  function syncUI(){
+    var s=state[active];
+    $$('#cfg-panel input[name=format]').forEach(function(i){ i.checked=i.value===s.format; });
+    $$('#cfg-panel input[name=muster]').forEach(function(i){ i.checked=i.value===s.muster; i.disabled=ALLOW[s.format].indexOf(i.value)<0; });
+    $$('#cfg-panel input[name=fuge]').forEach(function(i){ i.checked=i.value===s.fuge; });
+    $$('#cfg-panel input[name=ober]').forEach(function(i){ i.checked=i.value===s.ober; });
+    var dis = Object.keys(MUS).filter(function(k){return ALLOW[s.format].indexOf(k)<0}).map(function(k){return MUS[k]});
+    hint.textContent = dis.length ? dis.join(' und ')+' mit '+FORM[s.format].label+' nicht möglich.' : '';
+    summary();
+  }
+  function summary(){
+    var dl=$('#cfg-dl'), html='';
+    ['wand','boden'].forEach(function(k){ var s=state[k]; html+='<dt>'+(k==='wand'?'Wand':'Boden')+'</dt><dd>'+FORM[s.format].label+' · '+MUS[s.muster]+' · '+OBER[s.ober][1]+' · Fuge '+FUGE[s.fuge][1]+'</dd>'; });
+    dl.innerHTML=html;
+    $('#tag-wall').textContent='Wand · '+FORM[state.wand.format].label+' · '+MUS[state.wand.muster];
+    $('#tag-floor').textContent='Boden · '+FORM[state.boden.format].label+' · '+MUS[state.boden.muster];
+  }
+  function text(){ return ['wand','boden'].map(function(k){ var s=state[k]; return (k==='wand'?'Wand: ':'Boden: ')+FORM[s.format].label+', '+MUS[s.muster]+', '+OBER[s.ober][1]+', Fuge '+FUGE[s.fuge][1]; }).join('\n'); }
+  $('#cfg-panel').addEventListener('change',function(e){
+    var i=e.target; if(!i.name) return; var s=state[active];
+    s[i.name]=i.value;
+    if(i.name==='format' && ALLOW[s.format].indexOf(s.muster)<0){ s.muster='kreuz'; }
+    syncUI(); render(active, MOTION);
+  });
+  var tabs=[$('#tab-wand'),$('#tab-boden')];
+  function setTab(k){
+    active=k; tabs.forEach(function(t){ var on=t.id==='tab-'+k; t.setAttribute('aria-selected',String(on)); t.tabIndex=on?0:-1; });
+    $('#cfg-panel').setAttribute('aria-labelledby','tab-'+k); syncUI();
+    if(MOTION) gsap.fromTo(k==='wand'?'.room-wall':'.room-floor-wrap',{filter:'brightness(1.35)'},{filter:'brightness(1)',duration:.6});
+  }
+  tabs.forEach(function(t,i){ t.addEventListener('click',function(){ setTab(i?'boden':'wand'); });
+    t.addEventListener('keydown',function(e){ if(e.key==='ArrowRight'||e.key==='ArrowLeft'){ var n=tabs[1-i]; n.focus(); setTab(i?'wand':'boden'); } }); });
+  var room=$('#room');
+  room.addEventListener('pointermove',function(e){ var r=room.getBoundingClientRect(); room.style.setProperty('--mx',((e.clientX-r.left)/r.width*100).toFixed(1)+'%'); room.style.setProperty('--my',((e.clientY-r.top)/r.height*100).toFixed(1)+'%'); });
+  var rT; addEventListener('resize',function(){ clearTimeout(rT); rT=setTimeout(function(){ render('wand',false); render('boden',false); },150); });
+  syncUI();
+  // Beim ersten Sichtkontakt legen sich die Fliesen einmal komplett
+  if (MOTION) ScrollTrigger.create({trigger:'#room',start:'top 75%',once:true,onEnter:function(){ setTimeout(function(){ cvW._snap=null; cvF._snap=null; render('wand',true); render('boden',true); },350); }});
+  return {text:text, state:state, MUS:MUS};
+})();
+
+/* ---------- Konfigurator → Formular ---------- */
+function setCfgInForm(t){
+  $('#k-cfg').value=t; $('#k-cfg-text').innerHTML=t.replace(/</g,'&lt;').replace(/\n/g,'<br>');
+  $('#k-cfg-wrap').hidden=!t;
+}
+$('#cfg-send').addEventListener('click',function(){
+  setCfgInForm(CFG.text());
+  var w=CFG.state.wand; var pt = w.format==='60x120' ? 'pt4' : 'pt1'; if(!document.querySelector('input[name=projekt]:checked')) $('#'+pt).checked=true;
+  scrollToEl($('#kontakt'));
+  if (MOTION) gsap.fromTo('.cfg-pick',{backgroundColor:'rgba(182,147,91,.35)'},{backgroundColor:'#151617',duration:1.4,delay:.9});
+});
+$('#k-cfg-x').addEventListener('click',function(){ setCfgInForm(''); });
+
+/* =========================================================
+   FLÄCHENRECHNER
+   ========================================================= */
+(function(){
+  var PACK = {'30x60':{m2:1.44,st:8,l:'à 1,44 m² · 8 Fliesen'},'60x60':{m2:1.44,st:4,l:'à 1,44 m² · 4 Fliesen'},'60x120':{m2:1.44,st:2,l:'à 1,44 m² · 2 Fliesen'},'mosaik':{m2:.90,st:10,l:'à 0,90 m² · 10 Netze'}};
+  var WASTE = {kreuz:5,halb:8,drittel:8,fisch:15,chevron:15};
+  var len=$('#c-len'), wid=$('#c-wid'), opn=$('#c-open'), fm=$('#c-fmt'), mu=$('#c-mus');
+  function num(i){ var v=parseFloat(String(i.value).replace(',','.')); return isFinite(v)?v:0; }
+  function typ(){ return document.querySelector('input[name=ctype]:checked').value; }
+  var last={};
+  function plan(L,B,isWall,open){
+    var W=520, H=300, pad=34, sc=Math.min((W-pad*2)/L,(H-pad*2)/B), w=L*sc, h=B*sc, x=(W-w)/2, y=(H-h)/2;
+    var t = isWall?'Wand':'Boden', grid=[], step=.6*sc;
+    for(var gx=x+step; gx<x+w-1; gx+=step) grid.push('<line x1="'+gx.toFixed(1)+'" y1="'+y.toFixed(1)+'" x2="'+gx.toFixed(1)+'" y2="'+(y+h).toFixed(1)+'"/>');
+    for(var gy=y+h-step; gy>y+1; gy-=step) grid.push('<line x1="'+x.toFixed(1)+'" y1="'+gy.toFixed(1)+'" x2="'+(x+w).toFixed(1)+'" y2="'+gy.toFixed(1)+'"/>');
+    var door = isWall && open>0 ? (function(){ var dw=Math.min(.9*sc,w*.3), dh=Math.min(2.0*sc,h*.85); return '<rect x="'+(x+w*.68).toFixed(1)+'" y="'+(y+h-dh).toFixed(1)+'" width="'+dw.toFixed(1)+'" height="'+dh.toFixed(1)+'" fill="#E2DFD8" stroke="#1E1F21" stroke-width="1"/>'; })() : '';
+    return '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Skizze '+t+'">'+
+      '<rect x="'+x.toFixed(1)+'" y="'+y.toFixed(1)+'" width="'+w.toFixed(1)+'" height="'+h.toFixed(1)+'" fill="#fff" stroke="#1E1F21" stroke-width="1.5"/>'+
+      '<g stroke="rgba(30,31,33,.12)" stroke-width="1">'+grid.join('')+'</g>'+door+
+      '<g stroke="#7A5F33" stroke-width="1" fill="none"><path d="M'+x+' '+(y-14)+'H'+(x+w)+'M'+x+' '+(y-19)+'v10M'+(x+w)+' '+(y-19)+'v10"/><path d="M'+(x+w+14)+' '+y+'V'+(y+h)+'M'+(x+w+9)+' '+y+'h10M'+(x+w+9)+' '+(y+h)+'h10"/></g>'+
+      '<g font-family="JetBrains Mono, monospace" font-size="12" fill="#7A5F33"><text x="'+(x+w/2)+'" y="'+(y-20)+'" text-anchor="middle">'+fmt(L,2)+' m</text>'+
+      '<text x="'+(x+w+22)+'" y="'+(y+h/2+4)+'">'+fmt(B,2)+' m</text></g>'+
+      '<text x="'+(x+10)+'" y="'+(y+h-10)+'" font-family="JetBrains Mono, monospace" font-size="11" fill="#4A4743" letter-spacing="1">'+t.toUpperCase()+' · '+fm.options[fm.selectedIndex].text+'</text></svg>';
+  }
+  function tween(el,to,dec,unit){
+    var from = last[el.id]||0; last[el.id]=to;
+    if(!MOTION){ el.innerHTML=fmt(to,dec)+'<small>'+unit+'</small>'; return; }
+    var o={v:from}; gsap.to(o,{v:to,duration:.45,ease:'power2.out',onUpdate:function(){ el.innerHTML=fmt(dec?o.v:Math.round(o.v),dec)+'<small>'+unit+'</small>'; }});
+  }
+  function calc(){
+    var isWall=typ()==='wand'; $('#f-open').hidden=!isWall; $('#l-wid').textContent=isWall?'Höhe (m)':'Breite (m)';
+    var L=clamp(num(len),0,99), B=clamp(num(wid),0,99), o=isWall?clamp(num(opn),0,L*B):0;
+    var area=Math.max(0,L*B-o), wp=WASTE[mu.value], tot=area*(1+wp/100), pk=PACK[fm.value];
+    var packs=Math.ceil(tot/pk.m2 - 1e-9);
+    tween($('#r-area'),area,2,'m²'); tween($('#r-total'),tot,2,'m²'); tween($('#r-pack'),packs,0,'Stk.');
+    $('#r-area-s').textContent=fmt(L,2)+' × '+fmt(B,2)+' m'+(o?' − '+fmt(o,2)+' m²':'');
+    $('#r-waste').textContent='+ '+wp+' % '+mu.options[mu.selectedIndex].text.split(' ·')[0];
+    $('#r-pack-s').textContent=pk.l;
+    $('#plan').innerHTML = L>0&&B>0 ? plan(L,B,isWall,o) : '';
+    // Fischgrät/Chevron nur bei 2:1-Formaten
+    var only2 = fm.value==='60x60'||fm.value==='mosaik';
+    [3,4].forEach(function(ix){ mu.options[ix].disabled=only2; });
+    if(only2 && (mu.value==='fisch'||mu.value==='chevron')){ mu.value='kreuz'; calc(); }
+    return tot;
+  }
+  $('#calc').addEventListener('input',calc); $('#calc').addEventListener('change',calc);
+  $$('.num button').forEach(function(b){ b.addEventListener('click',function(){ var i=$('#'+b.getAttribute('data-for')); var v=clamp(num(i)+parseFloat(b.getAttribute('data-step')),0,99); i.value=fmt(v,2); calc(); }); });
+  [len,wid,opn].forEach(function(i){ i.addEventListener('blur',function(){ i.value=fmt(clamp(num(i),0,99),2); calc(); }); });
+  $('#calc-send').addEventListener('click',function(){ var t=calc(); $('#k-qm').value=(Math.round(t*10)/10).toFixed(1); scrollToEl($('#kontakt')); });
+  calc();
+})();
+
+/* =========================================================
+   EINSATZGEBIET – stilisierte Karte
+   ========================================================= */
+(function(){
+  var P = [
+    ['Frankenthal',8.354,49.534,'Sitz',1],['Worms',8.361,49.632,'12 km'],['Ludwigshafen',8.435,49.477,'10 km'],['Mannheim',8.466,49.488,'13 km'],
+    ['Lampertheim',8.473,49.597,'16 km'],['Grünstadt',8.168,49.563,'16 km'],['Bad Dürkheim',8.168,49.462,'20 km'],['Schifferstadt',8.374,49.385,'18 km'],
+    ['Speyer',8.431,49.317,'25 km'],['Neustadt',8.136,49.354,'30 km'],['Weinheim',8.667,49.548,'26 km'],['Heidelberg',8.672,49.399,'33 km']
+  ];
+  var s=1950, X=function(lon){return (lon-7.99)*.649*s}, Y=function(lat){return (49.705-lat)*s};
+  var rhein=[[8.375,49.71],[8.372,49.66],[8.385,49.62],[8.41,49.58],[8.44,49.545],[8.452,49.51],[8.445,49.48],[8.437,49.45],[8.452,49.41],[8.448,49.37],[8.44,49.33],[8.455,49.29]];
+  var neckar=[[8.462,49.505],[8.5,49.495],[8.55,49.47],[8.6,49.445],[8.645,49.415],[8.69,49.41]];
+  function path(pts){ return 'M'+pts.map(function(p){return X(p[0]).toFixed(1)+' '+Y(p[1]).toFixed(1)}).join(' L'); }
+  var fx=X(8.354), fy=Y(49.534), km=s/111;
+  var svg='<svg viewBox="0 0 1000 800" role="img" aria-label="Stilisierte Karte: Frankenthal als Sitz, Einsatzgebiet in Vorderpfalz und Rhein-Neckar, Ringe bei 10, 20 und 30 Kilometern">';
+  svg+='<defs><pattern id="mg" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M50 0H0V50" fill="none" stroke="rgba(30,31,33,.07)" stroke-width="1"/></pattern></defs>';
+  svg+='<rect width="1000" height="800" fill="url(#mg)"/>';
+  [30,20,10].forEach(function(r,i){ svg+='<circle cx="'+fx+'" cy="'+fy+'" r="'+(r*km).toFixed(1)+'" fill="'+(i===2?'rgba(182,147,91,.16)':'rgba(182,147,91,.06)')+'" stroke="#7A5F33" stroke-width="1" stroke-dasharray="'+(i?'4 6':'2 6')+'"/>'; svg+='<text x="'+(fx+r*km*.707+6).toFixed(1)+'" y="'+(fy-r*km*.707).toFixed(1)+'" font-family="JetBrains Mono, monospace" font-size="13" fill="#7A5F33">'+r+' km</text>'; });
+  svg+='<path d="'+path(rhein)+'" fill="none" stroke="#9FB1B8" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" opacity=".55"/>';
+  svg+='<path d="'+path(neckar)+'" fill="none" stroke="#9FB1B8" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity=".55"/>';
+  svg+='<text x="'+X(8.415)+'" y="'+Y(49.665)+'" font-family="JetBrains Mono, monospace" font-size="13" fill="#5E7780" letter-spacing="3" transform="rotate(-80 '+X(8.415)+' '+Y(49.665)+')">RHEIN</text>';
+  svg+='<text x="'+X(8.56)+'" y="'+Y(49.487)+'" font-family="JetBrains Mono, monospace" font-size="12" fill="#5E7780" letter-spacing="3" transform="rotate(24 '+X(8.56)+' '+Y(49.487)+')">NECKAR</text>';
+  P.forEach(function(p,i){
+    var x=X(p[1]), y=Y(p[2]), main=p[4], right = ['Ludwigshafen','Grünstadt','Bad Dürkheim','Neustadt','Weinheim','Heidelberg'].indexOf(p[0])<0;
+    svg+='<g class="pin'+(main?' on':'')+'" data-i="'+i+'">'+(main?'<rect x="'+(x-11)+'" y="'+(y-11)+'" width="22" height="22" fill="#7A5F33"/><rect x="'+(x-4)+'" y="'+(y-4)+'" width="8" height="8" fill="#EEECE7"/>':'<circle class="dot" cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="6"/>')+
+      '<text x="'+(right?x+16:x-16).toFixed(1)+'" y="'+(y+5).toFixed(1)+'" text-anchor="'+(right?'start':'end')+'"'+(main?' style="font-weight:700;font-size:17px"':'')+'>'+p[0]+'</text></g>';
+  });
+  svg+='<g font-family="JetBrains Mono, monospace" font-size="12" fill="#4A4743" transform="translate(0,-90)"><path d="M40 860h'+(10*km).toFixed(1)+'" stroke="#1E1F21" stroke-width="2"/><path d="M40 852v16M'+(40+10*km).toFixed(1)+' 852v16" stroke="#1E1F21" stroke-width="2"/><text x="40" y="845">0</text><text x="'+(40+10*km-24).toFixed(1)+'" y="845">10 km</text></g>';
+  svg+='</svg>';
+  $('#map').innerHTML=svg;
+  var ul=$('#places'); ul.innerHTML=P.map(function(p,i){ return '<li data-i="'+i+'"'+(i===0?' class="on"':'')+'><span>'+p[0]+'</span><span class="mono">'+p[3]+'</span></li>'; }).join('');
+  var pins=$$('.pin'), lis=$$('#places li');
+  function hi(i){ pins.forEach(function(g){ g.classList.toggle('on', +g.getAttribute('data-i')===i || g.getAttribute('data-i')==='0'); }); lis.forEach(function(l){ l.classList.toggle('on', +l.getAttribute('data-i')===i); }); }
+  lis.forEach(function(l){ l.addEventListener('pointerenter',function(){ hi(+l.getAttribute('data-i')); }); });
+  pins.forEach(function(g){ g.addEventListener('pointerenter',function(){ hi(+g.getAttribute('data-i')); }); });
+  if (MOTION){ gsap.from('#map circle, #map rect:not([width="1000"])',{scale:0,transformOrigin:'center',duration:.6,stagger:.03,ease:'back.out(1.6)',scrollTrigger:{trigger:'#map',start:'top 78%'}}); }
+})();
+
+/* ---------- FAQ ---------- */
+$$('.fq button').forEach(function(b){
+  var a=document.getElementById(b.getAttribute('aria-controls'));
+  b.addEventListener('click',function(){
+    var o=b.getAttribute('aria-expanded')!=='true'; b.setAttribute('aria-expanded',String(o));
+    if(!MOTION){ a.classList.toggle('open',o); return; }
+    if(o){ gsap.fromTo(a,{height:0},{height:'auto',duration:.4,ease:'power3.out',onComplete:function(){ScrollTrigger.refresh()}}); }
+    else { gsap.to(a,{height:0,duration:.3,ease:'power3.inOut',onComplete:function(){ScrollTrigger.refresh()}}); }
+  });
+});
+
+/* =========================================================
+   KONTAKTFORMULAR
+   ========================================================= */
+(function(){
+  var form=$('#form'), files=[], inp=$('#k-files'), drop=$('#drop'), thumbs=$('#thumbs');
+  function addFiles(list){
+    var err='';
+    Array.prototype.forEach.call(list,function(f){
+      if(!/^image\//.test(f.type)){ err='Bitte nur Bilddateien hochladen.'; return; }
+      if(f.size>10*1024*1024){ err=f.name+' ist größer als 10 MB.'; return; }
+      if(files.length>=8){ err='Maximal 8 Bilder.'; return; }
+      files.push(f);
+    });
+    $('#e-files').textContent=err; draw();
+  }
+  function draw(){
+    thumbs.innerHTML='';
+    files.forEach(function(f,i){
+      var d=document.createElement('div'); d.className='thumb'; var u=URL.createObjectURL(f); d.style.backgroundImage='url("'+u+'")';
+      var b=document.createElement('button'); b.type='button'; b.setAttribute('aria-label',f.name+' entfernen'); b.textContent='×';
+      b.addEventListener('click',function(){ files.splice(i,1); URL.revokeObjectURL(u); draw(); });
+      d.appendChild(b); thumbs.appendChild(d);
+    });
+  }
+  inp.addEventListener('change',function(){ addFiles(inp.files); inp.value=''; });
+  ['dragenter','dragover'].forEach(function(t){ drop.addEventListener(t,function(e){ e.preventDefault(); drop.classList.add('over'); }); });
+  ['dragleave','drop'].forEach(function(t){ drop.addEventListener(t,function(e){ e.preventDefault(); drop.classList.remove('over'); }); });
+  drop.addEventListener('drop',function(e){ if(e.dataTransfer) addFiles(e.dataTransfer.files); });
+  drop.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); inp.click(); } });
+  drop.tabIndex=0; drop.setAttribute('role','button'); drop.setAttribute('aria-label','Raumfotos auswählen');
+
+  function setErr(id,inputs,msg){ $('#'+id).textContent=msg||''; inputs.forEach(function(i){ i.setAttribute('aria-invalid',msg?'true':'false'); if(msg) i.setAttribute('aria-describedby',id); }); return !msg; }
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var n=$('#k-name'), m=$('#k-mail'), ds=$('#k-ds'), pt=document.querySelector('input[name=projekt]:checked');
+    var ok=true, first=null;
+    if(!setErr('e-name',[n], n.value.trim().length<2?'Bitte geben Sie Ihren Namen an.':'')){ ok=false; first=first||n; }
+    if(!setErr('e-mail',[m], !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(m.value.trim())?'Bitte eine gültige E-Mail-Adresse angeben, z. B. name@beispiel.de.':'')){ ok=false; first=first||m; }
+    if(!setErr('e-ptype',$$('input[name=projekt]'), pt?'':'Bitte wählen Sie eine Projektart.')){ ok=false; first=first||$('#pt1'); }
+    if(!setErr('e-ds',[ds], ds.checked?'':'Bitte stimmen Sie der Verarbeitung zu, damit wir antworten können.')){ ok=false; first=first||ds; }
+    if(!ok){ first.focus(); return; }
+    var th=$('#thanks'), grid=th.querySelector('.thanks-grid');
+    grid.innerHTML=''; for(var i=0;i<48;i++) grid.appendChild(document.createElement('i'));
+    var vn=n.value.trim().split(/\s+/)[0];
+    $('#thanks-h').textContent='Danke, '+vn+'.';
+    $('#thanks-p').textContent='Ihre Anfrage'+(pt?' ('+pt.value+')':'')+(files.length?' mit '+files.length+' Foto'+(files.length>1?'s':''):'')+' ist bei uns. Wir melden uns innerhalb von zwei Werktagen für einen Aufmaßtermin.';
+    th.classList.add('show');
+    if(MOTION){
+      gsap.from(grid.children,{rotationX:-90,transformPerspective:600,transformOrigin:'50% 0',autoAlpha:0,duration:.45,stagger:{grid:[6,8],from:'start',amount:.5},ease:'power2.out'});
+      gsap.from('.thanks-in > *',{y:24,autoAlpha:0,duration:.6,stagger:.08,delay:.3,ease:'power3.out'});
+    }
+    $('#thanks-h').focus({preventScroll:true});
+  });
+})();
+
+/* ---------- Rechtliches: Platzhalter ---------- */
+['#lnk-imp','#lnk-ds'].forEach(function(s){ $(s).addEventListener('click',function(e){ e.preventDefault(); e.stopPropagation(); var a=e.currentTarget; var t=a.textContent; a.textContent=t+' (Platzhalter im Musterdesign)'; setTimeout(function(){a.textContent=t},2200); }); });
+
+/* ---------- Resize ---------- */
+var rz; addEventListener('resize',function(){ clearTimeout(rz); rz=setTimeout(function(){ GRID=setGrid(); if(window.ScrollTrigger) ScrollTrigger.refresh(); },120); });
+addEventListener('load',function(){ GRID=setGrid(); if(window.ScrollTrigger) ScrollTrigger.refresh(); });
+})();
+</script>
+</body>
+</html>
