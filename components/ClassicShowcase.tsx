@@ -6,7 +6,7 @@ import { CLASSIC_EXAMPLES, type ClassicExample } from "@/lib/data";
 import { SITE } from "@/lib/site";
 
 const HOST = SITE.replace(/^https?:\/\//, "").replace(/^www\./, "");
-const AUTOPLAY_MS = 3800;
+const AUTOPLAY_MS = 2400; // muss zur Dauer von .cl-tab__prog in globals.css passen
 
 /** Klassische Websites mit Menü: Browser-Mockup mit Seiten-Umschalter */
 export function ClassicList({ grid = false }: { grid?: boolean }) {
