@@ -1584,6 +1584,9 @@ html.pm-motion .tk__sparks i:nth-child(3) { animation-delay: calc(var(--tk-d) + 
 .vv-logo { display: inline-flex; align-items: center; padding: 12px 16px; background: #fff; border-radius: var(--radius-sm); }
 .vv-logo img { display: block; height: auto; }
 .vv-browser { box-shadow: 0 0 60px -20px rgba(221,187,77,.4); }
+.vv-feature { margin-bottom: 0; border-color: rgba(221,187,77,.35);
+  background: radial-gradient(60% 90% at 0% 0%, rgba(221,187,77,.10), transparent 70%), radial-gradient(50% 80% at 100% 100%, rgba(255,140,0,.06), transparent 70%), var(--surface-card); }
+.vv-direct .chip { text-decoration: none; color: var(--text-body); }
 .vv-badge { background: var(--brand-accent); }
 .vv-awards { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
 .vv-awards li { display: inline-flex; align-items: center; gap: 6px; padding: 7px 10px; border: 1px solid var(--border-strong); font: 500 13px/1.2 var(--font-body); color: var(--text-body); }
