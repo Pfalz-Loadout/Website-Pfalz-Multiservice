@@ -1138,6 +1138,7 @@ html:not(.js-motion) .steps-rail i{transform:none}
 'use strict';
 var RM = false; try{RM = matchMedia('(prefers-reduced-motion: reduce)').matches || /[?&]rm=1/.test(location.search)}catch(e){} // ?rm=1: Test für reduzierte Bewegung
 var MOTION = !RM && !!window.gsap;
+if (!MOTION) document.documentElement.classList.remove('js-motion'); // ohne GSAP kein Intro, Seite bleibt statisch lesbar
 var FINE = false; try{FINE = matchMedia('(hover:hover) and (pointer:fine)').matches}catch(e){}
 var $ = function(s,c){return (c||document).querySelector(s)}, $$ = function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
 var clamp = function(v,a,b){return Math.max(a,Math.min(b,v))};
