@@ -6,7 +6,7 @@ import { HOME_FAQ, IMG } from "@/lib/data";
 import { Faq } from "@/components/Faq";
 import { JsonLd, faqPage } from "@/lib/schema";
 import { WebTeaser } from "@/components/web/WebSections";
-import { VerveFeature } from "@/components/partner/Verve";
+import { PartnerTiles } from "@/components/partner/Partners";
 
 export default function HomePage() {
   return (
@@ -18,8 +18,8 @@ export default function HomePage() {
       <About />
       <Process />
       <WebTeaser alt />
-      <VerveFeature />
       <Region />
+      <PartnerTiles />
       <Faq items={HOME_FAQ} alt />
       <CtaBand
         image={IMG + "lagerraum-hoch.png"}

@@ -1,0 +1,40 @@
+import { social } from "@/lib/social";
+import type { Metadata } from "next";
+import { IMG, PARTNERS } from "@/lib/data";
+import { SITE } from "@/lib/site";
+import { JsonLd, breadcrumb } from "@/lib/schema";
+import { PageHero } from "@/components/PageHero";
+import { CtaBand } from "@/components/home/HomeSections";
+import { PartnerSection } from "@/components/partner/Partners";
+
+const description = "Partner von Pfalz Multiservice aus Worms und der Region: Betriebe, mit denen wir seit Jahren eng zusammenarbeiten.";
+
+export const metadata: Metadata = {
+  title: "Partner aus der Region",
+  description,
+  alternates: { canonical: "/partner" },
+  ...social({ path: "/partner", title: "Partner aus der Region · Pfalz Multiservice", description, image: "/og/webdesign.jpg", alt: "Partner von Pfalz Multiservice" }),
+};
+
+export default function PartnerPage() {
+  const list = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: PARTNERS.map((p, i) => ({ "@type": "ListItem", position: i + 1, item: { "@type": "LocalBusiness", name: p.name, url: `https://${p.host}`, image: `${SITE}${p.photo}` } })),
+  };
+
+  return (
+    <>
+      <JsonLd data={[list, breadcrumb([{ name: "Partner", path: "/partner" }])]} />
+      <PageHero
+        eyebrow="Partner aus der Region"
+        title="Unsere"
+        highlight="Partner"
+        intro="Betriebe aus Worms und der Region, mit denen wir seit Jahren eng zusammenarbeiten."
+        image={IMG + "pfalz-landschaft.png"}
+      />
+      {PARTNERS.map((p, i) => <PartnerSection key={p.slug} p={p} index={i} />)}
+      <CtaBand />
+    </>
+  );
+}

@@ -529,33 +529,41 @@ export const WEB_FAQ: [string, string][] = tidyDeep([
   ["Sind die Beispiele echte Kunden?", "Nein. Die Beispiele sind Musterdesigns für erfundene Betriebe. Sie zeigen, was möglich ist. Ihre Website gestalten wir individuell für Ihren Betrieb."],
 ]);
 
-/** Partner aus der Region: Verve Apartments (echtes Kundenprojekt, Freigabe für Name, Logo, Fotos liegt vor) */
-const VERVE_UTM = "utm_source=pfalz-multiservice&utm_medium=referral&utm_campaign=partner";
-const verveLink = (path = "") => `https://verveapartments.de${path}${path.includes("?") ? "&" : "?"}${VERVE_UTM}`;
+/** Partner aus der Region (Freigabe für Name, Logo und Fotos liegt vor). Weitere Partner einfach unten anhängen. */
+export type Partner = {
+  slug: string;
+  name: string;
+  branch: string;
+  host: string;
+  url: string;
+  logo: string;
+  photo: string;
+  since: string;
+  short: string;
+  text: string;
+  facts: [string, string][];
+  awards: string[];
+};
 
-export const PARTNER_VERVE = tidyDeep({
-  slug: "verve-apartments",
-  name: "Verve Apartments",
-  branch: "Ferienwohnungen in Worms",
-  host: "verveapartments.de",
-  url: verveLink(),
-  logo: "/images/partner/verve/logo.png",
-  hero: "/images/partner/verve/hero.jpg",
-  website: "/images/partner/verve/website.png",
-  photos: ["/images/partner/verve/p1.jpg", "/images/partner/verve/p2.jpg", "/images/partner/verve/p3.jpg", "/images/partner/verve/p4.jpg"],
-  short: "Vier Ferienwohnungen in Worms für bis zu 9 Personen: für Familien, Gruppen, Geschäftsreisende und Projektteams.",
-  text: "Verve Apartments und Pfalz Multiservice arbeiten seit vielen Jahren eng zusammen. Wir haben die Website verveapartments.de gestaltet und sind zur Stelle, wenn es irgendwo hakt, ob bei der Technik, rund um die Immobilien oder bei allem anderen.",
-  facts: [
-    ["4", "Unterkünfte in Worms"],
-    ["bis 9", "Personen pro Unterkunft"],
-    ["4,8", "Sterne aus 200 Bewertungen"],
-  ] as [string, string][],
-  awards: ["Airbnb Superhost seit 2024", "Booking.com Traveller Review Award", "Vrbo Premium-Gastgeber"],
-  audiences: [
-    { label: "Projektteams", href: verveLink("/de/projektteams") },
-    { label: "Geschäftsreisende", href: verveLink("/de/geschaeftsreisende") },
-    { label: "Familien", href: verveLink("/de/familien") },
-    { label: "Gruppen", href: verveLink("/de/gruppen") },
-  ],
-  direct: "Direkt über verveapartments.de gebucht ist Ihr Aufenthalt immer günstiger als über Airbnb, Booking.com und andere Portale.",
-});
+const UTM = "utm_source=pfalz-multiservice&utm_medium=referral&utm_campaign=partner";
+const withUtm = (url: string) => `${url}${url.includes("?") ? "&" : "?"}${UTM}`;
+
+export const PARTNERS: Partner[] = tidyDeep([
+  {
+    slug: "verve-apartments",
+    name: "Verve Apartments",
+    branch: "Ferienwohnungen in Worms",
+    host: "verveapartments.de",
+    url: withUtm("https://verveapartments.de"),
+    logo: "/images/partner/verve/logo.png",
+    photo: "/images/partner/verve/p1.jpg",
+    since: "Seit vielen Jahren",
+    short: "Vier Ferienwohnungen in Worms für bis zu 9 Personen: für Familien, Gruppen, Geschäftsreisende und Projektteams.",
+    text: "Verve Apartments und Pfalz Multiservice arbeiten seit vielen Jahren eng zusammen. Wenn es irgendwo hakt, ob bei der Technik, rund um die Immobilien oder bei allem anderen, sind wir zur Stelle.",
+    facts: [["4", "Unterkünfte in Worms"], ["bis 9", "Personen pro Unterkunft"], ["4,8", "Sterne aus 200 Bewertungen"]],
+    awards: ["Airbnb Superhost seit 2024", "Booking.com Traveller Review Award", "Vrbo Premium-Gastgeber"],
+  },
+]);
+
+/** Unterkunftstipp auf Leistungsseiten: Verve Apartments, Bereich für Projektteams */
+export const PARTNER_STAY = { partner: PARTNERS[0], href: withUtm("https://verveapartments.de/de/projektteams") };
