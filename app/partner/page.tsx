@@ -1,9 +1,8 @@
 import { social } from "@/lib/social";
 import type { Metadata } from "next";
-import { IMG, PARTNERS } from "@/lib/data";
+import { PARTNERS } from "@/lib/data";
 import { SITE } from "@/lib/site";
 import { JsonLd, breadcrumb } from "@/lib/schema";
-import { PageHero } from "@/components/PageHero";
 import { CtaBand } from "@/components/home/HomeSections";
 import { PartnerSection } from "@/components/partner/Partners";
 
@@ -26,15 +25,10 @@ export default function PartnerPage() {
   return (
     <>
       <JsonLd data={[list, breadcrumb([{ name: "Partner", path: "/partner" }])]} />
-      <PageHero
-        eyebrow="Partner aus der Region"
-        title="Unsere"
-        highlight="Partner"
-        intro="Betriebe aus Worms, mit denen wir zusammenarbeiten."
-        image={IMG + "pfalz-landschaft.png"}
-      />
+      {/* Kein Seitenkopf: jeder Partner bringt sein eigenes Kopfbild mit */}
+      <h1 className="sr-only">Unsere Partner: Betriebe aus Worms, mit denen wir zusammenarbeiten</h1>
       {PARTNERS.map((p, i) => <PartnerSection key={p.slug} p={p} index={i} />)}
-      <CtaBand image="/images/partner/verve/hero.jpg" />
+      <CtaBand />
     </>
   );
 }

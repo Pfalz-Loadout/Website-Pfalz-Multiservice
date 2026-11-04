@@ -42,11 +42,22 @@ export function PartnerTiles() {
   );
 }
 
-/** Partnerseite: eigener Abschnitt je Partner, am Desktop abwechselnd Bild links und rechts */
+/**
+ * Partnerseite: eigener Abschnitt je Partner mit eigenem Kopfbild; der Inhalt liegt als Karte über dem Bildrand.
+ * Am Desktop wechselt das Foto in der Karte von Partner zu Partner die Seite.
+ */
 export function PartnerSection({ p, index }: { p: Partner; index: number }) {
   return (
-    <section className={`section ${index % 2 ? "section--alt" : ""}`} id={p.slug}>
-      <div className="container pt-sec">
+    <section className={`pt-block ${index === 0 ? "pt-block--first" : ""}`} id={p.slug} aria-labelledby={`${p.slug}-name`}>
+      <div className="pt-head">
+        <Image className="pt-head__img" src={p.header} alt="" fill sizes="100vw" priority={index === 0} />
+        <div className="pt-head__scrim" />
+        <div className="container pt-sec pt-head__in">
+          <span className="pt-head__eyebrow">{p.branch}</span>
+          <h2 className="pt-head__name" id={`${p.slug}-name`}>{p.name}</h2>
+        </div>
+      </div>
+      <div className="container pt-sec"><div className="pt-card">
         <div className={`pt-row ${index % 2 ? "pt-row--rev" : ""}`}>
           <div className="pt-copy">
             <div className="pm-reveal" data-reveal="up"><PartnerLogo p={p} width={200} /></div>
@@ -66,7 +77,7 @@ export function PartnerSection({ p, index }: { p: Partner; index: number }) {
             <span className="pt-photo__cap"><b>{p.name}</b>{tidy(p.short)}</span>
           </a>
         </div>
-      </div>
+      </div></div>
     </section>
   );
 }

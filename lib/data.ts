@@ -538,6 +538,8 @@ export type Partner = {
   url: string;
   logo: string;
   photo: string;
+  /** Kopfbild des Partnerabschnitts auf /partner */
+  header: string;
   since: string;
   short: string;
   text: string;
@@ -557,6 +559,7 @@ export const PARTNERS: Partner[] = tidyDeep([
     url: withUtm("https://verveapartments.de"),
     logo: "/images/partner/verve/logo.png",
     photo: "/images/partner/verve/p1.jpg",
+    header: "/images/partner/verve/hero.jpg",
     since: "Partner aus Worms",
     short: "Vier Ferienwohnungen in Worms für bis zu 9 Personen: für Familien, Gruppen, Geschäftsreisende und Projektteams.",
     text: "Verve Apartments und Pfalz Multiservice arbeiten eng zusammen. Wenn es irgendwo hakt, ob bei der Technik, rund um die Immobilien oder bei allem anderen, sind wir zur Stelle.",
