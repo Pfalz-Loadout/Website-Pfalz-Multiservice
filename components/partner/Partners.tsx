@@ -23,7 +23,7 @@ export function PartnerTiles() {
     <section className="section pt-tiles-wrap" id="partner">
       <div className="container">
         <SectionHeading eyebrow="Partner aus der Region" title="Echt statt" highlight="Muster"
-          intro="Betriebe aus der Region, mit denen wir seit Jahren eng zusammenarbeiten." style={{ marginBottom: 48 }} />
+          intro="Betriebe aus Worms, mit denen wir zusammenarbeiten." style={{ marginBottom: 48 }} />
         <div className="pt-tiles pm-reveal" data-reveal="cards">
           {PARTNERS.map((p) => (
             <Link key={p.slug} href={partnerHref(p)} className="pt-tile pm-card" data-cursor aria-label={`${p.name}: mehr zur Partnerschaft`}>
