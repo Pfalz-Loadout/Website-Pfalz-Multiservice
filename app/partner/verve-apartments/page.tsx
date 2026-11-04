@@ -51,7 +51,7 @@ export default function VervePage() {
         image={p.hero}
       >
         <Button variant="accent" size="lg" icon="external-link" href={p.url}>{p.host} besuchen</Button>
-        <Button variant="outline-light" size="lg" href="#zusammenarbeit">Unsere Zusammenarbeit</Button>
+        <Button variant="outline-light" size="lg" href="#website">Die Website ansehen</Button>
       </PageHero>
 
       <section className="section">
@@ -71,22 +71,7 @@ export default function VervePage() {
         </div>
       </section>
 
-      <section className="section section--alt" id="zusammenarbeit">
-        <div className="container">
-          <SectionHeading eyebrow="Zusammenarbeit" title="Was wir für" highlight="Verve tun" intro="Ein Ansprechpartner für alles, was nicht die Gäste selbst betrifft." style={{ marginBottom: 48 }} />
-          <div className="vv-work pm-reveal" data-reveal="cards">
-            {p.work.map((w) => (
-              <article key={w.title} className="vv-work__card pm-card">
-                <span className="vv-work__icon"><Icon name={w.icon} size={22} /></span>
-                <h3>{w.title}</h3>
-                <p>{tidy(w.text)}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section" id="website">
+      <section className="section section--alt" id="website">
         <div className="container">
           <div className="wall-feature vv-feature pm-reveal" data-reveal="up">
             <VerveBrowser />
@@ -105,7 +90,7 @@ export default function VervePage() {
         </div>
       </section>
 
-      <section className="section section--alt vv-direct">
+      <section className="section vv-direct">
         <div className="container">
           <div className="vv-photos pm-reveal" data-reveal="cards">
             {p.photos.map((src, i) => (
