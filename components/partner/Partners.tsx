@@ -52,7 +52,7 @@ export function PartnerSection({ p, index }: { p: Partner; index: number }) {
       <div className="pt-head">
         <Image className="pt-head__img" src={p.header} alt="" fill sizes="100vw" priority={index === 0} />
         <div className="pt-head__scrim" />
-        <div className="container pt-head__in">
+        <div className="container pt-sec pt-head__in">
           <span className="pt-head__eyebrow">{p.branch}</span>
           <h2 className="pt-head__name" id={`${p.slug}-name`}>{p.name}</h2>
         </div>
