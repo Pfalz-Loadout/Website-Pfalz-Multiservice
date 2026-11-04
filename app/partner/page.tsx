@@ -7,7 +7,7 @@ import { PageHero } from "@/components/PageHero";
 import { CtaBand } from "@/components/home/HomeSections";
 import { PartnerSection } from "@/components/partner/Partners";
 
-const description = "Partner von Pfalz Multiservice aus Worms und der Region: Betriebe, mit denen wir seit Jahren eng zusammenarbeiten.";
+const description = "Partner von Pfalz Multiservice: Betriebe aus Worms, mit denen wir zusammenarbeiten.";
 
 export const metadata: Metadata = {
   title: "Partner aus der Region",
@@ -30,7 +30,7 @@ export default function PartnerPage() {
         eyebrow="Partner aus der Region"
         title="Unsere"
         highlight="Partner"
-        intro="Betriebe aus Worms und der Region, mit denen wir seit Jahren eng zusammenarbeiten."
+        intro="Betriebe aus Worms, mit denen wir zusammenarbeiten."
         image={IMG + "pfalz-landschaft.png"}
       />
       {PARTNERS.map((p, i) => <PartnerSection key={p.slug} p={p} index={i} />)}

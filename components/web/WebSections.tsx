@@ -4,12 +4,13 @@ import { BriefingPreview } from "./BriefingPreview";
 import { CarePricing } from "./CarePricing";
 import Link from "next/link";
 import Image from "next/image";
-import { CLASSIC_EXAMPLES, CONTACT, EXAMPLES, SHOP_EXAMPLE, WEB_ADDONS, WEB_BASE_ITEMS, WEB_DELIVER, WEB_FAQ, WEB_CARE_NOTES, WEB_HANDOVER, WEB_INCLUDED, WEB_PACKAGES, WEB_PROBLEMS, type WebPackage } from "@/lib/data";
+import { CLASSIC_EXAMPLES, CONTACT, EXAMPLES, SHOP_EXAMPLE, WEB_ADDONS, WEB_BASE_ITEMS, WEB_FAQ, WEB_CARE_NOTES, WEB_INCLUDED, WEB_PACKAGES, WEB_PROBLEMS, type WebPackage } from "@/lib/data";
 import { SectionHeading } from "../SectionHeading";
 import { Button } from "../Button";
 import { Icon } from "../Icon";
 import { ClassicList } from "../ClassicShowcase";
 import { ShowcaseList } from "../Showcase";
+import { DeliverHandover } from "./DeliverHandover";
 
 const CHECK_TEXT = "Hallo, bitte prüfen Sie kostenlos meine Website: ";
 export const WHATSAPP_CHECK = `${CONTACT.whatsapp}?text=${encodeURIComponent(CHECK_TEXT)}`;
@@ -150,32 +151,7 @@ export function WebPackages() {
           <p><strong>Kein Abo, kein Zwang.</strong> Einmaliger Festpreis, keine versteckten Kosten, die Website gehört Ihnen. Laufende Kosten entstehen nur für Hosting und Domain: Die zahlen Sie direkt beim Anbieter Ihrer Wahl, den Betrag weisen wir im Angebot getrennt aus. Die Einrichtung übernehmen wir in Wartung Pro und Premium; in Premium ist das Hosting bei uns enthalten.</p>
         </div>
 
-        <div className="deliver" id="leistungsumfang">
-          <h3 className="deliver__title pm-reveal" data-reveal="up">Was bekomme ich?</h3>
-          <ul className="deliver__grid pm-reveal" data-reveal="stagger">
-            {WEB_DELIVER.map((d) => (
-              <li key={d.title} className="deliver__item">
-                <span className="addon__icon"><Icon name={d.icon} size={20} /></span>
-                <b>{d.title}</b>
-                <span>{tidy(d.text)}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="pk-box pk-box--handover pm-reveal" data-reveal="up" id="uebergabe">
-          <span className="pk-box__eyebrow">Übergabe-Paket · in jedem Paket enthalten</span>
-          <h3 className="pk-box__title">Ihre Website gehört Ihnen</h3>
-          <p className="pk-box__intro">Kein Lock-in, keine Abhängigkeit: Nach vollständiger Bezahlung bekommen Sie alles, um Ihre Website selbst zu besitzen.</p>
-          <div className="handover">
-            {WEB_HANDOVER.map((g) => (
-              <div key={g.group} className="handover__group">
-                <h4 className="handover__h">{g.group}</h4>
-                <ul className="addons">{g.items.map((a) => <Addon key={a.title} a={a} />)}</ul>
-              </div>
-            ))}
-          </div>
-        </div>
+        <DeliverHandover />
 
         <div className="care" id="wartung">
           <SectionHeading align="center" eyebrow="Betreuung nach dem Livegang" title="Ihre Website bleibt" highlight="aktuell"
