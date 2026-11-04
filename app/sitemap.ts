@@ -10,6 +10,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "", priority: 1 },
     ...SERVICES.filter((s) => !s.href).map((s) => ({ path: `/leistungen/${s.id}`, priority: 0.8 })),
     { path: "/webdesign", priority: 0.9 },
+    { path: "/partner/verve-apartments", priority: 0.6 },
+    { path: "/partner/verve-apartments", priority: 0.6 },
     { path: "/kontakt", priority: 0.7 },
     { path: "/impressum", priority: 0.2 },
     { path: "/datenschutz", priority: 0.2 },

@@ -528,3 +528,39 @@ export const WEB_FAQ: [string, string][] = tidyDeep([
   ["Für wen ist das Angebot?", "Unser Webdesign- und Wartungsangebot richtet sich ausschließlich an Unternehmer im Sinne von § 14 BGB, also Gewerbetreibende, Selbstständige und Betriebe. Verträge mit Verbrauchern schließen wir hierüber nicht."],
   ["Sind die Beispiele echte Kunden?", "Nein. Die Beispiele sind Musterdesigns für erfundene Betriebe. Sie zeigen, was möglich ist. Ihre Website gestalten wir individuell für Ihren Betrieb."],
 ]);
+
+/** Partner aus der Region: Verve Apartments (echtes Kundenprojekt, Freigabe für Name, Logo, Fotos liegt vor) */
+const VERVE_UTM = "utm_source=pfalz-multiservice&utm_medium=referral&utm_campaign=partner";
+const verveLink = (path = "") => `https://verveapartments.de${path}${path.includes("?") ? "&" : "?"}${VERVE_UTM}`;
+
+export const PARTNER_VERVE = tidyDeep({
+  slug: "verve-apartments",
+  name: "Verve Apartments",
+  branch: "Ferienwohnungen in Worms",
+  host: "verveapartments.de",
+  url: verveLink(),
+  logo: "/images/partner/verve/logo.png",
+  hero: "/images/partner/verve/hero.jpg",
+  website: "/images/partner/verve/website.png",
+  photos: ["/images/partner/verve/p1.jpg", "/images/partner/verve/p2.jpg", "/images/partner/verve/p3.jpg", "/images/partner/verve/p4.jpg"],
+  short: "Vier Ferienwohnungen in Worms für bis zu 9 Personen: für Familien, Gruppen, Geschäftsreisende und Projektteams.",
+  text: "Verve Apartments und Pfalz Multiservice arbeiten seit vielen Jahren eng zusammen. Wir haben die Website verveapartments.de gestaltet und sind zur Stelle, wenn es irgendwo hakt, ob bei der Technik, rund um die Immobilien oder bei allem anderen.",
+  facts: [
+    ["4", "Unterkünfte in Worms"],
+    ["bis 9", "Personen pro Unterkunft"],
+    ["4,8", "Sterne aus 200 Bewertungen"],
+  ] as [string, string][],
+  awards: ["Airbnb Superhost seit 2024", "Booking.com Traveller Review Award", "Vrbo Premium-Gastgeber"],
+  work: [
+    { icon: "layout-template", title: "Webdesign", text: "Die Website verveapartments.de mit Direktbuchung, Unterkunftsseiten und eigenen Bereichen für Familien, Gruppen, Geschäftsreisende und Projektteams." },
+    { icon: "key-round", title: "Rund um die Immobilien", text: "Wir unterstützen bei Aufgaben rund um die Wohnungen, zuverlässig und kurzfristig." },
+    { icon: "lightbulb", title: "Solutions & Support", text: "Ein Problem, egal welcher Art: Verve meldet sich, wir kümmern uns um eine Lösung." },
+  ] as { icon: IconName; title: string; text: string }[],
+  audiences: [
+    { label: "Projektteams", href: verveLink("/de/projektteams") },
+    { label: "Geschäftsreisende", href: verveLink("/de/geschaeftsreisende") },
+    { label: "Familien", href: verveLink("/de/familien") },
+    { label: "Gruppen", href: verveLink("/de/gruppen") },
+  ],
+  direct: "Direkt über verveapartments.de gebucht ist Ihr Aufenthalt immer günstiger als über Airbnb, Booking.com und andere Portale.",
+});

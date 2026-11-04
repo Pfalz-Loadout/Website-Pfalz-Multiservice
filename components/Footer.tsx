@@ -60,6 +60,8 @@ export function Footer() {
               <span>|</span>
               <Link href="/ratgeber">Ratgeber</Link>
               <span>|</span>
+              <Link href="/partner/verve-apartments">Partner</Link>
+              <span>|</span>
               <Link href="/inhalte-melden">Inhalte melden</Link>
             </span>
             <span className="footer__legal">Zuletzt aktualisiert: <time dateTime={UPDATED_ISO}>{UPDATED}</time></span>
