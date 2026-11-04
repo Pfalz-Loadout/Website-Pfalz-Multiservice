@@ -34,7 +34,7 @@ export default function PartnerPage() {
         image={IMG + "pfalz-landschaft.png"}
       />
       {PARTNERS.map((p, i) => <PartnerSection key={p.slug} p={p} index={i} />)}
-      <CtaBand />
+      <CtaBand image="/images/partner/verve/hero.jpg" />
     </>
   );
 }
