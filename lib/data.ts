@@ -272,7 +272,7 @@ export const CTA = tidyDeep({
   intro: "Schildern Sie uns kurz Ihr Anliegen. Wir antworten innerhalb von 24 Stunden (werktags) mit einem passenden Lösungsvorschlag.",
 });
 
-/** Webdesign-Musterdesigns (statische Seiten unter public/beispiele/<slug>) */
+/** Webdesign-Musterdesigns (eigenes Projekt, erreichbar unter EXAMPLES_URL/<slug>) */
 export type Example = {
   slug: string;
   name: string;

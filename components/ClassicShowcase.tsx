@@ -3,9 +3,8 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { gsap, ScrollTrigger, useGSAP, MOTION_OK } from "@/lib/gsap";
 import { CLASSIC_EXAMPLES, type ClassicExample } from "@/lib/data";
-import { SITE } from "@/lib/site";
+import { EXAMPLES_URL, EXAMPLES_HOST } from "@/lib/site";
 
-const HOST = SITE.replace(/^https?:\/\//, "").replace(/^www\./, "");
 const AUTOPLAY_MS = 2400; // muss zur Dauer von .cl-tab__prog in globals.css passen
 
 /** Klassische Websites mit Menü: Browser-Mockup mit Seiten-Umschalter */
@@ -25,7 +24,7 @@ function ClassicItem({ ex, index }: { ex: ClassicExample; index: number }) {
   const [auto, setAuto] = useState(false);
   const [visible, setVisible] = useState(false);
   const page = ex.pages[cur];
-  const href = `/beispiele/${ex.slug}${page.path}`;
+  const href = `${EXAMPLES_URL}/${ex.slug}${page.path}`;
   const playing = auto && visible;
 
   // Automatisch durch die Unterseiten blättern, solange sichtbar und noch nicht angeklickt.
@@ -60,7 +59,7 @@ function ClassicItem({ ex, index }: { ex: ClassicExample; index: number }) {
         <div className="sc-browser pm-reveal">
           <div className="sc-browser__bar" aria-hidden="true">
             <span className="sc-browser__dots"><i /><i /><i /></span>
-            <span className="sc-browser__url">{HOST}/beispiele/{ex.slug}{page.path}</span>
+            <span className="sc-browser__url">{EXAMPLES_HOST}/{ex.slug}{page.path}</span>
           </div>
           <a className="cl-view" href={href} target="_blank" rel="noopener" data-cursor
             aria-label={`${ex.name}, Seite ${page.label} live ansehen (öffnet in neuem Tab)`}>

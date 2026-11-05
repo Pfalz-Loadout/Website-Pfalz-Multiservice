@@ -1,6 +1,9 @@
 /** Hauptadresse für Canonicals, Sitemap, robots.txt, Open Graph und Schema – bewusst fest, damit keine alte Umgebungsvariable dazwischenfunkt */
 export const SITE = "https://www.pfalz-multiservice.de";
 export const SITE_NAME = "Pfalz Multiservice";
+/** Musterdesigns liegen im eigenen Projekt (Repo „Beispiele“) unter dieser Adresse */
+export const EXAMPLES_URL = "https://beispiele.pfalz-multiservice.de";
+export const EXAMPLES_HOST = "beispiele.pfalz-multiservice.de";
 export const TITLE = "Pfalz Multiservice · Web, Reselling & E-Commerce Worms";
 export const DESC =
   "Web Maintenance & Management, Reselling & Asset Recovery und E-Commerce aus Worms, dazu Lagerung und Räumung. Pfalz Multiservice: ein Ansprechpartner.";

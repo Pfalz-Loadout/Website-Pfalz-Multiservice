@@ -3,9 +3,8 @@ import Image from "next/image";
 import { useRef } from "react";
 import { gsap, ScrollTrigger, useGSAP, MOTION_OK } from "@/lib/gsap";
 import { EXAMPLES, type Example } from "@/lib/data";
-import { SITE } from "@/lib/site";
+import { EXAMPLES_URL, EXAMPLES_HOST } from "@/lib/site";
 
-const HOST = SITE.replace(/^https?:\/\//, "").replace(/^www\./, "");
 
 /** Webdesign-Musterdesigns: Browser- und Smartphone-Mockup, Scroll-Vorschau, 3D-Tilt */
 export function ShowcaseList({ offset = 0, grid = false }: { offset?: number; grid?: boolean }) {
@@ -20,7 +19,7 @@ export function ShowcaseList({ offset = 0, grid = false }: { offset?: number; gr
 
 function ShowcaseItem({ ex, index }: { ex: Example; index: number }) {
   const ref = useRef<HTMLElement>(null);
-  const href = `/beispiele/${ex.slug}`;
+  const href = `${EXAMPLES_URL}/${ex.slug}`;
 
   useGSAP(() => {
     const root = ref.current!;
@@ -113,7 +112,7 @@ function ShowcaseItem({ ex, index }: { ex: Example; index: number }) {
         <div className="sc-browser pm-reveal">
           <div className="sc-browser__bar" aria-hidden="true">
             <span className="sc-browser__dots"><i /><i /><i /></span>
-            <span className="sc-browser__url">{HOST}/beispiele/{ex.slug}</span>
+            <span className="sc-browser__url">{EXAMPLES_HOST}/{ex.slug}</span>
           </div>
           <div className="sc-browser__view">
             <Image className="sc-browser__shot" src={`/images/beispiele/${ex.slug}-scroll.png`} alt={`Vorschau der Website ${ex.name}`}
