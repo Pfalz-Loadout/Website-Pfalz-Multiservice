@@ -275,8 +275,8 @@ export function WebFaqCheck() {
 /** Kompakter Teaser für Startseite und Leistungsseite: Referenz-Wand mit allen Beispielen */
 export function WebTeaser({ alt = false }: { alt?: boolean }) {
   const all: { slug: string; name: string; branch: string; href: string; img: string }[] = [
-    ...CLASSIC_EXAMPLES.map((e) => ({ slug: e.slug, name: e.name, branch: e.branch, href: `/beispiele/${e.slug}${e.pages[0].path}`, img: `/images/beispiele/${e.slug}-${e.pages[0].key}.png` })),
-    ...EXAMPLES.map((e) => ({ slug: e.slug, name: e.name, branch: e.branch, href: `/beispiele/${e.slug}`, img: `/images/beispiele/${e.slug}-scroll.png` })),
+    ...CLASSIC_EXAMPLES.map((e) => ({ slug: e.slug, name: e.name, branch: e.branch, href: `${EXAMPLES_URL}/${e.slug}${e.pages[0].path}`, img: `/images/beispiele/${e.slug}-${e.pages[0].key}.png` })),
+    ...EXAMPLES.map((e) => ({ slug: e.slug, name: e.name, branch: e.branch, href: `${EXAMPLES_URL}/${e.slug}`, img: `/images/beispiele/${e.slug}-scroll.png` })),
   ];
   // Feste Reihenfolge auf der Startseite: Fliesenleger, Elektriker, Weingut, Umraum, Restaurant, Honigstück
   const order = ["fliesenleger", "elektriker", "weingut", "beratungsbuero", "restaurant", "seifenmanufaktur"];
