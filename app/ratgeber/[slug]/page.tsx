@@ -19,10 +19,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const g = GUIDES.find((x) => x.slug === slug);
   if (!g) return {};
   return {
-    title: g.title,
+    title: g.seoTitle ? { absolute: g.seoTitle } : g.title,
     description: g.teaser,
     alternates: { canonical: guideHref(g.slug) },
-    ...social({ path: guideHref(g.slug), title: `${g.title} · ${SITE_NAME}`, description: g.teaser }),
+    ...social({ path: guideHref(g.slug), title: g.seoTitle ?? `${g.title} · ${SITE_NAME}`, description: g.teaser }),
     robots: { index: true, follow: true },
   };
 }
