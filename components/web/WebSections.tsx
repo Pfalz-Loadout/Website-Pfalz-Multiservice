@@ -81,7 +81,11 @@ export function WebExamples() {
         </div>
         <ShowcaseList offset={CLASSIC_EXAMPLES.length} grid />
 
-        {tidyNode(<p className="showcase-note" style={{ margin: "72px auto 0", textAlign: "center" }}>
+        <div style={{ marginTop: 64, textAlign: "center" }}>
+          <Button variant="outline-light" size="lg" href={EXAMPLES_URL}>Alle Musterdesigns in der Übersicht</Button>
+        </div>
+
+        {tidyNode(<p className="showcase-note" style={{ margin: "40px auto 0", textAlign: "center" }}>
           <span className="line">Alle gezeigten Betriebe, Personen und Angebote sind frei erfunden.</span>
           <span className="line">Die Seiten sind Musterdesigns von Pfalz Multiservice.</span>
         </p>)}

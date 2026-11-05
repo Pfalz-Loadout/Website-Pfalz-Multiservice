@@ -11,7 +11,7 @@ const nextConfig: NextConfig = {
 
   async redirects() {
     return [
-      { source: "/beispiele", destination: "/webdesign#beispiele", permanent: true },
+      { source: "/beispiele", destination: "https://beispiele.pfalz-multiservice.de/", permanent: true },
       // Musterdesigns liegen seit 11/2026 im eigenen Projekt (Repo „Beispiele“) auf der Subdomain
       { source: "/beispiele/:path+", destination: "https://beispiele.pfalz-multiservice.de/:path+", permanent: true },
       { source: "/leistungen/web", destination: "/webdesign", permanent: true },
