@@ -9,19 +9,11 @@ const nextConfig: NextConfig = {
   // PNG-Originale bleiben im Repo; ausgeliefert werden passende AVIF/WebP-Größen
   images: { formats: ["image/avif", "image/webp"], qualities: [75], minimumCacheTTL: 2678400 },
 
-  // Musterdesigns liegen als statische Seiten unter public/beispiele/<slug>/index.html
-  // und sind so unter /beispiele/<slug> erreichbar.
-  async rewrites() {
-    return [
-      { source: "/beispiele/:slug((?!_assets)[a-z0-9-]+)", destination: "/beispiele/:slug/index.html" },
-      // Unterseiten klassischer Musterdesigns, z. B. /beispiele/beratungsbuero/leistungen
-      { source: "/beispiele/:slug((?!_assets)[a-z0-9-]+)/:page((?!img)[a-z0-9-]+)", destination: "/beispiele/:slug/:page/index.html" },
-    ];
-  },
-
   async redirects() {
     return [
-      { source: "/beispiele", destination: "/webdesign#beispiele", permanent: true },
+      { source: "/beispiele", destination: "https://beispiele.pfalz-multiservice.de/", permanent: true },
+      // Musterdesigns liegen seit 11/2026 im eigenen Projekt (Repo „Beispiele“) auf der Subdomain
+      { source: "/beispiele/:path+", destination: "https://beispiele.pfalz-multiservice.de/:path+", permanent: true },
       { source: "/leistungen/web", destination: "/webdesign", permanent: true },
       { source: "/partner/verve-apartments", destination: "/partner#verve-apartments", permanent: true },
       // Alle Nebenadressen dauerhaft auf die Hauptadresse www.pfalz-multiservice.de
@@ -31,7 +23,6 @@ const nextConfig: NextConfig = {
     ];
   },
 
-  // Fiktive Betriebe sollen nicht als echte Firmen bei Google landen
   async headers() {
     const security = [
       { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains" },
@@ -42,10 +33,7 @@ const nextConfig: NextConfig = {
       { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
       { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), interest-cohort=()" },
     ];
-    return [
-      { source: "/:path*", headers: security },
-      { source: "/beispiele/:path+", headers: [{ key: "X-Robots-Tag", value: "noindex, follow" }] },
-    ];
+    return [{ source: "/:path*", headers: security }];
   },
 };
 

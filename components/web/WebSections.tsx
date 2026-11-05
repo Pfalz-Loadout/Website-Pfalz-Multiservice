@@ -5,6 +5,7 @@ import { CarePricing } from "./CarePricing";
 import Link from "next/link";
 import Image from "next/image";
 import { CLASSIC_EXAMPLES, CONTACT, EXAMPLES, SHOP_EXAMPLE, WEB_ADDONS, WEB_BASE_ITEMS, WEB_FAQ, WEB_CARE_NOTES, WEB_INCLUDED, WEB_PACKAGES, WEB_PROBLEMS, type WebPackage } from "@/lib/data";
+import { EXAMPLES_URL } from "@/lib/site";
 import { SectionHeading } from "../SectionHeading";
 import { Button } from "../Button";
 import { Icon } from "../Icon";
@@ -80,7 +81,11 @@ export function WebExamples() {
         </div>
         <ShowcaseList offset={CLASSIC_EXAMPLES.length} grid />
 
-        {tidyNode(<p className="showcase-note" style={{ margin: "72px auto 0", textAlign: "center" }}>
+        <div style={{ marginTop: 64, textAlign: "center" }}>
+          <Button variant="outline-light" size="lg" href={EXAMPLES_URL}>Alle Musterdesigns in der Übersicht</Button>
+        </div>
+
+        {tidyNode(<p className="showcase-note" style={{ margin: "40px auto 0", textAlign: "center" }}>
           <span className="line">Alle gezeigten Betriebe, Personen und Angebote sind frei erfunden.</span>
           <span className="line">Die Seiten sind Musterdesigns von Pfalz Multiservice.</span>
         </p>)}
@@ -270,8 +275,8 @@ export function WebFaqCheck() {
 /** Kompakter Teaser für Startseite und Leistungsseite: Referenz-Wand mit allen Beispielen */
 export function WebTeaser({ alt = false }: { alt?: boolean }) {
   const all: { slug: string; name: string; branch: string; href: string; img: string }[] = [
-    ...CLASSIC_EXAMPLES.map((e) => ({ slug: e.slug, name: e.name, branch: e.branch, href: `/beispiele/${e.slug}${e.pages[0].path}`, img: `/images/beispiele/${e.slug}-${e.pages[0].key}.png` })),
-    ...EXAMPLES.map((e) => ({ slug: e.slug, name: e.name, branch: e.branch, href: `/beispiele/${e.slug}`, img: `/images/beispiele/${e.slug}-scroll.png` })),
+    ...CLASSIC_EXAMPLES.map((e) => ({ slug: e.slug, name: e.name, branch: e.branch, href: `${EXAMPLES_URL}/${e.slug}${e.pages[0].path}`, img: `/images/beispiele/${e.slug}-${e.pages[0].key}.png` })),
+    ...EXAMPLES.map((e) => ({ slug: e.slug, name: e.name, branch: e.branch, href: `${EXAMPLES_URL}/${e.slug}`, img: `/images/beispiele/${e.slug}-scroll.png` })),
   ];
   // Feste Reihenfolge auf der Startseite: Fliesenleger, Elektriker, Weingut, Umraum, Restaurant, Honigstück
   const order = ["fliesenleger", "elektriker", "weingut", "beratungsbuero", "restaurant", "seifenmanufaktur"];
@@ -288,7 +293,7 @@ export function WebTeaser({ alt = false }: { alt?: boolean }) {
           </div>
         </div>
         <div className="wall-feature pm-reveal" data-reveal="up">
-          <a className="wall-feature__img" href={`/beispiele/${SHOP_EXAMPLE.slug}`} target="_blank" rel="noopener" data-cursor aria-label={`${SHOP_EXAMPLE.name} live ansehen (öffnet in neuem Tab)`}>
+          <a className="wall-feature__img" href={`${EXAMPLES_URL}/${SHOP_EXAMPLE.slug}`} target="_blank" rel="noopener" data-cursor aria-label={`${SHOP_EXAMPLE.name} live ansehen (öffnet in neuem Tab)`}>
             <div className="sc-browser__bar" aria-hidden="true"><span className="sc-browser__dots"><i /><i /><i /></span></div>
             <div className="wall-feature__view"><Image src={`/images/beispiele/${SHOP_EXAMPLE.slug}-start.png`} alt={`Vorschau ${SHOP_EXAMPLE.name}`} fill sizes="(max-width: 900px) 100vw, 620px" /></div>
           </a>
@@ -299,7 +304,7 @@ export function WebTeaser({ alt = false }: { alt?: boolean }) {
             <p>{tidy("Ein Erlebnis-Shop mit Holo-Karten, Booster zum Aufreißen und 3D-Gacha. Dazu alles, was ein Shop braucht: Filter, Live-Suche, Warenkorb, Vorbestellungen und Ankauf.")}</p>
             <div className="wall-feature__actions">
               <Button variant="accent" icon="arrow-right" href="/webdesign#shop-design">Was ein Shop kann</Button>
-              <a className="btn btn--outline-light" href={`/beispiele/${SHOP_EXAMPLE.slug}`} target="_blank" rel="noopener" data-cursor>
+              <a className="btn btn--outline-light" href={`${EXAMPLES_URL}/${SHOP_EXAMPLE.slug}`} target="_blank" rel="noopener" data-cursor>
                 <span className="btn__fill" aria-hidden="true" />
                 <span className="btn__label">Live ansehen <Icon name="external-link" size={17} className="btn__icon btn__icon--right" /></span>
               </a>
