@@ -3,6 +3,8 @@ export type GuideSection = { h: string; p?: string[]; l?: string[] };
 export type Guide = {
   slug: string;
   title: string;
+  /** Kurzer Titel für <title> und Vorschau (max. ~60 Zeichen, ohne Markenzusatz); die H1 bleibt `title` */
+  seoTitle?: string;
   teaser: string;
   /** ISO-Datum der Veröffentlichung */
   date: string;
@@ -16,6 +18,7 @@ export const GUIDES: Guide[] = [
   {
     slug: "website-neu-oder-ueberarbeiten",
     title: "Website neu bauen oder überarbeiten: Woran Sie erkennen, was Ihr Betrieb braucht",
+    seoTitle: "Website neu bauen oder überarbeiten? So entscheiden Sie",
     teaser: "Fünf Minuten genügen, um einzuschätzen, ob eine Auffrischung reicht oder ein Neustart sinnvoller ist.",
     date: "2026-10-27",
     dateLabel: "27. Oktober 2026",
@@ -65,6 +68,7 @@ export const GUIDES: Guide[] = [
   {
     slug: "website-wartung-was-gehoert-dazu",
     title: "Website-Wartung: Was dazugehört und was nicht",
+    seoTitle: "Website-Wartung: Was dazugehört und was nicht",
     teaser: "Worauf es bei einer Betreuung nach dem Livegang ankommt und welche Fragen Sie vor dem Vertrag stellen sollten.",
     date: "2026-10-06",
     dateLabel: "6. Oktober 2026",
@@ -109,6 +113,7 @@ export const GUIDES: Guide[] = [
   {
     slug: "domain-hosting-zugangsdaten",
     title: "Domain, Hosting, Zugangsdaten: Was Ihnen nach dem Livegang gehören sollte",
+    seoTitle: "Domain, Hosting, Zugänge: Was Ihnen gehören sollte",
     teaser: "Eine kurze Checkliste, damit Sie von Ihrem Webdesigner nicht abhängig werden.",
     date: "2026-09-08",
     dateLabel: "8. September 2026",
@@ -150,6 +155,7 @@ export const GUIDES: Guide[] = [
   {
     slug: "html-wordpress-node-unterschiede",
     title: "HTML, WordPress oder Node.js: Die drei Wege zur eigenen Website im Überblick",
+    seoTitle: "HTML, WordPress oder Node.js: Welche Website passt?",
     teaser: "Was hinter den drei Techniken steckt, wo ihre Stärken liegen und wie Sie die passende für Ihren Betrieb finden.",
     date: "2026-06-16",
     dateLabel: "16. Juni 2026",
@@ -192,6 +198,7 @@ export const GUIDES: Guide[] = [
   {
     slug: "html-website-vorteile-grenzen",
     title: "HTML-Website: schnell, sicher, wartungsarm – und wo die Grenzen liegen",
+    seoTitle: "HTML-Website: Vorteile und Grenzen im Überblick",
     teaser: "Für wen sich eine Website aus fertigen Seiten lohnt und wann eine andere Technik besser passt.",
     date: "2026-07-07",
     dateLabel: "7. Juli 2026",
@@ -231,6 +238,7 @@ export const GUIDES: Guide[] = [
   {
     slug: "wordpress-vorteile-und-pflegeaufwand",
     title: "WordPress im Überblick: Vorteile, Pflegeaufwand und für wen es passt",
+    seoTitle: "WordPress: Vorteile, Pflegeaufwand, für wen es passt",
     teaser: "Ein ehrlicher Blick auf das bekannteste Redaktionssystem, auch wenn wir selbst nicht damit bauen.",
     date: "2026-07-28",
     dateLabel: "28. Juli 2026",
@@ -274,6 +282,7 @@ export const GUIDES: Guide[] = [
   {
     slug: "node-js-website-wann-sinnvoll",
     title: "Node.js-Website: Wann sich eine individuelle Lösung lohnt",
+    seoTitle: "Node.js-Website: Wann sich eine Individuallösung lohnt",
     teaser: "Was Node.js bei einer Website leistet, welchen Aufwand es bedeutet und für welche Vorhaben es sich eignet.",
     date: "2026-08-18",
     dateLabel: "18. August 2026",
