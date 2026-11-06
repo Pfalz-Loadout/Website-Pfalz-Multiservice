@@ -198,42 +198,43 @@ export const STATS: { value: string; label: string }[] = tidyDeep([
   { value: "Festpreis", label: "verbindlich vor Beginn" },
 ]);
 
-/** Die Hauptleistungen als Kacheln (2 × 2) auf der Startseite: kurz, ein Satz, drei Stichpunkte */
+/** Die Hauptleistungen als Kacheln (2 × 2) auf der Startseite: Titel, zwei Sätze, drei Stichpunkte */
 export const CORE: { id: string; kicker: string; title: string; text: string; items: string[]; link: string; image?: string }[] = tidyDeep([
   {
     id: "web",
     kicker: "Web Maintenance & Management",
     title: "Websites mit Wirkung",
     image: IMG + "webdesign-buero.png",
-    text: "Individuell gestaltet ab 99 €, persönlich betreut ab 19 € im Monat.",
-    items: ["Neubau oder Übernahme", "Updates und Sicherheit", "Fester Ansprechpartner"],
+    text: "Wir gestalten Websites, die zu Ihrem Betrieb passen, schnell laden und auf jedem Gerät überzeugen. Nach dem Start bleiben wir Ihr fester Ansprechpartner für Pflege und Technik.",
+    items: ["Individuelles Design statt Baukasten", "Optimiert für Smartphone und Google", "Betreuung, Updates und Sicherheit"],
     link: "Zum Webdesign",
   },
   {
     id: "reselling",
     kicker: "Reselling & Asset Recovery",
     title: "Restposten werden Liquidität",
-    text: "Wir kaufen Überbestände und Retouren an und schaffen Platz im Lager.",
-    items: ["Ankauf ab Kleinmengen", "Bewertung oft am selben Tag", "Abholung durch uns"],
+    text: "Wir kaufen Überbestände, Restposten und Retouren an und bringen sie über eigene Kanäle zurück in den Markt. So gewinnen Sie Lagerfläche und Kapital zurück.",
+    items: ["Ankauf von Kleinmengen bis Palettenware", "Bewertung nach Fotos, oft am selben Tag", "Abholung direkt bei Ihnen"],
     link: "Zum Reselling",
   },
   {
     id: "ecommerce",
     kicker: "E-Commerce",
     title: "Online-Handel aus einer Hand",
-    text: "Vom Einstellen der Artikel bis zum Versand, mit Erfahrung aus eigenen Shops.",
-    items: ["Shop und Marktplätze", "Lagerung und Verpackung", "Versandabwicklung"],
+    text: "Wir betreiben eigene Online-Shops und verkaufen über die großen Marktplätze. Diese Erfahrung setzen wir für Ihren Handel ein, vom Einstellen der Artikel bis zum Versand.",
+    items: ["Eigener Shop und Marktplätze", "Lagerung und Verpackung", "Zuverlässige Versandabwicklung"],
     link: "Zum E-Commerce",
   },
   {
     id: "smarthome",
     kicker: "Smart Home & KNX",
     title: "KNX-Anlagen erweitern",
-    text: "Änderungen an Ihrer bestehenden Anlage ab 59 €, vorab zum Festpreis.",
-    items: ["Lichtszenen und Jalousien", "Neue Geräte einbinden", "Fehlersuche und Backup"],
+    text: "Wir programmieren und erweitern Ihre bestehende KNX-Anlage, verständlich und ohne Fachchinesisch. Auch wenn der Elektriker nicht mehr erreichbar ist oder die Projektdatei fehlt.",
+    items: ["Lichtszenen und Jalousien anpassen", "Neue Geräte einbinden", "Fehlersuche und Sicherung"],
     link: "Zu Smart Home & KNX",
   },
 ]);
+
 
 
 /** Kacheln „Weitere Bereiche“: alles außer den drei Kernbereichen */
