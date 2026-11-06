@@ -198,12 +198,13 @@ export const STATS: { value: string; label: string }[] = tidyDeep([
   { value: "Festpreis", label: "verbindlich vor Beginn" },
 ]);
 
-/** Die drei Hauptthemen als große Blöcke auf der Startseite */
-export const CORE: { id: string; kicker: string; title: string; text: string; items: string[]; link: string }[] = tidyDeep([
+/** Die Hauptleistungen als Kacheln (2 × 2) auf der Startseite */
+export const CORE: { id: string; kicker: string; title: string; text: string; items: string[]; link: string; image?: string }[] = tidyDeep([
   {
     id: "web",
     kicker: "Web Maintenance & Management",
     title: "Websites: aufbauen und betreuen",
+    image: IMG + "webdesign-buero.png",
     text: "Individuelle Websites ab 99 €, laufende Betreuung ab 19 € im Monat. Updates, Sicherheit, Inhalte. Sie haben einen Ansprechpartner, keine Hotline.",
     items: [
       "Neubau oder Übernahme Ihrer Website",
@@ -235,6 +236,18 @@ export const CORE: { id: string; kicker: string; title: string; text: string; it
       "Lagerung, Verpackung, Versand",
     ],
     link: "Zum E-Commerce",
+  },
+  {
+    id: "smarthome",
+    kicker: "Smart Home & KNX",
+    title: "Smart Home: KNX ändern und erweitern",
+    text: "Wir programmieren und ändern Ihre bestehende KNX-Anlage ab 59 €: schnell, fair und ohne Fachchinesisch. Auch wenn die Projektdatei fehlt.",
+    items: [
+      "Lichtszenen und Jalousien anpassen",
+      "Neue Geräte einbinden",
+      "Fehlersuche und Sicherung der Projektdatei",
+    ],
+    link: "Zu Smart Home & KNX",
   },
 ]);
 

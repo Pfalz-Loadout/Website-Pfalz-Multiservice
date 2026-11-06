@@ -5,36 +5,32 @@ import { CheckList } from "../CheckList";
 import { Button } from "../Button";
 
 /**
- * Die drei Kernbereiche als große Blöcke, Bild und Text abwechselnd.
- * Animation wie überall auf der Seite: Bild per data-reveal="clip",
- * Häkchenliste per data-reveal="checks".
+ * Die Hauptleistungen als Kacheln (2 × 2): Foto als abgedunkelter Hintergrund wie auf der
+ * Partnerseite, Text darüber. Einblenden per data-reveal="cards" wie bei den übrigen Kacheln.
  */
 export function Core() {
   return (
-    <div className="core-list">
-      {CORE.map((c, i) => {
-        const s = SERVICES.find((x) => x.id === c.id)!;
-        return (
-          <div key={c.id} className={`container split core${i % 2 ? " core--rev" : ""}`}>
-            <div className="stack" style={{ gap: 20 }}>
-              <Eyebrow>{c.kicker}</Eyebrow>
-              <h3 className="core__title">{c.title}</h3>
-              <p className="core__text">{c.text}</p>
-              <div className="pm-reveal" data-reveal="checks">
+    <div className="container">
+      <div className="core-tiles pm-reveal" data-reveal="cards">
+        {CORE.map((c) => {
+          const s = SERVICES.find((x) => x.id === c.id)!;
+          return (
+            <article key={c.id} className="core-tile pm-card">
+              <BgImage className="core-tile__img" src={c.image ?? s.image} sizes="(max-width: 900px) 100vw, 50vw" />
+              <div className="core-tile__scrim" aria-hidden="true" />
+              <div className="core-tile__body">
+                <Eyebrow>{c.kicker}</Eyebrow>
+                <h3 className="core__title">{c.title}</h3>
+                <p className="core__text">{c.text}</p>
                 <CheckList items={c.items.map((t) => ({ title: t }))} />
+                <div className="core-tile__cta">
+                  <Button variant="outline" href={serviceHref(s)} icon="arrow-right">{c.link}</Button>
+                </div>
               </div>
-              <div>
-                <Button variant="outline" href={serviceHref(s)} icon="arrow-right">{c.link}</Button>
-              </div>
-            </div>
-            <div className="media-frame core__media pm-reveal" data-reveal="clip" style={{ aspectRatio: "4/3" }}>
-              <BgImage className="media-frame__img" data-clip-img="" data-parallax="8" src={s.image} sizes="(max-width: 900px) 100vw, 50vw" />
-              <span className="media-frame__corner media-frame__corner--tl" />
-              <span className="media-frame__corner media-frame__corner--br" />
-            </div>
-          </div>
-        );
-      })}
+            </article>
+          );
+        })}
+      </div>
     </div>
   );
 }

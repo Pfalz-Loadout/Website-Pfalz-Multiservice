@@ -30,13 +30,12 @@ export function TrustStrip() {
 }
 
 export function Services() {
-  const side = SERVICES.filter((s) => s.side);
   return (
     <section className="section" id="leistungen">
       <div className="container">
         <SectionHeading
           align="center" eyebrow="Kompetenzbereiche" title="Unsere" highlight="Leistungen"
-          intro="Drei Kernbereiche, dazu ergänzende Leistungen, einzeln buchbar oder als kombinierte Lösung." style={{ marginBottom: 56 }}
+          intro="Vier Schwerpunkte, dazu weitere Bereiche, einzeln buchbar oder als kombinierte Lösung." style={{ marginBottom: 56 }}
         />
       </div>
       <Core />
@@ -48,23 +47,6 @@ export function Services() {
               <ServiceCard key={s.id} href={serviceHref(s)} image={s.image} title={s.title} text={s.short} linkLabel="Details" />
             ))}
           </div>
-          {side.map((s) => (
-            <Link key={s.id} href={serviceHref(s)} className="side-card pm-card" data-cursor>
-              <div className="side-card__media">
-                <div className="card__parallax"><BgImage className="card__img" src={s.image} sizes="(max-width: 900px) 100vw, 40vw" /></div>
-              </div>
-              <div className="side-card__body">
-                <Eyebrow>Ergänzende Leistung</Eyebrow>
-                <h3 className="side-card__title">{s.title}</h3>
-                <p className="side-card__text">
-                  {s.short}. Lichtszenen, Jalousien, neue Geräte und Fehlersuche an Ihrer bestehenden Anlage.
-                </p>
-                <span className="card__link" style={{ color: "var(--brand-accent)" }}>
-                  Details <Icon name="arrow-right" size={16} />
-                </span>
-              </div>
-            </Link>
-          ))}
         </div>
       </div>
     </section>
