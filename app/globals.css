@@ -1725,5 +1725,5 @@ html.pm-motion .tk__sparks i:nth-child(3) { animation-delay: calc(var(--tk-d) + 
 @media (max-width: 900px) {
   .core-tiles { grid-template-columns: minmax(0, 1fr); }
   .core-tile { min-height: 0; }
-  .core-tile__body { padding-top: 220px; }
+  .core-tile__body { padding-top: 150px; }
 }
