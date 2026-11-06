@@ -12,6 +12,7 @@ export const ALT: Record<string, string> = {
   "/images/lager-ware.png": "Eingelagerte Ware in Regalen, bereit für Kommissionierung und Versand",
   "/images/reselling-ware.png": "Sortierte Retourenware und Restposten aus dem Ankauf von Überbeständen",
   "/images/ecommerce-shop.png": "Online-Shop auf dem Bildschirm mit Artikeln aus dem eigenen Sortiment",
+  "/images/ecommerce-versand.jpg": "Versandbereich mit Regal voller Kleidung in Klarsichtboxen, Etikettendrucker und gepackten Paketen – Online-Handel aus Worms",
   "/images/webdesign-buero.png": "Arbeitsplatz mit zwei Bildschirmen, auf denen eine Website gestaltet wird – Webdesign aus Worms",
   "/images/webseite-laptop.png": "Website auf einem Laptop – Webdesign und Website-Betreuung aus Worms",
   "/images/wartung-technik.png": "Technische Betreuung und Wartung vor Ort beim Kunden",

@@ -221,6 +221,7 @@ export const CORE: { id: string; kicker: string; title: string; text: string; it
     id: "ecommerce",
     kicker: "E-Commerce",
     title: "Online-Handel aus einer Hand",
+    image: IMG + "ecommerce-versand.jpg",
     text: "Wir betreiben eigene Online-Shops und verkaufen über die großen Marktplätze. Diese Erfahrung setzen wir für Ihren Handel ein, vom Einstellen der Artikel bis zum Versand.",
     items: ["Eigener Shop und Marktplätze", "Lagerung und Verpackung", "Zuverlässige Versandabwicklung"],
     link: "Zum E-Commerce",
