@@ -6,6 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { CLASSIC_EXAMPLES, CONTACT, EXAMPLES, SHOP_EXAMPLE, WEB_ADDONS, WEB_BASE_ITEMS, WEB_FAQ, WEB_CARE_NOTES, WEB_INCLUDED, WEB_PACKAGES, WEB_PROBLEMS, type WebPackage } from "@/lib/data";
 import { EXAMPLES_URL } from "@/lib/site";
+import { ExpandText } from "../ExpandText";
 import { SectionHeading } from "../SectionHeading";
 import { Button } from "../Button";
 import { Icon } from "../Icon";
@@ -301,7 +302,7 @@ export function WebTeaser({ alt = false }: { alt?: boolean }) {
             <span className="wall-feature__badge">Neu · Shop-Design</span>
             <h3 className="wall-feature__title">{SHOP_EXAMPLE.name}</h3>
             <span className="sc-branch">{SHOP_EXAMPLE.branch}</span>
-            <p>{tidy("Ein Erlebnis-Shop mit Holo-Karten, Booster zum Aufreißen und 3D-Gacha. Dazu alles, was ein Shop braucht: Filter, Live-Suche, Warenkorb, Vorbestellungen und Ankauf.")}</p>
+            <ExpandText text={tidy("Ein Erlebnis-Shop mit Holo-Karten, Booster zum Aufreißen und 3D-Gacha. Dazu alles, was ein Shop braucht: Filter, Live-Suche, Warenkorb, Vorbestellungen und Ankauf.")} />
             <div className="wall-feature__actions">
               <Button variant="accent" icon="arrow-right" href="/webdesign#shop-design">Was ein Shop kann</Button>
               <a className="btn btn--outline-light" href={`${EXAMPLES_URL}/${SHOP_EXAMPLE.slug}`} target="_blank" rel="noopener" data-cursor>

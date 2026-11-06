@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { gsap, ScrollTrigger, useGSAP, MOTION_OK } from "@/lib/gsap";
 import { CLASSIC_EXAMPLES, type ClassicExample } from "@/lib/data";
 import { EXAMPLES_URL, EXAMPLES_HOST } from "@/lib/site";
+import { ExpandText } from "./ExpandText";
 
 const AUTOPLAY_MS = 2400; // muss zur Dauer von .cl-tab__prog in globals.css passen
 
@@ -82,7 +83,7 @@ function ClassicItem({ ex, index }: { ex: ClassicExample; index: number }) {
       <div className="sc-copy">
         <span className="sc-branch pm-reveal">{ex.branch}</span>
         <h3 className="sc-title pm-reveal">{ex.name}</h3>
-        <p className="sc-text pm-reveal">{ex.text}</p>
+        <ExpandText className="sc-text" wrapClassName="pm-reveal" text={ex.text} />
         <ul className="sc-tags pm-reveal">
           {ex.tags.map((t) => <li key={t} className="chip">{t}</li>)}
         </ul>

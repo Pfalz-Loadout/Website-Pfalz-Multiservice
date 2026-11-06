@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { gsap, ScrollTrigger, useGSAP, MOTION_OK } from "@/lib/gsap";
 import { SHOP_EXAMPLE as ex } from "@/lib/data";
 import { EXAMPLES_URL, EXAMPLES_HOST } from "@/lib/site";
+import { ExpandText } from "../ExpandText";
 import { tidy } from "@/lib/typo";
 import { SectionHeading } from "../SectionHeading";
 import { Button } from "../Button";
@@ -106,7 +107,7 @@ export function ShopShowcase() {
           <div className="shopf-copy">
             <span className="sc-branch">{ex.branch}</span>
             <h3 className="sc-title" id="shopf-title">{ex.name}</h3>
-            <p className="sc-text">{tidy(ex.text)}</p>
+            <ExpandText className="sc-text" text={tidy(ex.text)} />
             <dl className="shopf-stats">
               {ex.stats.map(([n, l]) => (<div key={l}><dt>{n}</dt><dd>{l}</dd></div>))}
             </dl>
