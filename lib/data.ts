@@ -130,19 +130,32 @@ export const SERVICES: Service[] = tidyDeep([
   },
   {
     id: "facility",
-    seoTitle: "Solutions & Support in Worms",
+    seoTitle: "Solutions: Probleme und Störungen lösen in Worms",
     faq: [
-      ["Bei welchen Anliegen helfen Sie?", "Bei kurzfristigen Engpässen, organisatorischen Aufgaben und Anliegen, für die es sonst keinen passenden Ansprechpartner gibt."],
-      ["Wie gehen Sie vor?", "Wir sehen uns die Situation an, schlagen eine pragmatische Lösung vor und setzen sie um. Bei Bedarf binden wir Partner aus unserem Netzwerk ein."],
+      ["Bei welchen Problemen helfen Sie?", "Bei technischen Störungen aller Art: Drucker, WLAN und Netzwerk, Computer, Updates und die Einrichtung neuer Geräte. In Unternehmen ebenso wie bei Privatkunden, und auch bei Anliegen, für die sich sonst niemand zuständig fühlt."],
+      ["Wie gehen Sie vor?", "Wir finden zuerst die Ursache, legen einen klaren Lösungsweg fest und beseitigen das Problem dauerhaft. Danach erklären wir kurz, was wir gemacht haben, damit es nicht wiederkommt. Bei Bedarf binden wir Partner aus unserem Netzwerk ein."],
+      ["Kommen Sie auch zu Privatkunden?", "Ja. Wir helfen in Firmen und bei Ihnen zu Hause, in Worms und der Region."],
       PRICE_FAQ("ein Einsatz"),
     ],
-    seo: "Hilfe aus Worms bei Engpässen und Aufgaben, für die es sonst keinen passenden Ansprechpartner gibt: pragmatische Lösungen, zuverlässig umgesetzt.",
+    seo: "Solutions aus Worms: Wir beseitigen technische Probleme und Störungen in Unternehmen und bei Privatkunden. Ursache finden, Lösungsweg festlegen, dauerhaft beheben.",
     icon: "wrench",
-    title: "Solutions & Support",
-    short: "Für jede Aufgabe eine schnelle Lösung",
-    text: "Nicht jede Anforderung passt in eine feste Kategorie. Ob kurzfristiger Engpass, organisatorische Herausforderung oder ein Anliegen, für das es keinen passenden Ansprechpartner gibt: Wir analysieren die Situation, entwickeln eine pragmatische Lösung und setzen sie zuverlässig um. Flexibel, lösungsorientiert und mit einem Netzwerk, das wir bei Bedarf einbinden.",
-    image: IMG + "wartung-technik.png",
+    title: "Solutions",
+    short: "Wir lassen Probleme verschwinden. Spurlos.",
+    text: "Ein Drucker, der streikt, ein WLAN, das ständig abbricht, oder eine Störung, für die sich niemand zuständig fühlt: Genau dort setzen wir an. Wir finden die Ursache, entwickeln einen klaren Lösungsweg und beseitigen das Problem dauerhaft, im Unternehmen ebenso wie bei Ihnen zu Hause. Wir denken in Lösungen, nicht in Zuständigkeiten, und arbeiten schnell, gründlich und ohne Umwege.",
+    points: {
+      title: "Probleme, die wir lösen",
+      items: [
+        "Drucker, Scanner und Zubehör, die nicht mehr wollen",
+        "WLAN- und Netzwerkstörungen",
+        "Computer, Laptops und fehlgeschlagene Updates",
+        "Einrichtung neuer Geräte und Arbeitsplätze",
+        "Störungen, für die sich sonst niemand zuständig fühlt",
+      ],
+      note: "Schildern Sie uns kurz das Problem. Wir sagen Ihnen ehrlich, wie wir es lösen.",
+    },
+    image: IMG + "solutions-pier.jpg",
   },
+
   {
     id: "smarthome",
     seoTitle: "KNX-Anlage ändern & erweitern Worms",
@@ -253,7 +266,7 @@ export const STEPS: [string, string, string][] = tidyDeep([
 
 /** Häufige Fragen auf der Startseite */
 export const HOME_FAQ: Faq[] = tidyDeep([
-  ["Welche Leistungen bietet Pfalz Multiservice an?", "Webdesign und die Betreuung von Websites, den Ankauf von Restposten und Überbeständen, Online-Handel sowie Lagerfläche, Räumungen und Entrümpelungen, Hilfe bei Engpässen und Änderungen an bestehenden KNX-Anlagen, alles mit einem Ansprechpartner."],
+  ["Welche Leistungen bietet Pfalz Multiservice an?", "Webdesign und die Betreuung von Websites, den Ankauf von Restposten und Überbeständen, Online-Handel sowie Lagerfläche, Räumungen und Entrümpelungen, das Lösen technischer Probleme und Störungen sowie Änderungen an bestehenden KNX-Anlagen, alles mit einem Ansprechpartner."],
   ["In welchem Gebiet sind Sie tätig?", "In Worms und der Umgebung, unter anderem in Frankenthal, Ludwigshafen, Mannheim, Alzey, Grünstadt und Bensheim. Webdesign bieten wir auch überregional an."],
   ["Arbeiten Sie für Firmen und Privatkunden?", "Ja. Wir arbeiten für Unternehmen ebenso wie für Privatkunden, zum Beispiel bei Lagerung oder Räumung."],
   ["Wie läuft eine Anfrage ab?", "Sie schildern Ihr Anliegen per Formular, Telefon oder WhatsApp. Nach einem Gespräch oder einer Besichtigung erhalten Sie ein verbindliches Angebot, danach setzen wir den Auftrag termingerecht um."],
