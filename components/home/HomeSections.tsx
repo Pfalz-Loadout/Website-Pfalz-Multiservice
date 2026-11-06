@@ -34,7 +34,7 @@ export function Services() {
       <div className="container">
         <SectionHeading
           align="center" eyebrow="Kompetenzbereiche" title="Unsere" highlight="Leistungen"
-          intro="Vier Schwerpunkte, dazu weitere Bereiche, einzeln buchbar oder als kombinierte Lösung." style={{ marginBottom: 56 }}
+          style={{ marginBottom: 56 }}
         />
       </div>
       <Core />
