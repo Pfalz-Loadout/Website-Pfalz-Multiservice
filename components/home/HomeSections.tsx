@@ -1,6 +1,5 @@
 import { tidyNode } from "@/lib/typo";
-import Link from "next/link";
-import { AREA, COMPANY, CTA, CONTACT, IMG, SERVICES, USPS, homeSubServices, serviceHref } from "@/lib/data";
+import { AREA, COMPANY, CTA, CONTACT, IMG, USPS, homeSubServices, serviceHref } from "@/lib/data";
 import { Core } from "./Core";
 import { BgImage } from "../BgImage";
 import { SectionHeading } from "../SectionHeading";
