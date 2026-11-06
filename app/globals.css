@@ -1727,3 +1727,21 @@ html.pm-motion .tk__sparks i:nth-child(3) { animation-delay: calc(var(--tk-d) + 
   .core-tile { min-height: 0; }
   .core-tile__body { padding-top: 150px; }
 }
+/* Kacheln: Typografie, Nummer, Stichpunkte – nichts darf über den Kachelrand laufen */
+.core-tile__body { min-width: 0; gap: 16px; }
+.core-tile__num { position: absolute; top: clamp(22px, 2.6vw, 34px); right: clamp(24px, 3vw, 40px); display: inline-flex; align-items: center; gap: 12px;
+  font: 700 13px/1 var(--font-display); letter-spacing: .22em; color: rgba(255,255,255,.7); }
+.core-tile__num::before { content: ""; width: 28px; height: 1px; background: var(--brand-accent); transition: width .6s var(--ease-out); }
+.core-tile:hover .core-tile__num::before { width: 56px; }
+.core-tile__title { margin: 0; max-width: 100%; font: 800 clamp(1.55rem, 2.3vw, 2.15rem)/1.12 var(--font-display); text-transform: uppercase;
+  letter-spacing: -.01em; color: var(--text-strong); text-wrap: balance; overflow-wrap: break-word; hyphens: auto; }
+.core-tile__lead { margin: 0; max-width: 44ch; font: 400 clamp(15px, 1.15vw, 17px)/1.6 var(--font-body); color: #E6E6E6; text-wrap: pretty; overflow-wrap: break-word; }
+.core-tile__points { padding-top: 16px; border-top: 1px solid rgba(255,255,255,.14); }
+.core-tile__points .checklist { gap: 12px; }
+.core-tile__points .checklist__txt { font-size: 15px; line-height: 1.45; min-width: 0; overflow-wrap: break-word; }
+.core-tile__points .checklist__txt strong { font-weight: 600; }
+.core-tile__points .checklist__box { width: 24px; height: 24px; }
+@media (max-width: 480px) {
+  .core-tile__title { font-size: 1.4rem; }
+  .core-tile .btn { max-width: 100%; white-space: normal; }
+}

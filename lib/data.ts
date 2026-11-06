@@ -198,58 +198,43 @@ export const STATS: { value: string; label: string }[] = tidyDeep([
   { value: "Festpreis", label: "verbindlich vor Beginn" },
 ]);
 
-/** Die Hauptleistungen als Kacheln (2 × 2) auf der Startseite */
+/** Die Hauptleistungen als Kacheln (2 × 2) auf der Startseite: kurz, ein Satz, drei Stichpunkte */
 export const CORE: { id: string; kicker: string; title: string; text: string; items: string[]; link: string; image?: string }[] = tidyDeep([
   {
     id: "web",
     kicker: "Web Maintenance & Management",
-    title: "Websites: aufbauen und betreuen",
+    title: "Websites mit Wirkung",
     image: IMG + "webdesign-buero.png",
-    text: "Individuelle Websites ab 99 €, laufende Betreuung ab 19 € im Monat. Updates, Sicherheit, Inhalte. Sie haben einen Ansprechpartner, keine Hotline.",
-    items: [
-      "Neubau oder Übernahme Ihrer Website",
-      "Updates, Datensicherung, Sicherheitsüberwachung",
-      "Inhaltsänderungen ohne Stundenzettel",
-    ],
+    text: "Individuell gestaltet ab 99 €, persönlich betreut ab 19 € im Monat.",
+    items: ["Neubau oder Übernahme", "Updates und Sicherheit", "Fester Ansprechpartner"],
     link: "Zum Webdesign",
   },
   {
     id: "reselling",
     kicker: "Reselling & Asset Recovery",
-    title: "Reselling: Werterhalt statt Abschreibung",
-    text: "Wir kaufen Überbestände, Restposten und Retouren an und bringen sie über eigene Kanäle zurück in den Markt. Sie bekommen Fläche und Liquidität zurück.",
-    items: [
-      "Ankauf ab Kleinmengen bis Palettenware",
-      "Bewertung nach Fotos, oft am selben Tag",
-      "Abholung durch uns",
-    ],
+    title: "Restposten werden Liquidität",
+    text: "Wir kaufen Überbestände und Retouren an und schaffen Platz im Lager.",
+    items: ["Ankauf ab Kleinmengen", "Bewertung oft am selben Tag", "Abholung durch uns"],
     link: "Zum Reselling",
   },
   {
     id: "ecommerce",
     kicker: "E-Commerce",
-    title: "E-Commerce: Handel, der läuft",
-    text: "Eigene Shops und Marktplätze, von der Beschaffung über das Einstellen der Artikel bis zum Versand. Praxis aus dem eigenen Handel, nicht aus dem Lehrbuch.",
-    items: [
-      "Eigene Online-Shops im Betrieb",
-      "Verkauf über Shop und Marktplätze",
-      "Lagerung, Verpackung, Versand",
-    ],
+    title: "Online-Handel aus einer Hand",
+    text: "Vom Einstellen der Artikel bis zum Versand, mit Erfahrung aus eigenen Shops.",
+    items: ["Shop und Marktplätze", "Lagerung und Verpackung", "Versandabwicklung"],
     link: "Zum E-Commerce",
   },
   {
     id: "smarthome",
     kicker: "Smart Home & KNX",
-    title: "Smart Home: KNX ändern und erweitern",
-    text: "Wir programmieren und ändern Ihre bestehende KNX-Anlage ab 59 €: schnell, fair und ohne Fachchinesisch. Auch wenn die Projektdatei fehlt.",
-    items: [
-      "Lichtszenen und Jalousien anpassen",
-      "Neue Geräte einbinden",
-      "Fehlersuche und Sicherung der Projektdatei",
-    ],
+    title: "KNX-Anlagen erweitern",
+    text: "Änderungen an Ihrer bestehenden Anlage ab 59 €, vorab zum Festpreis.",
+    items: ["Lichtszenen und Jalousien", "Neue Geräte einbinden", "Fehlersuche und Backup"],
     link: "Zu Smart Home & KNX",
   },
 ]);
+
 
 /** Kacheln „Weitere Bereiche“: alles außer den drei Kernbereichen */
 export function homeSubServices(): Service[] {
