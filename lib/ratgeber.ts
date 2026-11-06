@@ -16,6 +16,78 @@ export type Guide = {
 
 export const GUIDES: Guide[] = [
   {
+    slug: "was-kostet-eine-website",
+    title: "Was kostet eine Website? Einmalige Kosten, laufende Kosten und woran Sie faire Angebote erkennen",
+    seoTitle: "Was kostet eine Website? Preise & laufende Kosten",
+    teaser: "Wovon der Preis abhängt, welche Kosten nach dem Livegang bleiben und was eine Website bei uns kostet.",
+    date: "2026-11-06",
+    dateLabel: "6. November 2026",
+    sections: [
+      {
+        h: "Kurz gesagt",
+        p: [
+          "Eine Website kostet einmal für die Erstellung und danach laufend für Domain und Hosting. Eine Betreuung nach dem Livegang ist freiwillig. Wie hoch der einmalige Betrag ist, hängt vor allem davon ab, wie viele Seiten Sie brauchen, welche Funktionen dazukommen und ob Texte und Bilder schon vorhanden sind.",
+          "Bei uns beginnt eine individuelle Website bei 99 € im aktuellen Angebot (statt 199 €), eine Website mit bis zu acht Seiten kostet 299 €. Beides sind einmalige Festpreise.",
+        ],
+      },
+      {
+        h: "Wovon der Preis abhängt",
+        l: [
+          "Umfang: Eine einzelne Seite mit allen Infos ist schneller gebaut als eine Website mit Menü und vielen Unterseiten.",
+          "Funktionen: Kontaktformular und Anfahrt sind Standard. Ein Online-Shop, Rechner, Filter oder eine Mehrsprachigkeit bedeuten deutlich mehr Arbeit.",
+          "Inhalte: Liegen Texte und Fotos schon vor, oder müssen sie erst geschrieben und ausgewählt werden?",
+          "Design: Ein eigenes Design für Ihren Betrieb braucht mehr Zeit als eine angepasste Vorlage, sieht dafür aber nicht aus wie tausend andere.",
+          "Technik: Eine schlanke Website ohne Datenbank ist günstiger im Betrieb als ein System, das regelmäßig Updates braucht.",
+        ],
+      },
+      {
+        h: "Einmalige und laufende Kosten auseinanderhalten",
+        p: [
+          "Einmalig zahlen Sie für Planung, Design, Texte und Umsetzung. Laufend kommen Domain und Hosting dazu: die Adresse Ihrer Website und der Speicherplatz, auf dem sie liegt. Beides kostet bei den meisten Anbietern ein paar Euro im Monat, je nach Tarif.",
+          "Wichtig ist, bei wem Sie diese laufenden Kosten zahlen. Laufen Domain und Hosting auf Ihren Namen, bleiben Sie unabhängig. Laufen sie über den Dienstleister, hängen Sie an ihm, auch wenn Sie später wechseln möchten.",
+        ],
+      },
+      {
+        h: "Was eine Website bei uns kostet",
+        l: [
+          "Start: 99 € statt 199 € im aktuellen Angebot, einmalig. Eine Seite mit bis zu fünf Abschnitten, ideal für einen schnellen, starken Auftritt.",
+          "Business: 299 €, einmalig. Eine Seite oder eine Website mit Menü und bis zu acht Unterseiten.",
+          "Shop oder Premium: individuell nach Angebot. Online-Shops und größere Projekte mit bis zu 20 Seiten oder besonderen Funktionen.",
+          "In jedem Paket enthalten: individuelles Design, Darstellung für Smartphone und PC, Ladezeit-Optimierung, Umsetzung ohne Tracking-Cookies, Impressum und Datenschutz eingebunden, Bildlizenzen und ein Übergabe-Paket mit allen Zugangsdaten.",
+        ],
+        p: ["Alle Preise sind Festpreise und Endpreise: Als Kleinunternehmer nach § 19 UStG berechnen wir keine Umsatzsteuer. Unser Webdesign-Angebot richtet sich an Gewerbetreibende, Selbstständige und Betriebe."],
+      },
+      {
+        h: "Was nach dem Livegang kostet",
+        l: [
+          "Domain und Hosting zahlen Sie direkt beim Anbieter Ihrer Wahl, nicht über uns. Den Betrag weisen wir in Ihrem Angebot getrennt aus.",
+          "Betreuung ist freiwillig und monatlich kündbar: Wartung für 19 € im Monat (bis 1 Stunde Änderungen), Wartung Pro für 29 € (bis 2 Stunden) und Wartung Premium für 99 € (bis 6 Stunden).",
+          "Bei jährlicher Zahlung nutzen Sie die Betreuung zwölf Monate und zahlen zehn: 190 €, 290 € oder 990 € im Jahr.",
+          "Einzelne Änderungen ohne Paket kosten 29 € pro Stunde.",
+        ],
+      },
+      {
+        h: "Woran Sie versteckte Kosten erkennen",
+        l: [
+          "Ein monatlicher Betrag mit langer Mindestlaufzeit, ohne den die Website nicht weiterläuft.",
+          "Domain und Hosting laufen auf den Namen des Dienstleisters statt auf Ihren.",
+          "Bildlizenzen, Kontaktformular oder die Darstellung auf dem Smartphone werden extra berechnet.",
+          "Für die Herausgabe Ihrer Dateien oder Zugangsdaten wird eine Gebühr verlangt.",
+          "Änderungen werden nach Stunden abgerechnet, ohne dass Sie vorher erfahren, was sie kosten.",
+        ],
+      },
+      {
+        h: "So bekommen Sie einen verlässlichen Preis",
+        p: ["Schildern Sie kurz, was Ihre Website können soll, und schicken Sie, falls vorhanden, den Link zu Ihrer bisherigen Seite. Nach einem kurzen Gespräch erhalten Sie einen Festpreis mit klarem Leistungsumfang. Sie wissen also vor dem Start, was die Website kostet und was danach anfällt."],
+      },
+    ],
+    faq: [
+      ["Gibt es bei Ihnen ein Abo?", "Nein. Die Website kostet einmalig und gehört Ihnen nach vollständiger Bezahlung. Eine Wartung können Sie dazubuchen, müssen es aber nicht."],
+      ["Wem gehört die Website am Ende?", "Ihnen. Domain und Hosting laufen auf Ihren Namen, Sie erhalten alle Zugangsdaten und den Quellcode. Texte und Bilder, die wir für Sie erstellen, dürfen Sie unbefristet nutzen."],
+      ["Was kostet ein Online-Shop?", "Das hängt von Sortiment, Zahlarten und Versand ab. Online-Shops bieten wir individuell nach Angebot an. Nach einem kurzen Gespräch nennen wir Ihnen einen Festpreis."],
+    ],
+  },
+  {
     slug: "website-neu-oder-ueberarbeiten",
     title: "Website neu bauen oder überarbeiten: Woran Sie erkennen, was Ihr Betrieb braucht",
     seoTitle: "Website neu bauen oder überarbeiten? So entscheiden Sie",

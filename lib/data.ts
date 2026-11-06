@@ -65,7 +65,7 @@ export const SERVICES: Service[] = tidyDeep([
     icon: "monitor-cog",
     title: "Web Maintenance & Management",
     short: "Webdesign, Aufbau & Betreuung",
-    text: "Laufende technische Betreuung von Websites und Online-Shops: Updates, Sicherheitsmonitoring, Content-Pflege und Systemverwaltung. Aus dem Betrieb eigener E-Commerce-Plattformen bringen wir praxisnahes Know-how mit.",
+    text: "Laufende technische Betreuung von Websites und Online-Shops: Updates, Sicherheitsüberwachung, Pflege der Inhalte und Systemverwaltung. Aus dem Betrieb eigener Online-Shops bringen wir praktische Erfahrung mit.",
     image: IMG + "webseite-laptop.png",
   },
   {
@@ -76,7 +76,7 @@ export const SERVICES: Service[] = tidyDeep([
       ["Was passiert mit der angekauften Ware?", "Wir bereiten sie auf und bringen sie über unsere eigenen Vertriebskanäle zurück in den Markt, statt sie abzuschreiben oder zu entsorgen."],
       ["Welche Vorteile habe ich als Händler?", "Gebundenes Kapital wird schnell wieder flüssig, Lagerfläche wird frei und die Ware wird weiter genutzt statt vernichtet."],
     ],
-    seo: "Reselling & Asset Recovery: Wir kaufen Überbestände, Restposten und Retouren an und bringen sie zurück in den Markt. Schnelle Liquidität aus Worms.",
+    seo: "Restposten-Ankauf aus Worms: Wir kaufen Überbestände, Restposten und Retouren an und bringen sie zurück in den Markt. Ihr Kapital wird schnell frei.",
     icon: "recycle",
     title: "Reselling & Asset Recovery",
     short: "Werterhalt statt Abschreibung",
@@ -87,15 +87,15 @@ export const SERVICES: Service[] = tidyDeep([
     id: "ecommerce",
     seoTitle: "E-Commerce & Fulfillment in Worms",
     faq: [
-      ["Was umfasst der Bereich E-Commerce?", "Den gesamten Ablauf im Online-Handel: Beschaffung, Listing der Artikel, Verkauf und Fulfillment, also Lagerung, Verpackung und Versand."],
+      ["Was umfasst der Bereich E-Commerce?", "Den gesamten Ablauf im Online-Handel: Beschaffung, Einstellen der Artikel, Verkauf und Versandabwicklung, also Lagerung, Verpackung und Versand."],
       ["Verkaufen Sie über eigene Shops oder über Marktplätze?", "Beides. Wir betreiben eigene Online-Shops und nutzen zusätzlich etablierte Marktplätze. So erreichen Artikel mehr Käufer, ohne dass die Abläufe aufwendig werden."],
       PRICE_FAQ("die Unterstützung im E-Commerce"),
     ],
-    seo: "E-Commerce aus Worms: eigene Online-Shops und Marktplätze, Listing, Versand und Fulfillment aus einer Hand. Jetzt bei Pfalz Multiservice anfragen.",
+    seo: "Online-Handel aus Worms: eigene Shops und Marktplätze, Einstellen der Artikel, Lagerung, Verpackung und Versand aus einer Hand. Jetzt anfragen.",
     icon: "shopping-cart",
     title: "E-Commerce",
     short: "Digitaler Handel mit Fokus auf Effizienz",
-    text: "Wir betreiben eigene E-Commerce-Plattformen und vertreiben unsere Sortimente über Online-Shops sowie etablierte Marktplätze. Unser Multichannel-Ansatz ermöglicht eine breite Marktabdeckung bei schlanken Prozessen, von der Beschaffung über das Listing bis zum Fulfillment.",
+    text: "Wir betreiben eigene Online-Shops und verkaufen unsere Sortimente dort sowie über etablierte Marktplätze. Weil wir auf mehreren Kanälen gleichzeitig verkaufen, erreichen wir viele Käufer bei schlanken Abläufen: von der Beschaffung über das Einstellen der Artikel bis zu Lagerung, Verpackung und Versand.",
     image: IMG + "ecommerce-shop.png",
   },
   {
@@ -125,7 +125,7 @@ export const SERVICES: Service[] = tidyDeep([
     icon: "truck",
     title: "Clearance Services",
     short: "Strukturierte Räumung, fachgerechte Verwertung",
-    text: "Vollständige Räumung von Garagen, Lagern, Hallen und Gewerbeflächen: Bestandsaufnahme, verbindliches Angebot, Durchführung und besenreine Übergabe. Verwertbare Bestände werden in den Wirtschaftskreislauf zurückgeführt, alles Weitere fachgerecht entsorgt.",
+    text: "Vollständige Räumung und Entrümpelung von Garagen, Lagern, Hallen und Gewerbeflächen: Bestandsaufnahme, verbindliches Angebot, Durchführung und besenreine Übergabe. Verwertbare Bestände werden in den Wirtschaftskreislauf zurückgeführt, alles Weitere fachgerecht entsorgt.",
     image: IMG + "transporter-verladung.png",
   },
   {
@@ -136,7 +136,7 @@ export const SERVICES: Service[] = tidyDeep([
       ["Wie gehen Sie vor?", "Wir sehen uns die Situation an, schlagen eine pragmatische Lösung vor und setzen sie um. Bei Bedarf binden wir Partner aus unserem Netzwerk ein."],
       PRICE_FAQ("ein Einsatz"),
     ],
-    seo: "Solutions & Support aus Worms: pragmatische Lösungen für Engpässe und Aufgaben ohne passenden Ansprechpartner. Jetzt bei Pfalz Multiservice anfragen.",
+    seo: "Hilfe aus Worms bei Engpässen und Aufgaben, für die es sonst keinen passenden Ansprechpartner gibt: pragmatische Lösungen, zuverlässig umgesetzt.",
     icon: "wrench",
     title: "Solutions & Support",
     short: "Für jede Aufgabe eine schnelle Lösung",
@@ -207,7 +207,7 @@ export const CORE: { id: string; kicker: string; title: string; text: string; it
     text: "Individuelle Websites ab 99 €, laufende Betreuung ab 19 € im Monat. Updates, Sicherheit, Inhalte. Sie haben einen Ansprechpartner, keine Hotline.",
     items: [
       "Neubau oder Übernahme Ihrer Website",
-      "Updates, Backups, Sicherheitsmonitoring",
+      "Updates, Datensicherung, Sicherheitsüberwachung",
       "Inhaltsänderungen ohne Stundenzettel",
     ],
     link: "Zum Webdesign",
@@ -228,10 +228,10 @@ export const CORE: { id: string; kicker: string; title: string; text: string; it
     id: "ecommerce",
     kicker: "E-Commerce",
     title: "E-Commerce: Handel, der läuft",
-    text: "Eigene Shops und Marktplätze, von der Beschaffung über das Listing bis zum Versand. Praxis aus dem eigenen Handel, nicht aus dem Lehrbuch.",
+    text: "Eigene Shops und Marktplätze, von der Beschaffung über das Einstellen der Artikel bis zum Versand. Praxis aus dem eigenen Handel, nicht aus dem Lehrbuch.",
     items: [
       "Eigene Online-Shops im Betrieb",
-      "Multichannel inklusive Marktplätze",
+      "Verkauf über Shop und Marktplätze",
       "Lagerung, Verpackung, Versand",
     ],
     link: "Zum E-Commerce",
@@ -253,7 +253,7 @@ export const STEPS: [string, string, string][] = tidyDeep([
 
 /** Häufige Fragen auf der Startseite */
 export const HOME_FAQ: Faq[] = tidyDeep([
-  ["Welche Leistungen bietet Pfalz Multiservice an?", "Web Maintenance & Management mit Webdesign, Reselling & Asset Recovery, E-Commerce sowie Lagerfläche, Räumungen, Solutions & Support und Änderungen an bestehenden KNX-Anlagen, alles mit einem Ansprechpartner."],
+  ["Welche Leistungen bietet Pfalz Multiservice an?", "Webdesign und die Betreuung von Websites, den Ankauf von Restposten und Überbeständen, Online-Handel sowie Lagerfläche, Räumungen und Entrümpelungen, Hilfe bei Engpässen und Änderungen an bestehenden KNX-Anlagen, alles mit einem Ansprechpartner."],
   ["In welchem Gebiet sind Sie tätig?", "In Worms und der Umgebung, unter anderem in Frankenthal, Ludwigshafen, Mannheim, Alzey, Grünstadt und Bensheim. Webdesign bieten wir auch überregional an."],
   ["Arbeiten Sie für Firmen und Privatkunden?", "Ja. Wir arbeiten für Unternehmen ebenso wie für Privatkunden, zum Beispiel bei Lagerung oder Räumung."],
   ["Wie läuft eine Anfrage ab?", "Sie schildern Ihr Anliegen per Formular, Telefon oder WhatsApp. Nach einem Gespräch oder einer Besichtigung erhalten Sie ein verbindliches Angebot, danach setzen wir den Auftrag termingerecht um."],
