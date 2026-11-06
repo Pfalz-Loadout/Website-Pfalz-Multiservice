@@ -205,8 +205,8 @@ export const CORE: { id: string; kicker: string; title: string; text: string; it
     kicker: "Web Maintenance & Management",
     title: "Websites mit Wirkung",
     image: IMG + "webdesign-buero.png",
-    text: "Wir gestalten Websites, die zu Ihrem Betrieb passen, schnell laden und auf jedem Gerät überzeugen. Nach dem Start bleiben wir Ihr fester Ansprechpartner für Pflege und Technik.",
-    items: ["Individuelles Design statt Baukasten", "Optimiert für Smartphone und Google", "Betreuung, Updates und Sicherheit"],
+    text: "Wir entwickeln moderne Websites mit eigener Handschrift: vom klaren One-Pager bis zum Auftritt mit 3D-Effekten und Scroll-Animationen. Technisch sauber umgesetzt und nach dem Start persönlich betreut.",
+    items: ["One-Pager und mehrseitige Auftritte", "3D-Effekte und Animationen", "Betreuung, Updates und Sicherheit"],
     link: "Zum Webdesign",
   },
   {
