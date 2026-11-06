@@ -667,14 +667,14 @@ a .contact-row__value { color: var(--brand-accent); }
 /* Umschalter monatlich / jährlich – Pillen-Schalter wie am Handy */
 /* Feste Anordnung: Schalter bleibt immer an derselben Stelle, nur der Knopf bewegt sich */
 .billing { position: relative; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; column-gap: 18px;
-  width: max-content; margin: 0 0 66px auto; }
+  width: max-content; margin: 46px 0 34px auto; }
 .billing__label { font: 700 14px/1 var(--font-display); letter-spacing: .06em; text-transform: uppercase; color: var(--text-strong);
   white-space: nowrap; transition: color var(--dur-base) var(--ease-out); }
 .billing__label--m { justify-self: end; }
 .billing__label--y { justify-self: start; }
 .billing__label.is-dim { color: var(--text-subtle); }
-/* Hinweis sitzt mittig unter dem Schalter und nimmt keinen Platz in der Zeile ein */
-.billing__save { position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%); white-space: nowrap; padding: 7px 12px; border: 1px dashed rgba(221,187,77,.5); color: var(--brand-accent);
+/* Hinweis sitzt mittig über dem Schalter und nimmt keinen Platz in der Zeile ein */
+.billing__save { position: absolute; bottom: calc(100% + 14px); left: 50%; transform: translateX(-50%); white-space: nowrap; padding: 7px 12px; border: 1px dashed rgba(221,187,77,.5); color: var(--brand-accent);
   font: 700 11px/1 var(--font-display); letter-spacing: .12em; text-transform: uppercase;
   transition: opacity var(--dur-base) var(--ease-out); }
 .billing__save.is-off { opacity: 0; pointer-events: none; }
