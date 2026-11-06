@@ -1711,19 +1711,19 @@ html.pm-motion .tk__sparks i:nth-child(3) { animation-delay: calc(var(--tk-d) + 
 
 /* Leistungen auf der Startseite: 2 × 2 Kacheln, Foto als abgedunkelter Hintergrund (wie Partnerseite) */
 .core-tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--grid-gap); }
-.core-tile { position: relative; isolation: isolate; overflow: hidden; display: flex; min-height: 560px; background: #000;
+.core-tile { position: relative; isolation: isolate; overflow: hidden; display: flex; min-height: 660px; background: #000;
   border: 1px solid var(--border-subtle); border-radius: var(--radius-card); transition: border-color .3s var(--ease-out); }
 .core-tile:hover { border-color: rgba(221,187,77,.45); }
 .core-tile__img { position: absolute; inset: 0; z-index: -2; }
 .core-tile__img .pm-img__el { transition: transform 1.2s var(--ease-out); }
 .core-tile:hover .core-tile__img .pm-img__el { transform: scale(1.04); }
 .core-tile__scrim { position: absolute; inset: 0; z-index: -1;
-  background: linear-gradient(180deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,.72) 38%, rgba(0,0,0,.9) 72%, rgba(0,0,0,.95) 100%); }
+  background: linear-gradient(180deg, rgba(0,0,0,.18) 0%, rgba(0,0,0,.42) 28%, rgba(0,0,0,.82) 58%, rgba(0,0,0,.93) 100%); }
 .core-tile__body { display: flex; flex-direction: column; justify-content: flex-end; gap: 18px; width: 100%; padding: clamp(28px, 3.2vw, 44px); }
 .core-tile .core__text { color: #E6E6E6; max-width: 52ch; }
 .core-tile__cta { margin-top: 6px; }
 @media (max-width: 900px) {
   .core-tiles { grid-template-columns: minmax(0, 1fr); }
   .core-tile { min-height: 0; }
-  .core-tile__body { padding-top: 180px; }
+  .core-tile__body { padding-top: 220px; }
 }
