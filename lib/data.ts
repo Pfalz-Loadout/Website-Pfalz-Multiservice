@@ -392,10 +392,10 @@ export const SHOP_EXAMPLE: ShopExample = tidyDeep({
 
 /** Webdesign-Seite: Pakete, Ablauf, FAQ */
 export const WEB_PROBLEMS: [string, string][] = tidyDeep([
-  ["Veraltete Website", "Die Seite ist in die Jahre gekommen, lädt langsam und ist auf dem Smartphone kaum zu bedienen."],
-  ["Kaum Anfragen", "Besucher finden nicht schnell genug, was Sie anbieten und wie man Sie erreicht."],
-  ["Baukasten-Look", "Eine Vorlage von der Stange: Ihr Betrieb sieht aus wie tausend andere."],
-  ["Keine Zeit", "Texte, Bilder, Technik, Updates: Neben dem Tagesgeschäft bleibt die Website liegen."],
+  ["Veraltete Website", "Langsam, in die Jahre gekommen und am Smartphone kaum zu bedienen."],
+  ["Kaum Anfragen", "Besucher finden nicht schnell, was Sie anbieten und wie man Sie erreicht."],
+  ["Baukasten-Look", "Eine Vorlage von der Stange, die aussieht wie tausend andere."],
+  ["Keine Zeit", "Im Tagesgeschäft bleibt die Pflege der Website einfach liegen."],
 ]);
 
 export type WebPackage = { name: string; price: string; unit?: string; note: string; items: string[]; badge?: string; tagline?: string; regular?: string;
