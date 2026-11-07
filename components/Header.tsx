@@ -135,7 +135,7 @@ export function Header() {
               <Link href="/#ueber" className="nav__link" onClick={goUeber} data-cursor>Über uns</Link>
             </div>
             <div className="nav__item">
-              <Link href="/webdesign" className={`nav__link ${active === "webdesign" ? "nav__link--active" : ""}`} data-cursor>Webdesign</Link>
+              <Link href="/webdesign" className={`nav__link shine ${active === "webdesign" ? "nav__link--active" : ""}`} data-cursor>Webdesign</Link>
             </div>
             <div className="nav__item">
               <Link href="/kontakt" className={`nav__link ${active === "kontakt" ? "nav__link--active" : ""}`} data-cursor>Kontakt</Link>
@@ -157,7 +157,7 @@ export function Header() {
           </Link>
         ))}
         <Link href="/#ueber" className="mobile-nav__link" onClick={goUeber}>Über uns</Link>
-        <Link href="/webdesign" className="mobile-nav__link">Webdesign</Link>
+        <Link href="/webdesign" className="mobile-nav__link shine">Webdesign</Link>
         <Link href="/kontakt" className="mobile-nav__link">Kontakt</Link>
       </div>
     </>

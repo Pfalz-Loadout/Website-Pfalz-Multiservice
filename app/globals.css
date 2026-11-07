@@ -2264,3 +2264,20 @@ html.pm-motion .tk__sparks i:nth-child(3) { animation-delay: calc(var(--tk-d) + 
 @media (max-width: 420px) {
   .rm-list { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* Menüpunkt Webdesign: goldener Glanz läuft durch die Schrift, gleicher Takt wie das WhatsApp-Lauflicht (3,8 s) */
+.shine {
+  background: linear-gradient(100deg,
+    #fff 0%, #fff 30%,
+    #f7ecc8 36%, #EFD994 41%, #D9B13A 45%, #fffbe8 50%, #D9B13A 55%, #EFD994 59%, #f7ecc8 64%,
+    #fff 70%, #fff 100%);
+  background-size: 320% 100%; background-position: 100% 0;
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  animation: shine-run 3.8s ease-in-out infinite;
+}
+@keyframes shine-run {
+  0% { background-position: 100% 0; filter: drop-shadow(0 0 0 rgba(217,177,58,0)); }
+  27% { filter: drop-shadow(0 0 8px rgba(239,217,148,.75)); }
+  55%, 100% { background-position: 0% 0; filter: drop-shadow(0 0 0 rgba(217,177,58,0)); }
+}
+@media (prefers-reduced-motion: reduce) { .shine { animation: none; background-position: 50% 0; } }
