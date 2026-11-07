@@ -17,7 +17,7 @@ const CITIES = [
   { n: "Mannheim", x: 338, y: 410, km: 20, dx: 14, end: false, dy: 0 },
   { n: "Ludwigshafen", x: 316, y: 428, km: 22, dx: -14, end: true, dy: 14 },
   { n: "Eich", x: 292, y: 149, km: 15, dx: -12, end: true, dy: 0 },
-  { n: "Bad Dürkheim", x: 142, y: 439, km: 32, dx: -12, end: true, dy: 0 },
+  { n: "Bad Dürkheim", x: 142, y: 439, km: 28, dx: -12, end: true, dy: 0 },
 ];
 const HULL = [2, 6, 3, 4, 5, 7, 1].map((i) => `${CITIES[i].x} ${CITIES[i].y}`).join(" L");
 const RHINE = "M311 600 C318 540 334 500 330 470 S326 425 324 410 S312 360 305 340 S282 295 279 270 S286 225 292 200 S340 165 350 140 S312 80 305 50 S262 20 246 0";
