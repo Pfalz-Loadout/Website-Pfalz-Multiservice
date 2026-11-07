@@ -5,6 +5,7 @@ import { Button } from "../Button";
 import { Icon } from "../Icon";
 import { Eyebrow } from "../Eyebrow";
 import { InView } from "../motion/InView";
+import { KnxPlayground } from "./KnxPlayground";
 
 /* Inhalte wie in der KNX-Anzeige von Pfalz Multiservice */
 const POINTS = ["Szenen, Zeitschaltungen und Automatisierungen", "Neue Geräte in Ihre Anlage einbinden", "Fehlersuche und Umprogrammierung"];
@@ -64,30 +65,30 @@ function KnxBus() {
         <span className="knx-bus__pulse" />
         <div className="knx-node knx-node--src">
           <span className="knx-node__ic"><Icon name="sliders-horizontal" size={18} /></span>
-          <span className="knx-node__txt"><b>Taster Wohnen</b><small>1.1.12 · sendet</small></span>
+          <span className="knx-node__txt"><b>Taster Wohnen</b><small>PA 1.1.12 · Tastsensor</small></span>
           <span className="knx-node__state">Szene „Abend“</span>
         </div>
         <div className="knx-node knx-node--1">
           <span className="knx-node__ic"><Icon name="lightbulb" size={18} /></span>
-          <span className="knx-node__txt"><b>Licht Wohnzimmer</b><small>Dimmaktor 1.1.3</small></span>
+          <span className="knx-node__txt"><b>Licht Wohnzimmer</b><small>PA 1.1.3 · Dimmaktor</small></span>
           <span className="knx-node__state"><i className="s0">aus</i><i className="s1">40 %</i></span>
         </div>
         <div className="knx-node knx-node--2">
           <span className="knx-node__ic"><Icon name="blinds" size={18} /></span>
-          <span className="knx-node__txt"><b>Jalousie Süd</b><small>Jalousieaktor 1.1.7</small></span>
+          <span className="knx-node__txt"><b>Jalousie Süd</b><small>PA 1.1.7 · Jalousieaktor</small></span>
           <span className="knx-node__state"><i className="s0">offen</i><i className="s1">50 %</i></span>
           <span className="knx-node__blind"><span /></span>
         </div>
         <div className="knx-node knx-node--3">
           <span className="knx-node__ic"><Icon name="thermometer" size={18} /></span>
-          <span className="knx-node__txt"><b>Heizung Wohnen</b><small>Raumregler 1.1.9</small></span>
+          <span className="knx-node__txt"><b>Heizung Wohnen</b><small>PA 1.1.9 · Raumregler</small></span>
           <span className="knx-node__state"><i className="s0">19,0 °C</i><i className="s1">21,5 °C</i></span>
         </div>
       </div>
       <div className="knx-log">
-        <span className="knx-log__l l1"><b>1/1/1</b> Licht Wohnen → Wert 40 %</span>
-        <span className="knx-log__l l2"><b>2/1/4</b> Jalousie Süd → Position 50 %</span>
-        <span className="knx-log__l l3"><b>3/2/1</b> Sollwert Wohnen → 21,5 °C</span>
+        <span className="knx-log__l l1"><b>GA 1/1/2</b> Licht Wohnen Dimmwert → 40 %</span>
+        <span className="knx-log__l l2"><b>GA 1/3/3</b> Jalousie Süd Position → 50 %</span>
+        <span className="knx-log__l l3"><b>GA 1/2/1</b> Sollwert Wohnen → 21,5 °C</span>
       </div>
     </div>
   );
@@ -126,8 +127,19 @@ export function KnxSections({ text, legal }: { text: string; legal?: string }) {
         </div>
       </section>
 
+      {/* Selbst ausprobieren: Taster schaltet Licht, Szene und Raffstore */}
+      <section className="section section--alt knx-play">
+        <div className="container">
+          <div className="knx-head">
+            <h2 className="knx-title knx-title--sec">Probieren Sie es <span className="knx-hl">aus</span></h2>
+            <p className="knx-sub">Ein Tastendruck, ein Telegramm auf dem Bus, und der Raum reagiert. So fühlt sich eine gut programmierte Anlage an.</p>
+          </div>
+          <InView className="knx-play__in" threshold={0.15}><KnxPlayground /></InView>
+        </div>
+      </section>
+
       {/* Typische Anliegen */}
-      <section className="section section--alt">
+      <section className="section">
         <div className="container">
           <div className="knx-head">
             <h2 className="knx-title knx-title--sec">Typische <span className="knx-hl">Anliegen</span></h2>
@@ -145,7 +157,7 @@ export function KnxSections({ text, legal }: { text: string; legal?: string }) {
       </section>
 
       {/* Ablauf */}
-      <section className="section">
+      <section className="section section--alt">
         <div className="container">
           <div className="knx-head">
             <h2 className="knx-title knx-title--sec">So läuft&apos;s <span className="knx-hl">ab</span></h2>
