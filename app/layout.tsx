@@ -4,6 +4,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { ContactBar } from "@/components/ContactBar";
 import { SmoothScroll } from "@/components/motion/SmoothScroll";
 import { CopyGuard } from "@/components/CopyGuard";
 import { ScrollProgress } from "@/components/motion/ScrollProgress";
@@ -84,6 +85,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main id="main">{children}</main>
         <Footer />
+        <ContactBar />
         <Cursor />
       </body>
     </html>
