@@ -71,7 +71,7 @@ export default function WebdesignPage() {
       <Process steps={WEB_STEPS} eyebrow="So läuft’s ab" title="In 5 Schritten zur" highlight="Website" />
       <WebFaqCheck />
       <CtaBand
-        image={IMG + "webdesign-buero.png"}
+        image={IMG + "lagergang.png"}
         intro={<>Erzählen Sie uns kurz von Ihrem Betrieb.<br />Wir melden uns mit einem Vorschlag und einem Festpreis, unverbindlich.</>}
       />
     </>

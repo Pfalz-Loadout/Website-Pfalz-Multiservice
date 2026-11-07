@@ -1,7 +1,7 @@
 import { social } from "@/lib/social";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { SERVICES, USPS, serviceHref } from "@/lib/data";
+import { IMG, SERVICES, USPS, serviceHref } from "@/lib/data";
 import { PageHero } from "@/components/PageHero";
 import { SectionHeading } from "@/components/SectionHeading";
 import { CheckList } from "@/components/CheckList";
@@ -100,7 +100,7 @@ export default async function ServicePage({ params }: { params: Promise<{ id: st
           </div>
         </div>
       </section>
-      <CtaBand />
+      <CtaBand image={IMG + "lagergang.png"} />
     </>
   );
 }
