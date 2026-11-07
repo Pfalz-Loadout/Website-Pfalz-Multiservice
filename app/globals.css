@@ -2211,3 +2211,22 @@ html.pm-motion .tk__sparks i:nth-child(3) { animation-delay: calc(var(--tk-d) + 
   .footer__contact { align-items: flex-end; padding-left: 0; }
   a.footer__gold:hover::after { transform-origin: right; }
 }
+
+/* Kontaktleiste am Handy: schlank, ohne Buttons, WhatsApp mit Lauflicht */
+.cbar { display: none; }
+@media (max-width: 720px) {
+  .cbar { display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 48; background: #0a0a0a;
+    border-top: 1px solid var(--pm-ink-600); padding-bottom: env(safe-area-inset-bottom); }
+  .cbar__item { position: relative; flex: 1; height: 46px; display: flex; align-items: center; justify-content: center; gap: 8px;
+    color: var(--text-highlight); font-size: .875rem; font-weight: 500; letter-spacing: var(--ls-button); text-decoration: none; overflow: hidden;
+    -webkit-tap-highlight-color: transparent; }
+  .cbar__item + .cbar__item::before { content: ""; position: absolute; left: 0; top: 12px; bottom: 12px; width: 1px; background: var(--pm-ink-700); }
+  .cbar__item:active { background: rgba(217,177,58,.08); }
+  .cbar__item--wa::after { content: ""; position: absolute; top: 0; left: 0; width: 45%; height: 100%; pointer-events: none;
+    background: linear-gradient(90deg, rgba(217,177,58,0), rgba(217,177,58,.16), rgba(217,177,58,0));
+    border-top: 2px solid transparent; border-image: linear-gradient(90deg, rgba(239,217,148,0), rgba(239,217,148,1), rgba(239,217,148,0)) 1;
+    transform: translateX(-110%); animation: cbar-run 3.8s ease-in-out infinite; }
+  .footer { padding-bottom: calc(46px + env(safe-area-inset-bottom)); }
+}
+@keyframes cbar-run { 0% { transform: translateX(-110%); } 55%, 100% { transform: translateX(240%); } }
+@media (prefers-reduced-motion: reduce) { .cbar__item--wa::after { animation: none; opacity: 0; } }
