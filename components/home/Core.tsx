@@ -18,7 +18,7 @@ export function Core() {
           const s = SERVICES.find((x) => x.id === c.id)!;
           return (
             <article key={c.id} className="core-tile">
-              <BgImage className="core-tile__img" src={c.image ?? s.image} sizes="(max-width: 900px) 100vw, 50vw" />
+              <BgImage className="core-tile__img" src={c.image ?? s.image} sizes="(max-width: 1280px) 100vw, 1280px" />
               <div className="core-tile__scrim" aria-hidden="true" />
               <span className="core-tile__num" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
               <div className="core-tile__body">
