@@ -2204,3 +2204,10 @@ html.pm-motion .tk__sparks i:nth-child(3) { animation-delay: calc(var(--tk-d) + 
   .kp__lm, .kp__lm-tint, .kp__device, .kp__main { transition: none; }
   .kp__mon-row, .kp__mon-rec { animation: none; }
 }
+/* Footer: Kontaktspalte rechtsbündig (am Handy wie gehabt linksbündig untereinander) */
+@media (min-width: 901px) {
+  .footer__grid > .footer__col:last-child { display: flex; flex-direction: column; align-items: flex-end; text-align: right; }
+  .footer__grid > .footer__col:last-child .footer__h { text-align: right; }
+  .footer__contact { align-items: flex-end; padding-left: 0; }
+  a.footer__gold:hover::after { transform-origin: right; }
+}
