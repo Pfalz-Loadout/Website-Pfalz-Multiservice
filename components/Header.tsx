@@ -8,6 +8,9 @@ import { SERVICES, serviceHref } from "@/lib/data";
 import { Icon } from "./Icon";
 import { Logo } from "./Logo";
 
+/** Menüreihenfolge: nach Titellänge, längster Titel zuerst (Startseitenkacheln behalten die Reihenfolge aus SERVICES) */
+const MENU_SERVICES = [...SERVICES].sort((a, b) => b.title.length - a.title.length);
+
 export function Header() {
   const pathname = usePathname();
   const router = useRouter();
@@ -119,7 +122,7 @@ export function Header() {
                 Leistungen <Icon name="chevron-down" size={15} className="nav__chev" />
               </button>
               <div className="dropdown" role="menu">
-                {SERVICES.map((s) => (
+                {MENU_SERVICES.map((s) => (
                   <Link key={s.id} href={serviceHref(s)} className="dropdown__link" role="menuitem" data-cursor
                     onClick={() => setDdOpen(false)}>
                     <Icon name={s.icon} size={18} />
@@ -148,7 +151,7 @@ export function Header() {
 
       <div className="mobile-nav" aria-hidden={!mobile}>
         <Link href="/#leistungen" className="mobile-nav__link" onClick={(e) => { if (pathname === "/") { e.preventDefault(); setMobile(false); scrollToHash("#leistungen"); } }}>Leistungen</Link>
-        {SERVICES.map((s) => (
+        {MENU_SERVICES.map((s) => (
           <Link key={s.id} href={serviceHref(s)} className="mobile-nav__link mobile-nav__link--sub">
             <Icon name={s.icon} size={18} /> {s.title}
           </Link>
