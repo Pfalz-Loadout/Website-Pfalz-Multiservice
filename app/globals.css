@@ -2253,6 +2253,14 @@ html.pm-motion .tk__sparks i:nth-child(3) { animation-delay: calc(var(--tk-d) + 
   .rm-panel { grid-template-columns: minmax(0, 1fr); align-items: start; }
   .rm-map { aspect-ratio: 1 / 1; }
 }
+@media (max-width: 720px) {
+  /* Handy: Überschrift und Text, dann Karte, dann Zähler; Ortsliste entfällt */
+  .rm-panel, .rm-facts { display: contents; }
+  .rm-list { display: none; }
+  .rm-panel > :first-child { order: 1; }
+  .rm-map { order: 2; }
+  .rm-stats { order: 3; }
+}
 @media (max-width: 420px) {
   .rm-list { grid-template-columns: minmax(0, 1fr); }
 }
