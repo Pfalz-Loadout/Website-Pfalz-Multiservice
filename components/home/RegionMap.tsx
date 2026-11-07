@@ -9,6 +9,7 @@ import { useEffect, useRef, type ReactNode } from "react";
  * Koordinaten: grob echte Lage (Länge × cos(49,6°), Breite), Kilometer gerundet.
  */
 const HQ = [265, 268] as const;
+// Ansicht horizontal auf Worms zentriert (viewBox beginnt bei HQ.x − 300)
 const CITIES = [
   { n: "Frankenthal", x: 262, y: 366, km: 12, dx: -14, end: true, dy: 0 },
   { n: "Grünstadt", x: 141, y: 337, km: 22, dx: -14, end: true, dy: 0 },
@@ -26,7 +27,7 @@ const arcPath = (c: (typeof CITIES)[number]) => {
   return `M${HQ[0]} ${HQ[1]} Q${mx - dy * 0.28} ${my + dx * 0.28} ${c.x} ${c.y}`;
 };
 const DOTS: { x: number; y: number; d: number }[] = [];
-for (let y = 12; y < 600; y += 18) for (let x = 12; x < 600; x += 18) DOTS.push({ x, y, d: Math.hypot(x - HQ[0], y - HQ[1]) });
+for (let y = 12; y < 600; y += 18) for (let x = -24; x < 570; x += 18) DOTS.push({ x, y, d: Math.hypot(x - HQ[0], y - HQ[1]) });
 
 const END = 10.2; // Sekunden bis zum Endbild
 const clamp = (v: number) => Math.max(0, Math.min(1, v));
@@ -148,10 +149,10 @@ export function RegionMap({ heading }: { heading: ReactNode }) {
         </div>
       </div>
       <div className="rm-map" role="img" aria-label="Karte des Einzugsgebiets: Worms als Basis mit Frankenthal, Grünstadt, Alzey, Bensheim, Mannheim, Ludwigshafen, Eich und Bad Dürkheim">
-        <svg viewBox="0 0 600 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <svg viewBox={`${HQ[0] - 300} 0 600 600`} preserveAspectRatio="xMidYMid slice" aria-hidden="true">
           <defs>
             <radialGradient id="rm-glow"><stop offset="0" stopColor="#D9B13A" stopOpacity=".55" /><stop offset="1" stopColor="#D9B13A" stopOpacity="0" /></radialGradient>
-            <radialGradient id="rm-vign" cx=".45" cy=".45" r=".75"><stop offset=".55" stopColor="#000" stopOpacity="0" /><stop offset="1" stopColor="#000" stopOpacity=".9" /></radialGradient>
+            <radialGradient id="rm-vign" cx=".5" cy=".45" r=".75"><stop offset=".55" stopColor="#000" stopOpacity="0" /><stop offset="1" stopColor="#000" stopOpacity=".9" /></radialGradient>
             <linearGradient id="rm-riv" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stopColor="#7a6420" /><stop offset=".5" stopColor="#D9B13A" /><stop offset="1" stopColor="#7a6420" /></linearGradient>
             <linearGradient id="rm-sweep" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stopColor="#D9B13A" stopOpacity="0" /><stop offset="1" stopColor="#D9B13A" stopOpacity=".28" /></linearGradient>
           </defs>
@@ -182,7 +183,7 @@ export function RegionMap({ heading }: { heading: ReactNode }) {
           <circle className="rm-hqdot" cx={HQ[0]} cy={HQ[1]} r="0" fill="#EFD994" opacity="0" />
           <text className="rm-hql rm-lbl rm-lbl--hq" x="280" y="262" opacity="0">WORMS</text>
           <text className="rm-hqs rm-km" x="280" y="278" opacity="0">BASIS</text>
-          <rect width="600" height="600" fill="url(#rm-vign)" />
+          <rect x={HQ[0] - 300} width="600" height="600" fill="url(#rm-vign)" />
         </svg>
       </div>
     </div>
