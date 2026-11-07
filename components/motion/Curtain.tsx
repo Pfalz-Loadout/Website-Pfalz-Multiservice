@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { useRef } from "react";
 import { gsap, useGSAP, introDelay, markVisited } from "@/lib/gsap";
 
@@ -42,8 +43,8 @@ export function Curtain() {
       <div className="curtain__panel curtain__panel--top" />
       <div className="curtain__panel curtain__panel--bottom" />
       <div className="curtain__line" />
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img className="curtain__mark" src="/logo-mark-white.webp" alt="" width={120} height={101} />
+
+      <Image className="curtain__mark" src="/logo-mark-white.webp" alt="" width={120} height={101} priority />
     </div>
   );
 }

@@ -1,5 +1,4 @@
 "use client";
-import Lenis from "lenis";
 import { usePathname } from "next/navigation";
 import { useEffect, useLayoutEffect, useRef } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
@@ -11,13 +10,23 @@ export function SmoothScroll() {
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const lenis = new Lenis({ duration: 1.15, easing: (t) => 1 - Math.pow(1 - t, 4), smoothWheel: true });
-    setLenis(lenis);
-    lenis.on("scroll", ScrollTrigger.update);
-    const tick = (time: number) => lenis.raf(time * 1000);
-    gsap.ticker.add(tick);
-    gsap.ticker.lagSmoothing(0);
-    return () => { gsap.ticker.remove(tick); lenis.destroy(); setLenis(null); };
+    let cancelled = false;
+    let cleanup: (() => void) | undefined;
+    // Lenis (Smooth-Scroll) wird erst kurz nach dem Start nachgeladen: kleineres Start-Bundle, weniger Blockierzeit
+    const start = () => {
+      import("lenis").then(({ default: Lenis }) => {
+        if (cancelled) return;
+        const lenis = new Lenis({ duration: 1.15, easing: (t) => 1 - Math.pow(1 - t, 4), smoothWheel: true });
+        setLenis(lenis);
+        lenis.on("scroll", ScrollTrigger.update);
+        const tick = (time: number) => lenis.raf(time * 1000);
+        gsap.ticker.add(tick);
+        gsap.ticker.lagSmoothing(0);
+        cleanup = () => { gsap.ticker.remove(tick); lenis.destroy(); setLenis(null); };
+      });
+    };
+    const id = window.setTimeout(start, 400);
+    return () => { cancelled = true; window.clearTimeout(id); cleanup?.(); };
   }, []);
 
   // Zurück/Vor im Browser merken: dort soll die alte Scroll-Position erhalten bleiben
@@ -41,9 +50,13 @@ export function SmoothScroll() {
   }, [pathname]);
 
   // Nach jedem Seitenwechsel: Höhe neu messen, ggf. zum Anker springen
+  // (beim allerersten Aufruf übernimmt das die gebündelte Messung nach dem Laden)
+  const firstMeasure = useRef(true);
   useEffect(() => {
+    const skip = firstMeasure.current;
+    firstMeasure.current = false;
     const t = window.setTimeout(() => {
-      ScrollTrigger.refresh();
+      if (!skip || window.location.hash) ScrollTrigger.refresh();
       if (window.location.hash) scrollToHash(window.location.hash, true);
     }, 80);
     return () => window.clearTimeout(t);
@@ -63,10 +76,11 @@ export function SmoothScroll() {
 
   useEffect(() => {
     // Bilder/Fonts verändern Höhen → einmal nachmessen
-    const onLoad = () => ScrollTrigger.refresh();
+    let t: number | undefined;
+    const onLoad = () => { window.clearTimeout(t); t = window.setTimeout(() => ScrollTrigger.refresh(), 150); };
     window.addEventListener("load", onLoad);
     document.fonts?.ready.then(onLoad);
-    return () => window.removeEventListener("load", onLoad);
+    return () => { window.clearTimeout(t); window.removeEventListener("load", onLoad); };
   }, []);
 
   return null;
