@@ -1979,7 +1979,7 @@ html.pm-motion .tk__sparks i:nth-child(3) { animation-delay: calc(var(--tk-d) + 
 }
 
 /* ===================== KNX: Probieren Sie es aus (components/knx/KnxPlayground) ===================== */
-.kp { display: grid; grid-template-columns: minmax(280px, 360px) minmax(0, 1fr); gap: clamp(20px, 2.6vw, 32px); align-items: stretch; }
+.kp { display: grid; grid-template-columns: minmax(280px, 360px) minmax(0, 1fr); gap: clamp(20px, 2.6vw, 32px); align-items: center; }
 .kp__panel { display: flex; flex-direction: column; gap: 18px; min-width: 0; }
 
 /* Glas-Tastsensor */
@@ -2027,7 +2027,7 @@ html.pm-motion .tk__sparks i:nth-child(3) { animation-delay: calc(var(--tk-d) + 
 @keyframes kp-row { from { opacity: 0; transform: translateX(-12px); background: rgba(61,220,107,.18); } to { opacity: 1; transform: none; background: transparent; } }
 
 /* Raum */
-.kp__room { position: relative; aspect-ratio: 2048 / 1158; min-height: 100%; overflow: hidden; background: #05070c; border: 1px solid var(--border-subtle);
+.kp__room { position: relative; aspect-ratio: 2048 / 1158; overflow: hidden; background: #05070c; border: 1px solid var(--border-subtle);
   box-shadow: 0 40px 90px -40px rgba(0,0,0,.95); }
 .kp__img { object-fit: cover; object-position: center; }
 .kp__img--on { transition: opacity 1.4s cubic-bezier(.4,0,.2,1); }
@@ -2050,7 +2050,7 @@ html.pm-motion .tk__sparks i:nth-child(3) { animation-delay: calc(var(--tk-d) + 
 
 @media (max-width: 1080px) {
   .kp { grid-template-columns: minmax(0, 1fr); }
-  .kp__room { order: -1; min-height: 0; }
+  .kp__room { order: -1; }
   .kp__panel { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; }
 }
 @media (max-width: 720px) {
