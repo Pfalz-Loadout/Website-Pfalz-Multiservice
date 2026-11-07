@@ -86,9 +86,9 @@ function KnxBus() {
         </div>
       </div>
       <div className="knx-log">
-        <span className="knx-log__l l1"><b>GA 1/1/2</b> Licht Wohnen Dimmwert → 40 %</span>
-        <span className="knx-log__l l2"><b>GA 1/3/3</b> Jalousie Süd Position → 50 %</span>
-        <span className="knx-log__l l3"><b>GA 1/2/1</b> Sollwert Wohnen → 21,5 °C</span>
+        <span className="knx-log__l l1"><b>1/1/13</b> EG Wohnen Licht Dimmwert → 40 %</span>
+        <span className="knx-log__l l2"><b>2/1/12</b> EG Wohnen Raffstore Position → 50 %</span>
+        <span className="knx-log__l l3"><b>3/1/10</b> EG Wohnen Sollwert → 21,5 °C</span>
       </div>
     </div>
   );
@@ -132,7 +132,7 @@ export function KnxSections({ text, legal }: { text: string; legal?: string }) {
         <div className="container">
           <div className="knx-head">
             <h2 className="knx-title knx-title--sec">Probieren Sie es <span className="knx-hl">aus</span></h2>
-            <p className="knx-sub">Ein Tastendruck, ein Telegramm auf dem Bus, und der Raum reagiert. So fühlt sich eine gut programmierte Anlage an.</p>
+            <p className="knx-sub">Licht, Lichtfarbe, Raffstore und Temperatur: ein Tastendruck, ein Telegramm auf dem Bus, und der Raum reagiert. So fühlt sich eine gut programmierte Anlage an.</p>
           </div>
           <InView className="knx-play__in" threshold={0.15}><KnxPlayground /></InView>
         </div>

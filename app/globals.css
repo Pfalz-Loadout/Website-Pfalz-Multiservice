@@ -2070,3 +2070,78 @@ html.pm-motion .tk__sparks i:nth-child(3) { animation-delay: calc(var(--tk-d) + 
   .kp__img--on, .kp__blind .kp__img, .kp__panel, .kp__room { transition: none; }
   .kp__tg, .kp__ripple, .kp__demo, .kp__log-row { animation: none; }
 }
+
+/* KNX-Raum: Lichtfarbe, Raumregler, Heizen/Kühlen, zweizeiliger Busmonitor */
+.kp__sub { margin-top: 16px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,.07); }
+.kp__sub-lbl { display: inline-flex; align-items: baseline; gap: 8px; font: 700 11px/1 var(--font-display); letter-spacing: .14em; text-transform: uppercase; color: var(--text-strong); }
+.kp__sub-lbl small { font: 400 11px/1 ui-monospace, monospace; letter-spacing: 0; text-transform: none; color: var(--text-subtle); }
+.kp__moods { display: flex; gap: 10px; margin-top: 12px; }
+.kp__mood { position: relative; flex: 1; height: 34px; padding: 0; border: 1px solid rgba(255,255,255,.12); cursor: pointer;
+  background: radial-gradient(circle at 50% 120%, var(--c), color-mix(in srgb, var(--c) 35%, #111) 70%); -webkit-tap-highlight-color: transparent;
+  transition: transform .2s var(--ease-out), box-shadow .3s var(--ease-out), border-color .3s; }
+.kp__mood:hover { transform: translateY(-2px); }
+.kp__mood.is-on { border-color: #fff; box-shadow: 0 0 0 2px rgba(0,0,0,.6), 0 0 18px -2px var(--c); }
+.kp__mood:focus-visible { outline: 2px solid var(--brand-accent); outline-offset: 2px; }
+
+.kp__climate { margin-top: 14px; padding: 14px; border: 1px solid rgba(255,255,255,.08); background: rgba(255,255,255,.02); transition: border-color .5s, background .5s; }
+.kp__climate--heat { border-color: rgba(255,130,50,.55); background: linear-gradient(180deg, rgba(255,110,40,.08), rgba(255,110,40,.02)); }
+.kp__climate--cool { border-color: rgba(80,160,255,.55); background: linear-gradient(180deg, rgba(60,140,255,.09), rgba(60,140,255,.02)); }
+.kp__climate-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.kp__mode { font: 700 11px/1 var(--font-display); letter-spacing: .1em; text-transform: uppercase; color: var(--text-subtle); transition: color .4s; }
+.kp__climate--heat .kp__mode { color: #ff9a55; }
+.kp__climate--cool .kp__mode { color: #7fb6ff; }
+.kp__climate-row { display: grid; grid-template-columns: 44px minmax(0, 1fr) 44px; align-items: center; gap: 10px; margin-top: 10px; }
+.kp__tbtn { height: 44px; border: 1px solid rgba(255,255,255,.14); background: #1b1b1b; color: var(--text-strong); cursor: pointer; font: 600 22px/1 var(--font-display);
+  -webkit-tap-highlight-color: transparent; transition: border-color .3s, color .3s, transform .12s; }
+.kp__tbtn:hover { border-color: rgba(221,187,77,.6); color: var(--brand-accent); }
+.kp__tbtn:active { transform: scale(.94); }
+.kp__temp { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.kp__temp b { font: 800 34px/1 var(--font-display); color: var(--text-strong); font-variant-numeric: tabular-nums; transition: color .5s; }
+.kp__temp b span { font-size: 16px; margin-left: 2px; color: var(--text-subtle); }
+.kp__climate--heat .kp__temp b { color: #ffb27a; }
+.kp__climate--cool .kp__temp b { color: #a9cdff; }
+.kp__temp small { font: 500 12px/1 var(--font-body); color: var(--text-subtle); }
+
+/* Busmonitor: Zeile 1 Adresse · Bezeichnung · Wert, Zeile 2 Absender → Ziel · DPT */
+.kp__log-row { grid-template-columns: auto minmax(0, 1fr) auto; row-gap: 2px; padding-bottom: 6px; border-bottom: 1px dashed rgba(255,255,255,.05); }
+.kp__log-row small { grid-column: 1 / -1; font: 400 11px/1.3 ui-monospace, monospace; color: rgba(123,216,151,.55); }
+
+/* Farbiges Stimmungslicht: färbt die Innenwände, das Fenster bleibt frei */
+.kp__tint { position: absolute; inset: 0; pointer-events: none; mix-blend-mode: color;
+  background: radial-gradient(ellipse 60% 70% at 32% 30%, var(--c), color-mix(in srgb, var(--c) 55%, transparent) 70%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 60%, transparent 68%); mask-image: linear-gradient(90deg, #000 0%, #000 60%, transparent 68%);
+  transition: opacity 1.4s cubic-bezier(.4,0,.2,1), background 1.2s ease; }
+
+/* Heizen: warme Luft steigt vom Boden auf, leichtes Flimmern */
+.kp__heat, .kp__cool { position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity 1.2s ease; }
+.kp__heat.is-on, .kp__cool.is-on { opacity: var(--p, .6); }
+.kp__heat { background: linear-gradient(0deg, rgba(255,110,30,.42) 0%, rgba(255,140,60,.18) 28%, transparent 55%); mix-blend-mode: screen; }
+.kp__heat::before { content: ""; position: absolute; left: 0; right: 32%; bottom: 0; height: 60%;
+  background: repeating-linear-gradient(0deg, transparent 0 22px, rgba(255,170,90,.14) 22px 26px, transparent 26px 48px);
+  -webkit-mask-image: linear-gradient(0deg, #000, transparent); mask-image: linear-gradient(0deg, #000, transparent);
+  filter: blur(3px); animation: kp-rise 2.6s linear infinite; }
+.kp__heat::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 40% 30% at 40% 100%, rgba(255,120,40,.35), transparent 70%); animation: kp-glow 3s ease-in-out infinite; }
+@keyframes kp-rise { from { transform: translateY(0); } to { transform: translateY(-48px); } }
+@keyframes kp-glow { 50% { opacity: .55; } }
+
+/* Kühlen: kühle Luft sinkt von der Decke, feine Partikel */
+.kp__cool { background: linear-gradient(180deg, rgba(70,150,255,.4) 0%, rgba(90,170,255,.16) 30%, transparent 58%); mix-blend-mode: screen; }
+.kp__cool::before { content: ""; position: absolute; left: 0; right: 32%; top: 0; height: 65%;
+  background-image: radial-gradient(circle, rgba(200,230,255,.55) 1.2px, transparent 1.6px), radial-gradient(circle, rgba(170,210,255,.4) 1px, transparent 1.4px);
+  background-size: 46px 46px, 31px 31px; background-position: 0 0, 15px 20px;
+  -webkit-mask-image: linear-gradient(180deg, #000, transparent); mask-image: linear-gradient(180deg, #000, transparent);
+  animation: kp-fall 3.2s linear infinite; }
+@keyframes kp-fall { from { background-position: 0 0, 15px 20px; } to { background-position: 0 46px, 15px 51px; } }
+
+.kp__st-temp--heat svg { color: #ff9a55 !important; }
+.kp__st-temp--cool svg { color: #7fb6ff !important; }
+
+@media (max-width: 720px) {
+  .kp__moods { gap: 8px; }
+  .kp__mood { height: 30px; }
+  .kp__temp b { font-size: 30px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .kp__heat::before, .kp__heat::after, .kp__cool::before { animation: none; }
+  .kp__tint { transition: none; }
+}
