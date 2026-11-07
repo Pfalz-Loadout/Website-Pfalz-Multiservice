@@ -135,14 +135,27 @@ export function RegionMap({ heading }: { heading: ReactNode }) {
         if (!raf) raf = requestAnimationFrame(loop);
       }
     }, { threshold: 0.35 });
-    io.observe(el);
+    io.observe(q<HTMLDivElement>(".rm-map"));
     return () => { io.disconnect(); cancelAnimationFrame(raf); };
   }, []);
 
   return (
     <div ref={root} className="rm">
+      <div className="rm-panel">
+        {heading}
+        <div className="rm-facts">
+        <ul className="rm-list">
+          {CITIES.map((c, i) => <li key={c.n} className={`rm-li-${i}`}>{c.n}<b>0 km</b></li>)}
+        </ul>
+        <div className="rm-stats">
+          <div><strong className="rm-s1">0</strong><span>Orte regional vor Ort</span></div>
+          <div><strong className="rm-s2">0 km</strong><span>Umkreis</span></div>
+          <div><strong>Bundesweit</strong><span>Online verfügbar</span></div>
+        </div>
+        </div>
+      </div>
       <div className="rm-map" role="img" aria-label="Karte des Einzugsgebiets: Worms als Basis mit Frankenthal, Grünstadt, Alzey, Bensheim, Mannheim und Ludwigshafen">
-        <svg viewBox="0 0 600 600" aria-hidden="true">
+        <svg viewBox="0 0 600 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
           <defs>
             <radialGradient id="rm-glow"><stop offset="0" stopColor="#D9B13A" stopOpacity=".55" /><stop offset="1" stopColor="#D9B13A" stopOpacity="0" /></radialGradient>
             <radialGradient id="rm-vign" cx=".45" cy=".45" r=".75"><stop offset=".55" stopColor="#000" stopOpacity="0" /><stop offset="1" stopColor="#000" stopOpacity=".9" /></radialGradient>
@@ -157,7 +170,7 @@ export function RegionMap({ heading }: { heading: ReactNode }) {
           <path className="rm-area" d={`M${HULL} Z`} fill="#D9B13A" fillOpacity="0" stroke="#D9B13A" strokeOpacity="0" strokeDasharray="3 5" />
           <path className="rm-river" d={RHINE} fill="none" stroke="url(#rm-riv)" strokeWidth="3" strokeLinecap="round" />
           <path className="rm-river" d={NECKAR} fill="none" stroke="url(#rm-riv)" strokeWidth="2" strokeLinecap="round" opacity=".8" />
-          <text className="rm-rl rm-river-l" x="292" y="560" transform="rotate(-78 292 560)" opacity="0">RHEIN</text>
+          <text className="rm-rl rm-river-l" x="318" y="462" transform="rotate(-80 318 462)" opacity="0">RHEIN</text>
           <g className="rm-sweep" opacity="0"><path d={`M${HQ[0]} ${HQ[1]} L565 268 A300 300 0 0 0 477 56 Z`} fill="url(#rm-sweep)" /></g>
           <g fill="none" stroke="#D9B13A" strokeWidth="1.4">
             {CITIES.map((c, i) => <path key={c.n} className={`rm-arc-${i}`} d={arcPath(c)} />)}
@@ -180,17 +193,6 @@ export function RegionMap({ heading }: { heading: ReactNode }) {
           <text className="rm-hqs rm-km" x="280" y="278" opacity="0">BASIS</text>
           <rect width="600" height="600" fill="url(#rm-vign)" />
         </svg>
-      </div>
-      <div className="rm-panel">
-        {heading}
-        <ul className="rm-list">
-          {CITIES.map((c, i) => <li key={c.n} className={`rm-li-${i}`}>{c.n}<b>0 km</b></li>)}
-        </ul>
-        <div className="rm-stats">
-          <div><strong className="rm-s1">0</strong><span>Orte regional vor Ort</span></div>
-          <div><strong className="rm-s2">0 km</strong><span>Umkreis</span></div>
-          <div><strong>Bundesweit</strong><span>Online verfügbar</span></div>
-        </div>
       </div>
     </div>
   );
