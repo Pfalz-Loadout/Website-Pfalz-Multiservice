@@ -51,7 +51,7 @@ export default function WebdesignPage() {
         title={<span className="sh__line">Websites,</span>}
         highlight="die Anfragen bringen"
         intro={"Individuell gestaltet, zum fairen Festpreis und persönlich betreut.\nFür Betriebe, Selbstständige und Vereine in Worms und der Pfalz."}
-        image={IMG + "webdesign-buero.png"}
+        image={IMG + "webdesign-buero.jpg"}
       >
         <Button variant="accent" size="lg" icon="arrow-right" href="/kontakt?leistung=web">Kostenloses Angebot</Button>
         <Button variant="outline-light" size="lg" href="#beispiele">Beispiele ansehen</Button>
