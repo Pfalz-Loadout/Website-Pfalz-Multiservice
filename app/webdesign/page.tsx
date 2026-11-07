@@ -51,7 +51,7 @@ export default function WebdesignPage() {
         title={<span className="sh__line">Websites,</span>}
         highlight="die Anfragen bringen"
         intro={"Individuell gestaltet, zum fairen Festpreis und persönlich betreut.\nFür Betriebe, Selbstständige und Vereine in Worms und der Pfalz."}
-        image={IMG + "webseite-laptop.png"}
+        image={IMG + "webdesign-buero.png"}
       >
         <Button variant="accent" size="lg" icon="arrow-right" href="/kontakt?leistung=web">Kostenloses Angebot</Button>
         <Button variant="outline-light" size="lg" href="#beispiele">Beispiele ansehen</Button>
@@ -71,7 +71,7 @@ export default function WebdesignPage() {
       <Process steps={WEB_STEPS} eyebrow="So läuft’s ab" title="In 5 Schritten zur" highlight="Website" />
       <WebFaqCheck />
       <CtaBand
-        image={IMG + "webseite-laptop.png"}
+        image={IMG + "webdesign-buero.png"}
         intro={<>Erzählen Sie uns kurz von Ihrem Betrieb.<br />Wir melden uns mit einem Vorschlag und einem Festpreis, unverbindlich.</>}
       />
     </>
