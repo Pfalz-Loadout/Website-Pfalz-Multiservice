@@ -171,7 +171,7 @@ export const SERVICES: Service[] = tidyDeep([
       note: "Projektdatei vorhanden? Super. Wenn nicht, finden wir eine Lösung. Wir programmieren und ändern, Elektroinstallation gehört nicht zu unserem Angebot.",
     },
     legal: "KNX ist eine eingetragene Marke der KNX Association.",
-    image: IMG + "smarthome-knx.png",
+    image: IMG + "smarthome-knx-verteiler.jpg",
   },
 ]);
 
