@@ -1781,3 +1781,20 @@ html.pm-motion .tk__sparks i:nth-child(3) { animation-delay: calc(var(--tk-d) + 
 /* Zwei Karten nebeneinander (z. B. „Weitere Bereiche“ auf der Startseite) */
 .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--grid-gap); }
 @media (max-width: 640px) { .grid-2 { grid-template-columns: minmax(0, 1fr); } }
+/* Zwei Hauptthemen als große Header in voller Breite (wie die Partnerseite): Text links, Foto läuft nach rechts aus;
+   die zweite Kachel ist gespiegelt */
+.core-tiles { grid-template-columns: minmax(0, 1fr); }
+.core-tile { min-height: clamp(540px, 66vh, 680px); align-items: center; }
+.core-tile__body { width: min(100%, 680px); justify-content: center; padding: clamp(36px, 5vw, 72px); }
+.core-tile__scrim { background: linear-gradient(90deg, rgba(0,0,0,.9) 0%, rgba(0,0,0,.78) 38%, rgba(0,0,0,.3) 70%, rgba(0,0,0,.12) 100%), linear-gradient(0deg, rgba(0,0,0,.45), rgba(0,0,0,0) 40%); }
+.core-tile:nth-child(2n) .core-tile__body { margin-left: auto; }
+.core-tile:nth-child(2n) .core-tile__scrim { background: linear-gradient(270deg, rgba(0,0,0,.9) 0%, rgba(0,0,0,.78) 38%, rgba(0,0,0,.3) 70%, rgba(0,0,0,.12) 100%), linear-gradient(0deg, rgba(0,0,0,.45), rgba(0,0,0,0) 40%); }
+.core-tile:nth-child(2n) .core-tile__num { right: auto; left: clamp(24px, 3vw, 40px); }
+.core-tile__title { font-size: clamp(1.9rem, 3.6vw, 3.2rem); }
+.core-tile__lead { max-width: 52ch; }
+@media (max-width: 900px) {
+  .core-tile { min-height: 0; align-items: stretch; }
+  .core-tile__body, .core-tile:nth-child(2n) .core-tile__body { width: 100%; margin-left: 0; justify-content: flex-end; padding: 200px 24px 32px; }
+  .core-tile__scrim, .core-tile:nth-child(2n) .core-tile__scrim { background: linear-gradient(180deg, rgba(0,0,0,.15) 0%, rgba(0,0,0,.45) 26%, rgba(0,0,0,.85) 55%, rgba(0,0,0,.94) 100%); }
+  .core-tile:nth-child(2n) .core-tile__num { left: auto; right: 24px; }
+}

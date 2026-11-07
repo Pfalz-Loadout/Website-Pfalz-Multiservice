@@ -39,9 +39,9 @@ export function Services() {
       </div>
       <Core />
       <div className="container services__sub">
-        <Eyebrow>Weitere Bereiche</Eyebrow>
+        <Eyebrow>Weitere Leistungen</Eyebrow>
         <div className="pm-reveal" data-reveal="cards" style={{ marginTop: 28 }}>
-          <div className={homeSubServices().length === 2 ? "grid-2" : "grid-3"}>
+          <div className={homeSubServices().length % 3 === 0 ? "grid-3" : "grid-2"}>
             {homeSubServices().map((s) => (
               <ServiceCard key={s.id} href={serviceHref(s)} image={s.image} title={s.title} text={s.short} linkLabel="Details" />
             ))}

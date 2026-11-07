@@ -81,7 +81,7 @@ export const SERVICES: Service[] = tidyDeep([
     title: "Reselling & Asset Recovery",
     short: "Werterhalt statt Abschreibung",
     text: "Überbestände, Restposten und Retourenware binden Kapital und Lagerfläche. Wir kaufen Warenbestände an, bereiten sie auf und führen sie über unsere Vertriebskanäle in den Markt zurück. Für unsere Partner bedeutet das schnelle Liquidität, reduzierte Lagerkosten und einen nachhaltigen Umgang mit Ressourcen.",
-    image: IMG + "reselling-ware.png",
+    image: IMG + "reselling-wareneingang.jpg",
   },
   {
     id: "ecommerce",
@@ -156,7 +156,7 @@ export const SERVICES: Service[] = tidyDeep([
     side: true,
     icon: "lightbulb",
     title: "Smart Home & KNX",
-    short: "KNX-Anlagen ändern und erweitern ab 59 €",
+    short: "KNX-Anlagen ändern und erweitern",
     text: "Sie haben eine KNX-Anlage und brauchen Hilfe? Wir programmieren und ändern Ihre bestehende Anlage: schnell, fair und ohne Fachchinesisch. Der Elektriker ist nicht mehr erreichbar, die Programmierung nicht auffindbar oder die Anlage soll einfach etwas Neues können? Schildern Sie uns kurz Ihr Anliegen, wir sagen Ihnen ehrlich, was möglich ist.",
     points: {
       title: "Typische Anliegen",
@@ -193,12 +193,12 @@ export const USPS: { title: string; text: string; lines?: [string, string] }[] =
 /** Zahlenleiste direkt unter dem Hero */
 export const STATS: { value: string; label: string }[] = tidyDeep([
   { value: "seit 2021", label: "inhabergeführt in Worms" },
-  { value: "3", label: "Kernbereiche aus einer Hand" },
+  { value: "6", label: "Leistungen aus einer Hand" },
   { value: "< 1 Werktag", label: "Antwortzeit auf Anfragen" },
   { value: "Festpreis", label: "verbindlich vor Beginn" },
 ]);
 
-/** Die Hauptleistungen als Kacheln (2 × 2) auf der Startseite: Titel, zwei Sätze, drei Stichpunkte */
+/** Die zwei Hauptthemen der Startseite als große Header: Titel, zwei Sätze, drei Stichpunkte */
 export const CORE: { id: string; kicker: string; title: string; text: string; items: string[]; link: string; image?: string }[] = tidyDeep([
   {
     id: "web",
@@ -209,14 +209,6 @@ export const CORE: { id: string; kicker: string; title: string; text: string; it
     link: "Zum Webdesign",
   },
   {
-    id: "reselling",
-    kicker: "Reselling & Asset Recovery",
-    title: "Restposten werden Liquidität",
-    text: "Wir kaufen Überbestände, Restposten und Retouren an und bringen sie über eigene Kanäle zurück in den Markt. So gewinnen Sie Lagerfläche und Kapital zurück.",
-    items: ["Ankauf von Kleinmengen bis Palettenware", "Bewertung nach Fotos, oft am selben Tag", "Abholung direkt bei Ihnen"],
-    link: "Zum Reselling",
-  },
-  {
     id: "ecommerce",
     kicker: "E-Commerce",
     title: "Online-Handel aus einer Hand",
@@ -224,22 +216,12 @@ export const CORE: { id: string; kicker: string; title: string; text: string; it
     items: ["Eigener Shop und Marktplätze", "Lagerung und Verpackung", "Zuverlässige Versandabwicklung"],
     link: "Zum E-Commerce",
   },
-  {
-    id: "smarthome",
-    kicker: "Smart Home & KNX",
-    title: "KNX-Anlagen erweitern",
-    text: "Wir programmieren und erweitern Ihre bestehende KNX-Anlage, verständlich und ohne Fachchinesisch. Auch wenn der Elektriker nicht mehr erreichbar ist oder die Projektdatei fehlt.",
-    items: ["Lichtszenen und Jalousien anpassen", "Neue Geräte einbinden", "Fehlersuche und Sicherung"],
-    link: "Zu Smart Home & KNX",
-  },
 ]);
 
-
-
-/** Kacheln „Weitere Bereiche“: alles außer den drei Kernbereichen */
+/** Kacheln „Weitere Leistungen“: alles außer den zwei Hauptthemen */
 export function homeSubServices(): Service[] {
   const core = new Set(CORE.map((c) => c.id));
-  return SERVICES.filter((s) => !s.side && !core.has(s.id));
+  return SERVICES.filter((s) => !core.has(s.id));
 }
 
 export const STEPS: [string, string, string][] = tidyDeep([
