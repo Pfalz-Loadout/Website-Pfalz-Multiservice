@@ -2145,3 +2145,61 @@ html.pm-motion .tk__sparks i:nth-child(3) { animation-delay: calc(var(--tk-d) + 
   .kp__heat::before, .kp__heat::after, .kp__cool::before { animation: none; }
   .kp__tint { transition: none; }
 }
+
+/* KNX-Raum v3: Tastsensor links, rechts Raum und darunter Gruppenmonitor in gleicher Breite */
+.kp { grid-template-columns: minmax(290px, 340px) minmax(0, 1fr); align-items: start; }
+.kp__main { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.kp__device { transition: opacity 1s var(--ease-out), transform 1.1s var(--ease-out); }
+.knx-play__in.io-armed:not(.is-in) .kp__device { opacity: 0; transform: translateX(-30px); }
+.knx-play__in.io-armed:not(.is-in) .kp__main { opacity: 0; transform: translateY(30px); }
+.kp__main { transition: opacity 1s var(--ease-out) .15s, transform 1.1s var(--ease-out) .15s; }
+
+/* Szenen-Felder zeigen beide Farben der Szene */
+.kp__mood { background: linear-gradient(135deg, var(--a) 0%, var(--a) 45%, var(--b) 100%); }
+.kp__mood.is-on { box-shadow: 0 0 0 2px rgba(0,0,0,.6), 0 0 18px -2px var(--a); }
+.kp__moods { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); }
+
+/* Farbiges Licht: Lichtkarte × Farbe, additiv auf den dunklen Raum */
+.kp__lm { position: absolute; inset: 0; isolation: isolate; mix-blend-mode: plus-lighter; pointer-events: none; transition: opacity 1.4s cubic-bezier(.4,0,.2,1); }
+.kp__lm-tint { position: absolute; inset: 0; mix-blend-mode: multiply; transition: background-color 1.2s ease; }
+.kp__lm--pendel { -webkit-mask-image: radial-gradient(ellipse 19% 30% at 35% 50%, #000 0%, #000 54%, transparent 100%); mask-image: radial-gradient(ellipse 19% 30% at 35% 50%, #000 0%, #000 54%, transparent 100%); }
+.kp__lm--spots { -webkit-mask-image: radial-gradient(ellipse 19% 30% at 35% 50%, transparent 0%, transparent 54%, #000 100%); mask-image: radial-gradient(ellipse 19% 30% at 35% 50%, transparent 0%, transparent 54%, #000 100%); }
+.kp__img--on { transition: opacity 1.4s cubic-bezier(.4,0,.2,1); }
+
+/* Gruppenmonitor (ETS-Stil) */
+.kp__mon { background: #0a0a0a; border: 1px solid var(--border-subtle); box-shadow: 0 30px 70px -40px rgba(0,0,0,.9); }
+.kp__mon-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 12px 16px; border-bottom: 1px solid var(--border-subtle); }
+.kp__mon-title { display: inline-flex; align-items: center; gap: 10px; font: 700 11px/1 var(--font-display); letter-spacing: .14em; text-transform: uppercase; color: var(--text-strong); }
+.kp__mon-title small { font: 400 11px/1 ui-monospace, monospace; letter-spacing: 0; text-transform: none; color: var(--text-subtle); }
+.kp__mon-rec { width: 8px; height: 8px; border-radius: 50%; background: #3ddc6b; animation: knx-live 1.8s ease-out infinite; }
+.kp__mon-count { font: 400 11px/1 ui-monospace, monospace; color: var(--text-subtle); font-variant-numeric: tabular-nums; }
+.kp__mon-table { padding: 6px 0 8px; font: 400 12.5px/1.35 ui-monospace, monospace; color: #7bd897; min-height: 232px; }
+.kp__mon-row { display: grid; grid-template-columns: 72px 62px 62px minmax(0, 1fr) 64px minmax(90px, auto); gap: 12px; align-items: baseline; padding: 6px 16px; animation: kp-row .6s var(--ease-out); }
+.kp__mon-row + .kp__mon-row { border-top: 1px dashed rgba(255,255,255,.05); }
+.kp__mon-row:not(.kp__mon-row--h):nth-child(2) { background: rgba(61,220,107,.06); }
+.kp__mon-row--h { animation: none; font: 600 10.5px/1 var(--font-display); letter-spacing: .12em; text-transform: uppercase; color: var(--text-subtle); padding-top: 8px; padding-bottom: 8px; }
+.kp__mon-row span { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.kp__mon-row b { color: var(--brand-accent); font-weight: 600; }
+.kp__mon-row em { font-style: normal; font-weight: 700; color: #6dff9a; }
+.kp__mon-name { color: #b6e8c4; }
+.kp__mon-empty { padding: 10px 16px; color: var(--text-subtle); }
+
+@media (max-width: 1080px) {
+  .kp { grid-template-columns: minmax(0, 1fr); }
+  .kp__main { display: contents; }
+  .kp__room { order: 1; }
+  .kp__device { order: 2; }
+  .kp__mon { order: 3; }
+}
+@media (max-width: 720px) {
+  .kp__mon-row { grid-template-columns: 62px minmax(0, 1fr) auto; gap: 8px; padding: 6px 12px; }
+  .kp__mon-row > span:nth-child(2), .kp__mon-row > span:nth-child(5) { display: none; }
+  .kp__mon-row > span:nth-child(1) { display: none; }
+  .kp__mon-row { grid-template-columns: 58px minmax(0, 1fr) auto; }
+  .kp__mon-table { min-height: 0; }
+  .kp__moods { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .kp__lm, .kp__lm-tint, .kp__device, .kp__main { transition: none; }
+  .kp__mon-row, .kp__mon-rec { animation: none; }
+}

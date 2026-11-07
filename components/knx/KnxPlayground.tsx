@@ -5,18 +5,21 @@ import { Icon } from "../Icon";
 import type { IconName } from "@/lib/data";
 
 /*
- * Interaktiver Raum: KNX-Tastsensor (PA 1.1.12) und Raumregler (PA 1.1.9) steuern Licht, Lichtfarbe,
- * Szenen, Raffstore und Temperatur. Drei deckungsgleiche Fotos (Licht an / aus / Raffstore unten)
- * werden überblendet, Farbe und Heizen/Kühlen liegen als animierte Ebenen darüber.
+ * Interaktiver Raum: KNX-Tastsensor (PA 1.1.12) und Raumregler (PA 1.1.9) steuern Licht, Lichtszenen,
+ * Raffstore und Temperatur. Drei deckungsgleiche Fotos (Licht an / aus / Raffstore unten) plus eine
+ * Lichtkarte (= Licht an minus Licht aus): Für farbige Szenen wird die Lichtkarte eingefärbt und
+ * additiv (plus-lighter) auf den dunklen Raum gelegt. So werfen Spots und Pendelleuchte das farbige
+ * Licht tatsächlich in den Raum, wie bei Hue-Szenen mit mehreren Farben.
  * Gruppenadressen nach Projektschema: Hauptgruppe = Funktion (0 Zentral, 1 Beleuchtung,
  * 2 Beschattung, 3 Heizung/Klima), Mittelgruppe = Ort (1 = Erdgeschoss), Untergruppe = Datenpunkt.
- * Physikalische Adressen (alle Linie 1.1): Taster 1.1.12, Dimmaktor 1.1.3, RGB-Controller 1.1.4,
- * Jalousieaktor 1.1.7, Raumregler 1.1.9.
+ * Physikalische Adressen (Linie 1.1): Taster 1.1.12, Dimmaktor 1.1.3, RGB-Controller Spots 1.1.4,
+ * RGB-Controller Pendel 1.1.5, Jalousieaktor 1.1.7, Raumregler 1.1.9.
  */
 
 type Key = "light" | "dim" | "evening" | "off" | "up" | "down";
-type Log = { id: number; src: string; ga: string; what: string; dpt: string; val: string };
-type Mood = { id: string; name: string; rgb: [number, number, number] };
+type Log = { id: number; t: string; src: string; ga: string; what: string; dpt: string; val: string };
+type RGB = [number, number, number];
+type Scene = { id: string; name: string; no: number; spots: RGB; pendel: RGB };
 
 const KEYS: { id: Key; icon: IconName; label: string }[] = [
   { id: "light", icon: "lightbulb", label: "Licht" },
@@ -27,18 +30,23 @@ const KEYS: { id: Key; icon: IconName; label: string }[] = [
   { id: "down", icon: "chevron-down", label: "Raffstore ab" },
 ];
 
-const MOODS: Mood[] = [
-  { id: "warm", name: "Warmweiß", rgb: [255, 196, 120] },
-  { id: "amber", name: "Bernstein", rgb: [255, 140, 40] },
-  { id: "blue", name: "Blau", rgb: [60, 120, 255] },
-  { id: "violet", name: "Violett", rgb: [170, 80, 255] },
-  { id: "green", name: "Grün", rgb: [40, 210, 120] },
+/* Lichtszenen im Stil von Hue: Spots und Pendelleuchte bekommen je eine eigene, abgestimmte Farbe */
+const SCENES: Scene[] = [
+  { id: "warm", name: "Warmweiß", no: 1, spots: [255, 196, 130], pendel: [255, 196, 130] },
+  { id: "cool", name: "Konzentrieren", no: 2, spots: [215, 230, 255], pendel: [225, 236, 255] },
+  { id: "sunset", name: "Sonnenuntergang", no: 3, spots: [255, 120, 40], pendel: [255, 60, 110] },
+  { id: "aurora", name: "Nordlicht", no: 4, spots: [0, 220, 170], pendel: [120, 90, 255] },
+  { id: "tropic", name: "Tropenabend", no: 5, spots: [255, 50, 160], pendel: [255, 170, 40] },
+  { id: "deepsea", name: "Tiefsee", no: 6, spots: [40, 110, 255], pendel: [30, 210, 255] },
 ];
 
-type Step = { k: Key } | { mood: string } | { temp: number };
-const DEMO: Step[] = [{ k: "light" }, { k: "down" }, { mood: "violet" }, { temp: 23.5 }, { k: "evening" }, { mood: "blue" }, { temp: 19.5 }, { k: "up" }, { mood: "warm" }, { k: "off" }];
+type Step = { k: Key } | { scene: string } | { temp: number };
+const DEMO: Step[] = [{ k: "light" }, { scene: "sunset" }, { k: "down" }, { temp: 23.5 }, { scene: "aurora" }, { k: "evening" }, { scene: "deepsea" }, { temp: 19.5 }, { k: "up" }, { scene: "tropic" }, { scene: "warm" }, { k: "off" }];
 const SPEED = 0.2; // Raffstore: volle Fahrt in 5 s
 const fmt = (t: number) => t.toFixed(1).replace(".", ",");
+const hex = (c: RGB) => "#" + c.map((v) => v.toString(16).padStart(2, "0")).join("").toUpperCase();
+const css = (c: RGB) => `rgb(${c.join(",")})`;
+const now = () => new Date().toLocaleTimeString("de-DE", { hour: "2-digit", minute: "2-digit", second: "2-digit" });
 
 /* Glasfläche im Foto (Prozent, nachgemessen). Die Oberkante steigt perspektivisch nach rechts
    und liegt am rechten Bildrand außerhalb des Bildes (ca. -19 %). Der Raffstore fährt so herunter,
@@ -56,7 +64,7 @@ export function KnxPlayground() {
   const [light, setLight] = useState(1);            // 0 … 1
   const [blind, setBlind] = useState(0);            // 0 offen … 1 zu
   const [target, setTarget] = useState(0);
-  const [mood, setMood] = useState("warm");
+  const [scene, setScene] = useState("warm");
   const [setpoint, setSetpoint] = useState(21.5);
   const [actual, setActual] = useState(21.5);
   const [log, setLog] = useState<Log[]>([]);
@@ -69,7 +77,7 @@ export function KnxPlayground() {
 
   const send = useCallback((ga: string, what: string, dpt: string, val: string, src = "1.1.12") => {
     const id = ++idRef.current;
-    setLog((l) => [{ id, src, ga, what, dpt, val }, ...l].slice(0, 6));
+    setLog((l) => [{ id, t: now(), src, ga, what, dpt, val }, ...l].slice(0, 7));
   }, []);
   /* Rückmeldung eines Aktors kurz nach dem Befehl, wie auf einem echten Bus */
   const reply = useCallback((ga: string, what: string, dpt: string, val: string, src: string, ms = 380) => {
@@ -132,21 +140,22 @@ export function KnxPlayground() {
         break;
       }
       case "dim": setLight(0.4); send("1/1/13", "EG Wohnen Licht Dimmwert", "5.001", "40 %"); reply("1/1/11", "EG Wohnen Licht Status", "1.001", "EIN", "1.1.3"); break;
-      case "evening": setLight(0.45); setTarget(0.5); setMood("amber"); send("1/1/15", "EG Wohnen Szene", "17.001", "Szene 1 „Abend“"); break;
+      case "evening": setLight(0.45); setTarget(0.5); setScene("sunset"); send("1/1/15", "EG Wohnen Szene", "17.001", "Szene 7 „Abend“"); break;
       case "off": setLight(0); send("0/1/1", "EG Zentral Licht aus", "1.001", "AUS"); reply("1/1/11", "EG Wohnen Licht Status", "1.001", "AUS", "1.1.3"); break;
       case "up": setTarget(0); send("2/1/10", "EG Wohnen Raffstore Auf/Ab", "1.008", "AUF"); break;
       case "down": setTarget(1); send("2/1/10", "EG Wohnen Raffstore Auf/Ab", "1.008", "AB"); break;
     }
   }, [light, send, reply]);
 
-  const pickMood = useCallback((id: string, fromUser = true) => {
+  const pickScene = useCallback((id: string, fromUser = true) => {
     if (fromUser) setDemo(false);
-    const m = MOODS.find((x) => x.id === id)!;
-    setMood(id);
-    setFlash({ key: `mood-${id}`, n: idRef.current + 1 });
-    if (light < 0.2) setLight(0.7);
-    send("1/1/16", "EG Wohnen RGB Farbe", "232.600", `${m.name} (${m.rgb.join(", ")})`);
-    reply("1/1/17", "EG Wohnen RGB Status", "232.600", m.name, "1.1.4");
+    const s = SCENES.find((x) => x.id === id)!;
+    setScene(id);
+    setFlash({ key: `scene-${id}`, n: idRef.current + 1 });
+    if (light < 0.2) setLight(0.8);
+    send("1/1/15", "EG Wohnen Szene", "17.001", `Szene ${s.no} „${s.name}“`);
+    reply("1/1/17", "EG Wohnen Spots RGB Status", "232.600", hex(s.spots), "1.1.4", 360);
+    reply("1/1/19", "EG Wohnen Pendel RGB Status", "232.600", hex(s.pendel), "1.1.5", 520);
   }, [light, send, reply]);
 
   const changeTemp = useCallback((v: number, fromUser = true) => {
@@ -166,7 +175,7 @@ export function KnxPlayground() {
     const tick = () => {
       if (visible) {
         const s = DEMO[i % DEMO.length];
-        if ("k" in s) press(s.k, false); else if ("mood" in s) pickMood(s.mood, false); else changeTemp(s.temp, false);
+        if ("k" in s) press(s.k, false); else if ("scene" in s) pickScene(s.scene, false); else changeTemp(s.temp, false);
         i++;
       }
       timer = window.setTimeout(tick, 3400);
@@ -175,90 +184,110 @@ export function KnxPlayground() {
     io.observe(el);
     timer = window.setTimeout(tick, 1200);
     return () => { io.disconnect(); window.clearTimeout(timer); };
-  }, [demo, press, pickMood, changeTemp]);
+  }, [demo, press, pickScene, changeTemp]);
 
   const stop = () => { setDemo(false); setTarget(blindRef.current); send("2/1/11", "EG Wohnen Raffstore Stopp", "1.007", "STOPP"); };
   const moving = Math.abs(target - blind) > 0.001;
   const active = (k: Key) =>
     (k === "light" && light > 0.5) || (k === "dim" && Math.abs(light - 0.4) < 0.01) ||
     (k === "evening" && Math.abs(light - 0.45) < 0.01) || (k === "down" && moving && target > blind) || (k === "up" && moving && target < blind);
-  const rgb = MOODS.find((m) => m.id === mood)!.rgb;
-  const moodStrength = mood === "warm" ? 0.12 : 0.42;
+  const sc = SCENES.find((s) => s.id === scene)!;
+  const colored = scene !== "warm";
   const power = Math.min(1, Math.abs(setpoint - actual) / 2.5);
+  const sizes = "(max-width: 1080px) 100vw, 860px";
 
   return (
     <div className="kp" ref={rootRef}>
-      <div className="kp__panel">
-        <div className="kp__device" role="group" aria-label="KNX-Tastsensor Wohnzimmer">
-          <div className="kp__device-head"><span>Tastsensor Wohnen</span><small>PA 1.1.12</small></div>
-          <div className="kp__keys">
-            {KEYS.map((k) => (
-              <button key={k.id} type="button" className={`kp__key${active(k.id) ? " is-on" : ""}`} aria-pressed={active(k.id)}
-                onClick={() => press(k.id)}>
-                <span className="kp__led" aria-hidden="true" />
-                <Icon name={k.icon} size={22} />
-                <span className="kp__lbl">{k.label}</span>
-                {flash?.key === k.id && <span key={flash.n} className="kp__ripple" aria-hidden="true" />}
-              </button>
-            ))}
-          </div>
-          <button type="button" className="kp__stop" onClick={stop} disabled={!moving}>Raffstore stoppen</button>
-
-          <div className="kp__sub">
-            <span className="kp__sub-lbl">Lichtfarbe <small>RGB · PA 1.1.4</small></span>
-            <div className="kp__moods" role="radiogroup" aria-label="Lichtfarbe">
-              {MOODS.map((m) => (
-                <button key={m.id} type="button" role="radio" aria-checked={mood === m.id} aria-label={m.name} title={m.name}
-                  className={`kp__mood${mood === m.id ? " is-on" : ""}`} style={{ ["--c" as string]: `rgb(${m.rgb.join(",")})` }}
-                  onClick={() => pickMood(m.id)} />
-              ))}
-            </div>
-          </div>
-
-          <div className={`kp__climate kp__climate--${mode}`}>
-            <div className="kp__climate-top">
-              <span className="kp__sub-lbl">Raumregler <small>PA 1.1.9</small></span>
-              <span className="kp__mode">{mode === "heat" ? "Heizen" : mode === "cool" ? "Kühlen" : "Temperatur erreicht"}</span>
-            </div>
-            <div className="kp__climate-row">
-              <button type="button" className="kp__tbtn" aria-label="Sollwert senken" onClick={() => changeTemp(setpoint - 0.5)}>−</button>
-              <div className="kp__temp" aria-live="polite">
-                <b>{fmt(actual)}<span>°C</span></b>
-                <small>Soll {fmt(setpoint)} °C</small>
-              </div>
-              <button type="button" className="kp__tbtn" aria-label="Sollwert erhöhen" onClick={() => changeTemp(setpoint + 0.5)}>+</button>
-            </div>
-          </div>
-          <div className="kp__bus" aria-hidden="true"><span key={flash?.n ?? 0} className="kp__tg" /></div>
-        </div>
-        <div className="kp__log" aria-live="polite">
-          <div className="kp__log-head">Busmonitor <small>Linie 1.1</small></div>
-          {log.length === 0 && <div className="kp__log-empty">Drücken Sie eine Taste …</div>}
-          {log.map((l) => (
-            <div key={l.id} className="kp__log-row">
-              <b>{l.ga}</b><span>{l.what}</span><em>{l.val}</em>
-              <small>{l.src} → {l.ga} · DPT {l.dpt}</small>
-            </div>
+      <div className="kp__device" role="group" aria-label="KNX-Tastsensor Wohnzimmer">
+        <div className="kp__device-head"><span>Tastsensor Wohnen</span><small>PA 1.1.12</small></div>
+        <div className="kp__keys">
+          {KEYS.map((k) => (
+            <button key={k.id} type="button" className={`kp__key${active(k.id) ? " is-on" : ""}`} aria-pressed={active(k.id)}
+              onClick={() => press(k.id)}>
+              <span className="kp__led" aria-hidden="true" />
+              <Icon name={k.icon} size={22} />
+              <span className="kp__lbl">{k.label}</span>
+              {flash?.key === k.id && <span key={flash.n} className="kp__ripple" aria-hidden="true" />}
+            </button>
           ))}
         </div>
+        <button type="button" className="kp__stop" onClick={stop} disabled={!moving}>Raffstore stoppen</button>
+
+        <div className="kp__sub">
+          <span className="kp__sub-lbl">Lichtszenen <small>{sc.name}</small></span>
+          <div className="kp__moods" role="radiogroup" aria-label="Lichtszene">
+            {SCENES.map((s) => (
+              <button key={s.id} type="button" role="radio" aria-checked={scene === s.id} aria-label={s.name} title={s.name}
+                className={`kp__mood${scene === s.id ? " is-on" : ""}`}
+                style={{ ["--a" as string]: css(s.spots), ["--b" as string]: css(s.pendel) }}
+                onClick={() => pickScene(s.id)} />
+            ))}
+          </div>
+        </div>
+
+        <div className={`kp__climate kp__climate--${mode}`}>
+          <div className="kp__climate-top">
+            <span className="kp__sub-lbl">Raumregler <small>PA 1.1.9</small></span>
+            <span className="kp__mode">{mode === "heat" ? "Heizen" : mode === "cool" ? "Kühlen" : "Temperatur erreicht"}</span>
+          </div>
+          <div className="kp__climate-row">
+            <button type="button" className="kp__tbtn" aria-label="Sollwert senken" onClick={() => changeTemp(setpoint - 0.5)}>−</button>
+            <div className="kp__temp" aria-live="polite">
+              <b>{fmt(actual)}<span>°C</span></b>
+              <small>Soll {fmt(setpoint)} °C</small>
+            </div>
+            <button type="button" className="kp__tbtn" aria-label="Sollwert erhöhen" onClick={() => changeTemp(setpoint + 0.5)}>+</button>
+          </div>
+        </div>
+        <div className="kp__bus" aria-hidden="true"><span key={flash?.n ?? 0} className="kp__tg" /></div>
       </div>
 
-      <div className="kp__room">
-        <Image className="kp__img" src="/images/knx-raum-aus.jpg" alt="Wohnzimmer mit großer Fensterfront, Licht aus" fill sizes="(max-width: 1080px) 100vw, 860px" />
-        <Image className="kp__img kp__img--on" src="/images/knx-raum-an.jpg" alt="" fill sizes="(max-width: 1080px) 100vw, 860px" style={{ opacity: light }} />
-        {/* Farbiges Stimmungslicht: färbt die beleuchteten Flächen im Raum, nicht das Fenster */}
-        <div className="kp__tint" aria-hidden="true" style={{ ["--c" as string]: `rgb(${rgb.join(",")})`, opacity: light * moodStrength }} />
-        <div className={`kp__heat${mode === "heat" ? " is-on" : ""}`} aria-hidden="true" style={{ ["--p" as string]: String(0.35 + 0.65 * power) }} />
-        <div className={`kp__cool${mode === "cool" ? " is-on" : ""}`} aria-hidden="true" style={{ ["--p" as string]: String(0.35 + 0.65 * power) }} />
-        <div className="kp__blind" style={{ clipPath: blindClip(blind), WebkitClipPath: blindClip(blind) }}>
-          <Image className="kp__img" src="/images/knx-raum-zu.jpg" alt="" fill sizes="(max-width: 1080px) 100vw, 860px" style={{ filter: `brightness(${(0.3 + 0.7 * light).toFixed(2)})` }} />
+      <div className="kp__main">
+        <div className="kp__room">
+          <Image className="kp__img" src="/images/knx-raum-aus.jpg" alt="Wohnzimmer mit großer Fensterfront" fill sizes={sizes} />
+          <Image className="kp__img kp__img--on" src="/images/knx-raum-an.jpg" alt="" fill sizes={sizes} style={{ opacity: colored ? 0 : light }} />
+          {/* Farbiges Licht: Lichtkarte eingefärbt, additiv. Spots außen, Pendelleuchte über dem Tisch */}
+          <div className="kp__lm kp__lm--spots" aria-hidden="true" style={{ opacity: colored ? light : 0 }}>
+            <Image className="kp__img" src="/images/knx-raum-licht.jpg" alt="" fill sizes={sizes} />
+            <span className="kp__lm-tint" style={{ background: css(sc.spots) }} />
+          </div>
+          <div className="kp__lm kp__lm--pendel" aria-hidden="true" style={{ opacity: colored ? light : 0 }}>
+            <Image className="kp__img" src="/images/knx-raum-licht.jpg" alt="" fill sizes={sizes} />
+            <span className="kp__lm-tint" style={{ background: css(sc.pendel) }} />
+          </div>
+          <div className={`kp__heat${mode === "heat" ? " is-on" : ""}`} aria-hidden="true" style={{ ["--p" as string]: String(0.35 + 0.65 * power) }} />
+          <div className={`kp__cool${mode === "cool" ? " is-on" : ""}`} aria-hidden="true" style={{ ["--p" as string]: String(0.35 + 0.65 * power) }} />
+          <div className="kp__blind" style={{ clipPath: blindClip(blind), WebkitClipPath: blindClip(blind) }}>
+            <Image className="kp__img" src="/images/knx-raum-zu.jpg" alt="" fill sizes={sizes} style={{ filter: `brightness(${(0.3 + 0.7 * light).toFixed(2)})` }} />
+          </div>
+          <div className="kp__status" aria-hidden="true">
+            <span><Icon name="lightbulb" size={15} /> {Math.round(light * 100)} % · {sc.name}</span>
+            <span><Icon name="blinds" size={15} /> Raffstore {Math.round(blind * 100)} %{moving ? (target > blind ? " ▼" : " ▲") : ""}</span>
+            <span className={`kp__st-temp kp__st-temp--${mode}`}><Icon name="thermometer" size={15} /> {fmt(actual)} °C{mode === "heat" ? " ▲" : mode === "cool" ? " ▼" : ""}</span>
+          </div>
+          {demo && <span className="kp__demo">Vorführung läuft · selbst ausprobieren</span>}
         </div>
-        <div className="kp__status" aria-hidden="true">
-          <span><Icon name="lightbulb" size={15} /> Licht {Math.round(light * 100)} %</span>
-          <span><Icon name="blinds" size={15} /> Raffstore {Math.round(blind * 100)} %{moving ? (target > blind ? " ▼" : " ▲") : ""}</span>
-          <span className={`kp__st-temp kp__st-temp--${mode}`}><Icon name="thermometer" size={15} /> {fmt(actual)} °C{mode === "heat" ? " ▲" : mode === "cool" ? " ▼" : ""}</span>
+
+        {/* Gruppenmonitor wie in der ETS: Zeit, Quelle, Ziel, Name, DPT, Wert */}
+        <div className="kp__mon" aria-live="polite">
+          <div className="kp__mon-head">
+            <span className="kp__mon-title"><span className="kp__mon-rec" aria-hidden="true" /> Gruppenmonitor <small>Linie 1.1</small></span>
+            <span className="kp__mon-count">{idRef.current} Telegramme</span>
+          </div>
+          <div className="kp__mon-table" role="table" aria-label="Telegramme auf dem KNX-Bus">
+            <div className="kp__mon-row kp__mon-row--h" role="row">
+              <span role="columnheader">Zeit</span><span role="columnheader">Quelle</span><span role="columnheader">Ziel</span>
+              <span role="columnheader">Name</span><span role="columnheader">DPT</span><span role="columnheader">Wert</span>
+            </div>
+            {log.length === 0 && <div className="kp__mon-empty">Warte auf Telegramme …</div>}
+            {log.map((l) => (
+              <div key={l.id} className="kp__mon-row" role="row">
+                <span role="cell">{l.t}</span><span role="cell">{l.src}</span><span role="cell"><b>{l.ga}</b></span>
+                <span role="cell" className="kp__mon-name">{l.what}</span><span role="cell">{l.dpt}</span><span role="cell"><em>{l.val}</em></span>
+              </div>
+            ))}
+          </div>
         </div>
-        {demo && <span className="kp__demo">Vorführung läuft · selbst ausprobieren</span>}
       </div>
     </div>
   );
