@@ -1,10 +1,6 @@
 import { social } from "@/lib/social";
 import type { Metadata, Viewport } from "next";
-import "@fontsource/poppins/latin-400.css";
-import "@fontsource/poppins/latin-500.css";
-import "@fontsource/poppins/latin-600.css";
-import "@fontsource/poppins/latin-700.css";
-import "@fontsource/poppins/latin-800.css";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -14,6 +10,9 @@ import { ScrollProgress } from "@/components/motion/ScrollProgress";
 import { Cursor } from "@/components/motion/Cursor";
 import { SITE, SITE_NAME, TITLE, DESC, OG_IMAGE } from "@/lib/site";
 import { AREA, COMPANY, CONTACT, SERVICES, serviceHref } from "@/lib/data";
+
+// Schrift über next/font: wird mitgeliefert, vorab geladen, und die Ersatzschrift hat passende Maße (kein Layout-Sprung)
+const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"], display: "swap", variable: "--font-poppins" });
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
@@ -73,7 +72,7 @@ const motionScript = `try{if(!matchMedia('(prefers-reduced-motion: reduce)').mat
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="de" suppressHydrationWarning>
+    <html lang="de" className={poppins.variable} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: motionScript }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
