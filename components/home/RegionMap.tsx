@@ -19,7 +19,6 @@ const CITIES = [
   { n: "Eich", x: 292, y: 149, km: 15, dx: -12, end: true, dy: 0 },
   { n: "Bad Dürkheim", x: 142, y: 439, km: 28, dx: -12, end: true, dy: 0 },
 ];
-const HULL = [2, 6, 3, 4, 5, 7, 1].map((i) => `${CITIES[i].x} ${CITIES[i].y}`).join(" L");
 const RHINE = "M311 600 C318 540 334 500 330 470 S326 425 324 410 S312 360 305 340 S282 295 279 270 S286 225 292 200 S340 165 350 140 S312 80 305 50 S262 20 246 0";
 const NECKAR = "M337 410 C360 418 380 428 389 430 S450 480 480 490 S560 495 600 500";
 const arcPath = (c: (typeof CITIES)[number]) => {
@@ -44,7 +43,6 @@ export function RegionMap({ heading }: { heading: ReactNode }) {
     const q = <T extends Element>(s: string) => el.querySelector(s) as T;
     const qa = <T extends Element>(s: string) => [...el.querySelectorAll(s)] as T[];
     const dots = qa<SVGCircleElement>(".rm-dot");
-    const rings = qa<SVGCircleElement>(".rm-ring");
     const radii = qa<SVGCircleElement>(".rm-radius");
     const rivers = qa<SVGPathElement>(".rm-river").map((p) => ({ p, len: p.getTotalLength() }));
     rivers.forEach(({ p, len }) => { p.style.strokeDasharray = `${len}`; });
@@ -62,7 +60,7 @@ export function RegionMap({ heading }: { heading: ReactNode }) {
     });
     const hqDot = q<SVGCircleElement>(".rm-hqdot"), hqGlow = q<SVGCircleElement>(".rm-hqglow");
     const hqL = q<SVGTextElement>(".rm-hql"), hqS = q<SVGTextElement>(".rm-hqs"), riverL = q<SVGTextElement>(".rm-rl");
-    const sweep = q<SVGGElement>(".rm-sweep"), area = q<SVGPathElement>(".rm-area");
+    const sweep = q<SVGGElement>(".rm-sweep");
     const s1 = q<HTMLElement>(".rm-s1"), s2 = q<HTMLElement>(".rm-s2");
     const op = (e: Element, v: number) => e.setAttribute("opacity", v.toFixed(3));
 
@@ -83,13 +81,6 @@ export function RegionMap({ heading }: { heading: ReactNode }) {
       op(hqDot, h); hqDot.setAttribute("r", (7 * back(h)).toFixed(2));
       op(hqGlow, h * (0.75 + 0.25 * Math.sin(clock * 3)));
       op(hqL, seg(t, 2.3, 2.9)); op(hqS, seg(t, 2.5, 3.1));
-      rings.forEach((r, i) => {
-        const start = 8.0 + i * 0.55; // Sonar-Ringe erst, wenn alle Orte erreicht sind
-        // nach dem Aufbau ruhiger: längere Periode, schwächer
-        const period = t >= END ? 3.3 : 1.65, strength = t >= END ? 0.35 : 0.6;
-        const v = clock > start ? ((clock - start) % period) / period : 0;
-        r.setAttribute("r", (v * 260).toFixed(1)); op(r, v > 0 && h > 0 ? (1 - v) * strength : 0);
-      });
       radii.forEach((r, i) => op(r, seg(t, 2.6 + i * 0.15, 3.2 + i * 0.15)));
       const sw = seg(t, 8.0, 10.0); // Radar erst, wenn alle Orte erreicht sind
       op(sweep, sw > 0 && sw < 1 ? Math.sin(sw * Math.PI) : 0);
@@ -104,7 +95,10 @@ export function RegionMap({ heading }: { heading: ReactNode }) {
           c.spark.setAttribute("cx", `${pt.x}`); c.spark.setAttribute("cy", `${pt.y}`); op(c.spark, 1);
         } else op(c.spark, 0);
         const a = seg(t, s + 0.7, s + 1.1), pg = seg(t, s + 0.7, s + 1.6);
-        c.dot.setAttribute("r", (5 * back(a)).toFixed(2)); c.halo.setAttribute("r", (30 * a).toFixed(1));
+        // Lichtkegel je Ort: nach dem Aufploppen sanft pulsierend, zeitversetzt
+        const pulse = a >= 1 ? 0.5 + 0.5 * Math.sin((clock - s) * 2.4 + i * 0.9) : 0;
+        c.dot.setAttribute("r", (5 * back(a)).toFixed(2));
+        c.halo.setAttribute("r", (30 * a * (0.85 + 0.35 * pulse)).toFixed(1)); op(c.halo, a * (0.7 + 0.3 * pulse));
         c.ping.setAttribute("r", (4 + pg * 26).toFixed(1)); op(c.ping, pg > 0 ? 1 - pg : 0);
         op(c.lbl, seg(t, s + 0.8, s + 1.2)); op(c.kmt, seg(t, s + 0.9, s + 1.3));
         const k = Math.round(c.km * ease(seg(t, s + 0.8, s + 1.6)));
@@ -112,14 +106,11 @@ export function RegionMap({ heading }: { heading: ReactNode }) {
         c.li.classList.toggle("is-on", a > 0);
         if (a > 0) { count++; maxkm = Math.max(maxkm, k); }
       });
-      const ar = seg(t, 8.4, 9.6);
-      area.setAttribute("fill-opacity", (0.07 * ar).toFixed(3)); area.setAttribute("stroke-opacity", (0.5 * ar).toFixed(3));
       s1.textContent = `${count}`; s2.textContent = `${maxkm} km`;
     };
 
     if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      render(END, 0);
-      rings.forEach((r) => op(r, 0));
+      render(END, END);
       return;
     }
     render(0, 0);
@@ -166,10 +157,8 @@ export function RegionMap({ heading }: { heading: ReactNode }) {
           </defs>
           <g>{DOTS.map((d, i) => <circle key={i} className="rm-dot" cx={d.x} cy={d.y} r="1" fill="#0d0d0d" />)}</g>
           <g fill="none" stroke="#D9B13A">
-            {[0, 1, 2].map((i) => <circle key={i} className="rm-ring" cx={HQ[0]} cy={HQ[1]} r="0" strokeWidth="1.2" opacity="0" />)}
             {[80, 160, 240].map((r) => <circle key={r} className="rm-radius" cx={HQ[0]} cy={HQ[1]} r={r} stroke="#2a2a2a" strokeDasharray="2 6" opacity="0" />)}
           </g>
-          <path className="rm-area" d={`M${HULL} Z`} fill="#D9B13A" fillOpacity="0" stroke="#D9B13A" strokeOpacity="0" strokeDasharray="3 5" />
           <path className="rm-river" d={RHINE} fill="none" stroke="url(#rm-riv)" strokeWidth="3" strokeLinecap="round" />
           <path className="rm-river" d={NECKAR} fill="none" stroke="url(#rm-riv)" strokeWidth="2" strokeLinecap="round" opacity=".8" />
           <text className="rm-rl rm-river-l" x="318" y="462" transform="rotate(-80 318 462)" opacity="0">RHEIN</text>
