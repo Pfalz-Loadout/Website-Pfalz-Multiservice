@@ -67,7 +67,7 @@ export const SERVICES: Service[] = tidyDeep([
     title: "Web Maintenance & Management",
     short: "Webdesign, Aufbau & Betreuung",
     text: "Laufende technische Betreuung von Websites und Online-Shops: Updates, Sicherheitsüberwachung, Pflege der Inhalte und Systemverwaltung. Aus dem Betrieb eigener Online-Shops bringen wir praktische Erfahrung mit.",
-    image: IMG + "webdesign-buero.png",
+    image: IMG + "webdesign-buero.jpg",
   },
   {
     id: "reselling",
