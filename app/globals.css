@@ -2249,7 +2249,7 @@ html.pm-motion .tk__sparks i:nth-child(3) { animation-delay: calc(var(--tk-d) + 
 .rm-stats { display: flex; gap: clamp(20px, 4vw, 36px); flex-wrap: wrap; }
 .rm-stats strong { display: block; color: #fff; font-size: clamp(1.75rem, 3vw, 2.25rem); font-weight: 600; letter-spacing: -.02em; font-variant-numeric: tabular-nums; line-height: 1.2; }
 .rm-stats span { font-size: .75rem; color: var(--text-subtle); letter-spacing: .06em; text-transform: uppercase; }
-@media@media (max-width: 900px) {
+@media (max-width: 900px) {
   .rm-panel { grid-template-columns: minmax(0, 1fr); align-items: start; }
   .rm-map { aspect-ratio: 1 / 1; }
 }
