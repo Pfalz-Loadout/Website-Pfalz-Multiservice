@@ -111,7 +111,7 @@ export const SERVICES: Service[] = tidyDeep([
     title: "Clearance Services",
     short: "Strukturierte Räumung, fachgerechte Verwertung",
     text: "Vollständige Räumung und Entrümpelung von Garagen, Lagern, Hallen und Gewerbeflächen: Bestandsaufnahme, verbindliches Angebot, Durchführung und besenreine Übergabe. Verwertbare Bestände werden in den Wirtschaftskreislauf zurückgeführt, alles Weitere fachgerecht entsorgt.",
-    image: IMG + "transporter-verladung.png",
+    image: IMG + "clearance-raeumung.jpg",
   },
   {
     id: "facility",
