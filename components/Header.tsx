@@ -101,7 +101,7 @@ export function Header() {
       <header ref={ref} className={`header ${solid ? "header--solid" : "header--top"}`}>
         <div className="header__inner">
           <Link href="/" className="header__logo" onClick={goHome} aria-label="Pfalz Multiservice, Startseite" data-cursor>
-            <Logo height={48} />
+            <Logo height={48} priority />
           </Link>
 
           <nav className="nav" aria-label="Hauptnavigation">

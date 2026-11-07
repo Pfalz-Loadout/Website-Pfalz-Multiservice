@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { useRef } from "react";
 import { gsap, useGSAP, introDelay, markVisited } from "@/lib/gsap";
 
@@ -23,12 +24,12 @@ export function Curtain() {
 
     if (first) {
       tl.fromTo(mark, { opacity: 1, clipPath: "inset(0% 100% 0% 0%)", scale: 0.92 },
-          { clipPath: "inset(0% 0% 0% 0%)", scale: 1, duration: 0.9, ease: "expo.inOut" }, 0.05)
-        .to(mark, { opacity: 0, scale: 0.94, duration: 0.3, ease: "power2.in" }, 0.95)
-        .to(line, { scaleX: 1, duration: 0.5, ease: "power3.inOut" }, 1.0)
-        .to(top, { yPercent: -100, duration: 0.9, ease: "expo.inOut" }, 1.4)
-        .to(bottom, { yPercent: 100, duration: 0.9, ease: "expo.inOut" }, 1.4)
-        .to(line, { opacity: 0, duration: 0.3 }, 1.5);
+          { clipPath: "inset(0% 0% 0% 0%)", scale: 1, duration: 0.7, ease: "expo.inOut" }, 0.05)
+        .to(mark, { opacity: 0, scale: 0.94, duration: 0.25, ease: "power2.in" }, 0.7)
+        .to(line, { scaleX: 1, duration: 0.45, ease: "power3.inOut" }, 0.75)
+        .to(top, { yPercent: -100, duration: 0.8, ease: "expo.inOut" }, 1.05)
+        .to(bottom, { yPercent: 100, duration: 0.8, ease: "expo.inOut" }, 1.05)
+        .to(line, { opacity: 0, duration: 0.3 }, 1.15);
     } else {
       gsap.set(line, { scaleX: 1, transformOrigin: "left center" });
       tl.to(line, { scaleX: 0, transformOrigin: "right center", duration: 0.5, ease: "power3.inOut" }, 0)
@@ -42,8 +43,8 @@ export function Curtain() {
       <div className="curtain__panel curtain__panel--top" />
       <div className="curtain__panel curtain__panel--bottom" />
       <div className="curtain__line" />
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img className="curtain__mark" src="/logo-mark-white.webp" alt="" width={120} height={101} />
+
+      <Image className="curtain__mark" src="/logo-mark-white.webp" alt="" width={120} height={101} priority />
     </div>
   );
 }

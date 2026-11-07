@@ -1,17 +1,22 @@
-/* eslint-disable @next/next/no-img-element */
+import Image from "next/image";
+
 /** Pfalz-Multiservice-Logo (weiße Variante für dunklen Hintergrund) */
 const RATIO = 900 / 284;
 
-export function Logo({ height = 48, className }: { height?: number; className?: string }) {
+/**
+ * Läuft über den Next.js-Bildoptimierer: ausgeliefert wird die zur Anzeigegröße passende
+ * Version (statt der großen Originaldatei). `priority` nur für das Logo im sichtbaren Bereich.
+ */
+export function Logo({ height = 48, className, priority = false }: { height?: number; className?: string; priority?: boolean }) {
   return (
-    <img
+    <Image
       src="/logo-white.webp"
       alt="Pfalz Multiservice"
       width={Math.round(height * RATIO)}
       height={height}
       className={className}
       style={{ height, width: "auto", display: "block" }}
-      decoding="async"
+      priority={priority}
     />
   );
 }

@@ -17,7 +17,7 @@ let visited = false;
 export function introDelay() {
   if (visited) return 0.55;
   // Auf dem Handy kein langes Marken-Intro: Inhalt erscheint früher (besserer LCP)
-  return typeof window !== "undefined" && window.matchMedia("(max-width: 900px)").matches ? 0.75 : 1.65;
+  return typeof window !== "undefined" && window.matchMedia("(max-width: 900px)").matches ? 0.6 : 1.3;
 }
 export function markVisited() {
   visited = true;
