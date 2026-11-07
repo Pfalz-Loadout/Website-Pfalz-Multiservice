@@ -2127,11 +2127,11 @@ html.pm-motion .tk__sparks i:nth-child(3) { animation-delay: calc(var(--tk-d) + 
 /* Kühlen: kühle Luft sinkt von der Decke, feine Partikel */
 .kp__cool { background: linear-gradient(180deg, rgba(70,150,255,.4) 0%, rgba(90,170,255,.16) 30%, transparent 58%); mix-blend-mode: screen; }
 .kp__cool::before { content: ""; position: absolute; left: 0; right: 32%; top: 0; height: 65%;
-  background-image: radial-gradient(circle, rgba(200,230,255,.55) 1.2px, transparent 1.6px), radial-gradient(circle, rgba(170,210,255,.4) 1px, transparent 1.4px);
-  background-size: 46px 46px, 31px 31px; background-position: 0 0, 15px 20px;
+  background-image: radial-gradient(circle, rgba(200,230,255,.3) 1px, transparent 1.6px), radial-gradient(circle, rgba(170,210,255,.22) .8px, transparent 1.3px), radial-gradient(circle, rgba(220,240,255,.18) 1.4px, transparent 2px);
+  background-size: 53px 61px, 37px 43px, 89px 71px; background-position: 0 0, 17px 23px, 41px 9px; filter: blur(.6px);
   -webkit-mask-image: linear-gradient(180deg, #000, transparent); mask-image: linear-gradient(180deg, #000, transparent);
   animation: kp-fall 3.2s linear infinite; }
-@keyframes kp-fall { from { background-position: 0 0, 15px 20px; } to { background-position: 0 46px, 15px 51px; } }
+@keyframes kp-fall { from { background-position: 0 0, 17px 23px, 41px 9px; } to { background-position: 6px 61px, 13px 66px, 47px 80px; } }
 
 .kp__st-temp--heat svg { color: #ff9a55 !important; }
 .kp__st-temp--cool svg { color: #7fb6ff !important; }
