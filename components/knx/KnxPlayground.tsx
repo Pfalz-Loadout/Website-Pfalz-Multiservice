@@ -26,11 +26,16 @@ const KEYS: { id: Key; icon: IconName; label: string }[] = [
 const DEMO: Key[] = ["light", "down", "evening", "up", "dim", "off"];
 const SPEED = 0.2; // Raffstore: volle Fahrt in 5 s
 
-/* Fensterfläche im Foto (Prozent), Raffstore fährt von oben nach unten */
+/* Glasfläche im Foto (Prozent, nachgemessen). Die Oberkante steigt perspektivisch nach rechts
+   und liegt am rechten Bildrand außerhalb des Bildes (ca. -19 %). Der Raffstore fährt so herunter,
+   dass seine Unterkante zwischen Ober- und Unterkante des Fensters interpoliert: perspektivisch korrekt. */
+const WIN = { tl: [68.6, 16.6], tr: [100.5, -19.2], bl: [69.0, 61.0], br: [100.5, 82.6] } as const;
 function blindClip(p: number) {
   const q = Math.max(0, Math.min(1, p));
-  const lx = 67.8 + q * 1.2, ly = 15.6 + q * 46.2;
-  return `polygon(67.8% 15.6%, 83.4% -1%, 101% -1%, 101% ${(-1 + q * 82.5).toFixed(2)}%, ${lx.toFixed(2)}% ${ly.toFixed(2)}%)`;
+  const lerp = (a: number, b: number) => (a + (b - a) * q).toFixed(2);
+  const lx = lerp(WIN.tl[0], WIN.bl[0]), ly = lerp(WIN.tl[1], WIN.bl[1]);
+  const ry = lerp(WIN.tr[1], WIN.br[1]);
+  return `polygon(${WIN.tl[0]}% ${WIN.tl[1]}%, ${WIN.tr[0]}% ${WIN.tr[1]}%, ${WIN.tr[0]}% ${ry}%, ${lx}% ${ly}%)`;
 }
 
 export function KnxPlayground() {
