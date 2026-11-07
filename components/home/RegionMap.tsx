@@ -29,7 +29,7 @@ const arcPath = (c: (typeof CITIES)[number]) => {
 const DOTS: { x: number; y: number; d: number }[] = [];
 for (let y = 12; y < 600; y += 18) for (let x = 12; x < 600; x += 18) DOTS.push({ x, y, d: Math.hypot(x - HQ[0], y - HQ[1]) });
 
-const END = 9.4; // Sekunden bis zum Endbild
+const END = 10.2; // Sekunden bis zum Endbild
 const clamp = (v: number) => Math.max(0, Math.min(1, v));
 const seg = (t: number, a: number, b: number) => clamp((t - a) / (b - a));
 const ease = (t: number) => 1 - Math.pow(1 - t, 3);
@@ -91,12 +91,12 @@ export function RegionMap({ heading }: { heading: ReactNode }) {
         r.setAttribute("r", (v * 260).toFixed(1)); op(r, v > 0 && h > 0 ? (1 - v) * strength : 0);
       });
       radii.forEach((r, i) => op(r, seg(t, 2.6 + i * 0.15, 3.2 + i * 0.15)));
-      const sw = seg(t, 2.8, 4.6);
+      const sw = seg(t, 8.0, 10.0); // Radar erst, wenn alle Orte erreicht sind
       op(sweep, sw > 0 && sw < 1 ? Math.sin(sw * Math.PI) : 0);
       sweep.setAttribute("transform", `rotate(${-90 + sw * 360} ${HQ[0]} ${HQ[1]})`);
       let count = h > 0 ? 1 : 0, maxkm = 0;
       cities.forEach((c, i) => {
-        const s = 3.4 + i * 0.55, p = ease(seg(t, s, s + 0.7));
+        const s = 3.0 + i * 0.55, p = ease(seg(t, s, s + 0.7));
         c.path.style.strokeDashoffset = `${c.len * (1 - p)}`;
         op(c.path, 0.9 - 0.55 * seg(t, s + 1, s + 2));
         if (p > 0 && p < 1) {
@@ -112,7 +112,7 @@ export function RegionMap({ heading }: { heading: ReactNode }) {
         c.li.classList.toggle("is-on", a > 0);
         if (a > 0) { count++; maxkm = Math.max(maxkm, k); }
       });
-      const ar = seg(t, 8.2, 9.2);
+      const ar = seg(t, 8.4, 9.6);
       area.setAttribute("fill-opacity", (0.07 * ar).toFixed(3)); area.setAttribute("stroke-opacity", (0.5 * ar).toFixed(3));
       s1.textContent = `${count}`; s2.textContent = `${maxkm} km`;
     };
