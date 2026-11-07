@@ -187,9 +187,9 @@ export function RegionMap({ heading }: { heading: ReactNode }) {
           {CITIES.map((c, i) => <li key={c.n} className={`rm-li-${i}`}>{c.n}<b>0 km</b></li>)}
         </ul>
         <div className="rm-stats">
-          <div><strong className="rm-s1">0</strong><span>Orte vor Ort</span></div>
+          <div><strong className="rm-s1">0</strong><span>Orte regional vor Ort</span></div>
           <div><strong className="rm-s2">0 km</strong><span>Umkreis</span></div>
-          <div><strong>Online</strong><span>Deutschsprachiger Raum</span></div>
+          <div><strong>Bundesweit</strong><span>Online verfügbar</span></div>
         </div>
       </div>
     </div>

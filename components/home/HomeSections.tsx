@@ -97,7 +97,7 @@ export function Region() {
           heading={
             <SectionHeading
               eyebrow="Region Worms" title="Unser" highlight="Einzugsgebiet"
-              intro="Vor Ort in Worms und rund 30 Kilometern Umkreis. Digitale Leistungen erbringen wir standortunabhängig im gesamten deutschsprachigen Raum."
+              intro="Regional vor Ort in Worms und rund 30 Kilometern Umkreis. Bundesweit online verfügbar: Webdesign, Website-Betreuung und E-Commerce erledigen wir standortunabhängig."
             />
           }
         />
