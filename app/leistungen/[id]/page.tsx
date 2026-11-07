@@ -13,6 +13,7 @@ import { JsonLd, breadcrumb, faqPage } from "@/lib/schema";
 import { Faq } from "@/components/Faq";
 import { SITE } from "@/lib/site";
 import { PartnerStayTip } from "@/components/partner/Partners";
+import { KnxSections } from "@/components/knx/KnxSections";
 
 export function generateStaticParams() {
   return SERVICES.filter((s) => !s.href).map((s) => ({ id: s.id }));
@@ -62,6 +63,7 @@ export default async function ServicePage({ params }: { params: Promise<{ id: st
         image={s.image}
         crumbs={[{ label: "Leistungen", href: "/#leistungen" }, { label: s.title }]}
       />
+      {s.id === "smarthome" ? <KnxSections text={s.text} legal={s.legal} /> : (
       <section className="section">
         <div className="container split split--detail" style={{ gridTemplateColumns: "1.3fr 1fr", alignItems: "start" }}>
           <div className="stack" style={{ gap: 28 }}>
@@ -85,6 +87,7 @@ export default async function ServicePage({ params }: { params: Promise<{ id: st
           )}
         </div>
       </section>
+      )}
       {["facility", "storage", "clearance"].includes(s.id) && <PartnerStayTip />}
       {s.faq && <Faq items={s.faq} alt />}
       <section className="section">

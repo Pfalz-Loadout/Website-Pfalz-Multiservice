@@ -17,7 +17,8 @@ export type IconName =
   | "circle-arrow-right" | "star" | "menu" | "x" | "arrow-up" | "external-link" | "layout-template"
   | "clapperboard" | "camera" | "pen-tool" | "languages"
   | "key-round" | "lock-keyhole" | "folder-code" | "copyright" | "search-check" | "clipboard-list" | "gauge" | "pencil-line"
-  | "search" | "sliders-horizontal" | "calendar-days" | "ticket" | "sparkles" | "smartphone" | "gift" | "package-check";
+  | "search" | "sliders-horizontal" | "calendar-days" | "ticket" | "sparkles" | "smartphone" | "gift" | "package-check"
+  | "blinds" | "circle-plus" | "refresh-cw" | "shield-check" | "thermometer" | "network";
 
 export type Service = {
   id: string;

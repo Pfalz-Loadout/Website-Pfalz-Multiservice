@@ -3,6 +3,7 @@ import {
   MessageCircle, Phone, Mail, Check, ArrowRight, ChevronDown, ChevronRight, CircleArrowRight, Star, Menu, X, ArrowUp, ExternalLink, LayoutTemplate, Clapperboard, Camera, PenTool, Languages,
   KeyRound, LockKeyhole, FolderCode, Copyright, SearchCheck, ClipboardList, Gauge, PencilLine,
   Search, SlidersHorizontal, CalendarDays, Ticket, Sparkles, Smartphone, Gift, PackageCheck,
+  Blinds, CirclePlus, RefreshCw, ShieldCheck, Thermometer, Network,
   type LucideProps,
 } from "lucide-react";
 import type { IconName } from "@/lib/data";
@@ -18,6 +19,7 @@ const MAP = {
   "search-check": SearchCheck, "clipboard-list": ClipboardList, gauge: Gauge, "pencil-line": PencilLine,
   search: Search, "sliders-horizontal": SlidersHorizontal, "calendar-days": CalendarDays, ticket: Ticket,
   sparkles: Sparkles, smartphone: Smartphone, gift: Gift, "package-check": PackageCheck,
+  blinds: Blinds, "circle-plus": CirclePlus, "refresh-cw": RefreshCw, "shield-check": ShieldCheck, thermometer: Thermometer, network: Network,
 } as const;
 
 export function Icon({ name, size = 20, ...rest }: { name: IconName; size?: number } & Omit<LucideProps, "ref">) {
