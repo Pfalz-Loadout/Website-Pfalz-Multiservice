@@ -46,12 +46,12 @@ export function RegionMap({ heading }: { heading: ReactNode }) {
     const radii = qa<SVGCircleElement>(".rm-radius");
     const rivers = qa<SVGPathElement>(".rm-river").map((p) => ({ p, len: p.getTotalLength() }));
     rivers.forEach(({ p, len }) => { p.style.strokeDasharray = `${len}`; });
-    const cities = CITIES.map((_, i) => {
+    const cities = CITIES.map(({ km }, i) => {
       const path = q<SVGPathElement>(`.rm-arc-${i}`);
       const len = path.getTotalLength();
       path.style.strokeDasharray = `${len}`;
       return {
-        path, len,
+        path, len, km,
         spark: q<SVGCircleElement>(`.rm-spark-${i}`), halo: q<SVGCircleElement>(`.rm-halo-${i}`),
         ping: q<SVGCircleElement>(`.rm-ping-${i}`), dot: q<SVGCircleElement>(`.rm-cdot-${i}`),
         lbl: q<SVGTextElement>(`.rm-lbl-${i}`), kmt: q<SVGTextElement>(`.rm-km-${i}`),
