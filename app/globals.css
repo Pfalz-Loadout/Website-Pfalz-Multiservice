@@ -342,7 +342,8 @@ html.pm-motion .curtain { display: block; animation: pm-curtain-failsafe 0s 3.5s
 /* ---------- CTA band ---------- */
 .cta { position: relative; padding: var(--section-y) var(--gutter); overflow: clip; background: var(--surface-dark); }
 .cta__bg { position: absolute; inset: -15% 0; will-change: transform; }
-.cta__scrim { position: absolute; inset: 0; background: linear-gradient(rgba(3,11,23,.86), rgba(3,11,23,.86)); }
+/* Neutral schwarz statt Marineblau: das Foto behält seine natürlichen Farben, Text bleibt gut lesbar */
+.cta__scrim { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 80% at 50% 50%, rgba(0,0,0,.72) 0%, rgba(0,0,0,.82) 100%); }
 .cta__inner { position: relative; max-width: var(--container-narrow); margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 36px; }
 .cta__btns { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
 

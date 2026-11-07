@@ -70,6 +70,7 @@ export function KnxPlayground() {
   const [log, setLog] = useState<Log[]>([]);
   const [flash, setFlash] = useState<{ key: string; n: number } | null>(null);
   const [demo, setDemo] = useState(true);
+  const [lmReady, setLmReady] = useState(0); // Lichtkarte geladen? Erst dann Farbebenen zeigen
   const idRef = useRef(0);
   const rootRef = useRef<HTMLDivElement>(null);
   const blindRef = useRef(0);
@@ -192,7 +193,7 @@ export function KnxPlayground() {
     (k === "light" && light > 0.5) || (k === "dim" && Math.abs(light - 0.4) < 0.01) ||
     (k === "evening" && Math.abs(light - 0.45) < 0.01) || (k === "down" && moving && target > blind) || (k === "up" && moving && target < blind);
   const sc = SCENES.find((s) => s.id === scene)!;
-  const colored = scene !== "warm";
+  const colored = scene !== "warm" && lmReady >= 2;
   const power = Math.min(1, Math.abs(setpoint - actual) / 2.5);
   const sizes = "(max-width: 1080px) 100vw, 860px";
 
@@ -228,7 +229,7 @@ export function KnxPlayground() {
         <div className={`kp__climate kp__climate--${mode}`}>
           <div className="kp__climate-top">
             <span className="kp__sub-lbl">Raumregler <small>PA 1.1.9</small></span>
-            <span className="kp__mode">{mode === "heat" ? "Heizen" : mode === "cool" ? "Kühlen" : "Temperatur erreicht"}</span>
+            <span className="kp__mode">{mode === "heat" ? "Heizen" : mode === "cool" ? "Kühlen" : "Erreicht"}</span>
           </div>
           <div className="kp__climate-row">
             <button type="button" className="kp__tbtn" aria-label="Sollwert senken" onClick={() => changeTemp(setpoint - 0.5)}>−</button>
@@ -248,11 +249,11 @@ export function KnxPlayground() {
           <Image className="kp__img kp__img--on" src="/images/knx-raum-an.jpg" alt="" fill sizes={sizes} style={{ opacity: colored ? 0 : light }} />
           {/* Farbiges Licht: Lichtkarte eingefärbt, additiv. Spots außen, Pendelleuchte über dem Tisch */}
           <div className="kp__lm kp__lm--spots" aria-hidden="true" style={{ opacity: colored ? light : 0 }}>
-            <Image className="kp__img" src="/images/knx-raum-licht.jpg" alt="" fill sizes={sizes} />
+            <Image className="kp__img" src="/images/knx-raum-licht.jpg" alt="" fill sizes={sizes} onLoad={() => setLmReady((n) => n + 1)} />
             <span className="kp__lm-tint" style={{ background: css(sc.spots) }} />
           </div>
           <div className="kp__lm kp__lm--pendel" aria-hidden="true" style={{ opacity: colored ? light : 0 }}>
-            <Image className="kp__img" src="/images/knx-raum-licht.jpg" alt="" fill sizes={sizes} />
+            <Image className="kp__img" src="/images/knx-raum-licht.jpg" alt="" fill sizes={sizes} onLoad={() => setLmReady((n) => n + 1)} />
             <span className="kp__lm-tint" style={{ background: css(sc.pendel) }} />
           </div>
           <div className={`kp__heat${mode === "heat" ? " is-on" : ""}`} aria-hidden="true" style={{ ["--p" as string]: String(0.35 + 0.65 * power) }} />
