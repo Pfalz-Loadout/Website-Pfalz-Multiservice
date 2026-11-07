@@ -1,6 +1,8 @@
 /* ==========================================================================
    Pfalz Multiservice — Tokens 1:1 aus dem Design-System (tokens/*.css)
    ========================================================================== */
+/* Ersatzschrift mit den Maßen von Poppins: kein Sprung, wenn die echte Schrift nachlädt */
+@font-face { font-family: "Poppins Fallback"; src: local("Arial"); size-adjust: 112.52%; ascent-override: 93.32%; descent-override: 31.11%; line-gap-override: 8.89%; }
 :root {
   --pm-gold-700: #B8962F; --pm-gold-600: #C9A83E; --pm-gold-500: #DDBB4D;
   --pm-gold-400: #E6C96A; --pm-gold-300: #EFD994; --pm-gold-text: #D9B13A;
@@ -22,8 +24,8 @@
   --overlay-hero: linear-gradient(0deg, rgba(0,0,0,.55), rgba(0,0,0,.55));
   --overlay-card: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,.85) 100%);
 
-  --font-display: 'Poppins', system-ui, sans-serif;
-  --font-body: 'Poppins', system-ui, sans-serif;
+  --font-display: 'Poppins', 'Poppins Fallback', system-ui, sans-serif;
+  --font-body: 'Poppins', 'Poppins Fallback', system-ui, sans-serif;
   --fs-hero: clamp(2.75rem, 5.4vw, 5.25rem);
   --fs-h1: clamp(2.5rem, 4.4vw, 4rem);
   --fs-h2: clamp(2rem, 3.4vw, 3.5rem);
