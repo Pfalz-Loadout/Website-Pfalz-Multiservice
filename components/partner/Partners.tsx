@@ -27,7 +27,7 @@ export function PartnerTiles() {
         <div className="pt-tiles pm-reveal" data-reveal="cards">
           {PARTNERS.map((p) => (
             <Link key={p.slug} href={partnerHref(p)} className="pt-tile pm-card" data-cursor aria-label={`${p.name}: mehr zur Partnerschaft`}>
-              <span className="pt-tile__img"><Image src={p.photo} alt="" fill sizes="(max-width: 640px) 50vw, (max-width: 1080px) 33vw, 380px" /></span>
+              <span className="pt-tile__img"><Image src={p.photo} alt="" fill sizes="(max-width: 640px) 100vw, (max-width: 1080px) 50vw, 560px" /></span>
               <span className="pt-tile__body">
                 <PartnerLogo p={p} width={130} />
                 <b className="pt-tile__name">{p.name}</b>

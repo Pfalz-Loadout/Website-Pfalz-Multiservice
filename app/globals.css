@@ -264,7 +264,7 @@ html.pm-motion .curtain { display: block; animation: pm-curtain-failsafe 0s 3.5s
 
 /* ---------- Service card ---------- */
 .card { position: relative; display: flex; flex-direction: column; background: var(--surface-card); border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-card); overflow: hidden; text-decoration: none; color: inherit; transform-style: preserve-3d; will-change: transform;
+  border-radius: var(--radius-card); overflow: hidden; text-decoration: none; color: inherit;
   transition: border-color var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out); }
 .card:hover, .card:focus-visible { border-color: rgba(221,187,77,.35); box-shadow: var(--shadow-md), 0 0 0 1px rgba(221,187,77,.08); }
 .card__spot { position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity var(--dur-slow) var(--ease-out); z-index: 2;
