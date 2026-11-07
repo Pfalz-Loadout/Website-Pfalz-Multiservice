@@ -84,7 +84,7 @@ export function RegionMap({ heading }: { heading: ReactNode }) {
       op(hqGlow, h * (0.75 + 0.25 * Math.sin(clock * 3)));
       op(hqL, seg(t, 2.3, 2.9)); op(hqS, seg(t, 2.5, 3.1));
       rings.forEach((r, i) => {
-        const start = 2.2 + i * 0.55;
+        const start = 8.0 + i * 0.55; // Sonar-Ringe erst, wenn alle Orte erreicht sind
         // nach dem Aufbau ruhiger: längere Periode, schwächer
         const period = t >= END ? 3.3 : 1.65, strength = t >= END ? 0.35 : 0.6;
         const v = clock > start ? ((clock - start) % period) / period : 0;
