@@ -242,7 +242,7 @@ export const HOME_FAQ: Faq[] = tidyDeep([
   ["Wann sind Sie erreichbar?", "Telefonisch und per WhatsApp unter +49 160 5086983 oder per E-Mail an kontakt@pfalz-multiservice.de. Termine vor Ort vereinbaren wir individuell."],
 ]);
 
-export const AREA = ["Worms", "Frankenthal", "Ludwigshafen", "Mannheim", "Alzey", "Grünstadt", "Bensheim"];
+export const AREA = ["Worms", "Frankenthal", "Ludwigshafen", "Mannheim", "Alzey", "Grünstadt", "Bensheim", "Eich", "Bad Dürkheim"];
 
 export const FOOTER_TEXT = tidyDeep(
   "Von E-Commerce und Warenankauf über Lagerung und Räumung bis zur Betreuung von Websites und Objekten: Pfalz Multiservice bündelt Dienstleistungen für Unternehmen und Privatkunden in der Region Worms.");

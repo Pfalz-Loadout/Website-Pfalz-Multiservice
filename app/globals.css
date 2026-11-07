@@ -2230,3 +2230,37 @@ html.pm-motion .tk__sparks i:nth-child(3) { animation-delay: calc(var(--tk-d) + 
 }
 @keyframes cbar-run { 0% { transform: translateX(-110%); } 55%, 100% { transform: translateX(240%); } }
 @media (prefers-reduced-motion: reduce) { .cbar__item--wa::after { animation: none; opacity: 0; } }
+
+/* Einzugsgebiet: animierte Karte (RegionMap) */
+.rm { display: flex; flex-direction: column; gap: clamp(32px, 5vw, 56px); }
+.rm-map { position: relative; aspect-ratio: 16 / 9; border: 1px solid var(--border-subtle); border-radius: var(--radius-card); overflow: hidden; background: #050505; }
+.rm-map svg { display: block; width: 100%; height: 100%; }
+.rm-lbl { font-family: var(--font-body); font-size: 13px; font-weight: 500; fill: #fff; }
+.rm-lbl--hq { font-size: 15px; font-weight: 600; letter-spacing: .04em; }
+.rm-km { font-family: var(--font-body); font-size: 10.5px; fill: var(--text-highlight); letter-spacing: .08em; }
+.rm-river-l { font-family: var(--font-body); font-size: 10px; fill: #4a4a4a; letter-spacing: .3em; }
+.rm-panel { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 64px); align-items: end; }
+.rm-facts { display: flex; flex-direction: column; gap: 26px; }
+.rm-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0 24px; margin: 0; padding: 0; list-style: none; }
+.rm-list li { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border-subtle); color: #fff; font-size: .9375rem;
+  opacity: .18; transform: translateX(-8px); transition: opacity .5s var(--ease-out), transform .5s var(--ease-out), border-color .5s; }
+.rm-list li b { color: var(--text-highlight); font-weight: 500; font-variant-numeric: tabular-nums; }
+.rm-list li.is-on { opacity: 1; transform: none; border-color: var(--border-strong); }
+.rm-stats { display: flex; gap: clamp(20px, 4vw, 36px); flex-wrap: wrap; }
+.rm-stats strong { display: block; color: #fff; font-size: clamp(1.75rem, 3vw, 2.25rem); font-weight: 600; letter-spacing: -.02em; font-variant-numeric: tabular-nums; line-height: 1.2; }
+.rm-stats span { font-size: .75rem; color: var(--text-subtle); letter-spacing: .06em; text-transform: uppercase; }
+@media (max-width: 900px) {
+  .rm-panel { grid-template-columns: minmax(0, 1fr); align-items: start; }
+  .rm-map { aspect-ratio: 1 / 1; }
+}
+@media (max-width: 720px) {
+  /* Handy: Überschrift und Text, dann Karte, dann Zähler; Ortsliste entfällt */
+  .rm-panel, .rm-facts { display: contents; }
+  .rm-list { display: none; }
+  .rm-panel > :first-child { order: 1; }
+  .rm-map { order: 2; }
+  .rm-stats { order: 3; }
+}
+@media (max-width: 420px) {
+  .rm-list { grid-template-columns: minmax(0, 1fr); }
+}

@@ -1,6 +1,7 @@
 import { tidyNode } from "@/lib/typo";
-import { AREA, COMPANY, CTA, CONTACT, IMG, USPS, homeSubServices, serviceHref } from "@/lib/data";
+import { COMPANY, CTA, CONTACT, IMG, USPS, homeSubServices, serviceHref } from "@/lib/data";
 import { Core } from "./Core";
+import { RegionMap } from "./RegionMap";
 import { BgImage } from "../BgImage";
 import { SectionHeading } from "../SectionHeading";
 import { ServiceCard } from "../ServiceCard";
@@ -91,21 +92,15 @@ export function About() {
 export function Region() {
   return (
     <section className="section" id="region">
-      <div className="container split split--region" style={{ gridTemplateColumns: "1.1fr 1fr" }}>
-        <div className="media-frame pm-reveal" data-reveal="clip" style={{ aspectRatio: "16/11" }}>
-          <BgImage className="media-frame__img" data-clip-img="" data-parallax="8" src={IMG + "pfalz-landschaft.png"} sizes="(max-width: 900px) 100vw, 55vw" />
-        </div>
-        <div className="stack" style={{ gap: 28 }}>
-          <SectionHeading
-            eyebrow="Region Worms" title="Unser" highlight="Einzugsgebiet"
-            intro="Worms, Frankenthal, Ludwigshafen, Mannheim, Alzey, Grünstadt, Bensheim und Umgebung. Digitale Leistungen erbringen wir standortunabhängig im gesamten deutschsprachigen Raum."
-          />
-          <div className="chips pm-reveal" data-reveal="pop">
-            {AREA.map((o) => (
-              <span key={o} className="chip"><Icon name="map-pin" size={15} />{o}</span>
-            ))}
-          </div>
-        </div>
+      <div className="container">
+        <RegionMap
+          heading={
+            <SectionHeading
+              eyebrow="Region Worms" title="Unser" highlight="Einzugsgebiet"
+              intro="Regional vor Ort in Worms und rund 30 Kilometern Umkreis. Bundesweit online verfügbar: Webdesign, Website-Betreuung und E-Commerce erledigen wir standortunabhängig."
+            />
+          }
+        />
       </div>
     </section>
   );
