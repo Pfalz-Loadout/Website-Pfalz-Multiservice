@@ -1778,3 +1778,6 @@ html.pm-motion .tk__sparks i:nth-child(3) { animation-delay: calc(var(--tk-d) + 
 @keyframes cta-pulse {
   0%, 100% { box-shadow: 0 0 0 0 rgba(221,187,77,.5); }
   60% { box-shadow: 0 0 0 10px rgba(221,187,77,0); } }
+/* Zwei Karten nebeneinander (z. B. „Weitere Bereiche“ auf der Startseite) */
+.grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--grid-gap); }
+@media (max-width: 640px) { .grid-2 { grid-template-columns: minmax(0, 1fr); } }
