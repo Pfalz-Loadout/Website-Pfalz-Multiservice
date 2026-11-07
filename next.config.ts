@@ -3,6 +3,14 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   poweredByHeader: false,
 
+  // Mitgelieferte Altbrowser-Polyfills weglassen (PageSpeed „Veraltetes JavaScript“, ca. 14 KiB)
+  turbopack: {
+    resolveAlias: {
+      "../build/polyfills/polyfill-module": "./lib/empty-polyfill.ts",
+      "next/dist/build/polyfills/polyfill-module": "./lib/empty-polyfill.ts",
+    },
+  },
+
   // CSS direkt im HTML ausliefern: spart die blockierende Stylesheet-Anfrage (PageSpeed „Rendering blockiert“)
   experimental: { inlineCss: true },
 
